@@ -84,3 +84,6 @@
   - Q35, "Per class, as built (Recommended)": coach cost stays per class.
   - Q36, "Classes share weekends": rent = classes × (2026 weekends ÷ 2026 classes, from the Master sheet's Site and WE Dt) × rate + storage / 12.
   - DRAFT md5 14fae3fa: 500 classes, 4,477 students, class fees $1,712,460, sales $1,785,252, coach $496,045, rent $157,653 (Rick $172,455), operating profit $142,760 (Rick $278,835). My own tests 1-8 pass. The goal file is updated for Q34-Q36.
+- 2026-11-20: blind checker round 10 on 14fae3fa: FAIL, 1 finding (VERDICT-10.md md5 1604f089). This is the second FAIL on release 3; at a third, Piston picks the new shape (R-1876, R-1878). Every goal test 1-8 matched its own recompute, and round 9's six findings are fixed.
+  - The finding: class counts were shown as whole numbers, so the month row read 501 against a year of 500, and part-class edits did not show.
+  - Repaired in DRAFT md5 57674a57: class counts now show one decimal where they are not whole (March 58.6). The month row adds to 500, and a 0.1 edit shows (499.9). My own tests 1-8 pass.

@@ -79,6 +79,7 @@ const RAW=J("src-data"),PL=J("src-pl"),EXTRA=J("src-extra");
 const Z=()=>new Array(12).fill(0);
 const sum=a=>a.reduce((s,x)=>s+(+x||0),0);
 const fmtN=v=>Math.round(v).toLocaleString("en-US");
+const fmtK=v=>Math.abs(v-Math.round(v))<0.05?fmtN(v):v.toLocaleString("en-US",{minimumFractionDigits:1,maximumFractionDigits:1});
 const fmtD=v=>{const r=Math.round(v);return (r<0?"-$":"$")+Math.abs(r).toLocaleString("en-US");};
 const pct=(a,b)=>b?((a-b)/Math.abs(b)*100):null;
 const rnd=v=>Math.round(v)||0;
@@ -309,7 +310,7 @@ function renderPlan(){
   const n26=sum(ALL_STUDENTS_26),s26=sum(ALL_SALES_26),N=sum(t.n),G27=sum(agg.gap),S=sum(t.s)+G27,C27=sum(agg.cls);
   const seats=sum(agg.ups.map(({p})=>sum(p.cls)*p.cap)),unitN=sum(agg.ups.map(({p})=>sum(p.n)));
   const k=el("div",{class:"kpis"});const kp=(l,a,b)=>`<div class="kpi"><div class="l">${l}</div><div class="v">${a}</div><div class="d">${b}</div></div>`;
-  k.innerHTML=kp("2027 classes",fmtN(C27),`Class Data, 2027 Projections, BRC2 per his answer 34 (start ${fmtN(CLASSES27_START)}) · ${fmtN(sum(CLASSES26))} held or booked in ${L26} (December: bookings so far)`)
+  k.innerHTML=kp("2027 classes",fmtK(C27),`Class Data, 2027 Projections, BRC2 per his answer 34 (start ${fmtN(CLASSES27_START)}) · ${fmtN(sum(CLASSES26))} held or booked in ${L26} (December: bookings so far)`)
    +kp("2027 students",fmtN(N),`<span class="${cl(pct(N,n26))}">${fmtP(pct(N,n26))}</span> vs 2026 registrations ${fmtN(n26)} (Manual Log)`)
    +kp("2027 sales",fmtD(S),`<span class="${cl(pct(S,RICK26))}">${fmtP(pct(S,RICK26))}</span> vs Rick's 2026 ${fmtD(RICK26)} (PRU-pl)<br>= class fees ${fmtD(sum(t.s))} + ${fmtD(G27)} in the five parts below`)
    +kp("Seats filled, 2027",fmtF(seats?unitN/seats*100:null),`${fmtN(unitN)} students in ${fmtN(seats)} seats (12 a class; 4 for First Ride)`);
@@ -330,16 +331,16 @@ function renderPlan(){
   const tc=el("div",{class:"card"});
   let h=`<div class="tw"><table><thead><tr><th>Site / class</th><th>2026 fill % (Manual Log, Mar–Nov)</th><th>2027 classes</th><th>2027 fill %</th><th>Students per class</th><th>2027 students</th><th>Price</th><th>2027 sales</th><th>Coaches</th><th></th></tr></thead><tbody>`;
   SITES.forEach(site=>{const us=agg.ups.filter(x=>x.u.site===site);if(!us.length)return;const bs=agg.bySite[site];
-    h+=`<tr class="grp"><td>${esc(site)}</td><td></td><td>${fmtN(sum(bs.cls))}</td><td></td><td></td><td>${fmtN(sum(bs.n))}</td><td></td><td>${fmtD(sum(bs.s))}</td><td></td><td></td></tr>`;
+    h+=`<tr class="grp"><td>${esc(site)}</td><td></td><td>${fmtK(sum(bs.cls))}</td><td></td><td></td><td>${fmtN(sum(bs.n))}</td><td></td><td>${fmtD(sum(bs.s))}</td><td></td><td></td></tr>`;
     us.forEach(({u,p})=>{const ed=STATE.fillUnit[u.key]!=null,me=!!STATE.unitMonths[u.key];
       h+=`<tr data-k="${esc(u.key)}"><td style="padding-left:22px">${esc(TNAME(u.type))}</td><td title="${esc(u.fSrc)}">${fmtF(u.fStart)}${u.f26==null?"*":""}</td>
-      <td class="${me?"edited":""}">${fmtN(sum(p.cls))}</td>
+      <td class="${me?"edited":""}">${fmtK(sum(p.cls))}</td>
       <td><input type="number" step="1" class="in-f${ed?" edited":""}" value="${ed?STATE.fillUnit[u.key]:""}" placeholder="${fmtF(p.f)}" aria-label="2027 fill % for ${esc(TNAME(u.type))} at ${esc(site)}"></td>
       <td>${p.spc.toFixed(1)}</td><td>${fmtN(sum(p.n))}</td><td>${fmtD(p.price)}</td><td>${fmtD(sum(p.s))}</td><td>${p.two?"two":"one"}</td>
       <td><button class="btn mini in-m">${P.open===u.key?"Close":"Months"}</button>${ed||me?' <button class="btn mini in-x" title="Back to start values">↺</button>':""}</td></tr>`;
       if(P.open===u.key){const f=R3.fill26[u.key];h+=`<tr class="months" data-k="${esc(u.key)}"><td colspan="10"><div class="tw"><table><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr>
         ${f?`<tr><td>Classes held or booked ${L26}</td>${f.c.map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(f.c))}</td></tr><tr><td>Students ${L26}</td>${f.s.map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(f.s))}</td></tr>`:""}
-        <tr><td><b>2027 classes</b></td>${p.cls.map((q,m)=>`<td><input type="number" step="any" min="0" class="in-mo${me?" edited":""}" data-m="${m}" value="${+q.toFixed(2)}" aria-label="${MON[m]} 2027 classes"></td>`).join("")}<td>${fmtN(sum(p.cls))}</td></tr>
+        <tr><td><b>2027 classes</b></td>${p.cls.map((q,m)=>`<td><input type="number" step="any" min="0" class="in-mo${me?" edited":""}" data-m="${m}" value="${+q.toFixed(2)}" aria-label="${MON[m]} 2027 classes"></td>`).join("")}<td>${fmtK(sum(p.cls))}</td></tr>
         <tr><td>2027 students</td>${p.n.map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(p.n))}</td></tr></table></div>
         <p class="note">Start months: Class Data, 2027 Projections: ${esc(u.how)}.</p></td></tr>`;}
     });
@@ -348,7 +349,7 @@ function renderPlan(){
   agg.car.forEach(({c,p})=>{h+=`<tr><td style="padding-left:22px">${esc(c.label)}<div class="note">${L26}: ${fmtN(sum(c.n))} students</div></td><td></td><td></td><td></td><td></td><td>${fmtN(sum(p.n))}</td><td>${fmtD(p.price)}</td><td>${fmtD(sum(p.s))}</td><td>${c.cls26?(p.two?"two":"one"):""}</td><td></td></tr>`;});
   h+=`<tr class="grp"><td>${GAPNAME}<div class="note">2026: ${fmtD(GAP26)} = Rick's ${fmtD(RICK26)} − Manual Log ${fmtD(s26)}</div></td><td></td><td></td><td></td><td></td><td></td><td></td><td>${fmtD(G27)}</td><td></td><td></td></tr>`;
   PARTS.forEach(([nm,val],i)=>{const v27=i===0?sum(agg.ldw):val;h+=`<tr><td style="padding-left:22px">${esc(nm)}<div class="note">2026: ${fmtD(val)}${i===0?` · 2027: ${(LDW_RATE*100).toFixed(4)}% of class fees`:" · 2027: kept at 2026"}</div></td><td></td><td></td><td></td><td></td><td></td><td></td><td>${fmtD(v27)}</td><td></td><td></td></tr>`;});
-  h+=`<tr class="tot"><td>All</td><td></td><td>${fmtN(C27)}</td><td></td><td></td><td>${fmtN(N)}</td><td></td><td>${fmtD(S)}</td><td></td><td></td></tr></tbody></table></div>
+  h+=`<tr class="tot"><td>All</td><td></td><td>${fmtK(C27)}</td><td></td><td></td><td>${fmtN(N)}</td><td></td><td>${fmtD(S)}</td><td></td><td></td></tr></tbody></table></div>
    <p class="note">* No 2026 classes of this type at this site; its start fill is the type's at all sites. Students per class = capacity × fill % (12 a class; 4 for First Ride, his answer 33). Coaches: one where students per class are 6 or fewer, two where more (his answer 26).</p>`;
   tc.innerHTML=h;
   tc.querySelectorAll("tr[data-k]").forEach(tr=>{const key=tr.dataset.k;
@@ -364,7 +365,7 @@ function renderPlan(){
   box.appendChild(dc);
   const fc=el("div",{class:"card"});const S27=MON.map((_,m)=>t.s[m]+agg.gap[m]);
   fc.innerHTML=`<div class="ct">2027 by month: this is what flows into the budget</div><div class="tw"><table><thead><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr></thead><tbody>
-  <tr><td>2027 classes</td>${agg.cls.map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(C27)}</td></tr>
+  <tr><td>2027 classes</td>${agg.cls.map(q=>`<td>${fmtK(q)}</td>`).join("")}<td>${fmtK(C27)}</td></tr>
   <tr class="sub"><td>2027 students</td>${t.n.map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(N)}</td></tr>
   <tr><td>2027 class fees</td>${t.s.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(t.s))}</td></tr>
   <tr><td>Loss Damage Waiver, ${(LDW_RATE*100).toFixed(4)}% of class fees</td>${agg.ldw.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(agg.ldw))}</td></tr>
@@ -452,7 +453,7 @@ function renderBudget(){
    ${TYPES.concat(["ARC"]).map(ty=>`<tr><td>${esc(TNAME(ty))}</td><td>${fmtD(R3.coach[ty][0])}</td><td>${fmtD(R3.coach[ty][1])}</td></tr>`).join("")}</tbody></table></div>
    <p class="note">Class Data, 2027 Projections H15–J22 (his answer 26: “Cost varies by student, up to 6 and more than six”).</p>
    <div class="tw grid12"><table><thead><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr></thead><tbody>`;
-  types.forEach(ty=>{const bt=agg.byType[ty];ih+=`<tr><td>${esc(TNAME(ty))}: ${fmtN(sum(bt.cls))} classes</td>${bt.coach.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(bt.coach))}</td></tr>`;});
+  types.forEach(ty=>{const bt=agg.byType[ty];ih+=`<tr><td>${esc(TNAME(ty))}: ${fmtK(sum(bt.cls))} classes</td>${bt.coach.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(bt.coach))}</td></tr>`;});
   agg.car.filter(x=>x.c.cls26).forEach(({c,p})=>{ih+=`<tr><td>${esc(c.label)}: ${fmtN(sum(c.cls26))} classes (as held or booked in ${L26})</td>${p.coach.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(p.coach))}</td></tr>`;});
   ih+=`<tr><td>Range aid, ${fmtD(R3.rangeAid.rate)} × ${RA_CLASSES} classes</td>${agg.aid.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(agg.aid))}</td></tr>
    <tr class="sub"><td>Salaries & Wages</td>${B[33].map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(B[33]))}</td></tr>
