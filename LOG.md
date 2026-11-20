@@ -97,3 +97,6 @@
   - classes to one decimal, students and dollars whole; the model keeps exact figures;
   - month inputs round to 0.1.
   - My own tests: 1-8 clean, and each fails on its planted fault. New test 9 (every shown row adds up to its shown total; plan table columns; P&L rows 13, 33 and 72 equal their tabs) found 0 fails over 498 rows in 55 tables. On the page as it stood before (template.before-shapeA.html) it found 247 fails.
+- 2026-11-20 17:05 EST: blind checker round 12 on 0a70d654 (the first check of shape A): FAIL, 1 finding (VERDICT-12.md md5 dd380460). This is FAIL 1 on the new shape. Goal tests 1-8 and Piston's add-up check passed, with 0 faults over about 1,100 rows in each of 5 states.
+  - The finding: a typed price kept its decimals while the box showed whole dollars (389.4 shown as $389; sales moved $1,563).
+  - Repaired in DRAFT md5 751ac390: typed prices round to whole dollars (389.4 becomes 389; sales unchanged). My own tests 1-9 pass (test 9: 0 fails over 508 rows).

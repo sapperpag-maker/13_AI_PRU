@@ -350,7 +350,7 @@ function renderPlan(){
   const setF=(obj,key,val)=>{if(val==="")delete obj[key];else obj[key]=+val;};
   ctr.querySelector("#f-all").onchange=e=>{STATE.fillAll=e.target.value===""?null:+e.target.value;changed();};
   TYPES.forEach(ty=>{ctr.querySelector("#f-t-"+CSS.escape(ty)).onchange=e=>{setF(STATE.fillType,ty,e.target.value);changed();};});
-  ctr.querySelectorAll("[data-price]").forEach(inp=>inp.onchange=e=>{setF(STATE.price,inp.dataset.price,e.target.value);changed();});
+  ctr.querySelectorAll("[data-price]").forEach(inp=>inp.onchange=e=>{setF(STATE.price,inp.dataset.price,e.target.value===""?"":Math.max(0,Math.round(+e.target.value||0)));changed();});
   wireSave(ctr);box.appendChild(ctr);
   const tc=el("div",{class:"card"});
   let h=`<div class="tw"><table><thead><tr><th>Site / class</th><th>2026 fill % (Manual Log, Mar–Nov)</th><th>2027 classes</th><th>2027 fill %</th><th>Students per class</th><th>2027 students</th><th>Price</th><th>2027 sales</th><th>Coaches</th><th></th></tr></thead><tbody>`;
