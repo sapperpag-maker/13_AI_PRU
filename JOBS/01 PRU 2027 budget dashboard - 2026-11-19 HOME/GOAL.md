@@ -48,11 +48,11 @@ A case beyond the list is reported, never a FAIL.
 
 The build passes when items 1 to 4 are each shown by a file (R-1879): item 1, the page and its md5 with the test's PASS on the offline and draft-line checks; item 2, the program that printed the page with its run output naming the master's md5, and `CHOICES.json`; item 3, the test's PASS line for each of the six weekly measures (coach profitability, coach pass rate, range profitability, class profitability, class fill rate, number of students), each naming its source file's md5; item 4, the test's whole PASS output on the 9 common failure cases and its 9 planted-fault runs, one per case, each FAIL (the case 6 run failing on each of the six measures). Items 5 to 8 are not the build's own steps and are not in the pass mark: they are the checks, his acceptance and the putting live that follow it.
 
-## Open, for Sergio, before the build
+## His answers to the open questions (2026-11-20, Angie's chat)
 
-These are Angie's questions for him, each to go through the question tool (R-0411, R-1879):
+Word for word in `C:\AI_Building\AI_PRU His answers and decisions\His words - the desk opened.md`, answers 1 to 5. They change this goal as follows; LAWYER checks the change with `PLAN.md` beside this file.
 
-- Which budget lines the page shows (for example PRU's whole P&L, or Training and its gross only).
-- Which years and views (for example 2025, 2026 and 2027 side by side, as Rick's store extracts show them in the skill fs-budget-store-pages, or another set).
-- Who reads it on ONE VIEW.
-- Which files hold the coaches, ranges, classes and students week by week: Angie finds the sources (his words: "she can find good sources of data") and brings him what she finds.
+- Lines: PRU's whole P&L, "same as rick", plus a 2027 sales goal planner, "a better version of the excel planner they used last year" (answer 1). The planner joins item 2 as a second piece; its test cases are added to item 4 once its design is put to him.
+- Years and views: "2025, 2026, 2027 side by side" (answer 2).
+- Readers on ONE VIEW: Sergio, Kim Harrison, Richard Stein, Angel Aerls, PRU manager (answer 3).
+- Weekly measures: coach pass rate, coach profitability and class fill rate have no source; "Build the three found first" (answer 4). Class and range profitability wait on Rick's answer on costs by class and range (answer 5). Item 3 and the pass mark count only the measures with a source until then.

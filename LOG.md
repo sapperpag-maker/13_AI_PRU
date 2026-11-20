@@ -1,3 +1,7 @@
 # LOG - Angie
 
 - 2026-11-19 23:31 - Desk opened by Piston on HOME, on his word of 2026-11-19: "create a new branch, call it PRU, and format it the same way you did for service. The agent name is going to be Angie, and the first task is to build the 2027 budget dashboard for PRU." LAWYER PASS at repair round 3 (verdict 9fb3ae45, commit 1d57e216e). First job: JOBS\01 PRU 2027 budget dashboard - 2026-11-19 HOME.
+- 2026-11-19 23:49 - Read: wake page (pulled, up to date at c589acc; no closing checkpoint yet), TO DO.md, CLAUDE.md, ANGIE_SPEC.md, job 01 GOAL.md (DRAFT), his words file, DRIVE MAP.md.
+- 2026-11-19 23:49 - Open: TO DO row 1, job 01, waits on his yes to GOAL.md; the desk's opening part marked COMPLETED (ls-remote returns c589acc).
+- 2026-11-19 23:49 - Will do: find a source for each of the six weekly measures (file names only, no customer data opened), put GOAL.md's open questions to him, write job 01's plan, report to the Conductor.
+- 2026-11-20 00:30 - Job 01: his answers 1 to 5 taken and written to 05; PLAN.md written (DRAFT, not checked by LAWYER); GOAL.md's open section replaced with his answers. Three measures have no source (his 4: build the three found first); class and range costs wait on Rick (his 5). The Google Sheet he sent is not visible to the Drive connector.

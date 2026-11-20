@@ -34,3 +34,27 @@ His answers in the question tool, in the Conductor's chat, 2026-11-19, relayed b
 
 61. "Part of job 01": the six weekly measures (coaches' profitability and pass rate, ranges' profitability, classes' profitability and fill rate, number of students, weekly trend) are a condition of job 01, the 2027 PRU budget dashboard. Their sources are still unknown; a measure with no source stops and goes to him.
 62. "By name (Recommended)": coaches are shown by name.
+
+His answers to Angie's questions, in Angie's chat, 2026-11-20 HOME, word for word:
+
+1. Which budget lines: "i want P&L same as rick. I but I want a 2027 Goal planner for the sales part, same as builder did for sales. A better version of the excel planner they used last year"
+2. Which years and views: "2025, 2026, 2027 side by side"
+3. Who reads it on ONE VIEW: "me kim richrd and angel aerls, PRU manager"
+4. No file found for coach pass rate, coach profitability or class fill rate: "Build the three found first"
+
+His message right after, in Angie's chat, 2026-11-20 HOME, word for word:
+
+> H:\Shared drives\Accounting\08-Budget\2026 Budget\PRU
+>
+> This is what i used last year for your reference, i need something more user friendly, that can be carrued into 2027
+5. What "profitability" means for classes and ranges while no 2026 cost file by class or range is found: "Ask Rick for costs". Rick checks whether the general ledger splits PRU's coach pay and rent by range; the build waits for his answer.
+
+His message, in Angie's chat, 2026-11-20 HOME, word for word (where Bonnie's live 2026 PRU log is):
+
+> "H:\Shared drives\Accounting\09-Daily Reports\2026 PRU\2026 PRU Manual Log v.3.xlsx"
+
+His messages, in Angie's chat, 2026-11-20 HOME, word for word, each sent with no words of his own:
+
+> C:\Users\Sergio\My Drive (spagnini@wherethepoweris.com)\003 - PRU
+
+> https://docs.google.com/spreadsheets/d/1hTnf1S60SBZRwt8NCQbqkqPyihLIvYA8qBmeJ3Z7tRs/edit?gid=754814940#gid=754814940
