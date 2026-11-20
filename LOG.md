@@ -87,3 +87,8 @@
 - 2026-11-20: blind checker round 10 on 14fae3fa: FAIL, 1 finding (VERDICT-10.md md5 1604f089). This is the second FAIL on release 3; at a third, Piston picks the new shape (R-1876, R-1878). Every goal test 1-8 matched its own recompute, and round 9's six findings are fixed.
   - The finding: class counts were shown as whole numbers, so the month row read 501 against a year of 500, and part-class edits did not show.
   - Repaired in DRAFT md5 57674a57: class counts now show one decimal where they are not whole (March 58.6). The month row adds to 500, and a 0.1 edit shows (499.9). My own tests 1-8 pass.
+- 2026-11-20 16:34 EST: blind checker round 11 on 57674a57: FAIL, 3 findings (VERDICT-11.md md5 2e653711). This is the third FAIL on release 3, so Piston picks the new shape (R-1878). The round 10 repair works, and goal tests 1-8 reproduce from the sources. All three findings are display rounding:
+  1. Students are shown as whole numbers, so rows do not add to their Year cell (months 4,476 against 4,477).
+  2. Class edits under 0.05 still hide, and one-decimal cells do not add to their Year (500.6 against 500.5).
+  3. Dollar rows do not add to their Year cell (range aid $313 × 12 against $3,750; 45 P&L rows).
+  - Shapes put to Piston: A, round every shown row so its cells add to the shown total (my pick); B, show cents and decimals; C, whole-number classes in the model.
