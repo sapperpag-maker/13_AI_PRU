@@ -132,3 +132,9 @@
   - Finding 2: "Reset everything" worked only once. norm() copied the defaults shallowly, so after the first reset, edits wrote into the defaults themselves.
   - Repaired in DRAFT md5 98b30ed6: the space is added, and norm() takes a fresh copy of every state object.
   - New tests: 13 (three rounds of edits and reset) and 14 (no word runs into a number, in any tab). Both find 0 fails on 98b30ed6 and 7 fails on 4a3a32ec. Tests 1-12 pass again.
+- 2026-11-20 18:44 EST: Piston pushed e8f9a36.
+- 2026-11-20 18:44 EST: blind checker round 16 on 98b30ed6: FAIL, 9 findings (VERDICT-16.md, 8,301 bytes, md5 5b2d6457). This is the second FAIL on the smaller step. The job STOPS and goes to Sergio himself (Piston's R-1876 pick). Nothing is repaired until he decides.
+  - Both round-15 repairs are confirmed. Test 1 (498) passes, tests 4-7 pass in the model, all 1,008 of Rick's P&L cells match, and every shown row adds up.
+  - Finding 1: ARC shows "two" coaches ($1,160). The rule reads 7.0 students per class, a figure shown nowhere; the page shows 11 students in 2 classes (5.5), which is one coach ($780).
+  - Findings 2-8: total rows (First Ride coach, students, fees, sales and P&L Training by month, Rent, Salaries) are sums of hidden rows rounded one by one. So their cells sit $1-4 from the exact figure, and the year total is $1 off (sales $1,779,596 against $1,779,595.12). Rounds 13 and 14 listed this as a risk, not a failure.
+  - Finding 9: after "Save plan", a tab switch shows "Not saved yet" while the saved edit stays applied.
