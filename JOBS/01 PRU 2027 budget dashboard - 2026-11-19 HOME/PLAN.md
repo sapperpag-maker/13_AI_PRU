@@ -1,6 +1,6 @@
-# PLAN - job 01, PRU 2027 budget dashboard - DRAFT, repair round 3 (P&L alone for 9am)
+# PLAN - job 01, PRU 2027 budget dashboard - DRAFT, repair round 4 (P&L alone for 9am)
 
-Angie, 2026-11-20 HOME. The goal is `GOAL.md`, beside this file. His words are in `C:\AI_Building\AI_PRU\05 His answers and decisions\His words - the desk opened.md`. The run is full auto on his word: "im going to sleep, go ahead full auto. plan is accepted when the lawyer passes. Piston picks on my behalf. ill need something in ONE VIEW for tomorrow 9am MANDATORY."
+Angie, 2026-11-20 HOME. The goal is `C:\AI_Building\AI_PRU\JOBS\01 PRU 2027 budget dashboard - 2026-11-19 HOME\GOAL.md`. His words are in `C:\AI_Building\AI_PRU\05 His answers and decisions\His words - the desk opened.md`. The run is full auto on his word: "im going to sleep, go ahead full auto. plan is accepted when the lawyer passes. Piston picks on my behalf. ill need something in ONE VIEW for tomorrow 9am MANDATORY."
 
 ## Bad news first
 
@@ -22,15 +22,15 @@ Angie, 2026-11-20 HOME. The goal is `GOAL.md`, beside this file. His words are i
 | Coach pay | the GL CSV, account 72200-30 (Rick's claim) | | release 2 |
 | Coach pass rate, coach profit, class fill rate | none | | waits on his file (answer 6) |
 
-The student rows stay out of `C:\AI_Building\AI_PRU`. The program reads Master in place, reads only the columns named, and writes weekly totals. The test reads the two name columns only to prove no name is on the page.
+Release 1b only: the student rows stay out of `C:\AI_Building\AI_PRU`. The program reads Master in place, reads only the columns named, and writes weekly totals. Release 1 reads nothing from the log; its test reads the file's bytes only for the md5 that must not be on the page.
 
 ## Full-auto decisions made in his place, flagged (to Piston, 2026-11-20 01:16)
 
-- G1. Release 1 is one page with two tabs. Range and class profit, then the planner, come after 9am.
+- G1. Release 1 was one page with two tabs; the new shape (below) replaced that: release 1 is the P&L tab alone, the Weekly tab is release 1b. Range and class profit, then the planner, come after 9am.
 - G2. The page is built on the bench while LAWYER checks this plan, because of the 9am deadline. Nothing goes live without LAWYER's PASS on the page.
 - G3. "same as builder did for sales" is read as Rick's 2027 Goal Setting page, `C:\AI_Building\AI_Financials\04 Budget\2027\2026-11-12 budget table - rick RICK-HOME-1111\GOAL PAGE RULES.md`.
 - G4. Readers: "me kim richrd and angel aerls, PRU manager" is read as four people.
-- G5. The name scan (case 10) looks for full names, first and last of one row; single words that equal some name are listed, not failed. Why: the scan on every single value failed on 12 ordinary page words ("may", "cash", "wood", "sergio" in a file path...).
+- G5. Release 1b only (release 1 has no name scan; its case 11 proves nothing from the log is on the page): the name scan looks for full names, first and last of one row; single words that equal some name are listed, not failed. Why: the scan on every single value failed on 12 ordinary page words ("may", "cash", "wood", "sergio" in a file path...).
 - G6. PRU-pl B184 reads "Repairs and Maintenance - Building" where its 2027 row B76 reads "Insurance - Building". The 2026 row is kept by position (row + 108) and the page says so in a note.
 - G7. Withdrawn in repair round 2: 2025 is read from the same row (labels equal on every row), so the duplicate "Training" needs no rule.
 - G8. A year figure is the source's own year cell. 25 rows of PRU-Prior miss their Total by more than $1 against their twelve months; the page marks each with * and shows the month sum. Which is right is his to say.
@@ -41,23 +41,25 @@ The student rows stay out of `C:\AI_Building\AI_PRU`. The program reads Master i
 - G13. "side by side": the year view shows the three years side by side; the month view shows one year at a time, picked from a list.
 - New shape after the third checker FAIL (R-1878), Piston's pick: release 1 is the P&L tab alone; the Weekly tab is release 1b, after 9am.
 - G2 is put to Piston for his pick (round-2 finding 15): the page was built before LAWYER's PASS on the plan.
-- Piston's picks in his place, 2026-11-20 ~02:15, each his to strike: G1 to G7 stand; G2 is fine ("build on the bench while LAWYER checks the plan. Nothing goes live without LAWYER's PASS on the page itself").
+- Piston's picks in his place, 2026-11-20 ~02:15, each his to strike: G1 to G7 stand (G1 since replaced by the new shape, G5 since moved to release 1b, G7 withdrawn); G2 is fine ("build on the bench while LAWYER checks the plan. Nothing goes live without LAWYER's PASS on the page itself").
 - The acceptance: Piston does NOT accept the page in his place ("accepting work is his alone"). The page goes to Piston with LAWYER's verdict by 07:30 at the latest; Piston puts a one-tap question to him when he is back; the Brain puts it live on his yes. If LAWYER fails the page, the part that passes goes (the P&L tab alone is enough).
 
 ## Steps, agents and models
 
-Agents launched so far: 4, all Opus blind checkers (plan rounds 2 and 3 with page round 2, page round 1). The new shape adds 1: one blind check of the plan and the P&L page together (step 6). The cap is 5. LAWYER is a desk of its own. The Brain puts the page live.
+Agents launched so far: 5, all Opus blind checkers, numbered as in GOAL.md's list: checks 1 to 4 (check 2 ran as two agents). The cap was 5. Check 4 passed the page and failed the plan with 11 findings, so one more is asked of Piston (step 7): check 5, of the repaired GOAL, PLAN and test. The page is unchanged. If he says yes, the cap is 6. LAWYER is a desk of its own. The Brain puts the page live.
 
 | # | step | who | done when | minutes | state |
 |---|---|---|---|---|---|
 | 1 | Plan repair rounds 1 and 2 (20, then 19 findings) | Angie | both files rewritten | 15 | done |
-| 2 | Blind checks: plan rounds 2 and 3, page rounds 1 and 2 | checker agents (Opus) | PASS | 20 | FAIL each; plan's third FAIL went to Piston |
+| 2 | Blind checks 1 to 3 | checker agents (Opus) | PASS | 20 | FAIL each; the plan's third FAIL went to Piston |
 | 3 | The page program and the page on the bench `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 page - ANGIE-HOME\` | Angie (answer 55) | the page exists | 45 | done |
-| 4 | New shape (Piston's pick): the P&L tab alone, `build_page.py --pl-only`; its test `test_page_pl.py`, 11 cases, 42 plants | Angie | PASS, every plant FAIL | 30 | done (own test, not a verdict) |
+| 4 | New shape (Piston's pick): the P&L tab alone, `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 page - ANGIE-HOME\build_page.py --pl-only`; its test `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 page - ANGIE-HOME\test_page_pl.py` | Angie | PASS, every plant FAIL | 30 | done (own test, not a verdict) |
 | 5 | Plan repair round 3 for the new shape (8 + 2 findings) | Angie | GOAL and PLAN rewritten | 15 | done |
-| 6 | One blind check of plan and P&L page together | checker agent (Opus) | PASS | 20 | next |
-| 7 | Plan and page to LAWYER (session local_5fb2d9ed-2bc2-4e00-8229-4baba6e00ef6) | Angie sends | LAWYER's PASS on both | - | |
-| 8 | Path, md5 and verdict to Piston by 07:30; his yes asked by Piston when he is back; page into the job folder; the Brain puts it live | Angie / Piston / the Brain | live on ONE VIEW | - | |
-| 9 | Release 1b (the Weekly tab), then release 2 | Angie, then the same checks | - | - | after 9am |
+| 6 | Blind check 4, plan and P&L page together | checker agent (Opus) | PASS | 20 | page PASS; plan FAIL 11 |
+| 6b | Repair of check 4's 11 findings: text in GOAL and PLAN; 10 new plants in the test (52 in all); the row-21 refusal moved into `ratio_ok`, the page's output unchanged | Angie | own test PASS, 52 of 52 caught | 20 | done (own test, not a verdict) |
+| 7 | Blind check 5, of the repaired GOAL, PLAN and test (the page unchanged) | checker agent (Opus), if Piston says yes | PASS | 20 | waits on Piston |
+| 8 | Plan and page to LAWYER (session local_5fb2d9ed-2bc2-4e00-8229-4baba6e00ef6) | Angie sends | LAWYER's PASS on both | - | |
+| 9 | Path, md5 and verdict to Piston by 07:30; his yes asked by Piston when he is back; page into the job folder; the Brain puts it live | Angie / Piston / the Brain | live on ONE VIEW | - | |
+| 10 | Release 1b (the Weekly tab), then release 2 | Angie, then the same checks | - | - | after 9am |
 
 Each check lists every fail it finds. There are two FAILs per repair step (R-1876, R-1880).
