@@ -27,3 +27,15 @@ Jan-Sep 2026, the books (GL) show $1,399,220.82 of PRU training sales; the Manua
 
 9. **Pass rates by coach and class.** Where are they kept, and can Angie read them?
 10. **Coaches by class.** Is there a list of which coach taught each class? Angie would use it for each coach's profitability.
+
+## Sergio's answers, 2026-11-20 (his words in Angie's chat)
+
+1. LDW: "LDW just figure a % to sales ad keep it". Answered; Other training income (GL 46450-30) is not covered by it.
+2. January: "we presell classes, so money cashed in January so for classes scheduled later in the Q1". Answered: the January GL money is presold cash; the log books those classes by class date.
+3. Class fees above the log: "to Kim". **Still for Kim.**
+4. Oct-Dec: "we are about to finalize October books. keep the estimate for 2026 11 and 12". Answered: October becomes actual once its books are final.
+5. "Faifarx and Wladorf are 2 ranges". Answered. **New point for Kim:** the GL books $112,131 Jan-Sep to account 46011-30, named Waldorf, but the Manual Log has no Waldorf classes in 2026, and Waldorf is out for 2027 (Sergio, answer 7). Where is Fairfax GMU's money booked, and what is in 46011-30?
+6. "we only have 1 version,,attached". Answered: the planner uses the file he attached (md5 37c427cf).
+7. Answered: the targets are in Class_Data.xlsx, tab 2027 Projections, and "Waldorf range is out for 2027 at the moment".
+8. "check in the attached log." Checked: the attached log's Master sheet has 573 distinct 2026 class codes, but Class_Data.xlsx (2027 Projections, B82) shows 448 classes posted as of 11/20/26, and its 2026 course summary shows 496 classes. Put to Sergio.
+9-10. "park them for now". Parked.

@@ -40,3 +40,19 @@
 - 2026-11-20 HOME. Q23: "Five named rows (Recommended)". Planner gap built as Rick's month less the log's month (PRU-pl row 121), shown as five parts from LAWYER's FINDINGS.md.
 - 2026-11-20: checker round 7 on 1f07d7af FAIL, 1 finding (VERDICT-7.md md5 5ea61a5f): the gap row's Growth % cell rounds to a whole number (-0.2 shows -0, 2.5 shows 3). This is the second FAIL in this step, so it goes back to Piston with a smaller shape: leave that cell blank.
 - 2026-11-20: Piston picked the smaller step (R-1876): leave the gap row's Growth % cell blank. Built 504d2701. My own test: the cell is blank at -0.2, 0.4, 2.5, 10 and 0; growth 0 sales 1,651,117.18; self-test worst 1.8e-12; no console messages. Blind round 8 launched. Two FAILs on this step stop the job and it goes to Sergio.
+- 2026-11-20 HOME. Sergio answered the Kim questions himself (his words, in Angie's chat), and attached two files: 2026_PRU_Manual_Log_v3.xlsx (md5 37c427cf) and Class_Data.xlsx (md5 bcb6c111).
+  - 1: "LDW just figure a % to sales ad keep it"
+  - 2: "we presell classes, so money cashed in January so for classes scheduled later in the Q1"
+  - 3: "to Kim"
+  - 4: "What do you mean? we dont close through the winter we are about to finalize October books. keep the estimate for 2026 11 and 12"
+  - 5: "Faifarx and Wladorf are 2 ranges"
+  - 6: "what do you mean, we only have 1 version,,attached"
+  - 7: "check the Class Data file attached. i used this file this mornig for my meeting. tab 2027 projection has the target number. Waldorf range is out for 2027 at the moment"
+  - 8: "check in the attached log."
+  - 9 and 10: "park them for now"
+- 2026-11-20 HOME. Sergio's answers:
+  - Q24: "498 table is the correct one. The annual planner has the wrong numbers for Clarkson, Im fixing it one moment"
+  - Q25: "Typo, use $389 (Recommended)"
+  - Q26: "Class data has the cost for coaches in H15-J22. Cost varies by student, up to 6 and more than six."
+  - Q27: "no need to rename. We don't presold only in January. It's normal ticketing , students buy today to book an available class in the future"
+- 2026-11-20: checker round 8 on 504d2701 FAIL, 1 finding (VERDICT-8.md md5 b0715433). Goal item 8 still describes one line, "Revenue not in the Manual Log", spread over the months like the log's pattern; the page follows Q23 (five rows, Rick's month less the log's month). My mistake: I built Q23 without bringing it into the goal file. This is the first FAIL on Piston's smaller step. The checker also saw two old PROGRESS.md lines before writing its verdict (it reported this itself).
