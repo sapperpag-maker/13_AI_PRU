@@ -30,3 +30,4 @@
 - 2026-11-20: Q16 answered, ONE VIEW button name for the planner: "PRU 2027 Planner (Recommended)". Sent to Brain HOME. Piston colours (dark default) put in the bench template; rebuild after the blind check.
 - 2026-11-20: Q17 answered: "Skip LAWYER this once" (his words: "put in on ONE view after your blind check", "I need this asap"). Sent to Brain HOME. Goes live after the blind check passes; to file with the Legislator as an exception to R-1809/R-1900.
 - 2026-11-20: his words "Lawyer checks after": LAWYER checks the planner after it is live. Sent to Brain HOME.
+- 2026-11-20: blind check round 1 FAIL (5 findings), round 2 PASS; page md5 49a03ed793ab15fa4e9869e20dfdfb2b (commit 054169e) sent to Brain HOME for ONE VIEW slot pru-planner. LAWYER checks after it is live.
