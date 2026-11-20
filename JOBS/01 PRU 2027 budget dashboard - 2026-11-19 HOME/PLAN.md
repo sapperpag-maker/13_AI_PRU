@@ -1,4 +1,4 @@
-# PLAN - job 01, PRU 2027 budget dashboard - DRAFT, repair round 1
+# PLAN - job 01, PRU 2027 budget dashboard - DRAFT, repair round 2
 
 Angie, 2026-11-20 HOME. The goal is `GOAL.md`, beside this file. His words are in `C:\AI_Building\AI_PRU\05 His answers and decisions\His words - the desk opened.md`. The run is full auto on his word: "im going to sleep, go ahead full auto. plan is accepted when the lawyer passes. Piston picks on my behalf. ill need something in ONE VIEW for tomorrow 9am MANDATORY."
 
@@ -14,8 +14,8 @@ Angie, 2026-11-20 HOME. The goal is `GOAL.md`, beside this file. His words are i
 |---|---|---|---|
 | P&L 2027 | `C:\AI_Building\AI_Financials\04 Budget\2027\rolled\02 - Consolidated SGP Budget light.xlsx` (md5 64e3c1ecdf01ee25cae717657952bfbe) | PRU-pl rows 8-103; months D, E, F, I, J, K, N, O, P, S, T, U; year Y. Columns G, L, Q, V are quarter totals and H, M, R are percents, never read as months | release 1 |
 | P&L 2026 | the same file | PRU-pl rows 116-211 ("2026 - Prior Year"), the same columns | release 1 |
-| P&L 2025 | `C:\AI_Building\AI_Financials\04 Budget\2027\raw files\3 Operating statements\02 - Operating Statements 2026-09.xlsx` | PRU-Prior, rows matched by the column B label, the same twelve month columns | release 1 |
-| Number of students | `C:\Users\Sergio\Downloads\2026 PRU Manual Log v3.xlsx` (md5 ab99689da045431d30dda84f57000c76) | Master: WE Dt, a count of rows | release 1 |
+| P&L 2025 | `C:\AI_Building\AI_Financials\04 Budget\2027\raw files\3 Operating statements\02 - Operating Statements 2026-09.xlsx` | md5 c2b949723c5f30e369b831404a90ce37; PRU-Prior, the same rows (labels equal on every row), the same twelve month columns, year Y | release 1 |
+| Number of students | `C:\Users\Sergio\Downloads\2026 PRU Manual Log v3.xlsx` (md5 ab99689da045431d30dda84f57000c76; he sent it 00:29; not the H: live log, G10) | Master: WE Dt, a count of rows | release 1 |
 | Class sales (profit in release 2) | the same file | Master: WE Dt, Course, Total Fee | release 1 |
 | Range sales (profit in release 2) | the same file | Master: WE Dt, Site, Total Fee | release 1 |
 | Range rent | the GL CSV above, accounts 785xx-30, Store POW (Rick's claim); also the log's sheet `26 Rent Schedule` | | release 2 |
@@ -33,6 +33,12 @@ The student rows stay out of `C:\AI_Building\AI_PRU`. The program reads Master i
 - G5. The name scan (case 10) looks for full names, first and last of one row; single words that equal some name are listed, not failed. Why: the scan on every single value failed on 12 ordinary page words ("may", "cash", "wood", "sergio" in a file path...).
 - G6. PRU-pl B184 reads "Repairs and Maintenance - Building" where its 2027 row B76 reads "Insurance - Building". The 2026 row is kept by position (row + 108) and the page says so in a note.
 - G7. "Training" is used twice in PRU-pl (rows 13 and 54). The nth use of a label takes the nth PRU-Prior row with that label.
+- G8. A year figure is the source's own year cell. 25 rows of PRU-Prior miss their Total by more than $1 against their twelve months; the page marks each with * and shows the month sum. Which is right is his to say.
+- G9. One registration row is one student; a student on two courses counts twice. The page says so.
+- G10. The weekly source is the Downloads file he sent at 00:29 (21 sheets, holds Master), not the H: live log he named first (2 sheets: "Copy of 2026 Summary", "Copy of WklyConsolidating Wd"; no Master).
+- G11. PRU-pl row 21 (no label, ratios 0.62-0.80) is shown as percents with no year.
+- G12. Ranges are shown by their site codes; no plain names are in a source read here.
+- G2 is put to Piston for his pick (round-2 finding 15): the page was built before LAWYER's PASS on the plan.
 - Whether Piston accepts the page in his place so it can go live by 9am is Piston's decision, asked of Piston.
 
 ## Steps, agents and models
@@ -44,7 +50,7 @@ The run launches 4 agents, all on Opus unless named: 2 blind checkers (round 2 o
 | 1 | Repair this plan and GOAL.md (round 1, 20 findings) | Angie | both files rewritten | 15 |
 | 2 | Blind re-check of the plan | checker agent (Opus) | PASS | 20 |
 | 3 | Build the page program and the page on the bench `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 page - ANGIE-HOME\` | Angie (Angie builds, answer 55) | the page and program exist | 45 |
-| 4 | The test and its 10 plants | Angie | PASS, with every plant FAIL | 30 |
+| 4 | The test and its 25 plants | Angie | PASS, with every plant FAIL | 30 |
 | 5 | Plan to LAWYER (session local_5fb2d9ed-2bc2-4e00-8229-4baba6e00ef6) | Angie sends | LAWYER's verdict | - |
 | 6 | Blind check of the page | checker agent (Opus) | PASS | 20 |
 | 7 | Page to LAWYER | Angie sends | LAWYER's PASS | - |

@@ -69,3 +69,6 @@ His message, in Angie's chat, 2026-11-20 01:09 HOME, word for word (the full-aut
 
 Before it, the same night: "skip for nopw" (the coach and pass/fail file, his answer 6 again).
 > do not stop for any reason, give me something
+
+- 2026-11-20 01:42 HOME, in Angie's chat, after her answer on full auto: "Correct, please deliver it, by 9am. Promise?"
+- 2026-11-20 00:29 HOME (05:29:19 UTC, session transcript line 489), in Angie's chat, his whole message: @"C:\Users\Sergio\Downloads\2026 PRU Manual Log v3.xlsx" (added 01:50 after the round-2 check found it missing here).

@@ -10,3 +10,4 @@
 - 2026-11-20 00:44 - His answer 7: "Spread coach pay by students". Written to 05; goes into PLAN.md with Rick's answer after the blind check.
 - 2026-11-20 00:47 - His answer 6: "skip for now, ill send it later". The three coach and fill measures wait on his file.
 - 2026-11-20 01:40 HOME - job 01 release 1 page built on the bench (md5 465831a6c641fc9ab93d3c8ed1bd0138); own test 10/10 PASS, 12/12 plants caught (not a verdict). Flagged G5 (name scan by full name), G6 (PRU-pl B184 label typo kept by position), G7 (Training matched by order). Blind page check launched; plan re-check round 2 running.
+- 2026-11-20 02:02 HOME - plan round 2 FAIL (19) and page round 1 FAIL (9; figures all match) repaired: GOAL/PLAN round 2, G8-G12; page b2bfaebc6e0ce92ad7988ddb709e3b21, own test 10/10 PASS, 25/25 plants caught (not a verdict). One blind re-check of plan and page launched.
