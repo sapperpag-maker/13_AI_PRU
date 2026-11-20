@@ -32,3 +32,4 @@
 - 2026-11-20: his words "Lawyer checks after": LAWYER checks the planner after it is live. Sent to Brain HOME.
 - 2026-11-20: blind check round 1 FAIL (5 findings), round 2 PASS; page md5 49a03ed793ab15fa4e9869e20dfdfb2b (commit 054169e) sent to Brain HOME for ONE VIEW slot pru-planner. LAWYER checks after it is live.
 - 2026-11-20 10:22: Brain HOME reports PRU 2027 Planner live on ONE VIEW at /pru-planner, served md5 49a03ed793ab15fa4e9869e20dfdfb2b (list Q commit 8cfd4adbd). LAWYER checking after the fact. Angel not yet a reader of pru or pru-planner; Sergio to tick it himself (Brain ruling 3673).
+- 2026-11-20: Q18 answered: "Log, labelled (Recommended)" - PRU 2026 sales on the planner stay from the Manual Log, labelled, with Rick's 2026 figure beside it for reference (LAWYER F1, verdict 49a03ed7).
