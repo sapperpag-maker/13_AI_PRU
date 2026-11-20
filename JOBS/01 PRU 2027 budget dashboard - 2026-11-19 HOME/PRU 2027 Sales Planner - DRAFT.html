@@ -81,8 +81,17 @@ const sum=a=>a.reduce((s,x)=>s+(+x||0),0);
 const fmtN=v=>Math.round(v).toLocaleString("en-US");
 const fmtD=v=>{const r=Math.round(v);return (r<0?"-$":"$")+Math.abs(r).toLocaleString("en-US");};
 const pct=(a,b)=>b?((a-b)/Math.abs(b)*100):null;
-const fmtP=p=>{if(p==null)return "–";const r=Math.round(p)||0;return (r>=0?"+":"")+r+"%";};
-const cl=p=>p==null?"":Math.round(p)>=0?"up":"down";
+const rnd=v=>Math.round(v)||0;
+// one sign-and-colour rule: judged on the figure as shown (rounded); 0 shows as 0, uncoloured, never -0
+const fmtP=p=>{if(p==null)return "–";const r=rnd(p);return (r>0?"+":"")+r+"%";};
+const cl=p=>p==null?"":rnd(p)>0?"up":rnd(p)<0?"down":"";
+// Change % beside a Change cell: sign and colour follow the shown Change; a small non-zero change shows one decimal, never 0%
+const fmtPC=(d,p)=>{const r=rnd(d);if(r===0||p==null)return r===0?"0%":"–";const s=r>0?"+":"-",a=Math.abs(p);return s+(a>=0.5?Math.round(a):a>=0.05?a.toFixed(1):"<0.1")+"%";};
+const fmtC=(d,f)=>{const r=rnd(d);return r===0?f(0):(r>0?"+":"")+f(r);};
+// one label rule for every 2026 figure read from the Manual Log
+const L26="2026 (Manual Log)";
+function yL(y){return y==="2026"?L26:y;}
+function yl(y){return y==="2026"?"2026 registrations (Manual Log)":y;}
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 
 // ---------- state ----------
@@ -106,8 +115,8 @@ function rangeOf(r){return r.replace(" (and other)","").replace(" (Skills Retest
 const LINES=RAW.filter(l=>l.range!=="2021 Only").map(l=>({key:l.cls+"|"+l.range,cls:l.cls,range:rangeOf(l.range),label:l.range,n:l.n,d:l.d}));
 const CLASSES=[...new Set(LINES.map(l=>l.cls))];
 const RANGES=[...new Set(LINES.map(l=>l.range))].sort((a,b)=>(a==="All Locations")-(b==="All Locations")||a.localeCompare(b));
-function classPrice(c){for(const y of ["2026","2025","2024","2023"]){let n=0,d=0;LINES.filter(l=>l.cls===c).forEach(l=>{n+=sum(l.n[y]);d+=sum(l.d[y]);});if(n>0&&d>0)return {p:d/n,src:"class average "+y};}return {p:0,src:"none"};}
-function defaultPrice(l){for(const y of ["2026","2025","2024","2023"]){const n=sum(l.n[y]),d=sum(l.d[y]);if(n>0&&d>0)return {p:d/n,src:y+" average"};}return classPrice(l.cls);}
+function classPrice(c){for(const y of ["2026","2025","2024","2023"]){let n=0,d=0;LINES.filter(l=>l.cls===c).forEach(l=>{n+=sum(l.n[y]);d+=sum(l.d[y]);});if(n>0&&d>0)return {p:d/n,src:"class average "+yL(y)};}return {p:0,src:"none"};}
+function defaultPrice(l){for(const y of ["2026","2025","2024","2023"]){const n=sum(l.n[y]),d=sum(l.d[y]);if(n>0&&d>0)return {p:d/n,src:yL(y)+" average"};}return classPrice(l.cls);}
 LINES.forEach(l=>{const dp=defaultPrice(l);l.dp=dp.p;l.dpSrc=dp.src;});
 function baselineMonths(l){const b=STATE.baseline;if(b==="avg3")return MON.map((_,m)=>(l.n["2024"][m]+l.n["2025"][m]+l.n["2026"][m])/3);return l.n[b].slice();}
 function lineCfg(l){return STATE.lines[l.key]||{};}
@@ -120,6 +129,10 @@ function plan(l){
 }
 const ALL_STUDENTS_26=Z(),ALL_SALES_26=Z();
 LINES.forEach(l=>{for(let m=0;m<12;m++){ALL_STUDENTS_26[m]+=l.n["2026"][m];ALL_SALES_26[m]+=l.d["2026"][m];}});
+// his answer 22: Rick's 2026 is used; what the log misses (LDW, other income) is one line, spread over months like the log's 2026, grown at the plan's growth %
+const LOG26=sum(ALL_SALES_26),RICK26=EXTRA.rick2026,GAP26=RICK26-LOG26,GAP26M=ALL_SALES_26.map(q=>LOG26?GAP26*q/LOG26:0);
+const GAPNAME="Revenue not in the Manual Log (LDW, other income)";
+function gap27(){const g=1+(+STATE.growth||0)/100;return GAP26M.map(q=>q*g);}
 const CLASSES26=EXTRA.classes2026;
 const SPC26=sum(ALL_STUDENTS_26)/Math.max(1,sum(CLASSES26)); // students per class, 2026
 // initiatives
@@ -140,7 +153,7 @@ function planAgg(){
   LINES.forEach(l=>{const p=plan(l);const r=(byRange[l.range]=byRange[l.range]||Z());for(let m=0;m<12;m++){t.n[m]+=p.months[m];t.s[m]+=p.salesM[m];r[m]+=p.salesM[m];}});
   const it={n:Z(),s:Z(),classes:Z(),rent:Z()};
   activeInits().forEach(i=>{const c=initCalc(i);for(let m=0;m<12;m++){it.n[m]+=c.n[m];it.s[m]+=c.sales[m];it.classes[m]+=c.classes[m];it.rent[m]+=c.rent[m];}});
-  return {core:t,byRange,it};
+  return {core:t,byRange,it,gap:gap27()};
 }
 
 // ---------- P&L model ----------
@@ -173,7 +186,7 @@ function rentTable(agg){
 }
 function budget(salesOverride){
   const agg=planAgg();
-  const sales=salesOverride||MON.map((_,m)=>agg.core.s[m]+agg.it.s[m]);
+  const sales=salesOverride||MON.map((_,m)=>agg.core.s[m]+agg.gap[m]+agg.it.s[m]);
   const cls27=classes27(agg),ppc=salesOverride?PAY_BASE:payPerClass();
   const rt=rentTable(agg);
   const B={};
@@ -239,20 +252,20 @@ function renderTrends(){
   const ctr=el("div",{class:"controls"});
   ctr.innerHTML=`<div><div class="note" style="margin-bottom:4px">Show</div><div class="seg"><button data-m="n" aria-pressed="${meas==="n"}">Students</button><button data-m="d" aria-pressed="${meas==="d"}">Sales $</button></div></div>
   <label>Class<select id="t-cls"><option>All</option>${CLASSES.map(c=>`<option ${c===T.cls?"selected":""}>${esc(c)}</option>`).join("")}</select></label>
-  <label>Year in table<select id="t-year">${years.map(y=>`<option ${y===T.year?"selected":""}>${y}</option>`).join("")}</select></label>`;
+  <label>Year in table<select id="t-year">${years.map(y=>`<option value="${y}" ${y===T.year?"selected":""}>${yl(y)}</option>`).join("")}</select></label>`;
   ctr.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{T.measure=b.dataset.m;render();});
   ctr.querySelector("#t-cls").onchange=e=>{T.cls=e.target.value;render();};
   ctr.querySelector("#t-year").onchange=e=>{T.year=e.target.value;render();};
   box.appendChild(ctr);
-  box.appendChild(el("div",{class:"warn"},"2026: November is month-to-date and December holds bookings so far, so both will still grow. 2022 has students only, no dollars."));
+  box.appendChild(el("div",{class:"warn"},L26+": November is month-to-date and December holds bookings so far, so both will still grow. 2022 has students only, no dollars."));
   const card=el("div",{class:"card"});
-  card.appendChild(el("div",{class:"ct"},esc(T.sel==="Total"?"All ranges":T.sel)+" · "+(meas==="n"?"students":"sales $")+" by month"+(T.cls!=="All"?" · "+esc(T.cls):"")));
+  card.appendChild(el("div",{class:"ct"},esc(T.sel==="Total"?"All ranges":T.sel)+" · "+(meas==="n"?"students":"registrations $")+" by month (Manual Log)"+(T.cls!=="All"?" · "+esc(T.cls):"")));
   card.appendChild(el("div",{class:"note"},"Click a range in the table to chart it."));
   const ser=years.map(y=>({y,v:seriesFor(T.sel,T.cls,meas,y)}));
-  card.appendChild(chart(ser,f));card.appendChild(legend(ser.map(s=>[s.y,s.y+": "+f(sum(s.v))])));
+  card.appendChild(chart(ser,f));card.appendChild(legend(ser.map(s=>[s.y,yl(s.y)+": "+f(sum(s.v))])));
   box.appendChild(card);
   const tc=el("div",{class:"card"});const prior=String(+T.year-1),hasPrior=years.includes(prior);
-  let h=`<div class="tw"><table><thead><tr><th>Range</th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>${T.year}</th>${hasPrior?`<th>${prior}</th><th>Change</th>`:""}</tr></thead><tbody>`;
+  let h=`<div class="tw"><table><thead><tr><th>Range</th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>${yl(T.year)}</th>${hasPrior?`<th>${prior}</th><th>Change</th>`:""}</tr></thead><tbody>`;
   RANGES.map(r=>({r,v:seriesFor(r,T.cls,meas,T.year),p:hasPrior?seriesFor(r,T.cls,meas,prior):null})).filter(x=>sum(x.v)>0||(x.p&&sum(x.p)>0)).forEach(x=>{const t=sum(x.v),pt=x.p?sum(x.p):0,pc=pct(t,pt);
     h+=`<tr class="click${T.sel===x.r?" sel":""}" data-r="${esc(x.r)}"><td>${esc(x.r)}</td>${x.v.map(q=>`<td class="${q?"":"zero"}">${q?f(q):"–"}</td>`).join("")}<td><b>${f(t)}</b></td>${hasPrior?`<td>${f(pt)}</td><td class="${cl(pc)}">${fmtP(pc)}</td>`:""}</tr>`;});
   const tv=seriesFor("Total",T.cls,meas,T.year),tp=hasPrior?seriesFor("Total",T.cls,meas,prior):null,tt=sum(tv),tpp=tp?sum(tp):0;
@@ -271,8 +284,8 @@ function chart(series,f){
   for(let q=bot;q<=top+1e-9;q+=step)s+=`<line x1="${pl}" x2="${W-pr}" y1="${y(q)}" y2="${y(q)}" stroke="var(--line)"/><text x="${pl-6}" y="${y(q)+4}" text-anchor="end">${f(q)}</text>`;
   MON.forEach((m,i)=>{s+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${m}</text>`;});
   series.forEach(se=>{const hi=se.y==="2026"||se.y==="2027"||se.y==="rick";
-    s+=`<polyline fill="none" stroke="var(--y${se.y})" stroke-width="${hi?3:1.8}" points="${se.v.map((q,i)=>x(i).toFixed(1)+","+y(q).toFixed(1)).join(" ")}"${se.y==="rick"?' stroke-dasharray="6 4"':""}><title>${se.y}</title></polyline>`;
-    if(hi)se.v.forEach((q,i)=>{s+=`<circle cx="${x(i)}" cy="${y(q)}" r="3" fill="var(--y${se.y})"><title>${MON[i]}: ${f(q)}</title></circle>`;});});
+    s+=`<polyline fill="none" stroke="var(--y${se.y})" stroke-width="${hi?3:1.8}" points="${se.v.map((q,i)=>x(i).toFixed(1)+","+y(q).toFixed(1)).join(" ")}"${se.y==="rick"?' stroke-dasharray="6 4"':""}><title>${se.lab||(se.y==="rick"?"Rick's budget":yl(se.y))}</title></polyline>`;
+    if(hi)se.v.forEach((q,i)=>{s+=`<circle cx="${x(i)}" cy="${y(q)}" r="3" fill="var(--y${se.y})"><title>${se.lab||(se.y==="rick"?"Rick's budget":yl(se.y))}, ${MON[i]}: ${f(q)}</title></circle>`;});});
   const d=el("div");d.innerHTML=s+"</svg>";return d;
 }
 function niceStep(r){if(r<=0)return 1;const p=Math.pow(10,Math.floor(Math.log10(r)));const n=r/p;return (n<=1?1:n<=2?2:n<=5?5:10)*p;}
@@ -280,26 +293,26 @@ function niceStep(r){if(r<=0)return 1;const p=Math.pow(10,Math.floor(Math.log10(
 // TAB 2
 function renderPlan(){
   const box=el("div");const agg=planAgg(),t=agg.core;
-  const n26=sum(ALL_STUDENTS_26),s26=sum(ALL_SALES_26),N=sum(t.n)+sum(agg.it.n),S=sum(t.s)+sum(agg.it.s);
+  const n26=sum(ALL_STUDENTS_26),s26=sum(ALL_SALES_26),N=sum(t.n)+sum(agg.it.n),G27=sum(agg.gap),S=sum(t.s)+G27+sum(agg.it.s);
   const k=el("div",{class:"kpis"});const kp=(l,a,b)=>`<div class="kpi"><div class="l">${l}</div><div class="v">${a}</div><div class="d">${b}</div></div>`;
   k.innerHTML=kp("2027 students",fmtN(N),`<span class="${cl(pct(N,n26))}">${fmtP(pct(N,n26))}</span> vs 2026 registrations ${fmtN(n26)} (Manual Log)`)
-   +kp("2027 sales",fmtD(S),`<span class="${cl(pct(S,s26))}">${fmtP(pct(S,s26))}</span> vs 2026 registrations ${fmtD(s26)} (Manual Log)<br>Rick's workbook 2026: ${fmtD(EXTRA.rick2026)} (PRU-pl)`)
-   +kp("Average price per student",fmtD(N?S/N:0),`2026 registrations (Manual Log): ${fmtD(n26?s26/n26:0)}`)
+   +kp("2027 sales",fmtD(S),`<span class="${cl(pct(S,RICK26))}">${fmtP(pct(S,RICK26))}</span> vs Rick's 2026 ${fmtD(RICK26)} (PRU-pl)<br>= 2026 registrations ${fmtD(s26)} (Manual Log) + ${fmtD(GAP26)} not in the Manual Log`)
+   +kp("Average price per student",fmtD(N?(S-G27)/N:0),`2026 registrations (Manual Log): ${fmtD(n26?s26/n26:0)}`)
    +kp("New initiatives in the plan",fmtD(sum(agg.it.s)),`${activeInits().length} switched on · ${fmtN(sum(agg.it.n))} students`);
   box.appendChild(k);
   const ctr=el("div",{class:"card"});
   ctr.innerHTML=`<div class="controls" style="margin:0">
-   <label>Start from<select id="p-base"><option value="2026" ${STATE.baseline==="2026"?"selected":""}>2026 registrations (Manual Log)</option><option value="2025" ${STATE.baseline==="2025"?"selected":""}>2025 actual</option><option value="avg3" ${STATE.baseline==="avg3"?"selected":""}>Average 2024–2026</option></select></label>
+   <label>Start from<select id="p-base"><option value="2026" ${STATE.baseline==="2026"?"selected":""}>2026 registrations (Manual Log)</option><option value="2025" ${STATE.baseline==="2025"?"selected":""}>2025 actual</option><option value="avg3" ${STATE.baseline==="avg3"?"selected":""}>Average 2024–2026 (2026 from Manual Log)</option></select></label>
    <label>Student growth %, all lines<input type="number" id="p-g" step="1" value="${STATE.growth}"></label>
    <label>Price change %, all lines<input type="number" id="p-pc" step="0.5" value="${STATE.priceChange}"></label>
    ${saveBar()}</div>
-   <p class="note" style="margin:8px 0 0">January 2026 has no students in the log, so starting from 2026 plans none in January 2027 (Rick's January Training is ${fmtD(RICK_TRAINING[0])}); type January by hand or start from another year. A line's own growth, price or months, once typed, override these. Months follow the chosen year's pattern for that line.${STATE.baseline==="2026"?" 2026 November and December are not complete, so they start low.":""}</p>`;
+   <p class="note" style="margin:8px 0 0">January 2026 has no students in the Manual Log, so starting from 2026 (Manual Log) plans none in January 2027 (Rick's January Training is ${fmtD(RICK_TRAINING[0])}); type January by hand or start from another year. A line's own growth, price or months, once typed, override these. Months follow the chosen year's pattern for that line.${STATE.baseline==="2026"?" 2026 (Manual Log) November and December are not complete, so they start low.":""}</p>`;
   ctr.querySelector("#p-base").onchange=e=>{STATE.baseline=e.target.value;changed();};
   ctr.querySelector("#p-g").onchange=e=>{STATE.growth=+e.target.value||0;changed();};
   ctr.querySelector("#p-pc").onchange=e=>{STATE.priceChange=+e.target.value||0;changed();};
   wireSave(ctr);box.appendChild(ctr);
   const tc=el("div",{class:"card"});
-  let h=`<div class="tw"><table><thead><tr><th>Range / class</th><th>2025 students</th><th>2026 students (Manual Log)</th><th>Growth %</th><th>2027 students</th><th>Price</th><th>2027 sales</th><th>vs 2026 registrations $ (Manual Log)</th><th></th></tr></thead><tbody>`;
+  let h=`<div class="tw"><table><thead><tr><th>Range / class</th><th>2025 students</th><th>2026 registrations, students (Manual Log)</th><th>Growth %</th><th>2027 students</th><th>Price</th><th>2027 sales</th><th>vs 2026 $ (lines: Manual Log; total: Rick's)</th><th></th></tr></thead><tbody>`;
   RANGES.forEach(r=>{
     const ls=LINES.filter(l=>l.range===r&&YEARS.some(y=>sum(l.n[y])>0));if(!ls.length)return;const ps=ls.map(plan);
     const n25=sum(ls.map(l=>sum(l.n["2025"]))),nn26=sum(ls.map(l=>sum(l.n["2026"]))),ss26=sum(ls.map(l=>sum(l.d["2026"]))),n27=sum(ps.map(p=>p.n)),s27=sum(ps.map(p=>p.sales));
@@ -316,7 +329,8 @@ function renderPlan(){
         <p class="note">Typing a month fixes all 12 months of this line by hand; growth % is then ignored for it.</p></td></tr>`;
     });
   });
-  h+=`<tr class="tot"><td>All ranges</td><td>${fmtN(sum(LINES.map(l=>sum(l.n["2025"]))))}</td><td>${fmtN(n26)}</td><td></td><td>${fmtN(sum(t.n))}</td><td></td><td>${fmtD(sum(t.s))}</td><td class="${cl(pct(sum(t.s),s26))}">${fmtP(pct(sum(t.s),s26))}</td><td></td></tr></tbody></table></div>`;
+  h+=`<tr class="grp"><td>${GAPNAME}<div class="note">2026: ${fmtD(GAP26)} = Rick's ${fmtD(RICK26)} − Manual Log ${fmtD(s26)}</div></td><td></td><td></td><td>${fmtN(+STATE.growth||0)}</td><td></td><td></td><td>${fmtD(G27)}</td><td class="${cl(G27-GAP26)}">${fmtPC(G27-GAP26,pct(G27,GAP26))}</td><td></td></tr>`;
+  h+=`<tr class="tot"><td>All ranges</td><td>${fmtN(sum(LINES.map(l=>sum(l.n["2025"]))))}</td><td>${fmtN(n26)}</td><td></td><td>${fmtN(sum(t.n))}</td><td></td><td>${fmtD(sum(t.s)+G27)}</td><td class="${cl(sum(t.s)+G27-RICK26)}">${fmtPC(sum(t.s)+G27-RICK26,pct(sum(t.s)+G27,RICK26))}</td><td></td></tr></tbody></table></div>`;
   tc.innerHTML=h;
   tc.querySelectorAll("tr[data-k]").forEach(tr=>{const key=tr.dataset.k,cfg=()=>(STATE.lines[key]=STATE.lines[key]||{});
     const g=tr.querySelector(".in-g");if(g)g.onchange=e=>{if(e.target.value==="")delete cfg().g;else cfg().g=+e.target.value;changed();};
@@ -325,14 +339,17 @@ function renderPlan(){
     const xb=tr.querySelector(".in-x");if(xb)xb.onclick=()=>{delete STATE.lines[key];changed();};
     tr.querySelectorAll(".in-mo").forEach(inp=>inp.onchange=e=>{const l=LINES.find(z=>z.key===key);const cur=plan(l).months.map(Math.round);cur[+inp.dataset.m]=Math.max(0,Math.round(+e.target.value||0));cfg().months=cur;changed();});});
   box.appendChild(tc);
-  const fc=el("div",{class:"card"});const S27=MON.map((_,m)=>t.s[m]+agg.it.s[m]),N27=MON.map((_,m)=>t.n[m]+agg.it.n[m]);
+  const fc=el("div",{class:"card"});const S27=MON.map((_,m)=>t.s[m]+agg.gap[m]+agg.it.s[m]),N27=MON.map((_,m)=>t.n[m]+agg.it.n[m]);
   fc.innerHTML=`<div class="ct">2027 by month: this is what flows into the budget</div><div class="tw"><table><thead><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr></thead><tbody>
   <tr class="sub"><td>2027 students</td>${N27.map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(N27))}</td></tr>
   <tr class="sub"><td>2027 sales</td>${S27.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(S27))}</td></tr>
   <tr><td>of which new initiatives</td>${agg.it.s.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(agg.it.s))}</td></tr>
-  <tr><td>2026 registrations $ (Manual Log)</td>${ALL_SALES_26.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(s26)}</td></tr></tbody></table></div>`;
+  <tr><td>of which ${GAPNAME}</td>${agg.gap.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(G27)}</td></tr>
+  <tr><td>2026 registrations $ (Manual Log)</td>${ALL_SALES_26.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(s26)}</td></tr>
+  <tr><td>2026 not in the Manual Log (spread like the log)</td>${GAP26M.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(GAP26)}</td></tr>
+  <tr class="sub"><td>2026 total (Rick's workbook)</td>${MON.map((_,m)=>`<td>${fmtD(ALL_SALES_26[m]+GAP26M[m])}</td>`).join("")}<td>${fmtD(RICK26)}</td></tr></tbody></table></div>`;
   box.appendChild(fc);
-  box.appendChild(el("p",{class:"note"},"Start price for each line = that line's 2026 registrations $ ÷ 2026 students (Manual Log) (or the latest year with sales; else the class average). Hover a price box to see where its start value came from."));
+  box.appendChild(el("p",{class:"note"},"Start price for each line = that line's 2026 registrations $ ÷ 2026 students (Manual Log) (or the latest year with sales; else the class average). Hover a price box to see where its start value came from. Rick's 2026 sales ("+fmtD(RICK26)+", 02 - Consolidated SGP Budget light, PRU-pl, Training, column 2026) hold "+fmtD(GAP26)+" more than the Manual Log: Loss Damage Waiver and other income the log does not record. His answer 22: that amount is one line, spread over the months like the log's 2026, and grows by the student growth % above."));
   return box;
 }
 
@@ -353,20 +370,22 @@ function renderVs(){
   box.appendChild(ctr);
   const a26=Z(),a27=Z();
   LINES.forEach(l=>{if((V.range==="All"||l.range===V.range)&&(V.cls==="All"||l.cls===V.cls)){const p=plan(l);for(let m=0;m<12;m++){a26[m]+=l[meas]["2026"][m];a27[m]+=meas==="n"?p.months[m]:p.salesM[m];}}});
+  const incl=meas==="d"&&V.range==="All"&&V.cls==="All";if(incl){const g=gap27();for(let m=0;m<12;m++){a26[m]+=GAP26M[m];a27[m]+=g[m];}}
+  const lab26=incl?"2026 Rick's workbook (Manual Log + not in the log)":"2026 registrations (Manual Log)";
   if(V.inits)activeInits().forEach(i=>{if((V.range==="All"||i.range===V.range)&&(V.cls==="All"||i.cls===V.cls)){const c=initCalc(i);for(let m=0;m<12;m++)a27[m]+=meas==="n"?c.n[m]:c.sales[m];}});
   const card=el("div",{class:"card"});
   card.appendChild(el("div",{class:"ct"},`${esc(V.range==="All"?"All ranges":V.range)} · ${esc(V.cls==="All"?"all classes":V.cls)} · ${meas==="n"?"students":"sales $"}`));
-  const ser=[{y:"2026",v:a26},{y:"2027",v:a27}];
-  card.appendChild(chart(ser,f));card.appendChild(legend([["2026","2026 registrations (Manual Log): "+f(sum(a26))],["2027","2027 plan: "+f(sum(a27))]]));
+  const ser=[{y:"2026",v:a26,lab:lab26},{y:"2027",v:a27}];
+  card.appendChild(chart(ser,f));card.appendChild(legend([["2026",lab26+": "+f(sum(a26))],["2027","2027 plan: "+f(sum(a27))]]));
   box.appendChild(card);
   const tc=el("div",{class:"card"});
   tc.innerHTML=`<div class="tw"><table><thead><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr></thead><tbody>
-  <tr><td>2026 registrations (Manual Log)</td>${a26.map(q=>`<td>${f(q)}</td>`).join("")}<td><b>${f(sum(a26))}</b></td></tr>
+  <tr><td>${lab26}</td>${a26.map(q=>`<td>${f(q)}</td>`).join("")}<td><b>${f(sum(a26))}</b></td></tr>
   <tr class="sub"><td>2027 plan</td>${a27.map(q=>`<td>${f(q)}</td>`).join("")}<td>${f(sum(a27))}</td></tr>
-  <tr><td>Change</td>${a27.map((q,m)=>`<td class="${cl(q-a26[m])}">${(q-a26[m]>=0?"+":"")+f(q-a26[m])}</td>`).join("")}<td class="${cl(sum(a27)-sum(a26))}">${(sum(a27)-sum(a26)>=0?"+":"")+f(sum(a27)-sum(a26))}</td></tr>
-  <tr><td>Change %</td>${a27.map((q,m)=>`<td class="${cl(pct(q,a26[m]))}">${fmtP(pct(q,a26[m]))}</td>`).join("")}<td class="${cl(pct(sum(a27),sum(a26)))}">${fmtP(pct(sum(a27),sum(a26)))}</td></tr></tbody></table></div>`;
+  <tr><td>Change</td>${a27.map((q,m)=>`<td class="${cl(q-a26[m])}">${fmtC(q-a26[m],f)}</td>`).join("")}<td class="${cl(sum(a27)-sum(a26))}">${fmtC(sum(a27)-sum(a26),f)}</td></tr>
+  <tr><td>Change %</td>${a27.map((q,m)=>`<td class="${cl(q-a26[m])}">${fmtPC(q-a26[m],pct(q,a26[m]))}</td>`).join("")}<td class="${cl(sum(a27)-sum(a26))}">${fmtPC(sum(a27)-sum(a26),pct(sum(a27),sum(a26)))}</td></tr></tbody></table></div>`;
   box.appendChild(tc);
-  box.appendChild(el("p",{class:"note"},"2026 here is registrations from the PRU Manual Log, by range and class; November is month-to-date and December is bookings so far. Rick's budget workbook shows PRU 2026 sales of "+fmtD(EXTRA.rick2026)+" (02 - Consolidated SGP Budget light, PRU-pl, Training, column 2026); the two are counted differently."));
+  box.appendChild(el("p",{class:"note"},"2026 (Manual Log) is registrations from the PRU Manual Log, by range and class; November is month-to-date and December is bookings so far. For sales $ at all ranges and all classes, 2026 is Rick's "+fmtD(RICK26)+" (02 - Consolidated SGP Budget light, PRU-pl, Training, column 2026): the Manual Log plus "+fmtD(GAP26)+" of LDW and other income it does not record, spread like the log (his answer 22). That amount has no range or class, so filtered views show the Manual Log only."));
   return box;
 }
 
@@ -381,7 +400,7 @@ function renderInits(){
   const box=el("div");
   const intro=el("div",{class:"card"});
   intro.innerHTML=`<div class="ct">Scenarios: a new range or a new kind of class</div>
-  <p class="note" style="margin:0 0 10px">Each one you switch on flows into the 2027 plan, the 2027 vs 2026 tab and the P&L: its sales into Training, its classes into coach pay (at the pay per class set on the P&L tab), its rent into Rent. Students per class sets how many classes it needs (2026 average: ${SPC26.toFixed(1)}).</p>
+  <p class="note" style="margin:0 0 10px">Each one you switch on flows into the 2027 plan, the 2027 vs 2026 tab and the P&L: its sales into Training, its classes into coach pay (at the pay per class set on the P&L tab), its rent into Rent. Students per class sets how many classes it needs (${L26} average: ${SPC26.toFixed(1)}).</p>
   <div class="row"><button class="btn primary" id="add-r">+ New range</button><button class="btn" id="add-c">+ New class</button>${saveBar()}</div>`;
   intro.querySelector("#add-r").onclick=()=>{STATE.inits.push(newInit("range"));changed();};
   intro.querySelector("#add-c").onclick=()=>{STATE.inits.push(newInit("class"));changed();};
@@ -400,7 +419,7 @@ function renderInits(){
       ${it.type==="range"?`<label class="f">Rent per month<input type="number" step="50" data-f="rentMonth" value="${it.rentMonth}"></label>`:""}
       <label class="f" style="flex-direction:row;align-items:center;gap:6px;color:var(--ink)"><input type="checkbox" data-f="on" ${it.on?"checked":""}> In the plan</label>
       <button class="btn mini" data-del="1">Remove</button></div>
-      <div class="row"><label class="f">Fill: students in the year<input type="number" step="10" data-fill="1" placeholder="e.g. 300"></label><span class="note">spreads them over the open months like 2026's pattern, all ranges</span></div>
+      <div class="row"><label class="f">Fill: students in the year<input type="number" step="10" data-fill="1" placeholder="e.g. 300"></label><span class="note">spreads them over the open months like 2026's pattern (Manual Log), all ranges</span></div>
       <div class="tw grid12"><table><thead><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr></thead><tbody>
       <tr><td>Students</td>${c.n.map((q,m)=>`<td><input type="number" min="0" step="1" data-mo="${m}" value="${it.months[m]||0}" ${m<it.start-1?"disabled":""} aria-label="${MON[m]} students"></td>`).join("")}<td>${fmtN(sum(c.n))}</td></tr>
       <tr><td>Sales</td>${c.sales.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td><b>${fmtD(sales)}</b></td></tr>
@@ -426,7 +445,7 @@ function renderBudget(){
   const rick=r=>MON.map((_,m)=>v(r,m));
   const k=el("div",{class:"kpis"});const kp=(l,a,c)=>`<div class="kpi"><div class="l">${l}</div><div class="v">${a}</div><div class="d">${c}</div></div>`;
   const yr=r=>sum(B[r]),ry=r=>sum(rick(r));
-  k.innerHTML=kp("2027 sales",fmtD(yr(14)),`Rick's budget ${fmtD(ry(14))} · <span class="${cl(yr(14)-ry(14))}">${fmtP(pct(yr(14),ry(14)))}</span>`)
+  k.innerHTML=kp("2027 sales",fmtD(yr(14)),`Rick's budget ${fmtD(ry(14))} · <span class="${cl(pct(yr(14),ry(14)))}">${fmtP(pct(yr(14),ry(14)))}</span>`)
    +kp("Gross profit",fmtD(yr(20)),`Rick's ${fmtD(ry(20))}`)
    +kp("Operating profit",fmtD(yr(82)),`Rick's ${fmtD(ry(82))}`)
    +kp("Net after taxes",fmtD(yr(103)),`Rick's ${fmtD(ry(103))}`);
@@ -437,17 +456,17 @@ function renderBudget(){
   const agg=b.agg;const spc27=MON.map((_,m)=>b.cls27[m]?(agg.core.n[m]/b.cls27[m]):0);
   ic.innerHTML=`<div class="ct">Coach pay (all of Salaries & Wages)</div>
    <div class="row"><label class="f">Pay per class<input type="number" step="5" id="ppc" value="${Math.round(b.ppc)}" class="${STATE.payPerClass!=null?"edited":""}"></label>
-   <span class="note">Start value ${fmtD(PAY_BASE)} = Rick's 2027 Salaries & Wages ${fmtD(sum(RICK_SAL))} ÷ ${fmtN(sum(CLASSES26))} classes held in 2026.</span>
+   <span class="note">Start value ${fmtD(PAY_BASE)} = Rick's 2027 Salaries & Wages ${fmtD(sum(RICK_SAL))} ÷ ${fmtN(sum(CLASSES26))} classes held in ${L26}.</span>
    <label class="f" style="flex-direction:row;align-items:center;gap:6px;color:var(--ink)"><input type="checkbox" id="cfol" ${STATE.classesFollow?"checked":""} ${STATE.classes?"disabled":""}> Classes follow 2027 students</label>
    ${STATE.classes?'<button class="btn mini" id="creset">Classes back to start values</button>':""}${saveBar()}</div>
    <div class="tw grid12"><table><thead><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr></thead><tbody>
-   <tr><td>Classes held 2026</td>${CLASSES26.map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(CLASSES26))}</td></tr>
+   <tr><td>Classes held ${L26}</td>${CLASSES26.map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(CLASSES26))}</td></tr>
    <tr><td>Classes 2027</td>${b.cls27.map((q,m)=>`<td><input type="number" min="0" step="1" data-cm="${m}" value="${q}" class="${STATE.classes?"edited":""}" aria-label="${MON[m]} classes 2027"></td>`).join("")}<td>${fmtN(sum(b.cls27))}</td></tr>
    <tr><td>+ initiatives' classes</td>${agg.it.classes.map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(agg.it.classes))}</td></tr>
-   <tr><td>Students per class 2026</td>${MON.map((_,m)=>`<td>${CLASSES26[m]?(ALL_STUDENTS_26[m]/CLASSES26[m]).toFixed(1):"–"}</td>`).join("")}<td>${SPC26.toFixed(1)}</td></tr>
+   <tr><td>Students per class ${L26}</td>${MON.map((_,m)=>`<td>${CLASSES26[m]?(ALL_STUDENTS_26[m]/CLASSES26[m]).toFixed(1):"–"}</td>`).join("")}<td>${SPC26.toFixed(1)}</td></tr>
    <tr><td>Students per class 2027</td>${spc27.map(q=>`<td>${q?q.toFixed(1):"–"}</td>`).join("")}<td>${sum(b.cls27)?(sum(agg.core.n)/sum(b.cls27)).toFixed(1):"–"}</td></tr>
    <tr class="sub"><td>Salaries & Wages</td>${B[33].map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(B[33]))}</td></tr></tbody></table></div>
-   <p class="note">Salaries & Wages each month = Rick's month × (pay per class ÷ ${fmtD(PAY_BASE)}) + (2027 classes − 2026 classes + initiatives' classes) × pay per class. December 2026 classes are those booked so far.</p>`;
+   <p class="note">Salaries & Wages each month = Rick's month × (pay per class ÷ ${fmtD(PAY_BASE)}) + (2027 classes − ${L26} classes + initiatives' classes) × pay per class. December 2026 (Manual Log) classes are those booked so far.</p>`;
   ic.querySelector("#ppc").onchange=e=>{const x=e.target.value;STATE.payPerClass=x===""?null:+x;changed();};
   ic.querySelector("#cfol").onchange=e=>{STATE.classesFollow=e.target.checked;changed();};
   const cr=ic.querySelector("#creset");if(cr)cr.onclick=()=>{STATE.classes=null;changed();};

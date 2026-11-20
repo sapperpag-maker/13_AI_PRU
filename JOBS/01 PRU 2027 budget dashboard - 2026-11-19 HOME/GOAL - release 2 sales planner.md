@@ -18,6 +18,8 @@ His words behind it (Angie's chat, 2026-11-20): "I need that planner to figure o
    - Rent by range by month, editable. His answer 15: "Rick's rent split (Recommended)": start = Rick's Rent (row 72) that month x the range's share of that month's 2027 plan sales. The weekend rate from the log's "26 Rent Schedule" tab shows beside each range as a guide (no contact fields).
 7. **New initiatives** (his words, Angie's chat, 2026-11-20: "Then i need an additional tab fro new initiatives: These would a tab i use to represent scenarios where I add a range or i add a new kind class"): each scenario is a new range or a new class, with start month, students by month, price, students per class and (for a range) rent per month, and an on/off switch. When on, its sales add to Training, its classes x pay per class add to Salaries, its rent adds to Rent, and it shows on the 2027 plan and 2027 vs 2026 tabs.
 
+8. **Rick's 2026 sales as the base** (his note on Angie's question 20, 2026-11-20: "We need to use Rick's number, he has revenue streams that the log is missing and that we have to account for."; his answer 22: "Add a 'not in log' line (Recommended)"): 2026 sales total = Rick's $1,651,117.18 (02 workbook, PRU-pl, row 13, column AB "2026"). The part the Manual Log misses (Rick's less the log's 2026) is one line, "Revenue not in the Manual Log", spread over the months like the log's 2026, grown into 2027 at the plan's student growth %, and flowing into Training. His words in Angie's chat, 2026-11-20: "you still need the sales category from Rick, and ask him how to get this number, from now on you have to be able to do it all". So the line is split by Rick's sales categories, and Angie writes down how to build the figure from its source, once Rick says how.
+
 ## The test
 
 1. At Rick's own Training (plan sales set equal to row 13), every line of the 2027 Budget tab equals PRU-pl's value within $1, every month.
@@ -30,3 +32,4 @@ His words behind it (Angie's chat, 2026-11-20): "I need that planner to figure o
 8. A rent typed for one range and month replaces that cell only, and Rent equals the sum of the ranges plus initiatives' rent.
 
 Then: a blind check by an agent that did not build it (R-1875); LAWYER (R-1877); Sergio's accept; the Brain puts it live (R-1900).
+9. At growth 0 the 2027 plan's sales equal Rick's 2026 total; the "not in the Manual Log" line's 12 months add up to Rick's 2026 less the log's 2026.
