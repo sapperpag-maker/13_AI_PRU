@@ -62,3 +62,5 @@
   - New on the tab, 2027 Dirt Bike classes (N2-O8): $289, rent $500, coach $200, 24 classes, 6 students, 4 hours, one day a month with 2 classes a day.
   - Military discount is now $36 (I25), 393 claims (K25).
 - 2026-11-20 HOME. Sergio, with a picture of the sheet: "these are the discounts we applied through the year". The picture shows Range aid $250, 15 classes in 2026; Military $36 BRC two wheel, 393 claims; VIP $50 BRC two wheel, 177 claims. Angie's questions 28-31 (2027 model, discounts net or gross, Dirt Bike, range aid) were left unanswered when he sent a message instead.
+- 2026-11-20 HOME. Sergio on Dirt Bike classes: "this is going to be a new initiative, keep it separate for now, we need to present to Richard, don't make these numbers flow into P&L". This answers Q30.
+- 2026-11-20 HOME. Sergio, with a picture of the rent table: "thhis are going to be rent rates for next year" (weekend rates, 2027 renewals for Woodbridge $950 and Clarksburg $725, storage). Goal release 3 drafted for his yes.
