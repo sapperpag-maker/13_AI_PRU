@@ -1,6 +1,6 @@
 # GOAL - job 01 release 3: the PRU 2027 Sales Planner on Sergio's Class Data
 
-DRAFT, Angie, 2026-11-20. Put to Sergio for his yes (R-1879). It replaces release 2's goal, which stays in this folder for the record. Every input is his file or his words in Angie's chat on 2026-11-20 (logged in `C:\AI_Building\AI_PRU\LOG.md`). Lines marked **my pick** are Angie's choices where he has not ruled; each is his to strike.
+Accepted by Sergio, 2026-11-20, Angie's chat: "Yes, build it". Drafted by Angie (R-1879). It replaces release 2's goal, which stays in this folder for the record. Every input is his file or his words in Angie's chat on 2026-11-20 (logged in `C:\AI_Building\AI_PRU\LOG.md`). Lines marked **my pick** are Angie's choices where he has not ruled; each is his to strike.
 
 ## Sources
 - **Manual Log:** the file he attached, `2026_PRU_Manual_Log_v3.xlsx`, md5 37c427cf. His words: "we only have 1 version,,attached". Sheets "WklyConsolidating Wd" (students and $ by range, class and month) and "Master" (class codes, sites and courses only; no customer fields).
