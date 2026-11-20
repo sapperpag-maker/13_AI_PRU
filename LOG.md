@@ -67,3 +67,8 @@
 - 2026-11-20 HOME. Sergio: "we need to estimate the students. Can you calculate and show the fill capacity % through 2026?" Q33: "12 brc 4 for ime and first ride". Fill report written: Mar-Nov 75%, year 69%.
 - 2026-11-20: the Legislator filed request 829 as M-2859-HOME-QTOH (count 2, commit d3e46f27a). It widens M-0706, now retired; its moment is "before launching an agent"; it applies to every desk.
 - 2026-11-20 HOME. Sergio on the release 3 goal: "Yes, build it".
+- 2026-11-20 HOME. Release 3 built: DRAFT.html md5 6f84b712. It shows 498 classes, 4,436 students and $1,694,627 in class fees, plus $72,446 in the five parts, for 2027 sales of $1,767,072. Coach cost is $488,785 plus $3,750 range aid, against Rick's $316,299. Rent is $316,703, against Rick's $172,455. Operating profit is -$22,606, against Rick's $278,835. Dirt Bike is kept out of the P&L.
+  - My own tests: goal tests 1-7 pass, and each fails on a planted fault (test 8). The recompute reads Class Data itself: `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 planner - ANGIE-HOME\rel3\expected.py`.
+  - Fault found and fixed: BRC2 at Manassas Mall and Woodbridge had their months taken from the type pattern, which did not match Class Data rows 15-26. They now take the type's monthly total less Clarksburg's own table, split 8:5. BRC2 and First Ride months are fractions (Class Data's own split).
+  - Release 2's general "new range / new class" scenario cards are dropped. The initiatives tab now holds Dirt Bike only (goal item 11).
+  - Class Data I16:J16 heads the coach costs "> 6 students per coach" and "= < 6 student per coach". The goal reads this as students per class. To be put to Sergio.
