@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "C:/AI_Building/AI_MISC/05 Checkpoints/Angie Checkpoint"
+    ],
+    "allow": [
+      "Read(//c/AI_Building/AI_MISC/05 Checkpoints/Angie Checkpoint/**)",
+      "Edit(//c/AI_Building/AI_MISC/05 Checkpoints/Angie Checkpoint/**)",
+      "Write(//c/AI_Building/AI_MISC/05 Checkpoints/Angie Checkpoint/**)"
+    ]
+  }
+}

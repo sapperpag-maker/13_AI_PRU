@@ -1,0 +1,5 @@
+# Kept out of sapperpag-maker/13_AI_PRU.
+# Python's own cache, rebuilt on every run.
+__pycache__/
+# This computer's own Claude Code permissions, never shared.
+.claude/settings.local.json
