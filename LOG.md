@@ -65,3 +65,4 @@
 - 2026-11-20 HOME. Sergio on Dirt Bike classes: "this is going to be a new initiative, keep it separate for now, we need to present to Richard, don't make these numbers flow into P&L". This answers Q30.
 - 2026-11-20 HOME. Sergio, with a picture of the rent table: "thhis are going to be rent rates for next year" (weekend rates, 2027 renewals for Woodbridge $950 and Clarksburg $725, storage). Goal release 3 drafted for his yes.
 - 2026-11-20 HOME. Sergio: "we need to estimate the students. Can you calculate and show the fill capacity % through 2026?" Q33: "12 brc 4 for ime and first ride". Fill report written: Mar-Nov 75%, year 69%.
+- 2026-11-20: the Legislator filed request 829 as M-2859-HOME-QTOH (count 2, commit d3e46f27a). It widens M-0706, now retired; its moment is "before launching an agent"; it applies to every desk.
