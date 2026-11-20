@@ -40,7 +40,7 @@ Made in his place and flagged. Each is his to strike.
 - G7. Withdrawn: 2025 is read from the same row, so the duplicate "Training" needs no rule.
 - G8. A year figure is the source's own year cell. The 25 PRU-Prior gaps are listed in the page's data; which figure is right is his to say.
 - G9. One registration row is one student (release 1b).
-- G10. The weekly source is the Downloads file he sent at 00:29: 21 sheets, Master among them. It is not the H: live log he named first, which has 2 sheets and no Master. Both counts were read from sheet names alone by openpyxl, 2026-11-20 03:05.
+- G10. The weekly source is the Downloads file he sent at 00:29: 21 sheets, Master among them. It is not the H: live log he named first, which has 2 sheets and no Master. Both counts were read from sheet names alone by openpyxl, 2026-11-20 about 03:01.
 - G11. PRU-pl row 21 (no label, ratios 0.62-0.80) is carried as percents with no year.
 - G12. Ranges are shown by their site codes (release 1b).
 - G13. "side by side": the year view shows the three years side by side; a month view shows one year at a time.

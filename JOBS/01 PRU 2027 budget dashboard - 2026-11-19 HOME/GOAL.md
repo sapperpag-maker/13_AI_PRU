@@ -125,7 +125,7 @@ Release 1b is built and checked as release 1 is, with a goal section of its own 
 - Sales by class: the sum of Total Fee per week, by course.
 - Sales by range: the sum of Total Fee per week, by site.
 - Source: `C:\Users\Sergio\Downloads\2026 PRU Manual Log v3.xlsx` (md5 ab99689da045431d30dda84f57000c76, 6,464,527 B, 21 sheets, sheet Master among them). He sent it in Angie's chat, 2026-11-20 00:29: @"C:\Users\Sergio\Downloads\2026 PRU Manual Log v3.xlsx".
-  - It is not the live log he named first, `H:\Shared drives\Accounting\09-Daily Reports\2026 PRU\2026 PRU Manual Log v.3.xlsx` (662,493 B, 2 sheets, no sheet Master). Both sheet counts were read by openpyxl from the sheet names alone, 2026-11-20 03:05. The Downloads file is used because it holds Master (G10).
+  - It is not the live log he named first, `H:\Shared drives\Accounting\09-Daily Reports\2026 PRU\2026 PRU Manual Log v.3.xlsx` (662,493 B, 2 sheets, no sheet Master). Both sheet counts were read by openpyxl from the sheet names alone, 2026-11-20 about 03:01. The Downloads file is used because it holds Master (G10).
   - Only these columns are read: Site, Course, WE Dt, Total Fee. The program reads no name, email or ID column, and writes only weekly totals.
   - Rows with no week-ending date are not counted; the page gives their number and their Total Fee in dollars.
   - Ranges are shown by the site codes the log uses; no plain names are in a source read here (G12).
