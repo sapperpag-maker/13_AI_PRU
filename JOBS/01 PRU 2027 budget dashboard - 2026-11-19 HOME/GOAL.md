@@ -1,58 +1,57 @@
-# GOAL - PRU 2027 budget dashboard - DRAFT
+# GOAL - PRU 2027 budget dashboard - DRAFT, repair round 1
 
-**DRAFT, waiting on Sergio's yes.** Nothing in this job is built until he says yes to this file (R-1879); it goes to him only after LAWYER's PASS on it (R-1809). His words for the job, his answers 55 to 59, his later words on what Angie tracks and his answers 61 and 62 relayed by the Conductor are in `C:\AI_Building\AI_PRU\05 His answers and decisions\His words - the desk opened.md`.
+**DRAFT.** He accepts the plan when LAWYER passes it ("plan is accepted when the lawyer passes. Piston picks on my behalf."). His words for the job are in `C:\AI_Building\AI_PRU\05 His answers and decisions\His words - the desk opened.md`: his opening words, answers 53 to 62, Angie's answers 1 to 7 and his later messages. Repair round 1 of Angie's blind check: `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 plan blind check - ANGIE-HOME\FINDINGS.md`.
 
 ## Who does what
 
-- Angie builds the page, its program and its tests, in this job folder and its bench in `C:\AI_Building\AI_MISC\06 Benches\` (R-0448). [his answer 55: "Angie builds, Rick advises (Recommended)"]
-- Rick answers Angie's questions and shares his method and files, and writes nothing in `C:\AI_Building\AI_PRU`. [his answer 55, the option he picked: "Rick answers Angie's questions and shares his method and files, but writes nothing in PRU. Con: the 11-11 rule gets a PRU exception."]
-- Angie's own blind checker, then LAWYER, check it (R-1875, R-1877); only Sergio accepts it (R-0180); only the Brain puts it on ONE VIEW (`C:\AI_Building\AI_Dashboards\DASHBOARD MAP.md`: "Kept by the Brain (ruling 880: the Brain builds, updates and maintains every dashboard)"). For PRU, Angie builds and the Brain puts it live, an exception to ruling 880. [his answer 59: "Angie builds, Brain puts live (Recommended)"]
+- Angie builds the page, its program and its test on her bench in `C:\AI_Building\AI_MISC\06 Benches\` (R-0448). [answer 55: "Angie builds, Rick advises (Recommended)"]
+- Rick answers Angie's questions and writes nothing in `C:\AI_Building\AI_PRU`. [answer 55]
+- Angie's blind checker, then LAWYER, check it (R-1875, R-1877). Sergio accepts, or Piston where he named him ("Piston picks on my behalf"). The Brain puts it live on ONE VIEW. [answer 59: "Angie builds, Brain puts live (Recommended)"]
 
-## What the build MUST deliver (items 1 to 4), and what follows it (items 5 to 8)
+## Release 1: the page for 9am ("ill need something in ONE VIEW for tomorrow 9am MANDATORY")
 
-1. **One page, `PRU 2027 Budget - DRAFT.html`,** in this job folder, that opens alone with no internet, as Rick's store pages do (the skill fs-budget-store-pages, `C:\AI_Building\AI_Financials\.claude\skills\fs-budget-store-pages\SKILL.md`: "one file that opens with no internet, light and dark").
-2. **The 2027 budget, built the way Rick's budget pages are built:**
-   - every figure printed by a program from the budget master handed over, never typed or edited by hand on the page (the same skill: "Print only from the master handed over. Never edit a page, PDF or CSV by hand: fix its program");
-   - PRU's 2027 figures read from the PRU-pl sheet of Rick's master, `C:\AI_Building\AI_Financials\04 Budget\2027\rolled\02 - Consolidated SGP Budget light.xlsx`, named by its md5 on the day of the build (the sheet: `C:\AI_Building\AI_PRU\ANGIE_SPEC.md`, "PRU in the books");
-   - the lines, years and views Sergio picks, written in his words into `CHOICES.json` in this job folder (Open, below);
-   - "Draft budget, not approved" on the page until Sergio's final lock (the same skill: "Keep "Draft budget, not approved" on until Sergio's final lock").
-3. **The school's measures, each as a trend by week, a condition of this job:** each coach's profitability and pass rate, each coach shown by name; each range's profitability; each class's profitability and fill rate; the number of students. [his words: "coaches profitability, pass rate / Ranges profitability / Classes, profitability and filling ration / Number of students / Trend is by week"; his answer 61, relayed by the Conductor: "Part of job 01"; his answer 62, relayed by the Conductor: "By name (Recommended)"] Each measure names the source file it is counted from (R-0005, R-0006). Their sources are still unknown: a measure with no source stops and goes to Sergio before the build goes on. [his answer 61, relayed by the Conductor: "a measure with no source stops and goes to him"; R-0028]
-4. **A test, by program** (R-1879: "the test that says it shows it"), that:
-   - every budget figure equals the master's figure for the same line and month, and each year total equals the sum of its months;
-   - the page shows exactly the lines, years and views in `CHOICES.json`;
-   - each of the six weekly measures in item 3 is on the page, one point per week, and each weekly figure equals its recount from its named source file [his answer 61, relayed by the Conductor: "Part of job 01"];
-   - the page loads nothing from the internet (no `http:` or `https:` source or link it fetches) and carries "Draft budget, not approved".
-   It names the master's md5 and each measure's source md5, and before it is believed it fails on each of 9 planted faults (10 at most), one per common failure case below and in its order: 1, a planted wrong budget figure; 2, a planted wrong year total; 3, a planted extra line; 4, a planted missing year; 5, a missing week; 6, one planted wrong figure in each of the six weekly measures, run as one plant that must fail on all six; 7, a planted internet link; 8, a removed draft line; 9, a removed master's md5.
-5. **Angie's own blind checker** finds the page reaches this goal file, before LAWYER is called (R-1875, R-1877).
-6. **LAWYER's PASS** names the page by its md5 (R-1809).
-7. **Sergio's acceptance**, in his own words, written into the page's accept record, `PRU 2027 Budget - DRAFT.html.accept.json`, beside it (`C:\AI_Building\AI_Dashboards\DASHBOARD MAP.md`: "no tab goes live without `<page file name>.accept.json` beside the page sent").
-8. **Live on ONE VIEW only through the Brain**, which sends a page only with its accept record (same map). Angie writes nothing in `C:\AI_Building\AI_Dashboards` (R-0024).
+**R1-1. One page, `PRU 2027 Budget - DRAFT.html`,** with two tabs, P&L and Weekly. It opens alone with no internet, as Rick's store pages do (skill fs-budget-store-pages: "one file that opens with no internet, light and dark"). It shows "Draft budget, not approved". It names no student.
 
-## The common failure cases (capped at 10)
+**R1-2. Tab P&L: PRU's whole P&L, 2025, 2026 and 2027 side by side, by month and by year.** [answer 1: "i want P&L same as rick"; answer 2: "2025, 2026, 2027 side by side"] One row per line of PRU-pl, column B, rows 8 to 103, in PRU-pl's own order. Each figure is read by program; none is typed.
+- 2027: `C:\AI_Building\AI_Financials\04 Budget\2027\rolled\02 - Consolidated SGP Budget light.xlsx`, sheet PRU-pl, rows 8-103. Months in columns D, E, F, I, J, K, N, O, P, S, T, U; the year in Y ("2027B").
+- 2026: the same sheet, the block headed "2026 - Prior Year". Its rows are 116-211, each the row above plus 108. Months are in the same twelve columns; the year is in Y ("Total").
+- 2025: `C:\AI_Building\AI_Financials\04 Budget\2027\raw files\3 Operating statements\02 - Operating Statements 2026-09.xlsx`, sheet PRU-Prior. Its rows are matched to PRU-pl's lines by the label in column B. Months are in the same twelve columns, as Rick's `fs_budget_pru_2026.py` reads them (its MONTHS list).
 
-The test checks these 9 cases and no others [his rule of 2026-11-15, as the rules program words it in M-2819-WB-OLBQ: "the MUSTs, a capped failure list and a pass mark"; the cap of 10: LAWYER's, until he gives a number]:
+**R1-3. Tab Weekly: three of the six measures, one point per week, 2026 to the newest week in the source.** [answer 61: "Part of job 01"; answer 4: "Build the three found first"]
+- Number of students: registrations counted per week-ending date.
+- Sales by class: the sum of fees per week, by course.
+- Sales by range: the sum of fees per week, by site.
+- Source: `C:\Users\Sergio\Downloads\2026 PRU Manual Log v3.xlsx`, sheet Master. He sent this file on 2026-11-20. Only these columns are read: Site, Course, WE Dt, Total Fee. The program reads no name, email or ID column, and writes only weekly totals. The file is never copied into `C:\AI_Building\AI_PRU`.
+- Not in release 1: coach pass rate, coach profitability and class fill rate. They wait on his file (answer 6: "skip for now, ill send it later"). The page says so in one line.
 
-1. a budget figure differs from the master's figure for its line and month;
-2. a year total differs from the sum of its months;
-3. the page shows a line, year or view that `CHOICES.json` does not name;
-4. a line, year or view in `CHOICES.json` is missing from the page;
-5. a weekly measure of item 3, or a week of one, is missing from the page;
-6. a weekly figure differs from its recount from its named source file;
-7. the page fetches something from the internet;
-8. "Draft budget, not approved" is missing from the page;
-9. the master's md5 or a measure's source md5 is not named.
+**R1-4. A test, by program, that fails on each of these and passes on none:**
+1. a P&L figure differs from its source cell (any year, line or month);
+2. a year figure differs from its source's year cell, or from the sum of its twelve months by more than $1;
+3. a line of PRU-pl rows 8-103 is missing from the page, or one is added;
+4. a year (2025, 2026, 2027) is missing from the page;
+5. a week present in the source is missing from a weekly measure;
+6. a weekly figure differs from its recount from the source;
+7. the page fetches anything from the internet (`http:` or `https:` in a src, href, import or fetch);
+8. "Draft budget, not approved" is missing;
+9. the md5 of any of the three source files is not on the page.
 
-A case beyond the list is reported, never a FAIL.
+The test also scans the page for any student's name (case 10). It reads the Master columns Last Name and First NAme, by the test only, never printed, and looks for each student's full name - first and last of the same row, in either order - in the page's words. One match is a failure. Single page words that equal some first or last name (a month such as "May", the site code "WOOD") are listed for information and are not failures. (Full-auto decision G5, flagged: the first test, on every single value, failed on 12 ordinary page words.)
 
-## The pass mark
+Before the test is believed, it must fail on one planted fault for each of the 10 cases above (case 10 is the name scan). For case 6, one plant goes in each of the three measures.
 
-The build passes when items 1 to 4 are each shown by a file (R-1879): item 1, the page and its md5 with the test's PASS on the offline and draft-line checks; item 2, the program that printed the page with its run output naming the master's md5, and `CHOICES.json`; item 3, the test's PASS line for each of the six weekly measures (coach profitability, coach pass rate, range profitability, class profitability, class fill rate, number of students), each naming its source file's md5; item 4, the test's whole PASS output on the 9 common failure cases and its 9 planted-fault runs, one per case, each FAIL (the case 6 run failing on each of the six measures). Items 5 to 8 are not the build's own steps and are not in the pass mark: they are the checks, his acceptance and the putting live that follow it.
+**R1-5. Pass mark:** the test's whole output shows PASS on the page, with the three source md5s and the page's md5; and each of the 10 plants shows FAIL.
 
-## His answers to the open questions (2026-11-20, Angie's chat)
+## Release 2 (after 9am)
 
-Word for word in `C:\AI_Building\AI_PRU His answers and decisions\His words - the desk opened.md`, answers 1 to 5. They change this goal as follows; LAWYER checks the change with `PLAN.md` beside this file.
+- **R2-1. Range profit per week:** range sales, less that range's rent, less its share of coach pay.
+  - Rent comes from the GL accounts 785xx-30, one per site, in `C:\AI_Building\AI_Financials\00 Raw data\GL\2026 YTD 101E GL History Detail Postings - All Accounts.csv`, Store POW. This is Rick's read (his claim, R-0022).
+  - Coach pay is account 72200-30, spread by students. [answer 7: "Spread coach pay by students"]
+  - The page labels it an estimate.
+- **R2-2. Class profit per week:** class sales less its share of coach pay, by students. Labelled an estimate. [answer 7]
+- **R2-3. The 2027 sales goal planner.** [answer 1: "I want a 2027 Goal planner for the sales part, same as builder did for sales. A better version of the excel planner they used last year"; his message: "i need something more user friendly, that can be carrued into 2027"] Its MUSTs, cases and pass mark are written in a goal file of its own before it is built, checked the same way.
 
-- Lines: PRU's whole P&L, "same as rick", plus a 2027 sales goal planner, "a better version of the excel planner they used last year" (answer 1). The planner joins item 2 as a second piece; its test cases are added to item 4 once its design is put to him.
-- Years and views: "2025, 2026, 2027 side by side" (answer 2).
-- Readers on ONE VIEW: Sergio, Kim Harrison, Richard Stein, Angel Aerls, PRU manager (answer 3).
-- Weekly measures: coach pass rate, coach profitability and class fill rate have no source; "Build the three found first" (answer 4). Class and range profitability wait on Rick's answer on costs by class and range (answer 5). Item 3 and the pass mark count only the measures with a source until then.
+Coach pass rate, coach profitability and class fill rate join when his file comes (answer 6).
+
+## Readers on ONE VIEW
+
+His words, answer 3: "me kim richrd and angel aerls, PRU manager". Read as Sergio; Kim Harrison and Richard Stein (surnames from `C:\AI_Building\AI_Brain\wiki\people.md`); and one person, Angel Aerls, PRU manager. That reading is a full-auto decision, flagged (the office-full-auto-plan skill, Phase 4 item 1).

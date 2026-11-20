@@ -60,3 +60,12 @@ His messages, in Angie's chat, 2026-11-20 HOME, word for word, each sent with no
 > https://docs.google.com/spreadsheets/d/1hTnf1S60SBZRwt8NCQbqkqPyihLIvYA8qBmeJ3Z7tRs/edit?gid=754814940#gid=754814940
 7. How coach pay counts toward range and class profit while the ledger books it by employee only (Rick's read, 2026-11-20): "Spread coach pay by students". Coach pay is split over ranges and classes by student count, an estimate, labelled as one.
 6. Where the coach of each class and the pass or fail live: "skip for now, ill send it later". Coach pass rate, coach profitability and class fill rate wait on his file.
+
+His message, in Angie's chat, 2026-11-20 01:09 HOME, word for word (the full-auto order):
+
+> im going to sleep, go ahead full auto. plan is accepted when the lawyer passes. Piston picks on my behalf.
+>
+> ill need something in ONE VIEW for tomorrow 9am MANDATORY.
+
+Before it, the same night: "skip for nopw" (the coach and pass/fail file, his answer 6 again).
+> do not stop for any reason, give me something
