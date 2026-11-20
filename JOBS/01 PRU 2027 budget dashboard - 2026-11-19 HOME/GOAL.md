@@ -29,25 +29,27 @@ Shape picked by Piston in his place after the third FAIL of Angie's blind check 
 - **A year figure is the source's own year cell.** Where a line's twelve months miss that cell by more than $1 in the source (25 lines in 2025, none in 2026 or 2027; row 21 is exempt), the page marks the year with * and shows the month sum in its tooltip (G8).
 
 **R1-3. A test, by program, `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 page - ANGIE-HOME\test_page_pl.py`, that fails on each of these and passes on none.** Before the cases it runs SOURCE CHECKS: PRU-Prior's column B equals PRU-pl's on every line's row, and row 21 is still an unlabelled row of ratios no higher than 1.5. A figure matches within $0.005 of its source cell (the page carries the cell's full value). The test renders each view of the page in node and compares every shown cell, rounded as the page rounds (half up, whole dollars, negatives in brackets).
-1. a month figure differs from its source cell (any year, line or month), in the data or as shown; a month cell carries a * mark or a tooltip;
-2. a year figure differs from its source's year cell, in the data or as shown; a gap (R1-2) is not marked, or one is marked that does not exist, or row 21 is marked, in the data or as drawn (the * on the year cell, in the year view and in each month view's year column); a gap's year cell has no tooltip reading "Months add up to" and the month sum recounted from the source, or a year cell that is not a gap has a tooltip;
-3. a line is missing or one is added; the lines are not in PRU-pl's order; a label differs from the source's column B (or, where B is empty, from R1-2's stand-in text), in the data or as drawn in any view; a line's heading or ratio flag differs from R1-2's definitions; a heading shows a figure or a tooltip in any view;
-4. a year (2025, 2026, 2027) is missing, in the data, as a year-view column, or as an option of the view list (the year view and each year by month);
+1. a month figure differs from its source cell (any year, line or month), in the data or as a shown figure cell;
+2. a year figure differs from its source's year cell, in the data or as a shown figure cell; a gap (R1-2) is missing from the page's data, or one is there that does not exist, or row 21 is one;
+3. a line is missing or one is added; the lines are not in PRU-pl's order; a label in the page's data differs from the source's column B (or, where B is empty, from R1-2's stand-in text); a line's heading or ratio flag differs from R1-2's definitions; a heading shows a figure in any view;
+4. a year (2025, 2026, 2027) is missing from the data or as a year-view column;
 5. the page refers to the internet: `http:`, `https:`, `ws:` or `wss:` anywhere; a `//` address in src, href, action, srcset, data or CSS url(); @import, import(), fetch, XMLHttpRequest, WebSocket, EventSource or sendBeacon;
 6. "Draft budget, not approved" is missing;
 7. the md5 of either source is not on the page;
 8. the B184 note is not shown;
 9. the dark-theme CSS (`@media (prefers-color-scheme: dark)` and `:root[data-theme="dark"]`) or the light/dark button is missing;
-10. the "Not on this page yet" line is missing or differs by a word from R1-1;
+10. the "Not on this page yet" line is missing;
 11. anything from the student log is on the page: weekly data, its md5 or its name.
 
-Before the test is believed, it fails on 57 planted faults, one per branch:
-- case 1 five (a month in each year, a shown month, a tooltip on every month cell);
-- case 2 eight (a year, a shown year, a 2025 mark removed, a false 2027 mark, a mark on row 21, a tooltip sum wrong, the tooltip removed, the * not drawn);
-- case 3 eight (a line removed, a line added, two lines out of order, a label changed, a figure line flagged heading, row 21's ratio flag removed, a heading showing figures, labels not drawn);
-- case 4 four (each year, and 2025 by month taken off the view list);
+**NOT PROVED FOR 9AM: how the page draws.** The figures and the page's data are proved. How they are drawn is not: the * gap marks, the tooltips, the labels as drawn, the year list's options, and the middle words of the "Not on this page yet" line. This is Piston's pick in Sergio's place after the third FAIL of Angie's blind check (blind check 5, `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 blind check 5 - ANGIE-HOME\FINDINGS check 5.md`), his to strike. Since check 5 the test does hold checks and plants for these five (they are marked "release 1b" below), and they pass. But no blind checker has seen them, so they are not claimed here; they are claimed in release 1b.
+
+Before the test is believed, it fails on 57 planted faults, one per branch (the five marked "release 1b" test the drawing, which is not claimed for 9am):
+- case 1 five (a month in each year, a shown month; release 1b: a tooltip on every month cell);
+- case 2 eight (a year, a shown year, a 2025 mark removed, a false 2027 mark, a mark on row 21; release 1b: a tooltip sum wrong, the tooltip removed, the * not drawn);
+- case 3 eight (a line removed, a line added, two lines out of order, a label changed, a figure line flagged heading, row 21's ratio flag removed, a heading showing figures; release 1b: labels not drawn);
+- case 4 four (each year; release 1b: 2025 by month taken off the view list);
 - case 5 seventeen (each internet pattern, `ws:` included);
-- case 6 one; case 7 two (each md5); case 8 one; case 9 two (the CSS, the button); case 10 two (the line removed, its middle words changed); case 11 three (weekly data, the log's md5, its name);
+- case 6 one; case 7 two (each md5); case 8 one; case 9 two (the CSS, the button); case 10 two (the line removed; release 1b: its middle words changed); case 11 three (weekly data, the log's md5, its name);
 - SOURCE CHECKS two (a PRU-Prior label changed, row 21 given a label);
 - the program's refusal two: `ratio_ok` in `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 page - ANGIE-HOME\build_page.py` refuses row 21 with a label and with a value above 1.5, and accepts the real row 21.
 
@@ -60,7 +62,7 @@ Before the test is believed, it fails on 57 planted faults, one per branch:
 
 ## Release 1b (after 9am): the Weekly tab
 
-Built and checked as release 1 is, with a goal section of its own before it goes on the page. Two faults the blind check found are repaired first: course names typed in the program (no source) come off or get a source; and "weeks after today are bookings ahead" is said only with a source.
+Built and checked as release 1 is, with a goal section of its own before it goes on the page. First, how the release 1 page draws is claimed and blind-checked: the * marks, the tooltips, the labels as drawn, the year list, and the "Not on this page yet" line word for word. These are blind check 5's findings C-1 to C-5. Two faults the blind check found are repaired first: course names typed in the program (no source) come off or get a source; and "weeks after today are bookings ahead" is said only with a source.
 
 **R1b-1. Tab Weekly: number of students, and the sales half of range and class profitability, one point per week, every week from the first to the newest week-ending date in the source; a week with no registrations shows 0.** [answer 61: "Part of job 01"; answer 4: "Build the three found first"] Profit comes in release 2 (G1).
 - Number of students: registration rows counted per week-ending date. One row is one registration: a student on two courses counts twice. The page says so (G9).
