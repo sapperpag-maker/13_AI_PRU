@@ -1,4 +1,4 @@
-# GOAL - PRU 2027 budget dashboard - DRAFT, repair round 4 (new shape: P&L alone for 9am)
+# GOAL - PRU 2027 budget dashboard - DRAFT, repair round 5 (new shape: P&L alone for 9am)
 
 **DRAFT.** He accepts the plan when LAWYER passes it ("plan is accepted when the lawyer passes. Piston picks on my behalf."). His words for the job are in `C:\AI_Building\AI_PRU\05 His answers and decisions\His words - the desk opened.md`: his opening words, his answers 53 to 59, 61 and 62 at the desk's opening, his answers 1 to 7 to Angie's questions, and his later messages. Angie's blind checks, in order:
 - check 1, plan: `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 plan blind check - ANGIE-HOME\FINDINGS.md`
@@ -11,7 +11,7 @@
 
 - Angie builds the page, its program and its test on her bench in `C:\AI_Building\AI_MISC\06 Benches\` (R-0448). [answer 55: "Angie builds, Rick advises (Recommended)"]
 - Rick answers Angie's questions and writes nothing in `C:\AI_Building\AI_PRU`. [answer 55]
-- Angie's blind checker, then LAWYER, check it (R-1875, R-1877). Sergio accepts, or Piston where he named him ("Piston picks on my behalf"). The Brain puts it live on ONE VIEW. [answer 59: "Angie builds, Brain puts live (Recommended)"]
+- Angie's blind checker, then LAWYER, check it (R-1875, R-1877). Sergio alone accepts the page (R-0180). Piston picks shapes and decisions in his place ("Piston picks on my behalf") but does not accept the page; he asks Sergio for his yes when he is back. The Brain puts it live on ONE VIEW. [answer 59: "Angie builds, Brain puts live (Recommended)"]
 
 ## Release 1: the page for 9am ("ill need something in ONE VIEW for tomorrow 9am MANDATORY") - the P&L tab alone
 
@@ -29,34 +29,34 @@ Shape picked by Piston in his place after the third FAIL of Angie's blind check 
 - **A year figure is the source's own year cell.** Where a line's twelve months miss that cell by more than $1 in the source (25 lines in 2025, none in 2026 or 2027; row 21 is exempt), the page marks the year with * and shows the month sum in its tooltip (G8).
 
 **R1-3. A test, by program, `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 page - ANGIE-HOME\test_page_pl.py`, that fails on each of these and passes on none.** Before the cases it runs SOURCE CHECKS: PRU-Prior's column B equals PRU-pl's on every line's row, and row 21 is still an unlabelled row of ratios no higher than 1.5. A figure matches within $0.005 of its source cell (the page carries the cell's full value). The test renders each view of the page in node and compares every shown cell, rounded as the page rounds (half up, whole dollars, negatives in brackets).
-1. a month figure differs from its source cell (any year, line or month), in the data or as shown;
-2. a year figure differs from its source's year cell, in the data or as shown; a gap (R1-2) is not marked, or one is marked that does not exist, or row 21 is marked; a gap's tooltip does not read "Months add up to" and the month sum recounted from the source, or a cell that is not a gap has a tooltip;
-3. a line is missing or one is added; the lines are not in PRU-pl's order; a label differs from the source's column B (or, where B is empty, from R1-2's stand-in text); a line's heading or ratio flag differs from R1-2's definitions; a heading shows a figure in any view;
-4. a year (2025, 2026, 2027) is missing;
+1. a month figure differs from its source cell (any year, line or month), in the data or as shown; a month cell carries a * mark or a tooltip;
+2. a year figure differs from its source's year cell, in the data or as shown; a gap (R1-2) is not marked, or one is marked that does not exist, or row 21 is marked, in the data or as drawn (the * on the year cell, in the year view and in each month view's year column); a gap's year cell has no tooltip reading "Months add up to" and the month sum recounted from the source, or a year cell that is not a gap has a tooltip;
+3. a line is missing or one is added; the lines are not in PRU-pl's order; a label differs from the source's column B (or, where B is empty, from R1-2's stand-in text), in the data or as drawn in any view; a line's heading or ratio flag differs from R1-2's definitions; a heading shows a figure or a tooltip in any view;
+4. a year (2025, 2026, 2027) is missing, in the data, as a year-view column, or as an option of the view list (the year view and each year by month);
 5. the page refers to the internet: `http:`, `https:`, `ws:` or `wss:` anywhere; a `//` address in src, href, action, srcset, data or CSS url(); @import, import(), fetch, XMLHttpRequest, WebSocket, EventSource or sendBeacon;
 6. "Draft budget, not approved" is missing;
 7. the md5 of either source is not on the page;
 8. the B184 note is not shown;
 9. the dark-theme CSS (`@media (prefers-color-scheme: dark)` and `:root[data-theme="dark"]`) or the light/dark button is missing;
-10. the "Not on this page yet" line is missing;
+10. the "Not on this page yet" line is missing or differs by a word from R1-1;
 11. anything from the student log is on the page: weekly data, its md5 or its name.
 
-Before the test is believed, it fails on 52 planted faults, one per branch:
-- case 1 four (a month in each year, a shown month);
-- case 2 seven (a year, a shown year, a 2025 mark removed, a false 2027 mark, a mark on row 21, a tooltip sum wrong, the tooltip removed);
-- case 3 seven (a line removed, a line added, two lines out of order, a label changed, a figure line flagged heading, row 21's ratio flag removed, a heading showing figures);
-- case 4 three (each year);
+Before the test is believed, it fails on 57 planted faults, one per branch:
+- case 1 five (a month in each year, a shown month, a tooltip on every month cell);
+- case 2 eight (a year, a shown year, a 2025 mark removed, a false 2027 mark, a mark on row 21, a tooltip sum wrong, the tooltip removed, the * not drawn);
+- case 3 eight (a line removed, a line added, two lines out of order, a label changed, a figure line flagged heading, row 21's ratio flag removed, a heading showing figures, labels not drawn);
+- case 4 four (each year, and 2025 by month taken off the view list);
 - case 5 seventeen (each internet pattern, `ws:` included);
-- case 6 one; case 7 two (each md5); case 8 one; case 9 two (the CSS, the button); case 10 one; case 11 three (weekly data, the log's md5, its name);
+- case 6 one; case 7 two (each md5); case 8 one; case 9 two (the CSS, the button); case 10 two (the line removed, its middle words changed); case 11 three (weekly data, the log's md5, its name);
 - SOURCE CHECKS two (a PRU-Prior label changed, row 21 given a label);
-- the program's refusal two: `ratio_ok` in `build_page.py` refuses row 21 with a label and with a value above 1.5, and accepts the real row 21.
+- the program's refusal two: `ratio_ok` in `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 page - ANGIE-HOME\build_page.py` refuses row 21 with a label and with a value above 1.5, and accepts the real row 21.
 
 **R1-4. Pass mark:** the test's whole output, `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 page - ANGIE-HOME\TEST_OUTPUT_PL.txt`, shows the following:
 - the two source md5s and the page's md5;
 - SOURCE CHECKS PASS;
 - PASS on all 11 cases;
 - "program refusal, real row 21: PASS - accepted";
-- each of the 52 plants FAIL - caught.
+- each of the 57 plants FAIL - caught.
 
 ## Release 1b (after 9am): the Weekly tab
 

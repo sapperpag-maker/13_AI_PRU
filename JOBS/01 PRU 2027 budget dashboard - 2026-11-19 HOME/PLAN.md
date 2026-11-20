@@ -46,7 +46,7 @@ Release 1b only: the student rows stay out of `C:\AI_Building\AI_PRU`. The progr
 
 ## Steps, agents and models
 
-Agents launched so far: 5, all Opus blind checkers, numbered as in GOAL.md's list: checks 1 to 4 (check 2 ran as two agents). The cap was 5. Check 4 passed the page and failed the plan with 11 findings, so one more is asked of Piston (step 7): check 5, of the repaired GOAL, PLAN and test. The page is unchanged. If he says yes, the cap is 6. LAWYER is a desk of its own. The Brain puts the page live.
+Agents launched so far: 5, all Opus blind checkers, numbered as in the list of checks in `C:\AI_Building\AI_PRU\JOBS\01 PRU 2027 budget dashboard - 2026-11-19 HOME\GOAL.md`: checks 1 to 4 (check 2 ran as two agents). The cap was 5. Check 4 passed the page and failed the plan with 11 findings. Piston said yes to one more agent (step 7): check 5, of the repaired GOAL, PLAN and test, with the page unchanged. The cap is now 6, and all 6 are used. Check 5 failed with 7 findings, none of them on the page: `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 blind check 5 - ANGIE-HOME\FINDINGS check 5.md`. That is the step's third FAIL, so the smaller shape is Piston's pick (R-1878). LAWYER is a desk of its own. The Brain puts the page live.
 
 | # | step | who | done when | minutes | state |
 |---|---|---|---|---|---|
@@ -57,7 +57,7 @@ Agents launched so far: 5, all Opus blind checkers, numbered as in GOAL.md's lis
 | 5 | Plan repair round 3 for the new shape (8 + 2 findings) | Angie | GOAL and PLAN rewritten | 15 | done |
 | 6 | Blind check 4, plan and P&L page together | checker agent (Opus) | PASS | 20 | page PASS; plan FAIL 11 |
 | 6b | Repair of check 4's 11 findings: text in GOAL and PLAN; 10 new plants in the test (52 in all); the row-21 refusal moved into `ratio_ok`, the page's output unchanged | Angie | own test PASS, 52 of 52 caught | 20 | done (own test, not a verdict) |
-| 7 | Blind check 5, of the repaired GOAL, PLAN and test (the page unchanged) | checker agent (Opus), if Piston says yes | PASS | 20 | waits on Piston |
+| 7 | Blind check 5, of the repaired GOAL, PLAN and test (the page unchanged) | checker agent (Opus); Piston's yes in his place, 2026-11-20 between 02:28 and 02:42, his to strike ("yes to agent 6, a blind check of the repaired GOAL/PLAN/test only, then LAWYER"); the page stays frozen at 3fbc0758; a FAIL here is the step's third, and Piston picks the smaller shape (R-1878) | PASS | 20 | FAIL (A 2, C 5); smaller shape to Piston |
 | 8 | Plan and page to LAWYER (session local_5fb2d9ed-2bc2-4e00-8229-4baba6e00ef6) | Angie sends | LAWYER's PASS on both | - | |
 | 9 | Path, md5 and verdict to Piston by 07:30; his yes asked by Piston when he is back; page into the job folder; the Brain puts it live | Angie / Piston / the Brain | live on ONE VIEW | - | |
 | 10 | Release 1b (the Weekly tab), then release 2 | Angie, then the same checks | - | - | after 9am |
