@@ -28,3 +28,4 @@
 - 2026-11-20 ~08:20 Sergio, Q9 (P&L page on ONE VIEW): "Leave it up". Q10 (Angel's address): "I added it already". Both passed to the Brain. Planner draft 1 published: https://claude.ai/artifact/MZTtZqqk8y2yJjw2X6Fiik (74d12a7).
 - 2026-11-20 08:13 The Brain reports the PRU page live on ONE VIEW: /data/uploads/pru.html, 51,335 B, md5 3fbc0758 (equals 78d92a5's page; the Brain's claim, read back by the Brain over fly ssh).
 - 2026-11-20: Q16 answered, ONE VIEW button name for the planner: "PRU 2027 Planner (Recommended)". Sent to Brain HOME. Piston colours (dark default) put in the bench template; rebuild after the blind check.
+- 2026-11-20: Q17 answered: "Skip LAWYER this once" (his words: "put in on ONE view after your blind check", "I need this asap"). Sent to Brain HOME. Goes live after the blind check passes; to file with the Legislator as an exception to R-1809/R-1900.
