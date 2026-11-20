@@ -1,0 +1,19 @@
+{
+ "tab": "pru-planner",
+ "page_md5": "49a03ed793ab15fa4e9869e20dfdfb2b",
+ "data_date": "2026-11-20",
+ "sources": [
+  {
+   "path": "C:\\Users\\Sergio\\Downloads\\2026 PRU Manual Log v3.xlsx",
+   "md5": "ab99689da045431d30dda84f57000c76"
+  },
+  {
+   "path": "C:\\AI_Building\\AI_Financials\\04 Budget\\2027\\rolled\\02 - Consolidated SGP Budget light.xlsx",
+   "md5": "64e3c1ecdf01ee25cae717657952bfbe"
+  }
+ ],
+ "accepted": {
+  "words": "Skip LAWYER this once; put in on ONE view after your blind check; I need this asap; Lawyer checks after (Angie's chat); Yes, deploy and upload (Recommended) (the Brain's chat)",
+  "where": "11 Angie's chat (her question 17) and BRAIN-HOME-1118's chat, 2026-11-20, rulings 3676-3677; Angie's blind check round 2 PASS (AI_MISC\\06 Benches\\2026-11-20 PRU job 01 planner check - ANGIE-HOME\\VERDICT-2.md); data date 2026-11-20 = the day the 2026 log was read (Angie's reading); LAWYER checks after it is live"
+ }
+}
