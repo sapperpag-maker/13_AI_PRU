@@ -82,7 +82,7 @@ const fmtN=v=>Math.round(v).toLocaleString("en-US");
 const fmtD=v=>{const r=Math.round(v);return (r<0?"-$":"$")+Math.abs(r).toLocaleString("en-US");};
 const pct=(a,b)=>b?((a-b)/Math.abs(b)*100):null;
 const fmtP=p=>{if(p==null)return "–";const r=Math.round(p)||0;return (r>=0?"+":"")+r+"%";};
-const cl=p=>p==null?"":p>=0?"up":"down";
+const cl=p=>p==null?"":Math.round(p)>=0?"up":"down";
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 
 // ---------- state ----------
@@ -282,14 +282,14 @@ function renderPlan(){
   const box=el("div");const agg=planAgg(),t=agg.core;
   const n26=sum(ALL_STUDENTS_26),s26=sum(ALL_SALES_26),N=sum(t.n)+sum(agg.it.n),S=sum(t.s)+sum(agg.it.s);
   const k=el("div",{class:"kpis"});const kp=(l,a,b)=>`<div class="kpi"><div class="l">${l}</div><div class="v">${a}</div><div class="d">${b}</div></div>`;
-  k.innerHTML=kp("2027 students",fmtN(N),`<span class="${cl(pct(N,n26))}">${fmtP(pct(N,n26))}</span> vs 2026 (${fmtN(n26)})`)
+  k.innerHTML=kp("2027 students",fmtN(N),`<span class="${cl(pct(N,n26))}">${fmtP(pct(N,n26))}</span> vs 2026 registrations ${fmtN(n26)} (Manual Log)`)
    +kp("2027 sales",fmtD(S),`<span class="${cl(pct(S,s26))}">${fmtP(pct(S,s26))}</span> vs 2026 registrations ${fmtD(s26)} (Manual Log)<br>Rick's workbook 2026: ${fmtD(EXTRA.rick2026)} (PRU-pl)`)
-   +kp("Average price per student",fmtD(N?S/N:0),`2026: ${fmtD(n26?s26/n26:0)}`)
+   +kp("Average price per student",fmtD(N?S/N:0),`2026 registrations (Manual Log): ${fmtD(n26?s26/n26:0)}`)
    +kp("New initiatives in the plan",fmtD(sum(agg.it.s)),`${activeInits().length} switched on · ${fmtN(sum(agg.it.n))} students`);
   box.appendChild(k);
   const ctr=el("div",{class:"card"});
   ctr.innerHTML=`<div class="controls" style="margin:0">
-   <label>Start from<select id="p-base"><option value="2026" ${STATE.baseline==="2026"?"selected":""}>2026 actual</option><option value="2025" ${STATE.baseline==="2025"?"selected":""}>2025 actual</option><option value="avg3" ${STATE.baseline==="avg3"?"selected":""}>Average 2024–2026</option></select></label>
+   <label>Start from<select id="p-base"><option value="2026" ${STATE.baseline==="2026"?"selected":""}>2026 registrations (Manual Log)</option><option value="2025" ${STATE.baseline==="2025"?"selected":""}>2025 actual</option><option value="avg3" ${STATE.baseline==="avg3"?"selected":""}>Average 2024–2026</option></select></label>
    <label>Student growth %, all lines<input type="number" id="p-g" step="1" value="${STATE.growth}"></label>
    <label>Price change %, all lines<input type="number" id="p-pc" step="0.5" value="${STATE.priceChange}"></label>
    ${saveBar()}</div>
@@ -299,7 +299,7 @@ function renderPlan(){
   ctr.querySelector("#p-pc").onchange=e=>{STATE.priceChange=+e.target.value||0;changed();};
   wireSave(ctr);box.appendChild(ctr);
   const tc=el("div",{class:"card"});
-  let h=`<div class="tw"><table><thead><tr><th>Range / class</th><th>2025 students</th><th>2026 students</th><th>Growth %</th><th>2027 students</th><th>Price</th><th>2027 sales</th><th>vs 2026 sales</th><th></th></tr></thead><tbody>`;
+  let h=`<div class="tw"><table><thead><tr><th>Range / class</th><th>2025 students</th><th>2026 students (Manual Log)</th><th>Growth %</th><th>2027 students</th><th>Price</th><th>2027 sales</th><th>vs 2026 registrations $ (Manual Log)</th><th></th></tr></thead><tbody>`;
   RANGES.forEach(r=>{
     const ls=LINES.filter(l=>l.range===r&&YEARS.some(y=>sum(l.n[y])>0));if(!ls.length)return;const ps=ls.map(plan);
     const n25=sum(ls.map(l=>sum(l.n["2025"]))),nn26=sum(ls.map(l=>sum(l.n["2026"]))),ss26=sum(ls.map(l=>sum(l.d["2026"]))),n27=sum(ps.map(p=>p.n)),s27=sum(ps.map(p=>p.sales));
@@ -311,7 +311,7 @@ function renderPlan(){
       <td>${fmtD(p.sales)}</td><td class="${cl(pct(p.sales,s26l))}">${fmtP(pct(p.sales,s26l))}</td>
       <td><button class="btn mini in-m">${P.open===l.key?"Close":"Months"}</button>${p.edited?' <button class="btn mini in-x" title="Back to start values">↺</button>':""}</td></tr>`;
       if(P.open===l.key)h+=`<tr class="months" data-k="${esc(l.key)}"><td colspan="9"><div class="tw"><table><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}</tr>
-        <tr><td>2026 actual</td>${l.n["2026"].map(q=>`<td>${fmtN(q)}</td>`).join("")}</tr><tr><td>2025 actual</td>${l.n["2025"].map(q=>`<td>${fmtN(q)}</td>`).join("")}</tr>
+        <tr><td>2026 registrations (Manual Log)</td>${l.n["2026"].map(q=>`<td>${fmtN(q)}</td>`).join("")}</tr><tr><td>2025 actual</td>${l.n["2025"].map(q=>`<td>${fmtN(q)}</td>`).join("")}</tr>
         <tr><td><b>2027 plan</b></td>${p.months.map((q,m)=>`<td><input type="number" step="1" min="0" class="in-mo${c.months?" edited":""}" data-m="${m}" value="${Math.round(q)}" aria-label="${MON[m]} 2027"></td>`).join("")}</tr></table></div>
         <p class="note">Typing a month fixes all 12 months of this line by hand; growth % is then ignored for it.</p></td></tr>`;
     });
@@ -332,7 +332,7 @@ function renderPlan(){
   <tr><td>of which new initiatives</td>${agg.it.s.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(agg.it.s))}</td></tr>
   <tr><td>2026 registrations $ (Manual Log)</td>${ALL_SALES_26.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(s26)}</td></tr></tbody></table></div>`;
   box.appendChild(fc);
-  box.appendChild(el("p",{class:"note"},"Start price for each line = that line's 2026 sales ÷ 2026 students (or the latest year with sales; else the class average). Hover a price box to see where its start value came from."));
+  box.appendChild(el("p",{class:"note"},"Start price for each line = that line's 2026 registrations $ ÷ 2026 students (Manual Log) (or the latest year with sales; else the class average). Hover a price box to see where its start value came from."));
   return box;
 }
 
