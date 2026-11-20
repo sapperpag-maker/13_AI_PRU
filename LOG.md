@@ -100,3 +100,8 @@
 - 2026-11-20 17:05 EST: blind checker round 12 on 0a70d654 (the first check of shape A): FAIL, 1 finding (VERDICT-12.md md5 dd380460). This is FAIL 1 on the new shape. Goal tests 1-8 and Piston's add-up check passed, with 0 faults over about 1,100 rows in each of 5 states.
   - The finding: a typed price kept its decimals while the box showed whole dollars (389.4 shown as $389; sales moved $1,563).
   - Repaired in DRAFT md5 751ac390: typed prices round to whole dollars (389.4 becomes 389; sales unchanged). My own tests 1-9 pass (test 9: 0 fails over 508 rows).
+- 2026-11-20 17:20 EST: Piston pushed 953bf7c (remote main read back 953bf7c8).
+- 2026-11-20 17:20 EST: blind checker round 13 on 751ac390: FAIL, 3 findings (VERDICT-13.md, 8,038 bytes, md5 83d8814e). This is FAIL 2 on shape A. Under Piston's words ("Two FAILs on this step move to the smaller step and come to me"), the job goes to the smaller step and to Piston. The round-12 repair was confirmed. Goal tests 1-8 and the add-up check passed, start state and edited state.
+  - Finding 1: in the P&L views "Rick's budget" and "Difference", Rick's Training, Salaries and Rent rows carry the plan's tags ("from plan" and others).
+  - Finding 2: the fill boxes accept negative values (-20% gives -1,115 students and -$395,094 sales, and that reaches the P&L).
+  - Finding 3: students per class shows "6.0" both with two coaches (fill 50.1) and with one (fill 49.9) at Newport News 2-Wheel. The coach rule reads the exact figure, not the shown one; that is a $33,575 swing behind one shown figure.
