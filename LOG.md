@@ -105,3 +105,9 @@
   - Finding 1: in the P&L views "Rick's budget" and "Difference", Rick's Training, Salaries and Rent rows carry the plan's tags ("from plan" and others).
   - Finding 2: the fill boxes accept negative values (-20% gives -1,115 students and -$395,094 sales, and that reaches the P&L).
   - Finding 3: students per class shows "6.0" both with two coaches (fill 50.1) and with one (fill 49.9) at Newport News 2-Wheel. The coach rule reads the exact figure, not the shown one; that is a $33,575 swing behind one shown figure.
+- 2026-11-20 EST: Piston's R-1876 pick, in Sergio's place and his to strike, was my option A (appended to the PISTON PICK file, 04_AI_HQ 807ea35c). Two FAILs on this step stop the job, and it goes to Sergio himself. Built in DRAFT md5 056e8916:
+  - P&L tags show only in the plan view;
+  - fill boxes take whole numbers from 0 to 100, saved drafts included;
+  - the coach rule reads students per class as shown, to one decimal.
+  - My own tests: 1-8 clean, and each fails on its planted fault; the start figures are unchanged. Test 9 finds 0 fails over 508 rows in 55 tables.
+  - New tests 10-12 (rel3/r13tests.js), covering the 0-100 refusal, coach at the shown figure (222 cases) and tags by view: 0 fails. On the page as it stood before (rel3/planted_r13.html) they find 24 fails.
