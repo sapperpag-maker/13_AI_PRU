@@ -116,3 +116,12 @@
   - The three round-13 findings are confirmed fixed. Goal tests 1-8 and the add-up check passed, with over 2,000 rows checked.
   - 6 risks, none of them failures: shown products do not multiply exactly (discount 382 × $36 shows $13,751); Rick's operating profit shows $278,834 against 278,834.56; "Fill %, all classes" does not move HD and ARC; the fill placeholders carry no Manual Log label; the weekend-rate boxes keep decimals; the ARC students per class are not shown.
   - Next: to LAWYER through Piston (R-1877).
+- 2026-11-20 EST: Piston relayed the request to LAWYER and pushed ca9c6da.
+- 2026-11-20 EST: Sergio uploaded an updated Class Data, his words "updated quantities" (f32ce509-Class_Data.xlsx, md5 542d634b). Cell diff against md5 19acfe24: only the 2027 Projections tab changed (74 cells as formulas, 37 as values).
+  - 2-Wheel stays 417, but Manassas Mall goes 58 to 63 and Woodbridge stays 50. His file now carries Q34 itself.
+  - BRC2 goes from 12 to 10 (Manassas Mall 10 to 8, Woodbridge 5 to 0).
+  - Classes total 498. The file's own check cell O28 reads 0.
+  - Piston was asked to have LAWYER pause its check of 056e8916.
+  - Rebuilt with extract_r4.py, which reads Class Data only; the Manual Log figures are kept from r3.json, not re-read. DRAFT md5 4a3a32ec. GOAL items 2 and the source line and test 1 now say 498 from his updated file.
+  - New start figures: 498 classes, 4,455 students, class fees $1,706,910, sales $1,779,595, coach $494,885, rent $155,992, operating profit $142,941.
+  - My own tests 1-12 pass: 1-8 clean, with every planted fault caught; test 9 finds 0 fails over 508 rows in 55 tables; tests 10-12 find 0 fails.

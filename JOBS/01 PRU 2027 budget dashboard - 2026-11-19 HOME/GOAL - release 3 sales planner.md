@@ -4,12 +4,12 @@ Accepted by Sergio, 2026-11-20, Angie's chat: "Yes, build it". Drafted by Angie 
 
 ## Sources
 - **Manual Log:** the file he attached, `2026_PRU_Manual_Log_v3.xlsx`, md5 37c427cf. His words: "we only have 1 version,,attached". Sheets "WklyConsolidating Wd" (students and $ by range, class and month) and "Master" (class codes, sites and courses only; no customer fields).
-- **Class Data:** `Class_Data.xlsx`, md5 19acfe24, tab "2027 Projections". His words: "tab 2027 projection has the target number"; Q24: "498 table is the correct one".
+- **Class Data:** `Class_Data.xlsx`, his updated quantities of 2026-11-20 (`C:\Users\Sergio\.claude\uploads\034bc097-973b-403b-8a90-c7678efdb939\f32ce509-Class_Data.xlsx`, md5 542d634b, his words: "updated quantities"; before it, md5 19acfe24), tab "2027 Projections". His words: "tab 2027 projection has the target number"; Q24: "498 table is the correct one".
 - **Rick's workbook:** `C:\AI_Building\AI_Financials\04 Budget\2027\rolled\02 - Consolidated SGP Budget light.xlsx`, sheet PRU-pl.
 
 ## What the finished page shows
 1. **Trends** as in release 2: 2022-2026 by range, class and month, read from the attached log.
-2. **2027 classes:** 500, by site and class type: 2027 Projections A1-F11, with BRC2 from its monthly table (rows 57-66: Manassas Mall 10, Woodbridge 0, Clarksburg 2) and Woodbridge's 5 BRC2 classes added to its 2-Wheel (55), spread like its own months (his Q34: "monthly table put 0 in WB in the by site table, add the 5 back to 2W BRC"); the 2-Wheel, 3-Wheel and BRC2 months come from rows 31-39, 44-52 and 57-66, and First Ride's from E15-E26 split by site total. There is no Waldorf ("Waldorf range is out for 2027 at the moment"). Each cell can be edited.
+2. **2027 classes:** 498 (2-Wheel 417, 3-Wheel 55, BRC2 10, First Ride 16), by site and class type: 2027 Projections A1-F11 of his updated file, which carries his Q34 itself (Woodbridge BRC2 0; Manassas Mall 2-Wheel 63, BRC2 8), so no class is moved by the page; the 2-Wheel, 3-Wheel and BRC2 months come from rows 31-39, 44-52 and 57-66, and First Ride's from E15-E26 split by site total. There is no Waldorf ("Waldorf range is out for 2027 at the moment"). Each cell can be edited.
 3. **2027 students = 2027 classes × capacity × fill %.** Capacity is 12 per class and 4 for IME / First Ride (Q33: "12 brc 4 for ime and first ride"). Fill % starts at each site and type's 2026 Mar-Nov fill (`FILL 2026 - students per seat.md`) and can be edited, by site, type or for all at once. His words: "we need to estimate the students. Can you calculate and show the fill capacity % through 2026?" The page shows the 2026 fill % beside the 2027 fill %.
 4. **2027 prices:** 2-Wheel $389, 3-Wheel $389 (his Q25: "Typo, use $389"), BRC2 $249, ARC $199, First Ride $99 (2027 Projections M17-M21), each editable. **My pick:** First Ride = the log's IME class ($99). HD and ARC, which have no classes in his table, are carried at their 2026 students × price.
 5. **Discounts:** Military $36 and VIP $50 on 2-Wheel BRC, with 393 and 177 claims in 2026 ("these are the discounts we applied through the year"). **My pick:** shown at the 2026 claim rate for information only, and not subtracted again, because the log's 2026 2-Wheel average of $358.14 is below the $369 list price (Q29 was not answered).
@@ -22,7 +22,7 @@ Accepted by Sergio, 2026-11-20, Angie's chat: "Yes, build it". Drafted by Angie 
 12. Light and dark themes in Piston's colours. Every Manual Log figure is labelled Manual Log.
 
 ## The test
-1. 2027 classes on the page = 500, and each site, type and month equals 2027 Projections as changed by his Q34.
+1. 2027 classes on the page = 498, and each site, type and month equals 2027 Projections of his updated file (md5 542d634b).
 2. With every input at its start value, 2027 sales = the sum over site, type and month of classes × students per class × price, to the dollar.
 3. Coach cost = the sum over classes of the right column-I or column-J cost, recomputed independently.
 4. Rent = the sum of classes × weekends per class × rate + storage / 12, each month.
