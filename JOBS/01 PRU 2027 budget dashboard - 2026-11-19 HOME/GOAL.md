@@ -1,6 +1,6 @@
-# GOAL - PRU 2027 budget dashboard - DRAFT, repair round 6 (smaller shape: P&L alone, its figures proved, for 9am)
+# GOAL - PRU 2027 budget dashboard - DRAFT, repair round 7 (smaller shape: P&L alone, its figures proved, for 9am)
 
-**DRAFT.** He accepts the plan when LAWYER passes it ("plan is accepted when the lawyer passes. Piston picks on my behalf."). His words for the job are in `C:\AI_Building\AI_PRU\05 His answers and decisions\His words - the desk opened.md`: his opening words, his answers 53 to 59, 61 and 62 at the desk's opening, his answers 1 to 7 to Angie's questions, and his later messages. The flags G1 to G15 cited here are the PLAN's list, section "Full-auto decisions", in `C:\AI_Building\AI_PRU\JOBS\01 PRU 2027 budget dashboard - 2026-11-19 HOME\PLAN.md` (R-0150).
+**DRAFT.** He accepts the plan when LAWYER passes it ("plan is accepted when the lawyer passes. Piston picks on my behalf."). His words for the job are in `C:\AI_Building\AI_PRU\05 His answers and decisions\His words - the desk opened.md`: his opening words, his answers 53 to 59, 61 and 62 at the desk's opening, his answers 1 to 7 to Angie's questions, and his later messages. The flags G1 to G16 cited here are the PLAN's list, section "Full-auto decisions", in `C:\AI_Building\AI_PRU\JOBS\01 PRU 2027 budget dashboard - 2026-11-19 HOME\PLAN.md` (R-0150).
 
 ## The checks so far
 
@@ -9,8 +9,9 @@ Angie's blind checks (R-1875), in order. Their FAILs count on a path of their ow
 - check 2, plan, FAIL 2: `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 plan blind check - ANGIE-HOME\FINDINGS round 2.md`; with it, the page: `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 page blind check - ANGIE-HOME\FINDINGS round 1.md`
 - check 3, plan and page, FAIL 3: `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 plan blind check - ANGIE-HOME\FINDINGS round 3.md`. Piston picked the new shape, the P&L alone (R-1878).
 - check 4, plan and page in the new shape, FAIL 4 (page PASS, plan 11 findings): `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 plan blind check - ANGIE-HOME\FINDINGS round 4.md`
-- check 5, plan and test, FAIL 5 (plan 2, test 5; none on the page): `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 blind check 5 - ANGIE-HOME\FINDINGS check 5.md`. Piston picked the smaller shape: `C:\AI_Building\AI_HQ\03 Library\PISTON PICK - PRU job 01 third blind-check FAIL - 2026-11-20 HOME.md` (md5 ca3d554bfef5e49a916a517253c04844). That file records both counts, Angie's "third on the new-shape step" and LAWYER's "fifth overall"; this GOAL counts by LAWYER's.
-- **check 6 (agent 7) checks this GOAL before LAWYER sees it again (R-1877).** A FAIL there is FAIL 6, the second on the "smaller" step. **A seventh FAIL stops the job** (R-1876): nothing more is built for release 1, and Piston and Sergio are told.
+- check 5, plan and test, FAIL 5 (plan 2, test 5; none on the page): `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 blind check 5 - ANGIE-HOME\FINDINGS check 5.md`. Piston picked the smaller shape: `C:\AI_Building\AI_HQ\03 Library\PISTON PICK - PRU job 01 third blind-check FAIL - 2026-11-20 HOME.md` (cited by path alone: the file is still being added to). That file records both counts, Angie's "third on the new-shape step" and LAWYER's "fifth overall"; this GOAL counts by LAWYER's.
+- check 6 (agent 7), GOAL, PLAN and test, FAIL 6 (A 5, C 2; the page's figures recounted with 0 differences): `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 blind check 6 - ANGIE-HOME\MY FINDINGS check 6.md`. Piston, in Sergio's place, his to strike: repair all 7, then one last blind check.
+- **check 7 (agent 8) checks this GOAL before LAWYER sees it again (R-1877).** **A FAIL there is the seventh and stops the job** (R-1876): nothing more is built for release 1, and the 9am call goes to Sergio himself.
 - These findings files were saved by Angie from each checker's hand-back, in substance and not in the checker's own words (LAWYER's risk 2).
 
 LAWYER round 1 failed this GOAL and the PLAN (12 findings): `C:\AI_Building\AI_LAWYER\Office desk\Verdicts\2026-11-20 Angie PRU job 01 release 1 plan check - ccc6409e.md`. Piston's word, 2026-11-20 03:00: Angie repairs all 12, then agent 7 checks, and LAWYER again only on its PASS.
@@ -41,7 +42,8 @@ Sources:
 - no internet and light and dark: Rick's store pages, `C:\AI_Building\AI_Financials\.claude\skills\fs-budget-store-pages\SKILL.md` line 31: "one file that opens with no internet, light and dark";
 - the Draft text: the same file, line 23: Keep "Draft budget, not approved" on until Sergio's final lock;
 - nothing from the student log: the Conductor's brief that opened this desk's run, in Angie's session transcript 034bc097-973b-403b-8a90-c7678efdb939: "Open no customer data. Name source files only.";
-- the button and the md5s on the page: Angie's full-auto decisions, G14 and G15.
+- the button and the md5s on the page: Angie's full-auto decisions, G14 and G15;
+- the "Not on this page yet" line: Angie's full-auto decision G16. No word of his asks for it.
 
 **R1-2. PRU's whole P&L, 2025, 2026 and 2027, in the page's data and as figure cells.** [answer 1: "i want P&L same as rick"; answer 2: "2025, 2026, 2027 side by side"] The year view shows the three years side by side, one column each. Each month view shows one year's twelve months and its year (G13). Each figure is read by program; none is typed.
 - **A line** is a row of PRU-pl from 8 to 103 that has a label in column B or a month figure that is not zero, in PRU-pl's own order. Rows with neither are left out.
@@ -60,13 +62,13 @@ Sources:
 **R1-3. A test, by program, `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 page - ANGIE-HOME\test_page_pl.py`, that fails on each of these 10 cases and passes on none.**
 - Before the cases it runs SOURCE CHECKS: PRU-Prior's column B equals PRU-pl's on every line's row, and row 21 is still an unlabelled row of ratios no higher than 1.5.
 - A figure matches within $0.005 of its source cell; the page carries the cell's full value.
-- The test renders each view of the page in node and compares every figure cell, rounded as the page rounds: half up, whole dollars, negatives in brackets.
+- The test renders each view of the page in node. In each view it compares, for each source line, every figure cell of that line's row, rounded as the page rounds (whole dollars, negatives in brackets; JavaScript Math.round, so a negative exact half rounds toward zero). It compares the header row as drawn: "Line 2025 2026 2027B" in the year view; "Line", the twelve months and "Year" in a month view, the months being the first three letters of PRU-pl row 6's month cells. It counts the rows drawn: exactly one per source line.
 
 The cases:
 1. a month figure differs from its source cell (any year, line or month), in the data or as a figure cell;
 2. a year figure differs from its source's year cell, in the data or as a figure cell; a gap (R1-2) is missing from the page's data, or one is listed that does not exist, or row 21 is listed;
-3. a line is missing or one is added; the lines are not in PRU-pl's order; a label in the page's data differs from the source's column B (or, where B is empty, from R1-2's stand-in text); a line's heading or ratio flag differs from R1-2's definitions; a heading shows a figure in any view;
-4. a year (2025, 2026, 2027) is missing from the data or as a year-view column;
+3. a line is missing or one is added; the lines are not in PRU-pl's order; a label in the page's data differs from the source's column B (or, where B is empty, from R1-2's stand-in text); a line's heading or ratio flag differs from R1-2's definitions; a heading shows a figure in any view; a view draws more or fewer rows than there are lines;
+4. a year (2025, 2026, 2027) is missing from the data or as a year-view column; a view's header row as drawn differs from the one R1-3 names (a year or a month under the wrong column);
 5. the page's file refers to the internet: `http:`, `https:`, `ws:` or `wss:` anywhere; a `//` address in src, href, action, srcset, data or CSS url(); @import, import(), fetch, XMLHttpRequest, WebSocket, EventSource or sendBeacon;
 6. the text "Draft budget, not approved" or the "Not on this page yet" line is missing from the page's file;
 7. the md5 of either source is not in the page's file;
@@ -83,17 +85,17 @@ The cases:
 **NOT PROVED FOR 9AM: how the page draws.** The figures and the page's data are proved. How they are drawn is not:
 - the * gap marks;
 - the tooltips;
-- the labels as drawn;
+- the labels as drawn (the column headers as drawn are proved, case 4);
 - the year list's options;
 - the exact words of the "Not on this page yet" line.
 
 This is Piston's pick in Sergio's place after check 5 (the PISTON PICK file above), his to strike. Since check 5 the test holds checks and plants for these five, marked "release 1b" below, and they pass. No blind checker has passed them, so they are claimed in release 1b, not here.
 
-Before the test is believed, it fails on 57 planted faults, one per branch. The five marked "release 1b" test the drawing, which is not claimed for 9am:
+Before the test is believed, it fails on 60 planted faults. Every case has at least one, but not every branch has a plant of its own: case 9's `:root[data-theme="dark"]` text, case 4's year-header text on its own, case 1's "page did not render in node" and case 4's month list of a length other than 12 have none. Seven plants, under the five "release 1b" markers below, test the drawing, which is not claimed for 9am; the 9am claim rests on the other 53:
 - case 1 five (a month in each year, a shown month; release 1b: a tooltip on every month cell);
 - case 2 eight (a year, a shown year, a 2025 gap removed, a false 2027 gap, a gap on row 21; release 1b: a tooltip sum wrong, the tooltip removed, the * not drawn);
-- case 3 eight (a line removed, a line added, two lines out of order, a label changed, a figure line flagged heading, row 21's ratio flag removed, a heading showing figures; release 1b: labels not drawn);
-- case 4 four (each year; release 1b: 2025 by month taken off the view list);
+- case 3 nine (a line removed, a line added, two lines out of order, a label changed, a figure line flagged heading, row 21's ratio flag removed, a heading showing figures, an extra row drawn after the last line; release 1b: labels not drawn);
+- case 4 six (each year, the drawn 2025 and 2026 headers swapped, the month headers reversed; release 1b: 2025 by month taken off the view list);
 - case 5 seventeen (each internet pattern, `ws:` included);
 - case 6 three (the Draft text removed, the not-yet line removed; release 1b: its middle words changed);
 - case 7 two (each md5); case 8 one; case 9 two (the CSS, the button); case 10 three (weekly data, the log's md5, its name);
@@ -105,7 +107,7 @@ Before the test is believed, it fails on 57 planted faults, one per branch. The 
 - SOURCE CHECKS PASS;
 - PASS on all 10 cases;
 - "program refusal, real row 21: PASS - accepted";
-- each of the 57 plants FAIL - caught.
+- each of the 60 plants FAIL - caught.
 
 **R1-5. On ONE VIEW for 9am, for his readers, on his yes.** [his words: "ill need something in ONE VIEW for tomorrow 9am MANDATORY"; answer 59; answer 3]
 - After LAWYER's PASS, the page is copied unchanged into `C:\AI_Building\AI_PRU\JOBS\01 PRU 2027 budget dashboard - 2026-11-19 HOME\`.

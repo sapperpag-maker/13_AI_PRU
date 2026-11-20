@@ -1,11 +1,11 @@
-# PLAN - job 01, PRU 2027 budget dashboard - DRAFT, repair round 6 (smaller shape: P&L alone, its figures proved, for 9am)
+# PLAN - job 01, PRU 2027 budget dashboard - DRAFT, repair round 7 (smaller shape: P&L alone, its figures proved, for 9am)
 
 Angie, 2026-11-20 HOME. The goal is `C:\AI_Building\AI_PRU\JOBS\01 PRU 2027 budget dashboard - 2026-11-19 HOME\GOAL.md`. His words are in `C:\AI_Building\AI_PRU\05 His answers and decisions\His words - the desk opened.md`. The run is full auto on his word: "im going to sleep, go ahead full auto. plan is accepted when the lawyer passes. Piston picks on my behalf. ill need something in ONE VIEW for tomorrow 9am MANDATORY."
 
 ## Bad news first
 
 1. How the page draws is not proved for 9am: the * gap marks, tooltips, labels as drawn, the year list and the not-yet line's exact words. Only its figures and data are. This is Piston's pick after check 5 (GOAL, "NOT PROVED FOR 9AM").
-2. Five of Angie's blind checks have failed. One more FAIL (check 6) leaves one step; a seventh stops the job (R-1876).
+2. Six of Angie's blind checks have failed. A FAIL of check 7 (agent 8) is the seventh and stops the job (R-1876); the 9am call then goes to Sergio himself.
 3. Nothing goes live at 9am without Sergio's own yes (R-0180). If he does not answer, ONE VIEW has nothing new at 9am.
 4. 2025: 25 lines of PRU-Prior do not add up to their own Total by more than $1 (G8). `C:\AI_Building\AI_Financials\04 Budget\2027\scripts\fs_budget_pru_2026.py` lines 72-79 say PRU-Prior's December cost and expense cells carry year-end entries booked after January. The page shows the source's Total. Which figure is right is his to say.
 5. Coach pass rate, coach profitability and class fill rate have no source. His answer 6: "skip for now, ill send it later". They are not in release 1.
@@ -46,13 +46,16 @@ Made in his place and flagged. Each is his to strike.
 - G13. "side by side": the year view shows the three years side by side; a month view shows one year at a time.
 - G14. The page has a light/dark button: no word of his or Rick's asks for it; it follows Rick's "light and dark".
 - G15. The page prints the two source md5s, so a reader can tie it to its sources: no word of his asks for it; Rick's skill hands back each file "with its md5" (`C:\AI_Building\AI_Financials\.claude\skills\fs-budget-store-pages\SKILL.md` line 10).
+- G16. The page carries a line starting "Not on this page yet", naming the weekly measures and the coach and class measures, so no reader takes the page for the whole of release 1: no word of his asks for it; his answer 6 ("skip for now, ill send it later") left those measures out.
 
 ## Piston's picks, in his place, each his to strike
 
 - 02:05: the P&L alone if a third FAIL came. His words are in `C:\AI_Building\AI_PRU\LOG.md`.
 - ~02:15: G1 to G7 stand. G1 has since been replaced by the new shape, G5 moved to release 1b, and G7 withdrawn. He does NOT accept the page in Sergio's place; he asks Sergio when Sergio is back.
 - Between 02:28 and 02:42: "my pick in his place, his to strike: yes to agent 6, a blind check of the repaired GOAL/PLAN/test only, then LAWYER." The message is in Angie's session transcript 034bc097-973b-403b-8a90-c7678efdb939, between her 02:28 and 02:42 clock readings.
-- ~02:44: the smaller shape, on disk with his words, session, time and his flag to Sergio: `C:\AI_Building\AI_HQ\03 Library\PISTON PICK - PRU job 01 third blind-check FAIL - 2026-11-20 HOME.md` (md5 ca3d554bfef5e49a916a517253c04844). Its "No 7th agent" was corrected there at 02:59.
+- ~02:44: the smaller shape, on disk with his words, session, time and his flag to Sergio: `C:\AI_Building\AI_HQ\03 Library\PISTON PICK - PRU job 01 third blind-check FAIL - 2026-11-20 HOME.md` (cited by path alone: the file is still being added to). Its "No 7th agent" was corrected there at 02:59.
+- 03:04 and 03:09-03:12: his 03:04 pick (the LAWYER desk repairs) crossed my repair; at 03:12, "FINAL, his to strike, and LAWYER agrees", the round-6 repair stands and check 6 runs. Record: 04_AI_HQ cdf0ea9.
+- After check 6's FAIL: "my pick in his place, his to strike: yes to your plan. Repair all 7 ... Then one last blind check (agent 8). LAWYER round 2 only on its PASS. If agent 8 FAILs, the job stops (R-1876)." In Angie's session transcript 034bc097-973b-403b-8a90-c7678efdb939.
 - 03:00, after LAWYER's plan FAIL: "Repair all 12, then run one blind check (agent 7) of the repaired GOAL, PLAN and test against the frozen page. Only on its PASS does it go back to LAWYER." Also: "The 9am go-live question goes to Sergio himself, with your pick first and the cons." Both are in the same transcript.
 
 ## His 9am question
@@ -66,16 +69,18 @@ Question 8: "Put the PRU 2027 budget page (the P&L, 2025-2027) live on ONE VIEW 
 
 ## Steps, agents and models
 
-Agents launched: 6 Opus blind checkers (checks 1 to 5; check 2 ran as two). Piston's 03:00 word allows a 7th: check 6. LAWYER is a desk of its own. The Brain puts the page live.
+Agents launched: 7 Opus blind checkers (checks 1 to 6; check 2 ran as two). Piston's word after check 6 allows an 8th: check 7. LAWYER is a desk of its own. The Brain puts the page live.
 
 | # | step | who | done when | minutes | state |
 |---|---|---|---|---|---|
-| 1 | Plan and page, checks 1 to 3, repairs | Angie; checker agents (Opus) | - | - | done; FAIL 1 to 3; new shape (Piston) |
+| 1 | Checks 1 to 3 (check 1 of the plan alone), repairs | Angie; checker agents (Opus) | - | - | done; FAIL 1 to 3; new shape (Piston) |
 | 2 | The P&L-only page, `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 page - ANGIE-HOME\build_page.py --pl-only`, and its test `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 page - ANGIE-HOME\test_page_pl.py` | Angie | page frozen at 3fbc0758 | - | done |
 | 3 | Check 4, then check 5 (agent 6), each repaired | checker agents (Opus); Angie | - | - | done; FAIL 4 and 5; smaller shape (Piston) |
 | 4 | LAWYER round 1 on GOAL and PLAN (verdict `C:\AI_Building\AI_LAWYER\Office desk\Verdicts\2026-11-20 Angie PRU job 01 release 1 plan check - ccc6409e.md`) | LAWYER | - | - | FAIL 12; the page check still runs |
 | 5 | Repair of LAWYER's 12 findings: GOAL and PLAN rewritten; the test's cases merged to 10 (the cap); the page unchanged | Angie | own test: 10/10 PASS, 57 of 57 caught | 25 | done (own test, not a verdict) |
-| 6 | Check 6, of the repaired GOAL, PLAN and test against the frozen page | checker agent 7 (Opus) | PASS | 25 | next |
+| 6 | Check 6, of the repaired GOAL, PLAN and test against the frozen page | checker agent 7 (Opus) | - | - | done; FAIL 6 (A 5, C 2) |
+| 6b | Repair of check 6's 7 findings by change list `C:\AI_Building\AI_MISC\06 Benches\2026-11-20 PRU job 01 repair 7 - ANGIE-HOME\change_list_round7.py`; two test checks added (headers as drawn, rows drawn); the page unchanged | Angie | own test: 10/10 PASS, 60 of 60 caught | 15 | done (own test, not a verdict) |
+| 6c | Check 7, the last: GOAL, PLAN and test against the frozen page; a FAIL stops the job | checker agent 8 (Opus) | PASS | 25 | next |
 | 7 | GOAL, PLAN and test back to LAWYER, round 2 (session local_5fb2d9ed-2bc2-4e00-8229-4baba6e00ef6) | Angie sends | LAWYER's PASS on plan and page | - | |
 | 8 | Path, md5 and verdict to Piston by 07:30; page copied into the job folder; his 9am question; the Brain puts it live on his yes | Angie / Piston / Sergio / the Brain | R1-5's pass mark | - | |
 | 9 | Release 1b (the drawing, then the Weekly tab), then release 2 | Angie, then the same checks | - | - | after 9am |
