@@ -125,3 +125,10 @@
   - Rebuilt with extract_r4.py, which reads Class Data only; the Manual Log figures are kept from r3.json, not re-read. DRAFT md5 4a3a32ec. GOAL items 2 and the source line and test 1 now say 498 from his updated file.
   - New start figures: 498 classes, 4,455 students, class fees $1,706,910, sales $1,779,595, coach $494,885, rent $155,992, operating profit $142,941.
   - My own tests 1-12 pass: 1-8 clean, with every planted fault caught; test 9 finds 0 fails over 508 rows in 55 tables; tests 10-12 find 0 fails.
+- 2026-11-20 EST: Piston pushed 6f2cb0c. LAWYER stopped its check of 056e8916 with no findings (STOPPED.md md5 20ed53c6, commit ccfe05ddf); LAWYER's own FAIL count stays 2.
+- 2026-11-20 EST: blind checker round 15 on 4a3a32ec: FAIL, 2 findings (VERDICT-15.md, 8,105 bytes, md5 a21cee88). This is FAIL 1 on the smaller step; one more stops the job and it goes to Sergio.
+  - Confirmed: all 20 units match the updated Class Data (498), no old figure remains, goal tests 2-7 have 0 differences, and the add-up, fill, coach and tag checks pass.
+  - Finding 1: the label read "(start498)", with no space before the number.
+  - Finding 2: "Reset everything" worked only once. norm() copied the defaults shallowly, so after the first reset, edits wrote into the defaults themselves.
+  - Repaired in DRAFT md5 98b30ed6: the space is added, and norm() takes a fresh copy of every state object.
+  - New tests: 13 (three rounds of edits and reset) and 14 (no word runs into a number, in any tab). Both find 0 fails on 98b30ed6 and 7 fails on 4a3a32ec. Tests 1-12 pass again.

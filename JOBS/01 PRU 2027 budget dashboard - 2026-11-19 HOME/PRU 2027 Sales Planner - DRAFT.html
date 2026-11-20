@@ -103,7 +103,7 @@ function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","
 let STATE;try{STATE=J("plan-state")||{};}catch(e){STATE={};}
 const DEF={fillAll:null,fillType:{},fillUnit:{},unitMonths:{},price:{},rate:{},showDirt:true,savedAt:null};
 const FILLV=v=>Math.min(100,Math.max(0,Math.round(+v||0)));
-function norm(s){s=Object.assign({},DEF,s||{});["fillType","fillUnit","unitMonths","price","rate"].forEach(k=>{s[k]=s[k]||{};});
+function norm(s){s=Object.assign({},DEF,s||{});["fillType","fillUnit","unitMonths","price","rate"].forEach(k=>{s[k]=JSON.parse(JSON.stringify(s[k]||{}));});   // a fresh copy each time: state never shares an object with DEF or the caller
   if(s.fillAll!=null)s.fillAll=FILLV(s.fillAll);["fillType","fillUnit"].forEach(k=>{s[k]=Object.assign({},s[k]);Object.keys(s[k]).forEach(q=>{if(s[k][q]!=null)s[k][q]=FILLV(s[k][q]);});});return s;}
 STATE=norm(STATE);
 const DRAFT_KEY="pru-planner-draft-v3";
@@ -336,7 +336,7 @@ function renderPlan(){
   const n26=sum(ALL_STUDENTS_26),s26=sum(ALL_SALES_26),N=sum(SP.n),G27=sum(SP.gap),S=sum(SP.sales),C27=sum(SP.cls);
   const seats=sum(agg.ups.map(({p})=>sum(p.cls)*p.cap)),unitN=sum(SP.U.map(x=>sum(x.n)));
   const k=el("div",{class:"kpis"});const kp=(l,a,b)=>`<div class="kpi"><div class="l">${l}</div><div class="v">${a}</div><div class="d">${b}</div></div>`;
-  k.innerHTML=kp("2027 classes",fmtK(C27),`Class Data (updated 2026-11-20), 2027 Projections (start${fmtN(CLASSES27_START)}) · ${fmtN(sum(CLASSES26))} held or booked in ${L26} (December: bookings so far)`)
+  k.innerHTML=kp("2027 classes",fmtK(C27),`Class Data (updated 2026-11-20), 2027 Projections (start ${fmtN(CLASSES27_START)}) · ${fmtN(sum(CLASSES26))} held or booked in ${L26} (December: bookings so far)`)
    +kp("2027 students",fmtN(N),`<span class="${cl(pct(N,n26))}">${fmtP(pct(N,n26))}</span> vs 2026 registrations ${fmtN(n26)} (Manual Log)`)
    +kp("2027 sales",fmtD(S),`<span class="${cl(pct(S,RICK26))}">${fmtP(pct(S,RICK26))}</span> vs Rick's 2026 ${fmtD(RICK26)} (PRU-pl)<br>= class fees ${fmtD(sum(SP.fees))} + ${fmtD(G27)} in the five parts below`)
    +kp("Seats filled, 2027",fmtF(seats?unitN/seats*100:null),`${fmtN(unitN)} students in ${fmtN(seats)} seats (12 a class; 4 for First Ride)`);
