@@ -111,3 +111,8 @@
   - the coach rule reads students per class as shown, to one decimal.
   - My own tests: 1-8 clean, and each fails on its planted fault; the start figures are unchanged. Test 9 finds 0 fails over 508 rows in 55 tables.
   - New tests 10-12 (rel3/r13tests.js), covering the 0-100 refusal, coach at the shown figure (222 cases) and tags by view: 0 fails. On the page as it stood before (rel3/planted_r13.html) they find 24 fails.
+- 2026-11-20 17:40 EST: Piston pushed e9e6e44, with 8fc532d under it.
+- 2026-11-20 17:40 EST: blind checker round 14 on 056e8916: PASS, 0 findings (VERDICT-14.md, 8,203 bytes, md5 8f46f536).
+  - The three round-13 findings are confirmed fixed. Goal tests 1-8 and the add-up check passed, with over 2,000 rows checked.
+  - 6 risks, none of them failures: shown products do not multiply exactly (discount 382 × $36 shows $13,751); Rick's operating profit shows $278,834 against 278,834.56; "Fill %, all classes" does not move HD and ARC; the fill placeholders carry no Manual Log label; the weekend-rate boxes keep decimals; the ARC students per class are not shown.
+  - Next: to LAWYER through Piston (R-1877).
