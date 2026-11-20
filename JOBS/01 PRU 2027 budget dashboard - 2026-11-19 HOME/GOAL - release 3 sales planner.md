@@ -9,23 +9,23 @@ Accepted by Sergio, 2026-11-20, Angie's chat: "Yes, build it". Drafted by Angie 
 
 ## What the finished page shows
 1. **Trends** as in release 2: 2022-2026 by range, class and month, read from the attached log.
-2. **2027 classes:** his 498, by site and class type (2027 Projections A1-F11), by month (rows 31-39 for 2-Wheel, 44-52 for 3-Wheel, 57-65 for BRC2, and E15-E26 for First Ride). There is no Waldorf ("Waldorf range is out for 2027 at the moment"). Each cell can be edited.
+2. **2027 classes:** 500, by site and class type: 2027 Projections A1-F11, with BRC2 from its monthly table (rows 57-66: Manassas Mall 10, Woodbridge 0, Clarksburg 2) and Woodbridge's 5 BRC2 classes added to its 2-Wheel (55), spread like its own months (his Q34: "monthly table put 0 in WB in the by site table, add the 5 back to 2W BRC"); the 2-Wheel, 3-Wheel and BRC2 months come from rows 31-39, 44-52 and 57-66, and First Ride's from E15-E26 split by site total. There is no Waldorf ("Waldorf range is out for 2027 at the moment"). Each cell can be edited.
 3. **2027 students = 2027 classes × capacity × fill %.** Capacity is 12 per class and 4 for IME / First Ride (Q33: "12 brc 4 for ime and first ride"). Fill % starts at each site and type's 2026 Mar-Nov fill (`FILL 2026 - students per seat.md`) and can be edited, by site, type or for all at once. His words: "we need to estimate the students. Can you calculate and show the fill capacity % through 2026?" The page shows the 2026 fill % beside the 2027 fill %.
 4. **2027 prices:** 2-Wheel $389, 3-Wheel $389 (his Q25: "Typo, use $389"), BRC2 $249, ARC $199, First Ride $99 (2027 Projections M17-M21), each editable. **My pick:** First Ride = the log's IME class ($99). HD and ARC, which have no classes in his table, are carried at their 2026 students × price.
 5. **Discounts:** Military $36 and VIP $50 on 2-Wheel BRC, with 393 and 177 claims in 2026 ("these are the discounts we applied through the year"). **My pick:** shown at the 2026 claim rate for information only, and not subtracted again, because the log's 2026 2-Wheel average of $358.14 is below the $369 list price (Q29 was not answered).
 6. **Rick's 2026 as the 2026 base** and the five gap rows, named as in Q23 (Q27: "no need to rename"). In 2027, Loss Damage Waiver = 1.9436% of class fees (his words: "LDW just figure a % to sales ad keep it"; $26,518.37 / $1,364,378.50, Jan-Sep 2026, Rick's table). **My pick:** the other four parts are carried at their 2026 amounts. Oct-Dec 2026 stay Rick's estimate, and October becomes actual once its books are final (his answer 4).
-7. **Coach cost (Salaries & Wages, row 33)** = each 2027 class × its type's cost (2027 Projections H15-J22): one coach (column J) where students per class are 6 or fewer, two coaches (column I) where more. His Q26: "Cost varies by student, up to 6 and more than six." Range aid is $250 a class; **my pick:** 15 classes, as in 2026 (Q31 was not answered).
-8. **Rent (row 72)** = each range's 2027 classes × its weekend rate, using the 2027 renewal where one is given (Woodbridge $950, Clarksburg $725), plus annual storage / 12 (Woodbridge $2,500, Manassas Mall $7,800, Clarksburg $1,800). His words: "thhis are going to be rent rates for next year". Each rate can be edited.
+7. **Coach cost (Salaries & Wages, row 33)** (his Q35 confirms: per class, as built) = each 2027 class × its type's cost (2027 Projections H15-J22): one coach (column J) where students per class are 6 or fewer, two coaches (column I) where more. His Q26: "Cost varies by student, up to 6 and more than six." Range aid is $250 a class; **my pick:** 15 classes, as in 2026 (Q31 was not answered).
+8. **Rent (row 72)** = each range's 2027 classes × weekends per class × its weekend rate. Classes share weekends (his Q36: "Classes share weekends"); **my pick:** weekends per class = the range's 2026 weekends used ÷ its 2026 classes, counted from the attached log's Master sheet (Site and WE Dt only). It uses his 2027 table, using the 2027 renewal where one is given (Woodbridge $950, Clarksburg $725), plus annual storage / 12 (Woodbridge $2,500, Manassas Mall $7,800, Clarksburg $1,800). His words: "thhis are going to be rent rates for next year". Each rate can be edited.
 9. **2027 Budget P&L** as in release 2: Training = 2027 sales + the gap parts; every other line follows release 2's rule (his answer 11, "Hold fixed costs"); totals are recomputed.
 10. **2027 vs 2026** as in release 2.
 11. **New initiatives:** Dirt Bike classes, 24 classes × 6 students × $289 = $41,616 in sales, rent $500 and coach $200 (2027 Projections N2-O8). Shown on its own and **never flowing into the P&L** (his words: "keep it separate for now, we need to present to Richard, don't make these numbers flow into P&L").
 12. Light and dark themes in Piston's colours. Every Manual Log figure is labelled Manual Log.
 
 ## The test
-1. 2027 classes on the page = 498, and each site and type cell equals 2027 Projections.
+1. 2027 classes on the page = 500, and each site, type and month equals 2027 Projections as changed by his Q34.
 2. With every input at its start value, 2027 sales = the sum over site, type and month of classes × students per class × price, to the dollar.
 3. Coach cost = the sum over classes of the right column-I or column-J cost, recomputed independently.
-4. Rent = the sum of classes × rate + storage / 12, each month.
+4. Rent = the sum of classes × weekends per class × rate + storage / 12, each month.
 5. LDW 2027 = 1.9436% × 2027 class fees.
 6. Dirt Bike changes no P&L cell: the P&L is the same with it shown or hidden.
 7. The P&L totals equal the sums of their lines; fixed lines equal Rick's.

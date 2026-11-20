@@ -79,3 +79,8 @@
     - the 2026 fill % column, the 3,942 students and the ARC 2026 classes now carry the Manual Log label.
   - Finding 1 is open for Sergio. Class Data's BRC2 site x month table (rows 57-58: Manassas Mall 10, Woodbridge 0, total 12) contradicts the site totals D2-D3 (8, 5, total 15).
   - The checker also reports that October 2027's other four gap parts come out negative (-$4,190), because October's 2026 gap is negative. This is a risk, not a fault.
+- 2026-11-20: Sergio answered Q34-Q36.
+  - Q34, "monthly table put 0 in WB in the by site table, add the 5 back to 2W BRC": BRC2 now comes from its monthly table (Manassas Mall 10, Woodbridge 0, Clarksburg 2), and Woodbridge 2-Wheel is 55. The total is 500 classes. This closes round 9's finding 1.
+  - Q35, "Per class, as built (Recommended)": coach cost stays per class.
+  - Q36, "Classes share weekends": rent = classes × (2026 weekends ÷ 2026 classes, from the Master sheet's Site and WE Dt) × rate + storage / 12.
+  - DRAFT md5 14fae3fa: 500 classes, 4,477 students, class fees $1,712,460, sales $1,785,252, coach $496,045, rent $157,653 (Rick $172,455), operating profit $142,760 (Rick $278,835). My own tests 1-8 pass. The goal file is updated for Q34-Q36.
