@@ -92,3 +92,8 @@
   2. Class edits under 0.05 still hide, and one-decimal cells do not add to their Year (500.6 against 500.5).
   3. Dollar rows do not add to their Year cell (range aid $313 × 12 against $3,750; 45 P&L rows).
   - Shapes put to Piston: A, round every shown row so its cells add to the shown total (my pick); B, show cents and decimals; C, whole-number classes in the model.
+- 2026-11-20 16:46 EST: Piston's R-1878 pick, in Sergio's place and his to strike: shape A (C:\AI_Building\AI_HQ\03 Library\PISTON PICK - PRU planner third blind-check FAIL - 2026-11-20 HOME.md). Built in DRAFT md5 0a70d654:
+  - one rounding function (largest remainder) on every table, and every total is summed from the shown cells;
+  - classes to one decimal, students and dollars whole; the model keeps exact figures;
+  - month inputs round to 0.1.
+  - My own tests: 1-8 clean, and each fails on its planted fault. New test 9 (every shown row adds up to its shown total; plan table columns; P&L rows 13, 33 and 72 equal their tabs) found 0 fails over 498 rows in 55 tables. On the page as it stood before (template.before-shapeA.html) it found 247 fails.
