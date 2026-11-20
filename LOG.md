@@ -72,3 +72,10 @@
   - Fault found and fixed: BRC2 at Manassas Mall and Woodbridge had their months taken from the type pattern, which did not match Class Data rows 15-26. They now take the type's monthly total less Clarksburg's own table, split 8:5. BRC2 and First Ride months are fractions (Class Data's own split).
   - Release 2's general "new range / new class" scenario cards are dropped. The initiatives tab now holds Dirt Bike only (goal item 11).
   - Class Data I16:J16 heads the coach costs "> 6 students per coach" and "= < 6 student per coach". The goal reads this as students per class. To be put to Sergio.
+- 2026-11-20: blind checker round 9 on 6f84b712: FAIL, 6 findings (VERDICT-9.md md5 c12c1343). This is the first FAIL on release 3. Tests 1-7 matched its own recompute to the cent; the page's figures are right.
+  - Findings 2-6 are repaired in DRAFT md5 59febd66:
+    - month inputs now take part-classes;
+    - "held" now reads "held or booked", with December as bookings so far;
+    - the 2026 fill % column, the 3,942 students and the ARC 2026 classes now carry the Manual Log label.
+  - Finding 1 is open for Sergio. Class Data's BRC2 site x month table (rows 57-58: Manassas Mall 10, Woodbridge 0, total 12) contradicts the site totals D2-D3 (8, 5, total 15).
+  - The checker also reports that October 2027's other four gap parts come out negative (-$4,190), because October's 2026 gap is negative. This is a risk, not a fault.
