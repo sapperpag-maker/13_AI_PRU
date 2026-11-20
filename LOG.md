@@ -56,3 +56,9 @@
   - Q26: "Class data has the cost for coaches in H15-J22. Cost varies by student, up to 6 and more than six."
   - Q27: "no need to rename. We don't presold only in January. It's normal ticketing , students buy today to book an available class in the future"
 - 2026-11-20: checker round 8 on 504d2701 FAIL, 1 finding (VERDICT-8.md md5 b0715433). Goal item 8 still describes one line, "Revenue not in the Manual Log", spread over the months like the log's pattern; the page follows Q23 (five rows, Rick's month less the log's month). My mistake: I built Q23 without bringing it into the goal file. This is the first FAIL on Piston's smaller step. The checker also saw two old PROGRESS.md lines before writing its verdict (it reported this itself).
+- 2026-11-20 HOME. Sergio sent Class_Data.xlsx fixed (md5 19acfe24): 48 cells changed, all on the tab 2027 Projections.
+  - Clarksburg is fixed: the monthly table now totals 498 (F27), with 3-Wheel at 55 and BRC2 at 15.
+  - The 2027 3-Wheel price is now $389 (M18).
+  - New on the tab, 2027 Dirt Bike classes (N2-O8): $289, rent $500, coach $200, 24 classes, 6 students, 4 hours, one day a month with 2 classes a day.
+  - Military discount is now $36 (I25), 393 claims (K25).
+- 2026-11-20 HOME. Sergio, with a picture of the sheet: "these are the discounts we applied through the year". The picture shows Range aid $250, 15 classes in 2026; Military $36 BRC two wheel, 393 claims; VIP $50 BRC two wheel, 177 claims. Angie's questions 28-31 (2027 model, discounts net or gross, Dirt Bike, range aid) were left unanswered when he sent a message instead.
