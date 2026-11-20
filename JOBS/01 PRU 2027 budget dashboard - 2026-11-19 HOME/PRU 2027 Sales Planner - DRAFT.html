@@ -330,7 +330,7 @@ function renderPlan(){
     });
   });
   const g1=1+(+STATE.growth||0)/100;
-  h+=`<tr class="grp"><td>${GAPNAME}<div class="note">2026: ${fmtD(GAP26)} = Rick's ${fmtD(RICK26)} − Manual Log ${fmtD(s26)}</div></td><td></td><td></td><td>${fmtN(+STATE.growth||0)}</td><td></td><td></td><td>${fmtD(G27)}</td><td class="${cl(G27-GAP26)}">${fmtPC(G27-GAP26,pct(G27,GAP26))}</td><td></td></tr>`;
+  h+=`<tr class="grp"><td>${GAPNAME}<div class="note">2026: ${fmtD(GAP26)} = Rick's ${fmtD(RICK26)} − Manual Log ${fmtD(s26)}</div></td><td></td><td></td><td></td><td></td><td></td><td>${fmtD(G27)}</td><td class="${cl(G27-GAP26)}">${fmtPC(G27-GAP26,pct(G27,GAP26))}</td><td></td></tr>`;
   PARTS.forEach(([nm,v])=>{h+=`<tr><td style="padding-left:22px">${esc(nm)}<div class="note">2026: ${fmtD(v)}</div></td><td></td><td></td><td></td><td></td><td></td><td>${fmtD(v*g1)}</td><td class="${cl(v*g1-v)}">${fmtPC(v*g1-v,pct(v*g1,v))}</td><td></td></tr>`;});
   h+=`<tr class="tot"><td>All ranges</td><td>${fmtN(sum(LINES.map(l=>sum(l.n["2025"]))))}</td><td>${fmtN(n26)}</td><td></td><td>${fmtN(sum(t.n))}</td><td></td><td>${fmtD(sum(t.s)+G27)}</td><td class="${cl(sum(t.s)+G27-RICK26)}">${fmtPC(sum(t.s)+G27-RICK26,pct(sum(t.s)+G27,RICK26))}</td><td></td></tr></tbody></table></div>`;
   tc.innerHTML=h;
