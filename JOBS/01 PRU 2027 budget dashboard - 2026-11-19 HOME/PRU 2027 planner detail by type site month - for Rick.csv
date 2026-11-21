@@ -1,0 +1,1031 @@
+measure,class_type,site,month,value
+classes,2-Wheel,"Manassas Mall",Jan,2
+students,2-Wheel,"Manassas Mall",Jan,21.37931
+revenue,2-Wheel,"Manassas Mall",Jan,8316.551724
+cost_of_sale,2-Wheel,"Manassas Mall",Jan,2100
+gross_profit,2-Wheel,"Manassas Mall",Jan,6216.551724
+classes,2-Wheel,"Manassas Mall",Feb,5
+students,2-Wheel,"Manassas Mall",Feb,53.448276
+revenue,2-Wheel,"Manassas Mall",Feb,20791.37931
+cost_of_sale,2-Wheel,"Manassas Mall",Feb,5250
+gross_profit,2-Wheel,"Manassas Mall",Feb,15541.37931
+classes,2-Wheel,"Manassas Mall",Mar,8
+students,2-Wheel,"Manassas Mall",Mar,85.517241
+revenue,2-Wheel,"Manassas Mall",Mar,33266.206897
+cost_of_sale,2-Wheel,"Manassas Mall",Mar,8400
+gross_profit,2-Wheel,"Manassas Mall",Mar,24866.206897
+classes,2-Wheel,"Manassas Mall",Apr,7
+students,2-Wheel,"Manassas Mall",Apr,74.827586
+revenue,2-Wheel,"Manassas Mall",Apr,29107.931034
+cost_of_sale,2-Wheel,"Manassas Mall",Apr,7350
+gross_profit,2-Wheel,"Manassas Mall",Apr,21757.931034
+classes,2-Wheel,"Manassas Mall",May,6
+students,2-Wheel,"Manassas Mall",May,64.137931
+revenue,2-Wheel,"Manassas Mall",May,24949.655172
+cost_of_sale,2-Wheel,"Manassas Mall",May,6300
+gross_profit,2-Wheel,"Manassas Mall",May,18649.655172
+classes,2-Wheel,"Manassas Mall",Jun,8
+students,2-Wheel,"Manassas Mall",Jun,85.517241
+revenue,2-Wheel,"Manassas Mall",Jun,33266.206897
+cost_of_sale,2-Wheel,"Manassas Mall",Jun,8400
+gross_profit,2-Wheel,"Manassas Mall",Jun,24866.206897
+classes,2-Wheel,"Manassas Mall",Jul,6
+students,2-Wheel,"Manassas Mall",Jul,64.137931
+revenue,2-Wheel,"Manassas Mall",Jul,24949.655172
+cost_of_sale,2-Wheel,"Manassas Mall",Jul,6300
+gross_profit,2-Wheel,"Manassas Mall",Jul,18649.655172
+classes,2-Wheel,"Manassas Mall",Aug,6
+students,2-Wheel,"Manassas Mall",Aug,64.137931
+revenue,2-Wheel,"Manassas Mall",Aug,24949.655172
+cost_of_sale,2-Wheel,"Manassas Mall",Aug,6300
+gross_profit,2-Wheel,"Manassas Mall",Aug,18649.655172
+classes,2-Wheel,"Manassas Mall",Sep,3
+students,2-Wheel,"Manassas Mall",Sep,32.068966
+revenue,2-Wheel,"Manassas Mall",Sep,12474.827586
+cost_of_sale,2-Wheel,"Manassas Mall",Sep,3150
+gross_profit,2-Wheel,"Manassas Mall",Sep,9324.827586
+classes,2-Wheel,"Manassas Mall",Oct,5
+students,2-Wheel,"Manassas Mall",Oct,53.448276
+revenue,2-Wheel,"Manassas Mall",Oct,20791.37931
+cost_of_sale,2-Wheel,"Manassas Mall",Oct,5250
+gross_profit,2-Wheel,"Manassas Mall",Oct,15541.37931
+classes,2-Wheel,"Manassas Mall",Nov,4
+students,2-Wheel,"Manassas Mall",Nov,42.758621
+revenue,2-Wheel,"Manassas Mall",Nov,16633.103448
+cost_of_sale,2-Wheel,"Manassas Mall",Nov,4200
+gross_profit,2-Wheel,"Manassas Mall",Nov,12433.103448
+classes,2-Wheel,"Manassas Mall",Dec,3
+students,2-Wheel,"Manassas Mall",Dec,32.068966
+revenue,2-Wheel,"Manassas Mall",Dec,12474.827586
+cost_of_sale,2-Wheel,"Manassas Mall",Dec,3150
+gross_profit,2-Wheel,"Manassas Mall",Dec,9324.827586
+classes,2-Wheel,"Woodbridge",Mar,6
+students,2-Wheel,"Woodbridge",Mar,66.235294
+revenue,2-Wheel,"Woodbridge",Mar,25765.529412
+cost_of_sale,2-Wheel,"Woodbridge",Mar,6300
+gross_profit,2-Wheel,"Woodbridge",Mar,19465.529412
+classes,2-Wheel,"Woodbridge",Apr,7
+students,2-Wheel,"Woodbridge",Apr,77.27451
+revenue,2-Wheel,"Woodbridge",Apr,30059.784314
+cost_of_sale,2-Wheel,"Woodbridge",Apr,7350
+gross_profit,2-Wheel,"Woodbridge",Apr,22709.784314
+classes,2-Wheel,"Woodbridge",May,9
+students,2-Wheel,"Woodbridge",May,99.352941
+revenue,2-Wheel,"Woodbridge",May,38648.294118
+cost_of_sale,2-Wheel,"Woodbridge",May,9450
+gross_profit,2-Wheel,"Woodbridge",May,29198.294118
+classes,2-Wheel,"Woodbridge",Jun,6
+students,2-Wheel,"Woodbridge",Jun,66.235294
+revenue,2-Wheel,"Woodbridge",Jun,25765.529412
+cost_of_sale,2-Wheel,"Woodbridge",Jun,6300
+gross_profit,2-Wheel,"Woodbridge",Jun,19465.529412
+classes,2-Wheel,"Woodbridge",Jul,5
+students,2-Wheel,"Woodbridge",Jul,55.196078
+revenue,2-Wheel,"Woodbridge",Jul,21471.27451
+cost_of_sale,2-Wheel,"Woodbridge",Jul,5250
+gross_profit,2-Wheel,"Woodbridge",Jul,16221.27451
+classes,2-Wheel,"Woodbridge",Aug,7
+students,2-Wheel,"Woodbridge",Aug,77.27451
+revenue,2-Wheel,"Woodbridge",Aug,30059.784314
+cost_of_sale,2-Wheel,"Woodbridge",Aug,7350
+gross_profit,2-Wheel,"Woodbridge",Aug,22709.784314
+classes,2-Wheel,"Woodbridge",Sep,4
+students,2-Wheel,"Woodbridge",Sep,44.156863
+revenue,2-Wheel,"Woodbridge",Sep,17177.019608
+cost_of_sale,2-Wheel,"Woodbridge",Sep,4200
+gross_profit,2-Wheel,"Woodbridge",Sep,12977.019608
+classes,2-Wheel,"Woodbridge",Oct,4
+students,2-Wheel,"Woodbridge",Oct,44.156863
+revenue,2-Wheel,"Woodbridge",Oct,17177.019608
+cost_of_sale,2-Wheel,"Woodbridge",Oct,4200
+gross_profit,2-Wheel,"Woodbridge",Oct,12977.019608
+classes,2-Wheel,"Woodbridge",Nov,2
+students,2-Wheel,"Woodbridge",Nov,22.078431
+revenue,2-Wheel,"Woodbridge",Nov,8588.509804
+cost_of_sale,2-Wheel,"Woodbridge",Nov,2100
+gross_profit,2-Wheel,"Woodbridge",Nov,6488.509804
+classes,2-Wheel,"Fairfax GMU",Mar,6
+students,2-Wheel,"Fairfax GMU",Mar,64.875
+revenue,2-Wheel,"Fairfax GMU",Mar,25236.375
+cost_of_sale,2-Wheel,"Fairfax GMU",Mar,6300
+gross_profit,2-Wheel,"Fairfax GMU",Mar,18936.375
+classes,2-Wheel,"Fairfax GMU",Apr,4
+students,2-Wheel,"Fairfax GMU",Apr,43.25
+revenue,2-Wheel,"Fairfax GMU",Apr,16824.25
+cost_of_sale,2-Wheel,"Fairfax GMU",Apr,4200
+gross_profit,2-Wheel,"Fairfax GMU",Apr,12624.25
+classes,2-Wheel,"Fairfax GMU",May,4
+students,2-Wheel,"Fairfax GMU",May,43.25
+revenue,2-Wheel,"Fairfax GMU",May,16824.25
+cost_of_sale,2-Wheel,"Fairfax GMU",May,4200
+gross_profit,2-Wheel,"Fairfax GMU",May,12624.25
+classes,2-Wheel,"Fairfax GMU",Jun,2
+students,2-Wheel,"Fairfax GMU",Jun,21.625
+revenue,2-Wheel,"Fairfax GMU",Jun,8412.125
+cost_of_sale,2-Wheel,"Fairfax GMU",Jun,2100
+gross_profit,2-Wheel,"Fairfax GMU",Jun,6312.125
+classes,2-Wheel,"Fairfax GMU",Jul,5
+students,2-Wheel,"Fairfax GMU",Jul,54.0625
+revenue,2-Wheel,"Fairfax GMU",Jul,21030.3125
+cost_of_sale,2-Wheel,"Fairfax GMU",Jul,5250
+gross_profit,2-Wheel,"Fairfax GMU",Jul,15780.3125
+classes,2-Wheel,"Fairfax GMU",Aug,2
+students,2-Wheel,"Fairfax GMU",Aug,21.625
+revenue,2-Wheel,"Fairfax GMU",Aug,8412.125
+cost_of_sale,2-Wheel,"Fairfax GMU",Aug,2100
+gross_profit,2-Wheel,"Fairfax GMU",Aug,6312.125
+classes,2-Wheel,"Fairfax GMU",Sep,4
+students,2-Wheel,"Fairfax GMU",Sep,43.25
+revenue,2-Wheel,"Fairfax GMU",Sep,16824.25
+cost_of_sale,2-Wheel,"Fairfax GMU",Sep,4200
+gross_profit,2-Wheel,"Fairfax GMU",Sep,12624.25
+classes,2-Wheel,"Fairfax GMU",Oct,3
+students,2-Wheel,"Fairfax GMU",Oct,32.4375
+revenue,2-Wheel,"Fairfax GMU",Oct,12618.1875
+cost_of_sale,2-Wheel,"Fairfax GMU",Oct,3150
+gross_profit,2-Wheel,"Fairfax GMU",Oct,9468.1875
+classes,2-Wheel,"Fairfax GMU",Nov,1
+students,2-Wheel,"Fairfax GMU",Nov,10.8125
+revenue,2-Wheel,"Fairfax GMU",Nov,4206.0625
+cost_of_sale,2-Wheel,"Fairfax GMU",Nov,1050
+gross_profit,2-Wheel,"Fairfax GMU",Nov,3156.0625
+classes,2-Wheel,"Manassas GMU",Mar,2
+students,2-Wheel,"Manassas GMU",Mar,15.121951
+revenue,2-Wheel,"Manassas GMU",Mar,5882.439024
+cost_of_sale,2-Wheel,"Manassas GMU",Mar,2100
+gross_profit,2-Wheel,"Manassas GMU",Mar,3782.439024
+classes,2-Wheel,"Manassas GMU",Apr,4
+students,2-Wheel,"Manassas GMU",Apr,30.243902
+revenue,2-Wheel,"Manassas GMU",Apr,11764.878049
+cost_of_sale,2-Wheel,"Manassas GMU",Apr,4200
+gross_profit,2-Wheel,"Manassas GMU",Apr,7564.878049
+classes,2-Wheel,"Manassas GMU",May,6
+students,2-Wheel,"Manassas GMU",May,45.365854
+revenue,2-Wheel,"Manassas GMU",May,17647.317073
+cost_of_sale,2-Wheel,"Manassas GMU",May,6300
+gross_profit,2-Wheel,"Manassas GMU",May,11347.317073
+classes,2-Wheel,"Manassas GMU",Jun,6
+students,2-Wheel,"Manassas GMU",Jun,45.365854
+revenue,2-Wheel,"Manassas GMU",Jun,17647.317073
+cost_of_sale,2-Wheel,"Manassas GMU",Jun,6300
+gross_profit,2-Wheel,"Manassas GMU",Jun,11347.317073
+classes,2-Wheel,"Manassas GMU",Jul,3
+students,2-Wheel,"Manassas GMU",Jul,22.682927
+revenue,2-Wheel,"Manassas GMU",Jul,8823.658537
+cost_of_sale,2-Wheel,"Manassas GMU",Jul,3150
+gross_profit,2-Wheel,"Manassas GMU",Jul,5673.658537
+classes,2-Wheel,"Manassas GMU",Aug,4
+students,2-Wheel,"Manassas GMU",Aug,30.243902
+revenue,2-Wheel,"Manassas GMU",Aug,11764.878049
+cost_of_sale,2-Wheel,"Manassas GMU",Aug,4200
+gross_profit,2-Wheel,"Manassas GMU",Aug,7564.878049
+classes,2-Wheel,"Manassas GMU",Sep,3
+students,2-Wheel,"Manassas GMU",Sep,22.682927
+revenue,2-Wheel,"Manassas GMU",Sep,8823.658537
+cost_of_sale,2-Wheel,"Manassas GMU",Sep,3150
+gross_profit,2-Wheel,"Manassas GMU",Sep,5673.658537
+classes,2-Wheel,"Manassas GMU",Oct,1
+students,2-Wheel,"Manassas GMU",Oct,7.560976
+revenue,2-Wheel,"Manassas GMU",Oct,2941.219512
+cost_of_sale,2-Wheel,"Manassas GMU",Oct,1050
+gross_profit,2-Wheel,"Manassas GMU",Oct,1891.219512
+classes,2-Wheel,"Manassas GMU",Nov,3
+students,2-Wheel,"Manassas GMU",Nov,22.682927
+revenue,2-Wheel,"Manassas GMU",Nov,8823.658537
+cost_of_sale,2-Wheel,"Manassas GMU",Nov,3150
+gross_profit,2-Wheel,"Manassas GMU",Nov,5673.658537
+classes,2-Wheel,"Colonial Heights",Mar,3
+students,2-Wheel,"Colonial Heights",Mar,33.75
+revenue,2-Wheel,"Colonial Heights",Mar,13128.75
+cost_of_sale,2-Wheel,"Colonial Heights",Mar,3150
+gross_profit,2-Wheel,"Colonial Heights",Mar,9978.75
+classes,2-Wheel,"Colonial Heights",Apr,4
+students,2-Wheel,"Colonial Heights",Apr,45
+revenue,2-Wheel,"Colonial Heights",Apr,17505
+cost_of_sale,2-Wheel,"Colonial Heights",Apr,4200
+gross_profit,2-Wheel,"Colonial Heights",Apr,13305
+classes,2-Wheel,"Colonial Heights",May,4
+students,2-Wheel,"Colonial Heights",May,45
+revenue,2-Wheel,"Colonial Heights",May,17505
+cost_of_sale,2-Wheel,"Colonial Heights",May,4200
+gross_profit,2-Wheel,"Colonial Heights",May,13305
+classes,2-Wheel,"Colonial Heights",Jun,4
+students,2-Wheel,"Colonial Heights",Jun,45
+revenue,2-Wheel,"Colonial Heights",Jun,17505
+cost_of_sale,2-Wheel,"Colonial Heights",Jun,4200
+gross_profit,2-Wheel,"Colonial Heights",Jun,13305
+classes,2-Wheel,"Colonial Heights",Jul,4
+students,2-Wheel,"Colonial Heights",Jul,45
+revenue,2-Wheel,"Colonial Heights",Jul,17505
+cost_of_sale,2-Wheel,"Colonial Heights",Jul,4200
+gross_profit,2-Wheel,"Colonial Heights",Jul,13305
+classes,2-Wheel,"Colonial Heights",Aug,4
+students,2-Wheel,"Colonial Heights",Aug,45
+revenue,2-Wheel,"Colonial Heights",Aug,17505
+cost_of_sale,2-Wheel,"Colonial Heights",Aug,4200
+gross_profit,2-Wheel,"Colonial Heights",Aug,13305
+classes,2-Wheel,"Colonial Heights",Sep,4
+students,2-Wheel,"Colonial Heights",Sep,45
+revenue,2-Wheel,"Colonial Heights",Sep,17505
+cost_of_sale,2-Wheel,"Colonial Heights",Sep,4200
+gross_profit,2-Wheel,"Colonial Heights",Sep,13305
+classes,2-Wheel,"Colonial Heights",Oct,4
+students,2-Wheel,"Colonial Heights",Oct,45
+revenue,2-Wheel,"Colonial Heights",Oct,17505
+cost_of_sale,2-Wheel,"Colonial Heights",Oct,4200
+gross_profit,2-Wheel,"Colonial Heights",Oct,13305
+classes,2-Wheel,"Colonial Heights",Nov,2
+students,2-Wheel,"Colonial Heights",Nov,22.5
+revenue,2-Wheel,"Colonial Heights",Nov,8752.5
+cost_of_sale,2-Wheel,"Colonial Heights",Nov,2100
+gross_profit,2-Wheel,"Colonial Heights",Nov,6652.5
+classes,2-Wheel,"Colonial Heights",Dec,1
+students,2-Wheel,"Colonial Heights",Dec,11.25
+revenue,2-Wheel,"Colonial Heights",Dec,4376.25
+cost_of_sale,2-Wheel,"Colonial Heights",Dec,1050
+gross_profit,2-Wheel,"Colonial Heights",Dec,3326.25
+classes,2-Wheel,"Stafford",Jan,1
+students,2-Wheel,"Stafford",Jan,9.227273
+revenue,2-Wheel,"Stafford",Jan,3589.409091
+cost_of_sale,2-Wheel,"Stafford",Jan,1050
+gross_profit,2-Wheel,"Stafford",Jan,2539.409091
+classes,2-Wheel,"Stafford",Mar,3
+students,2-Wheel,"Stafford",Mar,27.681818
+revenue,2-Wheel,"Stafford",Mar,10768.227273
+cost_of_sale,2-Wheel,"Stafford",Mar,3150
+gross_profit,2-Wheel,"Stafford",Mar,7618.227273
+classes,2-Wheel,"Stafford",Apr,4
+students,2-Wheel,"Stafford",Apr,36.909091
+revenue,2-Wheel,"Stafford",Apr,14357.636364
+cost_of_sale,2-Wheel,"Stafford",Apr,4200
+gross_profit,2-Wheel,"Stafford",Apr,10157.636364
+classes,2-Wheel,"Stafford",May,4
+students,2-Wheel,"Stafford",May,36.909091
+revenue,2-Wheel,"Stafford",May,14357.636364
+cost_of_sale,2-Wheel,"Stafford",May,4200
+gross_profit,2-Wheel,"Stafford",May,10157.636364
+classes,2-Wheel,"Stafford",Jun,4
+students,2-Wheel,"Stafford",Jun,36.909091
+revenue,2-Wheel,"Stafford",Jun,14357.636364
+cost_of_sale,2-Wheel,"Stafford",Jun,4200
+gross_profit,2-Wheel,"Stafford",Jun,10157.636364
+classes,2-Wheel,"Stafford",Jul,3
+students,2-Wheel,"Stafford",Jul,27.681818
+revenue,2-Wheel,"Stafford",Jul,10768.227273
+cost_of_sale,2-Wheel,"Stafford",Jul,3150
+gross_profit,2-Wheel,"Stafford",Jul,7618.227273
+classes,2-Wheel,"Stafford",Aug,3
+students,2-Wheel,"Stafford",Aug,27.681818
+revenue,2-Wheel,"Stafford",Aug,10768.227273
+cost_of_sale,2-Wheel,"Stafford",Aug,3150
+gross_profit,2-Wheel,"Stafford",Aug,7618.227273
+classes,2-Wheel,"Stafford",Sep,2
+students,2-Wheel,"Stafford",Sep,18.454545
+revenue,2-Wheel,"Stafford",Sep,7178.818182
+cost_of_sale,2-Wheel,"Stafford",Sep,2100
+gross_profit,2-Wheel,"Stafford",Sep,5078.818182
+classes,2-Wheel,"Newport News",Jan,2
+students,2-Wheel,"Newport News",Jan,15.616438
+revenue,2-Wheel,"Newport News",Jan,6074.794521
+cost_of_sale,2-Wheel,"Newport News",Jan,2100
+gross_profit,2-Wheel,"Newport News",Jan,3974.794521
+classes,2-Wheel,"Newport News",Feb,5
+students,2-Wheel,"Newport News",Feb,39.041096
+revenue,2-Wheel,"Newport News",Feb,15186.986301
+cost_of_sale,2-Wheel,"Newport News",Feb,5250
+gross_profit,2-Wheel,"Newport News",Feb,9936.986301
+classes,2-Wheel,"Newport News",Mar,9
+students,2-Wheel,"Newport News",Mar,70.273973
+revenue,2-Wheel,"Newport News",Mar,27336.575342
+cost_of_sale,2-Wheel,"Newport News",Mar,9450
+gross_profit,2-Wheel,"Newport News",Mar,17886.575342
+classes,2-Wheel,"Newport News",Apr,7
+students,2-Wheel,"Newport News",Apr,54.657534
+revenue,2-Wheel,"Newport News",Apr,21261.780822
+cost_of_sale,2-Wheel,"Newport News",Apr,7350
+gross_profit,2-Wheel,"Newport News",Apr,13911.780822
+classes,2-Wheel,"Newport News",May,10
+students,2-Wheel,"Newport News",May,78.082192
+revenue,2-Wheel,"Newport News",May,30373.972603
+cost_of_sale,2-Wheel,"Newport News",May,10500
+gross_profit,2-Wheel,"Newport News",May,19873.972603
+classes,2-Wheel,"Newport News",Jun,8
+students,2-Wheel,"Newport News",Jun,62.465753
+revenue,2-Wheel,"Newport News",Jun,24299.178082
+cost_of_sale,2-Wheel,"Newport News",Jun,8400
+gross_profit,2-Wheel,"Newport News",Jun,15899.178082
+classes,2-Wheel,"Newport News",Jul,7
+students,2-Wheel,"Newport News",Jul,54.657534
+revenue,2-Wheel,"Newport News",Jul,21261.780822
+cost_of_sale,2-Wheel,"Newport News",Jul,7350
+gross_profit,2-Wheel,"Newport News",Jul,13911.780822
+classes,2-Wheel,"Newport News",Aug,9
+students,2-Wheel,"Newport News",Aug,70.273973
+revenue,2-Wheel,"Newport News",Aug,27336.575342
+cost_of_sale,2-Wheel,"Newport News",Aug,9450
+gross_profit,2-Wheel,"Newport News",Aug,17886.575342
+classes,2-Wheel,"Newport News",Sep,7
+students,2-Wheel,"Newport News",Sep,54.657534
+revenue,2-Wheel,"Newport News",Sep,21261.780822
+cost_of_sale,2-Wheel,"Newport News",Sep,7350
+gross_profit,2-Wheel,"Newport News",Sep,13911.780822
+classes,2-Wheel,"Newport News",Oct,7
+students,2-Wheel,"Newport News",Oct,54.657534
+revenue,2-Wheel,"Newport News",Oct,21261.780822
+cost_of_sale,2-Wheel,"Newport News",Oct,7350
+gross_profit,2-Wheel,"Newport News",Oct,13911.780822
+classes,2-Wheel,"Newport News",Nov,6
+students,2-Wheel,"Newport News",Nov,46.849315
+revenue,2-Wheel,"Newport News",Nov,18224.383562
+cost_of_sale,2-Wheel,"Newport News",Nov,6300
+gross_profit,2-Wheel,"Newport News",Nov,11924.383562
+classes,2-Wheel,"Newport News",Dec,2
+students,2-Wheel,"Newport News",Dec,15.616438
+revenue,2-Wheel,"Newport News",Dec,6074.794521
+cost_of_sale,2-Wheel,"Newport News",Dec,2100
+gross_profit,2-Wheel,"Newport News",Dec,3974.794521
+classes,2-Wheel,"Virginia Beach",Jan,1
+students,2-Wheel,"Virginia Beach",Jan,7.75
+revenue,2-Wheel,"Virginia Beach",Jan,3014.75
+cost_of_sale,2-Wheel,"Virginia Beach",Jan,1050
+gross_profit,2-Wheel,"Virginia Beach",Jan,1964.75
+classes,2-Wheel,"Virginia Beach",Feb,3
+students,2-Wheel,"Virginia Beach",Feb,23.25
+revenue,2-Wheel,"Virginia Beach",Feb,9044.25
+cost_of_sale,2-Wheel,"Virginia Beach",Feb,3150
+gross_profit,2-Wheel,"Virginia Beach",Feb,5894.25
+classes,2-Wheel,"Virginia Beach",Mar,9
+students,2-Wheel,"Virginia Beach",Mar,69.75
+revenue,2-Wheel,"Virginia Beach",Mar,27132.75
+cost_of_sale,2-Wheel,"Virginia Beach",Mar,9450
+gross_profit,2-Wheel,"Virginia Beach",Mar,17682.75
+classes,2-Wheel,"Virginia Beach",Apr,5
+students,2-Wheel,"Virginia Beach",Apr,38.75
+revenue,2-Wheel,"Virginia Beach",Apr,15073.75
+cost_of_sale,2-Wheel,"Virginia Beach",Apr,5250
+gross_profit,2-Wheel,"Virginia Beach",Apr,9823.75
+classes,2-Wheel,"Virginia Beach",May,5
+students,2-Wheel,"Virginia Beach",May,38.75
+revenue,2-Wheel,"Virginia Beach",May,15073.75
+cost_of_sale,2-Wheel,"Virginia Beach",May,5250
+gross_profit,2-Wheel,"Virginia Beach",May,9823.75
+classes,2-Wheel,"Virginia Beach",Jun,5
+students,2-Wheel,"Virginia Beach",Jun,38.75
+revenue,2-Wheel,"Virginia Beach",Jun,15073.75
+cost_of_sale,2-Wheel,"Virginia Beach",Jun,5250
+gross_profit,2-Wheel,"Virginia Beach",Jun,9823.75
+classes,2-Wheel,"Virginia Beach",Jul,5
+students,2-Wheel,"Virginia Beach",Jul,38.75
+revenue,2-Wheel,"Virginia Beach",Jul,15073.75
+cost_of_sale,2-Wheel,"Virginia Beach",Jul,5250
+gross_profit,2-Wheel,"Virginia Beach",Jul,9823.75
+classes,2-Wheel,"Virginia Beach",Aug,4
+students,2-Wheel,"Virginia Beach",Aug,31
+revenue,2-Wheel,"Virginia Beach",Aug,12059
+cost_of_sale,2-Wheel,"Virginia Beach",Aug,4200
+gross_profit,2-Wheel,"Virginia Beach",Aug,7859
+classes,2-Wheel,"Virginia Beach",Sep,4
+students,2-Wheel,"Virginia Beach",Sep,31
+revenue,2-Wheel,"Virginia Beach",Sep,12059
+cost_of_sale,2-Wheel,"Virginia Beach",Sep,4200
+gross_profit,2-Wheel,"Virginia Beach",Sep,7859
+classes,2-Wheel,"Virginia Beach",Oct,2
+students,2-Wheel,"Virginia Beach",Oct,15.5
+revenue,2-Wheel,"Virginia Beach",Oct,6029.5
+cost_of_sale,2-Wheel,"Virginia Beach",Oct,2100
+gross_profit,2-Wheel,"Virginia Beach",Oct,3929.5
+classes,2-Wheel,"Virginia Beach",Nov,5
+students,2-Wheel,"Virginia Beach",Nov,38.75
+revenue,2-Wheel,"Virginia Beach",Nov,15073.75
+cost_of_sale,2-Wheel,"Virginia Beach",Nov,5250
+gross_profit,2-Wheel,"Virginia Beach",Nov,9823.75
+classes,2-Wheel,"Virginia Beach",Dec,2
+students,2-Wheel,"Virginia Beach",Dec,15.5
+revenue,2-Wheel,"Virginia Beach",Dec,6029.5
+cost_of_sale,2-Wheel,"Virginia Beach",Dec,2100
+gross_profit,2-Wheel,"Virginia Beach",Dec,3929.5
+classes,2-Wheel,"Clarksburg",Jan,1
+students,2-Wheel,"Clarksburg",Jan,7.755556
+revenue,2-Wheel,"Clarksburg",Jan,3016.911111
+cost_of_sale,2-Wheel,"Clarksburg",Jan,1050
+gross_profit,2-Wheel,"Clarksburg",Jan,1966.911111
+classes,2-Wheel,"Clarksburg",Feb,2
+students,2-Wheel,"Clarksburg",Feb,15.511111
+revenue,2-Wheel,"Clarksburg",Feb,6033.822222
+cost_of_sale,2-Wheel,"Clarksburg",Feb,2100
+gross_profit,2-Wheel,"Clarksburg",Feb,3933.822222
+classes,2-Wheel,"Clarksburg",Mar,5
+students,2-Wheel,"Clarksburg",Mar,38.777778
+revenue,2-Wheel,"Clarksburg",Mar,15084.555556
+cost_of_sale,2-Wheel,"Clarksburg",Mar,5250
+gross_profit,2-Wheel,"Clarksburg",Mar,9834.555556
+classes,2-Wheel,"Clarksburg",Apr,6
+students,2-Wheel,"Clarksburg",Apr,46.533333
+revenue,2-Wheel,"Clarksburg",Apr,18101.466667
+cost_of_sale,2-Wheel,"Clarksburg",Apr,6300
+gross_profit,2-Wheel,"Clarksburg",Apr,11801.466667
+classes,2-Wheel,"Clarksburg",May,8
+students,2-Wheel,"Clarksburg",May,62.044444
+revenue,2-Wheel,"Clarksburg",May,24135.288889
+cost_of_sale,2-Wheel,"Clarksburg",May,8400
+gross_profit,2-Wheel,"Clarksburg",May,15735.288889
+classes,2-Wheel,"Clarksburg",Jun,8
+students,2-Wheel,"Clarksburg",Jun,62.044444
+revenue,2-Wheel,"Clarksburg",Jun,24135.288889
+cost_of_sale,2-Wheel,"Clarksburg",Jun,8400
+gross_profit,2-Wheel,"Clarksburg",Jun,15735.288889
+classes,2-Wheel,"Clarksburg",Jul,6
+students,2-Wheel,"Clarksburg",Jul,46.533333
+revenue,2-Wheel,"Clarksburg",Jul,18101.466667
+cost_of_sale,2-Wheel,"Clarksburg",Jul,6300
+gross_profit,2-Wheel,"Clarksburg",Jul,11801.466667
+classes,2-Wheel,"Clarksburg",Aug,6
+students,2-Wheel,"Clarksburg",Aug,46.533333
+revenue,2-Wheel,"Clarksburg",Aug,18101.466667
+cost_of_sale,2-Wheel,"Clarksburg",Aug,6300
+gross_profit,2-Wheel,"Clarksburg",Aug,11801.466667
+classes,2-Wheel,"Clarksburg",Sep,4
+students,2-Wheel,"Clarksburg",Sep,31.022222
+revenue,2-Wheel,"Clarksburg",Sep,12067.644444
+cost_of_sale,2-Wheel,"Clarksburg",Sep,4200
+gross_profit,2-Wheel,"Clarksburg",Sep,7867.644444
+classes,2-Wheel,"Clarksburg",Oct,4
+students,2-Wheel,"Clarksburg",Oct,31.022222
+revenue,2-Wheel,"Clarksburg",Oct,12067.644444
+cost_of_sale,2-Wheel,"Clarksburg",Oct,4200
+gross_profit,2-Wheel,"Clarksburg",Oct,7867.644444
+classes,2-Wheel,"Clarksburg",Nov,2
+students,2-Wheel,"Clarksburg",Nov,15.511111
+revenue,2-Wheel,"Clarksburg",Nov,6033.822222
+cost_of_sale,2-Wheel,"Clarksburg",Nov,2100
+gross_profit,2-Wheel,"Clarksburg",Nov,3933.822222
+classes,2-Wheel,"Clarksburg",Dec,2
+students,2-Wheel,"Clarksburg",Dec,15.511111
+revenue,2-Wheel,"Clarksburg",Dec,6033.822222
+cost_of_sale,2-Wheel,"Clarksburg",Dec,2100
+gross_profit,2-Wheel,"Clarksburg",Dec,3933.822222
+classes,3-Wheel,"Manassas Mall",Mar,1
+students,3-Wheel,"Manassas Mall",Mar,10.375
+revenue,3-Wheel,"Manassas Mall",Mar,4035.875
+cost_of_sale,3-Wheel,"Manassas Mall",Mar,850
+gross_profit,3-Wheel,"Manassas Mall",Mar,3185.875
+classes,3-Wheel,"Manassas Mall",May,1
+students,3-Wheel,"Manassas Mall",May,10.375
+revenue,3-Wheel,"Manassas Mall",May,4035.875
+cost_of_sale,3-Wheel,"Manassas Mall",May,850
+gross_profit,3-Wheel,"Manassas Mall",May,3185.875
+classes,3-Wheel,"Manassas Mall",Jun,1
+students,3-Wheel,"Manassas Mall",Jun,10.375
+revenue,3-Wheel,"Manassas Mall",Jun,4035.875
+cost_of_sale,3-Wheel,"Manassas Mall",Jun,850
+gross_profit,3-Wheel,"Manassas Mall",Jun,3185.875
+classes,3-Wheel,"Manassas Mall",Jul,1
+students,3-Wheel,"Manassas Mall",Jul,10.375
+revenue,3-Wheel,"Manassas Mall",Jul,4035.875
+cost_of_sale,3-Wheel,"Manassas Mall",Jul,850
+gross_profit,3-Wheel,"Manassas Mall",Jul,3185.875
+classes,3-Wheel,"Manassas Mall",Aug,1
+students,3-Wheel,"Manassas Mall",Aug,10.375
+revenue,3-Wheel,"Manassas Mall",Aug,4035.875
+cost_of_sale,3-Wheel,"Manassas Mall",Aug,850
+gross_profit,3-Wheel,"Manassas Mall",Aug,3185.875
+classes,3-Wheel,"Manassas Mall",Sep,1
+students,3-Wheel,"Manassas Mall",Sep,10.375
+revenue,3-Wheel,"Manassas Mall",Sep,4035.875
+cost_of_sale,3-Wheel,"Manassas Mall",Sep,850
+gross_profit,3-Wheel,"Manassas Mall",Sep,3185.875
+classes,3-Wheel,"Manassas Mall",Oct,1
+students,3-Wheel,"Manassas Mall",Oct,10.375
+revenue,3-Wheel,"Manassas Mall",Oct,4035.875
+cost_of_sale,3-Wheel,"Manassas Mall",Oct,850
+gross_profit,3-Wheel,"Manassas Mall",Oct,3185.875
+classes,3-Wheel,"Manassas Mall",Nov,1
+students,3-Wheel,"Manassas Mall",Nov,10.375
+revenue,3-Wheel,"Manassas Mall",Nov,4035.875
+cost_of_sale,3-Wheel,"Manassas Mall",Nov,850
+gross_profit,3-Wheel,"Manassas Mall",Nov,3185.875
+classes,3-Wheel,"Woodbridge",Mar,1
+students,3-Wheel,"Woodbridge",Mar,7.125
+revenue,3-Wheel,"Woodbridge",Mar,2771.625
+cost_of_sale,3-Wheel,"Woodbridge",Mar,850
+gross_profit,3-Wheel,"Woodbridge",Mar,1921.625
+classes,3-Wheel,"Woodbridge",Apr,1
+students,3-Wheel,"Woodbridge",Apr,7.125
+revenue,3-Wheel,"Woodbridge",Apr,2771.625
+cost_of_sale,3-Wheel,"Woodbridge",Apr,850
+gross_profit,3-Wheel,"Woodbridge",Apr,1921.625
+classes,3-Wheel,"Woodbridge",May,1
+students,3-Wheel,"Woodbridge",May,7.125
+revenue,3-Wheel,"Woodbridge",May,2771.625
+cost_of_sale,3-Wheel,"Woodbridge",May,850
+gross_profit,3-Wheel,"Woodbridge",May,1921.625
+classes,3-Wheel,"Woodbridge",Jun,1
+students,3-Wheel,"Woodbridge",Jun,7.125
+revenue,3-Wheel,"Woodbridge",Jun,2771.625
+cost_of_sale,3-Wheel,"Woodbridge",Jun,850
+gross_profit,3-Wheel,"Woodbridge",Jun,1921.625
+classes,3-Wheel,"Woodbridge",Jul,1
+students,3-Wheel,"Woodbridge",Jul,7.125
+revenue,3-Wheel,"Woodbridge",Jul,2771.625
+cost_of_sale,3-Wheel,"Woodbridge",Jul,850
+gross_profit,3-Wheel,"Woodbridge",Jul,1921.625
+classes,3-Wheel,"Woodbridge",Aug,1
+students,3-Wheel,"Woodbridge",Aug,7.125
+revenue,3-Wheel,"Woodbridge",Aug,2771.625
+cost_of_sale,3-Wheel,"Woodbridge",Aug,850
+gross_profit,3-Wheel,"Woodbridge",Aug,1921.625
+classes,3-Wheel,"Woodbridge",Oct,1
+students,3-Wheel,"Woodbridge",Oct,7.125
+revenue,3-Wheel,"Woodbridge",Oct,2771.625
+cost_of_sale,3-Wheel,"Woodbridge",Oct,850
+gross_profit,3-Wheel,"Woodbridge",Oct,1921.625
+classes,3-Wheel,"Colonial Heights",Mar,1
+students,3-Wheel,"Colonial Heights",Mar,10.25
+revenue,3-Wheel,"Colonial Heights",Mar,3987.25
+cost_of_sale,3-Wheel,"Colonial Heights",Mar,850
+gross_profit,3-Wheel,"Colonial Heights",Mar,3137.25
+classes,3-Wheel,"Colonial Heights",Apr,1
+students,3-Wheel,"Colonial Heights",Apr,10.25
+revenue,3-Wheel,"Colonial Heights",Apr,3987.25
+cost_of_sale,3-Wheel,"Colonial Heights",Apr,850
+gross_profit,3-Wheel,"Colonial Heights",Apr,3137.25
+classes,3-Wheel,"Colonial Heights",Jun,1
+students,3-Wheel,"Colonial Heights",Jun,10.25
+revenue,3-Wheel,"Colonial Heights",Jun,3987.25
+cost_of_sale,3-Wheel,"Colonial Heights",Jun,850
+gross_profit,3-Wheel,"Colonial Heights",Jun,3137.25
+classes,3-Wheel,"Colonial Heights",Jul,1
+students,3-Wheel,"Colonial Heights",Jul,10.25
+revenue,3-Wheel,"Colonial Heights",Jul,3987.25
+cost_of_sale,3-Wheel,"Colonial Heights",Jul,850
+gross_profit,3-Wheel,"Colonial Heights",Jul,3137.25
+classes,3-Wheel,"Colonial Heights",Aug,1
+students,3-Wheel,"Colonial Heights",Aug,10.25
+revenue,3-Wheel,"Colonial Heights",Aug,3987.25
+cost_of_sale,3-Wheel,"Colonial Heights",Aug,850
+gross_profit,3-Wheel,"Colonial Heights",Aug,3137.25
+classes,3-Wheel,"Colonial Heights",Sep,1
+students,3-Wheel,"Colonial Heights",Sep,10.25
+revenue,3-Wheel,"Colonial Heights",Sep,3987.25
+cost_of_sale,3-Wheel,"Colonial Heights",Sep,850
+gross_profit,3-Wheel,"Colonial Heights",Sep,3137.25
+classes,3-Wheel,"Colonial Heights",Oct,1
+students,3-Wheel,"Colonial Heights",Oct,10.25
+revenue,3-Wheel,"Colonial Heights",Oct,3987.25
+cost_of_sale,3-Wheel,"Colonial Heights",Oct,850
+gross_profit,3-Wheel,"Colonial Heights",Oct,3137.25
+classes,3-Wheel,"Stafford",Apr,1
+students,3-Wheel,"Stafford",Apr,7.714286
+revenue,3-Wheel,"Stafford",Apr,3000.857143
+cost_of_sale,3-Wheel,"Stafford",Apr,850
+gross_profit,3-Wheel,"Stafford",Apr,2150.857143
+classes,3-Wheel,"Stafford",May,1
+students,3-Wheel,"Stafford",May,7.714286
+revenue,3-Wheel,"Stafford",May,3000.857143
+cost_of_sale,3-Wheel,"Stafford",May,850
+gross_profit,3-Wheel,"Stafford",May,2150.857143
+classes,3-Wheel,"Stafford",Jun,1
+students,3-Wheel,"Stafford",Jun,7.714286
+revenue,3-Wheel,"Stafford",Jun,3000.857143
+cost_of_sale,3-Wheel,"Stafford",Jun,850
+gross_profit,3-Wheel,"Stafford",Jun,2150.857143
+classes,3-Wheel,"Stafford",Jul,1
+students,3-Wheel,"Stafford",Jul,7.714286
+revenue,3-Wheel,"Stafford",Jul,3000.857143
+cost_of_sale,3-Wheel,"Stafford",Jul,850
+gross_profit,3-Wheel,"Stafford",Jul,2150.857143
+classes,3-Wheel,"Stafford",Aug,1
+students,3-Wheel,"Stafford",Aug,7.714286
+revenue,3-Wheel,"Stafford",Aug,3000.857143
+cost_of_sale,3-Wheel,"Stafford",Aug,850
+gross_profit,3-Wheel,"Stafford",Aug,2150.857143
+classes,3-Wheel,"Stafford",Sep,1
+students,3-Wheel,"Stafford",Sep,7.714286
+revenue,3-Wheel,"Stafford",Sep,3000.857143
+cost_of_sale,3-Wheel,"Stafford",Sep,850
+gross_profit,3-Wheel,"Stafford",Sep,2150.857143
+classes,3-Wheel,"Newport News",Apr,1
+students,3-Wheel,"Newport News",Apr,4.166667
+revenue,3-Wheel,"Newport News",Apr,1620.833333
+cost_of_sale,3-Wheel,"Newport News",Apr,525
+gross_profit,3-Wheel,"Newport News",Apr,1095.833333
+classes,3-Wheel,"Newport News",Jun,1
+students,3-Wheel,"Newport News",Jun,4.166667
+revenue,3-Wheel,"Newport News",Jun,1620.833333
+cost_of_sale,3-Wheel,"Newport News",Jun,525
+gross_profit,3-Wheel,"Newport News",Jun,1095.833333
+classes,3-Wheel,"Newport News",Aug,1
+students,3-Wheel,"Newport News",Aug,4.166667
+revenue,3-Wheel,"Newport News",Aug,1620.833333
+cost_of_sale,3-Wheel,"Newport News",Aug,525
+gross_profit,3-Wheel,"Newport News",Aug,1095.833333
+classes,3-Wheel,"Newport News",Oct,1
+students,3-Wheel,"Newport News",Oct,4.166667
+revenue,3-Wheel,"Newport News",Oct,1620.833333
+cost_of_sale,3-Wheel,"Newport News",Oct,525
+gross_profit,3-Wheel,"Newport News",Oct,1095.833333
+classes,3-Wheel,"Newport News",Nov,1
+students,3-Wheel,"Newport News",Nov,4.166667
+revenue,3-Wheel,"Newport News",Nov,1620.833333
+cost_of_sale,3-Wheel,"Newport News",Nov,525
+gross_profit,3-Wheel,"Newport News",Nov,1095.833333
+classes,3-Wheel,"Virginia Beach",Feb,1
+students,3-Wheel,"Virginia Beach",Feb,6.777778
+revenue,3-Wheel,"Virginia Beach",Feb,2636.555556
+cost_of_sale,3-Wheel,"Virginia Beach",Feb,850
+gross_profit,3-Wheel,"Virginia Beach",Feb,1786.555556
+classes,3-Wheel,"Virginia Beach",Mar,1
+students,3-Wheel,"Virginia Beach",Mar,6.777778
+revenue,3-Wheel,"Virginia Beach",Mar,2636.555556
+cost_of_sale,3-Wheel,"Virginia Beach",Mar,850
+gross_profit,3-Wheel,"Virginia Beach",Mar,1786.555556
+classes,3-Wheel,"Virginia Beach",May,1
+students,3-Wheel,"Virginia Beach",May,6.777778
+revenue,3-Wheel,"Virginia Beach",May,2636.555556
+cost_of_sale,3-Wheel,"Virginia Beach",May,850
+gross_profit,3-Wheel,"Virginia Beach",May,1786.555556
+classes,3-Wheel,"Virginia Beach",Jun,1
+students,3-Wheel,"Virginia Beach",Jun,6.777778
+revenue,3-Wheel,"Virginia Beach",Jun,2636.555556
+cost_of_sale,3-Wheel,"Virginia Beach",Jun,850
+gross_profit,3-Wheel,"Virginia Beach",Jun,1786.555556
+classes,3-Wheel,"Virginia Beach",Jul,1
+students,3-Wheel,"Virginia Beach",Jul,6.777778
+revenue,3-Wheel,"Virginia Beach",Jul,2636.555556
+cost_of_sale,3-Wheel,"Virginia Beach",Jul,850
+gross_profit,3-Wheel,"Virginia Beach",Jul,1786.555556
+classes,3-Wheel,"Virginia Beach",Aug,2
+students,3-Wheel,"Virginia Beach",Aug,13.555556
+revenue,3-Wheel,"Virginia Beach",Aug,5273.111111
+cost_of_sale,3-Wheel,"Virginia Beach",Aug,1700
+gross_profit,3-Wheel,"Virginia Beach",Aug,3573.111111
+classes,3-Wheel,"Virginia Beach",Sep,1
+students,3-Wheel,"Virginia Beach",Sep,6.777778
+revenue,3-Wheel,"Virginia Beach",Sep,2636.555556
+cost_of_sale,3-Wheel,"Virginia Beach",Sep,850
+gross_profit,3-Wheel,"Virginia Beach",Sep,1786.555556
+classes,3-Wheel,"Virginia Beach",Oct,1
+students,3-Wheel,"Virginia Beach",Oct,6.777778
+revenue,3-Wheel,"Virginia Beach",Oct,2636.555556
+cost_of_sale,3-Wheel,"Virginia Beach",Oct,850
+gross_profit,3-Wheel,"Virginia Beach",Oct,1786.555556
+classes,3-Wheel,"Virginia Beach",Nov,1
+students,3-Wheel,"Virginia Beach",Nov,6.777778
+revenue,3-Wheel,"Virginia Beach",Nov,2636.555556
+cost_of_sale,3-Wheel,"Virginia Beach",Nov,850
+gross_profit,3-Wheel,"Virginia Beach",Nov,1786.555556
+classes,3-Wheel,"Virginia Beach",Dec,1
+students,3-Wheel,"Virginia Beach",Dec,6.777778
+revenue,3-Wheel,"Virginia Beach",Dec,2636.555556
+cost_of_sale,3-Wheel,"Virginia Beach",Dec,850
+gross_profit,3-Wheel,"Virginia Beach",Dec,1786.555556
+classes,3-Wheel,"Clarksburg",Feb,1
+students,3-Wheel,"Clarksburg",Feb,7.4
+revenue,3-Wheel,"Clarksburg",Feb,2878.6
+cost_of_sale,3-Wheel,"Clarksburg",Feb,850
+gross_profit,3-Wheel,"Clarksburg",Feb,2028.6
+classes,3-Wheel,"Clarksburg",Mar,1
+students,3-Wheel,"Clarksburg",Mar,7.4
+revenue,3-Wheel,"Clarksburg",Mar,2878.6
+cost_of_sale,3-Wheel,"Clarksburg",Mar,850
+gross_profit,3-Wheel,"Clarksburg",Mar,2028.6
+classes,3-Wheel,"Clarksburg",Apr,1
+students,3-Wheel,"Clarksburg",Apr,7.4
+revenue,3-Wheel,"Clarksburg",Apr,2878.6
+cost_of_sale,3-Wheel,"Clarksburg",Apr,850
+gross_profit,3-Wheel,"Clarksburg",Apr,2028.6
+classes,3-Wheel,"Clarksburg",May,2
+students,3-Wheel,"Clarksburg",May,14.8
+revenue,3-Wheel,"Clarksburg",May,5757.2
+cost_of_sale,3-Wheel,"Clarksburg",May,1700
+gross_profit,3-Wheel,"Clarksburg",May,4057.2
+classes,3-Wheel,"Clarksburg",Jun,2
+students,3-Wheel,"Clarksburg",Jun,14.8
+revenue,3-Wheel,"Clarksburg",Jun,5757.2
+cost_of_sale,3-Wheel,"Clarksburg",Jun,1700
+gross_profit,3-Wheel,"Clarksburg",Jun,4057.2
+classes,3-Wheel,"Clarksburg",Jul,1
+students,3-Wheel,"Clarksburg",Jul,7.4
+revenue,3-Wheel,"Clarksburg",Jul,2878.6
+cost_of_sale,3-Wheel,"Clarksburg",Jul,850
+gross_profit,3-Wheel,"Clarksburg",Jul,2028.6
+classes,3-Wheel,"Clarksburg",Aug,1
+students,3-Wheel,"Clarksburg",Aug,7.4
+revenue,3-Wheel,"Clarksburg",Aug,2878.6
+cost_of_sale,3-Wheel,"Clarksburg",Aug,850
+gross_profit,3-Wheel,"Clarksburg",Aug,2028.6
+classes,3-Wheel,"Clarksburg",Sep,1
+students,3-Wheel,"Clarksburg",Sep,7.4
+revenue,3-Wheel,"Clarksburg",Sep,2878.6
+cost_of_sale,3-Wheel,"Clarksburg",Sep,850
+gross_profit,3-Wheel,"Clarksburg",Sep,2028.6
+classes,3-Wheel,"Clarksburg",Oct,1
+students,3-Wheel,"Clarksburg",Oct,7.4
+revenue,3-Wheel,"Clarksburg",Oct,2878.6
+cost_of_sale,3-Wheel,"Clarksburg",Oct,850
+gross_profit,3-Wheel,"Clarksburg",Oct,2028.6
+classes,BRC2,"Manassas Mall",Apr,1
+students,BRC2,"Manassas Mall",Apr,9.777778
+revenue,BRC2,"Manassas Mall",Apr,2434.666667
+cost_of_sale,BRC2,"Manassas Mall",Apr,580
+gross_profit,BRC2,"Manassas Mall",Apr,1854.666667
+classes,BRC2,"Manassas Mall",May,2
+students,BRC2,"Manassas Mall",May,19.555556
+revenue,BRC2,"Manassas Mall",May,4869.333333
+cost_of_sale,BRC2,"Manassas Mall",May,1160
+gross_profit,BRC2,"Manassas Mall",May,3709.333333
+classes,BRC2,"Manassas Mall",Jun,1
+students,BRC2,"Manassas Mall",Jun,9.777778
+revenue,BRC2,"Manassas Mall",Jun,2434.666667
+cost_of_sale,BRC2,"Manassas Mall",Jun,580
+gross_profit,BRC2,"Manassas Mall",Jun,1854.666667
+classes,BRC2,"Manassas Mall",Jul,1
+students,BRC2,"Manassas Mall",Jul,9.777778
+revenue,BRC2,"Manassas Mall",Jul,2434.666667
+cost_of_sale,BRC2,"Manassas Mall",Jul,580
+gross_profit,BRC2,"Manassas Mall",Jul,1854.666667
+classes,BRC2,"Manassas Mall",Aug,1
+students,BRC2,"Manassas Mall",Aug,9.777778
+revenue,BRC2,"Manassas Mall",Aug,2434.666667
+cost_of_sale,BRC2,"Manassas Mall",Aug,580
+gross_profit,BRC2,"Manassas Mall",Aug,1854.666667
+classes,BRC2,"Manassas Mall",Oct,1
+students,BRC2,"Manassas Mall",Oct,9.777778
+revenue,BRC2,"Manassas Mall",Oct,2434.666667
+cost_of_sale,BRC2,"Manassas Mall",Oct,580
+gross_profit,BRC2,"Manassas Mall",Oct,1854.666667
+classes,BRC2,"Manassas Mall",Nov,1
+students,BRC2,"Manassas Mall",Nov,9.777778
+revenue,BRC2,"Manassas Mall",Nov,2434.666667
+cost_of_sale,BRC2,"Manassas Mall",Nov,580
+gross_profit,BRC2,"Manassas Mall",Nov,1854.666667
+classes,BRC2,"Clarksburg",May,1
+students,BRC2,"Clarksburg",May,8.4375
+revenue,BRC2,"Clarksburg",May,2100.9375
+cost_of_sale,BRC2,"Clarksburg",May,580
+gross_profit,BRC2,"Clarksburg",May,1520.9375
+classes,BRC2,"Clarksburg",Aug,1
+students,BRC2,"Clarksburg",Aug,8.4375
+revenue,BRC2,"Clarksburg",Aug,2100.9375
+cost_of_sale,BRC2,"Clarksburg",Aug,580
+gross_profit,BRC2,"Clarksburg",Aug,1520.9375
+classes,First Ride,"Manassas Mall",Mar,0.5
+students,First Ride,"Manassas Mall",Mar,1.285714
+revenue,First Ride,"Manassas Mall",Mar,127.285714
+cost_of_sale,First Ride,"Manassas Mall",Mar,37.5
+gross_profit,First Ride,"Manassas Mall",Mar,89.785714
+classes,First Ride,"Manassas Mall",Apr,1
+students,First Ride,"Manassas Mall",Apr,2.571429
+revenue,First Ride,"Manassas Mall",Apr,254.571429
+cost_of_sale,First Ride,"Manassas Mall",Apr,75
+gross_profit,First Ride,"Manassas Mall",Apr,179.571429
+classes,First Ride,"Manassas Mall",May,1
+students,First Ride,"Manassas Mall",May,2.571429
+revenue,First Ride,"Manassas Mall",May,254.571429
+cost_of_sale,First Ride,"Manassas Mall",May,75
+gross_profit,First Ride,"Manassas Mall",May,179.571429
+classes,First Ride,"Manassas Mall",Jun,1
+students,First Ride,"Manassas Mall",Jun,2.571429
+revenue,First Ride,"Manassas Mall",Jun,254.571429
+cost_of_sale,First Ride,"Manassas Mall",Jun,75
+gross_profit,First Ride,"Manassas Mall",Jun,179.571429
+classes,First Ride,"Manassas Mall",Jul,2
+students,First Ride,"Manassas Mall",Jul,5.142857
+revenue,First Ride,"Manassas Mall",Jul,509.142857
+cost_of_sale,First Ride,"Manassas Mall",Jul,150
+gross_profit,First Ride,"Manassas Mall",Jul,359.142857
+classes,First Ride,"Manassas Mall",Aug,1
+students,First Ride,"Manassas Mall",Aug,2.571429
+revenue,First Ride,"Manassas Mall",Aug,254.571429
+cost_of_sale,First Ride,"Manassas Mall",Aug,75
+gross_profit,First Ride,"Manassas Mall",Aug,179.571429
+classes,First Ride,"Manassas Mall",Sep,1
+students,First Ride,"Manassas Mall",Sep,2.571429
+revenue,First Ride,"Manassas Mall",Sep,254.571429
+cost_of_sale,First Ride,"Manassas Mall",Sep,75
+gross_profit,First Ride,"Manassas Mall",Sep,179.571429
+classes,First Ride,"Manassas Mall",Oct,0.5
+students,First Ride,"Manassas Mall",Oct,1.285714
+revenue,First Ride,"Manassas Mall",Oct,127.285714
+cost_of_sale,First Ride,"Manassas Mall",Oct,37.5
+gross_profit,First Ride,"Manassas Mall",Oct,89.785714
+classes,First Ride,"Woodbridge",Mar,0.5
+students,First Ride,"Woodbridge",Mar,1.454545
+revenue,First Ride,"Woodbridge",Mar,144
+cost_of_sale,First Ride,"Woodbridge",Mar,37.5
+gross_profit,First Ride,"Woodbridge",Mar,106.5
+classes,First Ride,"Woodbridge",Apr,1
+students,First Ride,"Woodbridge",Apr,2.909091
+revenue,First Ride,"Woodbridge",Apr,288
+cost_of_sale,First Ride,"Woodbridge",Apr,75
+gross_profit,First Ride,"Woodbridge",Apr,213
+classes,First Ride,"Woodbridge",May,1
+students,First Ride,"Woodbridge",May,2.909091
+revenue,First Ride,"Woodbridge",May,288
+cost_of_sale,First Ride,"Woodbridge",May,75
+gross_profit,First Ride,"Woodbridge",May,213
+classes,First Ride,"Woodbridge",Jun,1
+students,First Ride,"Woodbridge",Jun,2.909091
+revenue,First Ride,"Woodbridge",Jun,288
+cost_of_sale,First Ride,"Woodbridge",Jun,75
+gross_profit,First Ride,"Woodbridge",Jun,213
+classes,First Ride,"Woodbridge",Jul,2
+students,First Ride,"Woodbridge",Jul,5.818182
+revenue,First Ride,"Woodbridge",Jul,576
+cost_of_sale,First Ride,"Woodbridge",Jul,150
+gross_profit,First Ride,"Woodbridge",Jul,426
+classes,First Ride,"Woodbridge",Aug,1
+students,First Ride,"Woodbridge",Aug,2.909091
+revenue,First Ride,"Woodbridge",Aug,288
+cost_of_sale,First Ride,"Woodbridge",Aug,75
+gross_profit,First Ride,"Woodbridge",Aug,213
+classes,First Ride,"Woodbridge",Sep,1
+students,First Ride,"Woodbridge",Sep,2.909091
+revenue,First Ride,"Woodbridge",Sep,288
+cost_of_sale,First Ride,"Woodbridge",Sep,75
+gross_profit,First Ride,"Woodbridge",Sep,213
+classes,First Ride,"Woodbridge",Oct,0.5
+students,First Ride,"Woodbridge",Oct,1.454545
+revenue,First Ride,"Woodbridge",Oct,144
+cost_of_sale,First Ride,"Woodbridge",Oct,37.5
+gross_profit,First Ride,"Woodbridge",Oct,106.5
+students,HD,"Manassas GMU",Mar,16
+revenue,HD,"Manassas GMU",Mar,6864
+gross_profit,HD,"Manassas GMU",Mar,6864
+students,HD,"Manassas GMU",Apr,15
+revenue,HD,"Manassas GMU",Apr,6435
+gross_profit,HD,"Manassas GMU",Apr,6435
+students,HD,"Manassas GMU",May,16
+revenue,HD,"Manassas GMU",May,6864
+gross_profit,HD,"Manassas GMU",May,6864
+students,HD,"Manassas GMU",Dec,1
+revenue,HD,"Manassas GMU",Dec,429
+gross_profit,HD,"Manassas GMU",Dec,429
+students,ARC,"All",Apr,7
+revenue,ARC,"All",Apr,1393
+cost_of_sale,ARC,"All",Apr,390
+gross_profit,ARC,"All",Apr,1003
+students,ARC,"All",Dec,4
+revenue,ARC,"All",Dec,796
+cost_of_sale,ARC,"All",Dec,390
+gross_profit,ARC,"All",Dec,406
+cost_of_sale,Range aid,"All",Jan,312.5
+gross_profit,Range aid,"All",Jan,-312.5
+cost_of_sale,Range aid,"All",Feb,312.5
+gross_profit,Range aid,"All",Feb,-312.5
+cost_of_sale,Range aid,"All",Mar,312.5
+gross_profit,Range aid,"All",Mar,-312.5
+cost_of_sale,Range aid,"All",Apr,312.5
+gross_profit,Range aid,"All",Apr,-312.5
+cost_of_sale,Range aid,"All",May,312.5
+gross_profit,Range aid,"All",May,-312.5
+cost_of_sale,Range aid,"All",Jun,312.5
+gross_profit,Range aid,"All",Jun,-312.5
+cost_of_sale,Range aid,"All",Jul,312.5
+gross_profit,Range aid,"All",Jul,-312.5
+cost_of_sale,Range aid,"All",Aug,312.5
+gross_profit,Range aid,"All",Aug,-312.5
+cost_of_sale,Range aid,"All",Sep,312.5
+gross_profit,Range aid,"All",Sep,-312.5
+cost_of_sale,Range aid,"All",Oct,312.5
+gross_profit,Range aid,"All",Oct,-312.5
+cost_of_sale,Range aid,"All",Nov,312.5
+gross_profit,Range aid,"All",Nov,-312.5
+cost_of_sale,Range aid,"All",Dec,312.5
+gross_profit,Range aid,"All",Dec,-312.5
+rent,All,"Manassas Mall",Jan,989.473684
+rent,All,"Manassas Mall",Feb,1498.684211
+rent,All,"Manassas Mall",Mar,2262.5
+rent,All,"Manassas Mall",Apr,2177.631579
+rent,All,"Manassas Mall",May,2347.368421
+rent,All,"Manassas Mall",Jun,2517.105263
+rent,All,"Manassas Mall",Jul,2347.368421
+rent,All,"Manassas Mall",Aug,2177.631579
+rent,All,"Manassas Mall",Sep,1498.684211
+rent,All,"Manassas Mall",Oct,1923.026316
+rent,All,"Manassas Mall",Nov,1668.421053
+rent,All,"Manassas Mall",Dec,1159.210526
+rent,All,"Woodbridge",Jan,208.333333
+rent,All,"Woodbridge",Feb,208.333333
+rent,All,"Woodbridge",Mar,3462.962963
+rent,All,"Woodbridge",Apr,4113.888889
+rent,All,"Woodbridge",May,4981.790123
+rent,All,"Woodbridge",Jun,3679.938272
+rent,All,"Woodbridge",Jul,3679.938272
+rent,All,"Woodbridge",Aug,4113.888889
+rent,All,"Woodbridge",Sep,2378.08642
+rent,All,"Woodbridge",Oct,2595.061728
+rent,All,"Woodbridge",Nov,1076.234568
+rent,All,"Woodbridge",Dec,208.333333
+rent,All,"Fairfax GMU",Mar,1607.692308
+rent,All,"Fairfax GMU",Apr,1071.794872
+rent,All,"Fairfax GMU",May,1071.794872
+rent,All,"Fairfax GMU",Jun,535.897436
+rent,All,"Fairfax GMU",Jul,1339.74359
+rent,All,"Fairfax GMU",Aug,535.897436
+rent,All,"Fairfax GMU",Sep,1071.794872
+rent,All,"Fairfax GMU",Oct,803.846154
+rent,All,"Fairfax GMU",Nov,267.948718
+rent,All,"Manassas GMU",Mar,444.444444
+rent,All,"Manassas GMU",Apr,888.888889
+rent,All,"Manassas GMU",May,1333.333333
+rent,All,"Manassas GMU",Jun,1333.333333
+rent,All,"Manassas GMU",Jul,666.666667
+rent,All,"Manassas GMU",Aug,888.888889
+rent,All,"Manassas GMU",Sep,666.666667
+rent,All,"Manassas GMU",Oct,222.222222
+rent,All,"Manassas GMU",Nov,666.666667
+rent,All,"Colonial Heights",Mar,1308.461538
+rent,All,"Colonial Heights",Apr,1635.576923
+rent,All,"Colonial Heights",May,1308.461538
+rent,All,"Colonial Heights",Jun,1635.576923
+rent,All,"Colonial Heights",Jul,1635.576923
+rent,All,"Colonial Heights",Aug,1635.576923
+rent,All,"Colonial Heights",Sep,1635.576923
+rent,All,"Colonial Heights",Oct,1635.576923
+rent,All,"Colonial Heights",Nov,654.230769
+rent,All,"Colonial Heights",Dec,327.115385
+rent,All,"Stafford",Jan,290.322581
+rent,All,"Stafford",Mar,870.967742
+rent,All,"Stafford",Apr,1451.612903
+rent,All,"Stafford",May,1451.612903
+rent,All,"Stafford",Jun,1451.612903
+rent,All,"Stafford",Jul,1161.290323
+rent,All,"Stafford",Aug,1161.290323
+rent,All,"Stafford",Sep,870.967742
+rent,All,"Newport News",Jan,593.814433
+rent,All,"Newport News",Feb,1484.536082
+rent,All,"Newport News",Mar,2672.164948
+rent,All,"Newport News",Apr,2375.257732
+rent,All,"Newport News",May,2969.072165
+rent,All,"Newport News",Jun,2672.164948
+rent,All,"Newport News",Jul,2078.350515
+rent,All,"Newport News",Aug,2969.072165
+rent,All,"Newport News",Sep,2078.350515
+rent,All,"Newport News",Oct,2375.257732
+rent,All,"Newport News",Nov,2078.350515
+rent,All,"Newport News",Dec,593.814433
+rent,All,"Virginia Beach",Jan,304.38806
+rent,All,"Virginia Beach",Feb,1217.552239
+rent,All,"Virginia Beach",Mar,3043.880597
+rent,All,"Virginia Beach",Apr,1521.940299
+rent,All,"Virginia Beach",May,1826.328358
+rent,All,"Virginia Beach",Jun,1826.328358
+rent,All,"Virginia Beach",Jul,1826.328358
+rent,All,"Virginia Beach",Aug,1826.328358
+rent,All,"Virginia Beach",Sep,1521.940299
+rent,All,"Virginia Beach",Oct,913.164179
+rent,All,"Virginia Beach",Nov,1826.328358
+rent,All,"Virginia Beach",Dec,913.164179
+rent,All,"Clarksburg",Jan,446.590909
+rent,All,"Clarksburg",Feb,1039.772727
+rent,All,"Clarksburg",Mar,1929.545455
+rent,All,"Clarksburg",Apr,2226.136364
+rent,All,"Clarksburg",May,3412.5
+rent,All,"Clarksburg",Jun,3115.909091
+rent,All,"Clarksburg",Jul,2226.136364
+rent,All,"Clarksburg",Aug,2522.727273
+rent,All,"Clarksburg",Sep,1632.954545
+rent,All,"Clarksburg",Oct,1632.954545
+rent,All,"Clarksburg",Nov,743.181818
+rent,All,"Clarksburg",Dec,743.181818
+students,2-Wheel,"Clarksburg",2026,366
+revenue,2-Wheel,"Clarksburg",2026,125223
+students,2-Wheel,"Colonial Heights",2026,420
+revenue,2-Wheel,"Colonial Heights",2026,150323
+students,2-Wheel,"Fairfax GMU",2026,353
+revenue,2-Wheel,"Fairfax GMU",2026,128580
+students,2-Wheel,"Manassas GMU",2026,267
+revenue,2-Wheel,"Manassas GMU",2026,97081
+students,2-Wheel,"Manassas Mall",2026,648
+revenue,2-Wheel,"Manassas Mall",2026,233894
+students,2-Wheel,"Newport News",2026,609
+revenue,2-Wheel,"Newport News",2026,218183
+students,2-Wheel,"Stafford",2026,207
+revenue,2-Wheel,"Stafford",2026,75231
+students,2-Wheel,"Virginia Beach",2026,381
+revenue,2-Wheel,"Virginia Beach",2026,137124
+students,2-Wheel,"Woodbridge",2026,569
+revenue,2-Wheel,"Woodbridge",2026,202458
+students,3-Wheel,"Clarksburg",2026,80
+revenue,3-Wheel,"Clarksburg",2026,25811
+students,3-Wheel,"Colonial Heights",2026,82
+revenue,3-Wheel,"Colonial Heights",2026,26704
+students,3-Wheel,"Manassas Mall",2026,86
+revenue,3-Wheel,"Manassas Mall",2026,28565
+students,3-Wheel,"Newport News",2026,25
+revenue,3-Wheel,"Newport News",2026,8515
+students,3-Wheel,"Stafford",2026,55
+revenue,3-Wheel,"Stafford",2026,18225
+students,3-Wheel,"Virginia Beach",2026,68
+revenue,3-Wheel,"Virginia Beach",2026,23060
+students,3-Wheel,"Woodbridge",2026,58
+revenue,3-Wheel,"Woodbridge",2026,18223
+students,HD,"Manassas GMU",2026,48
+revenue,HD,"Manassas GMU",2026,20592
+students,ARC,"All",2026,11
+revenue,ARC,"All",2026,2159
+students,BRC2,"All",2026,131
+revenue,BRC2,"All",2026,37318
+students,IME,"All",2026,79
+revenue,IME,"All",2026,7821
