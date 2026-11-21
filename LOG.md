@@ -138,3 +138,12 @@
   - Finding 1: ARC shows "two" coaches ($1,160). The rule reads 7.0 students per class, a figure shown nowhere; the page shows 11 students in 2 classes (5.5), which is one coach ($780).
   - Findings 2-8: total rows (First Ride coach, students, fees, sales and P&L Training by month, Rent, Salaries) are sums of hidden rows rounded one by one. So their cells sit $1-4 from the exact figure, and the year total is $1 off (sales $1,779,596 against $1,779,595.12). Rounds 13 and 14 listed this as a risk, not a failure.
   - Finding 9: after "Save plan", a tab switch shows "Not saved yet" while the saved edit stays applied.
+- 2026-11-20 18:47 EST: Sergio's answer to Q37, in his own chat through the question tool: "Fix all 9, recheck (Recommended)". The option's text: fix ARC coaches by the shown figure; round each total row as a whole, so shown months match the exact figure; fix the Save label; then one blind check, then LAWYER.
+- 2026-11-20: round 16's 9 findings repaired. The new DRAFT is md5 986b697568f7959238346f527daa20ad. The backup is the bench's template.before-r16fix.html (323d695e).
+  - Finding 1: ARC's students per class = its 2026 students ÷ its 2026 classes (11 ÷ 2 = 5.5). The figure is shown on the plan tab, and the coach rule reads it. ARC now has one coach: $780 (was $1,160).
+  - Findings 2–8: each total is now rounded from its exact figure first. The rows under it are then rounded to add up to it (matrix rounding), so every cell sits within $1 (0.1 class) of its exact figure.
+    - The P&L rounds its subtotals the same way.
+    - Gross profit, total expenses and the profit lines are still worked out from the shown lines. The page says so.
+  - Finding 9: the save line keeps its words across re-renders and reloads.
+  - Start state: classes 498, students 4,455, fees $1,706,910, sales $1,779,595, coach $494,505, rent $155,992, operating profit $143,321.
+  - My tests 1–14 pass. New tests 15–17 (rel3/r16tests.js) pass on the new page and fail on the old 98b30ed6 (1,767 faults).
