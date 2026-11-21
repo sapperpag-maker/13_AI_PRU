@@ -166,6 +166,7 @@
 - 2026-11-20: rebuilt on Q38. The new DRAFT is md5 5d966bd73d4abce67b0fc4dad63a030f. The backup is the bench's template.before-q38.html.
   - Every shown figure is now its own exact figure, rounded where it is printed. The matrix rounding is gone. Rick's view prints his PRU-pl figures as they are.
   - ARC's students per class now come from the Master sheet, as the fill % does: 8 ÷ 2 = 4.0, so one coach. This answers round 17's finding 1.
+  - Piston asked for the ARC mixed-sheet finding in its own question. Sergio's answer to Q39, in his own chat through the question tool: "Master, 8 ÷ 2 = 4.0 (Recommended)". That is what is built.
   - Start state is unchanged: classes 498, students 4,455, fees $1,706,910, sales $1,779,595, coach $494,505, rent $155,992, operating profit $143,321.
   - My tests 1–8 and 10–17 pass.
   - New test 18 (rel3/r17tests.js) checks that every printed figure equals its exact figure rounded. It covered 15,015 cells across 7 states and 3 P&L views: 0 faults here, 3,107 on the old 986b6975. Test 16 now reads Master too and fails on the old page.
