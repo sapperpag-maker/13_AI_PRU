@@ -4,20 +4,20 @@
  "data_date": "2026-11-21",
  "sources": [
   {
-   "path": "C:\AI_Building\AI_Financials\04 Budget\2027\04 PowerRide University\2026-11-21 PRU and Consolidated Books from the planner - rick RICK-HOME-2bd93960\work\04 PRU GP rebuilt.xlsx",
+   "path": "C:\\AI_Building\\AI_Financials\\04 Budget\\2027\\04 PowerRide University\\2026-11-21 PRU and Consolidated Books from the planner - rick RICK-HOME-2bd93960\\work\\04 PRU GP rebuilt.xlsx",
    "md5": "3717f2bbb1d275c2e2507975481177b4"
   },
   {
-   "path": "C:\Users\Sergio\.claude\uploads\034bc097-973b-403b-8a90-c7678efdb939\f32ce509-Class_Data.xlsx",
+   "path": "C:\\Users\\Sergio\\.claude\\uploads\\034bc097-973b-403b-8a90-c7678efdb939\\f32ce509-Class_Data.xlsx",
    "md5": "542d634b60f1ae711f43206c20ba6503"
   },
   {
-   "path": "C:\Users\Sergio\.claude\uploads\034bc097-973b-403b-8a90-c7678efdb939\eb48a496-2026_PRU_Manual_Log_v3.xlsx",
+   "path": "C:\\Users\\Sergio\\.claude\\uploads\\034bc097-973b-403b-8a90-c7678efdb939\\eb48a496-2026_PRU_Manual_Log_v3.xlsx",
    "md5": "37c427cf4078f449459b532e4d8e9377"
   }
  ],
  "accepted": {
   "words": "Accept it (Recommended) (Angie's chat, her Q51)",
-  "where": "Angie's chat (her question 51), 2026-11-21, relayed by Angie and Piston; LAWYER release 4 check PASS, 0 findings (AI_LAWYER\Office desk\Verdicts\2026-11-21 PRU 2027 Planner release 4 coach cost - 0ca37404.md, md5 2b35d12f); data date 2026-11-21 = the day Rick's round 5 book was read; replaces page 3820021c"
+  "where": "Angie's chat (her question 51), 2026-11-21, relayed by Angie and Piston; LAWYER release 4 check PASS, 0 findings (AI_LAWYER\\Office desk\\Verdicts\\2026-11-21 PRU 2027 Planner release 4 coach cost - 0ca37404.md, md5 2b35d12f); data date 2026-11-21 = the day Rick's round 5 book was read; replaces page 3820021c"
  }
 }
