@@ -89,36 +89,9 @@ const cl=p=>p==null?"":rnd(p)>0?"up":rnd(p)<0?"down":"";
 // Change % beside a Change cell: sign and colour follow the shown Change; a small non-zero change shows one decimal, never 0%
 const fmtPC=(d,p)=>{const r=rnd(d);if(r===0||p==null)return r===0?"0%":"–";const s=r>0?"+":"-",a=Math.abs(p);return s+(a>=0.5?Math.round(a):a>=0.05?a.toFixed(1):"<0.1")+"%";};
 const fmtC=(d,f)=>{const r=rnd(d);return r===0?f(0):(r>0?"+":"")+f(r);};
-// shown rows (Piston's pick, R-1878): a row rounded by largest remainder, so its cells add up to its rounded total (dp decimals)
-function LR(a,dp){const k=Math.pow(10,dp||0),x=a.map(q=>(+q||0)*k),T=Math.round(sum(x)),f=x.map(q=>Math.floor(q+1e-9));const d=T-sum(f);
-  const o=x.map((q,i)=>[q-f[i],i]).sort((p,q)=>q[0]-p[0]||p[1]-q[1]);for(let j=0;j<d&&j<o.length;j++)f[o[j][1]]+=1;return f.map(q=>q/k);}
+// shown figures (Sergio's Q38, 2026-11-20: "Each figure on its own"): every cell and every total is its own exact figure, rounded only where it is printed
+function LR(a){return a.map(q=>+q||0);}
 const colSum=(rows,key)=>MON.map((_,m)=>sum(rows.map(r=>r[key][m])));
-// Sergio's Q37 (2026-11-20): "round each total row as a whole so shown months match the exact figure".
-// Totals are rounded from their exact figures first; the rows under them are then rounded so they still add up to them,
-// each cell to the whole number just below or above its exact figure (matrix rounding). k=10 for one decimal.
-const SC=(a,k)=>a.map(q=>Math.round((+q||0)*(k||1)*1e6)/1e6);
-const R0=q=>Math.round(Math.round(q*1e6)/1e6);
-let RFALL=0; // how many tables fell back to rounding row by row (the self-test wants 0)
-function LRT(x,T){const f=x.map(q=>Math.floor(q));let d=T-sum(f);const o=x.map((q,i)=>[q-f[i],i]).sort((p,q)=>q[0]-p[0]||p[1]-q[1]);
-  if(d>=0){for(let j=0;j<d&&j<o.length;j++)f[o[j][1]]+=1;}else{RFALL++;for(let j=0;j<-d&&j<o.length;j++)f[o[o.length-1-j][1]]-=1;}return f;}
-function MR(X,rT,cT){const R=X.length,C=cT.length,F=X.map(r=>r.map(q=>Math.floor(q)));
-  const ra=rT.map((t,i)=>t-sum(F[i])),cb=cT.map((t,j)=>t-sum(F.map(r=>r[j])));
-  if(ra.some(q=>q<0)||cb.some(q=>q<0)||sum(ra)!==sum(cb)){RFALL++;return null;}
-  const fr=(i,j)=>X[i][j]-F[i][j],use=X.map(r=>r.map(()=>0));
-  function aug(i,sr,sc){sr[i]=1;const js=[...Array(C).keys()].sort((p,q)=>fr(i,q)-fr(i,p));
-    for(const j of js){if(fr(i,j)<=1e-9||use[i][j]||sc[j])continue;sc[j]=1;
-      if(cb[j]>0){cb[j]--;use[i][j]=1;return true;}
-      for(let k=0;k<R;k++)if(use[k][j]&&!sr[k]&&aug(k,sr,sc)){use[k][j]=0;use[i][j]=1;return true;}}
-    return false;}
-  for(let i=0;i<R;i++)while(ra[i]>0){if(!aug(i,[],[])){RFALL++;return null;}ra[i]--;}
-  return F.map((r,i)=>r.map((q,j)=>q+use[i][j]));}
-// one table: exact rows X (12 months each), the table's whole total T; rows split by groups (largest remainder, each group to its rounded total)
-function RT(X,k,T,groups,colT){const S=X.map(r=>SC(r,k)),yr=S.map(r=>sum(r));const top=T!=null?T:R0(sum(yr));
-  let rT;if(groups){const gs=[...new Set(groups)],gt=LRT(gs.map(g=>sum(yr.filter((_,i)=>groups[i]===g))),top);rT=Array(S.length);
-    gs.forEach((g,gi)=>{const ix=yr.map((_,i)=>i).filter(i=>groups[i]===g),t=LRT(ix.map(i=>yr[i]),gt[gi]);ix.forEach((i,j)=>{rT[i]=t[j];});});}
-  else rT=LRT(yr,top);
-  const cT=colT||LRT(MON.map((_,m)=>sum(S.map(r=>r[m]))),top);const M=MR(S,rT,cT)||X.map(r=>LR(r,k===10?1:0).map(q=>Math.round(q*k)));
-  return {rows:M.map(r=>r.map(q=>q/k)),col:cT.map(q=>q/k)};}
 // one label rule for every 2026 figure read from the Manual Log
 const L26="2026 (Manual Log)";
 function yL(y){return y==="2026"?L26:y;}
@@ -176,8 +149,8 @@ const CLASSES27_START=sum(UNITS.map(u=>sum(u.m0)));
 const HD_N=logMonths("HD",null,"n"),HD_D=logMonths("HD",null,"d"),ARC_N=logMonths("ARC",null,"n");
 const PRICE_START=Object.assign({},R3.price27,{HD:sum(HD_N)?sum(HD_D)/sum(HD_N):0});
 function priceOf(t){return STATE.price[t]!=null&&STATE.price[t]!==""?+STATE.price[t]:PRICE_START[t];}
-const ARC_CLS=Z();Object.keys(R3.fill26).filter(k=>k.endsWith("|ARC")).forEach(k=>R3.fill26[k].c.forEach((c,m)=>{ARC_CLS[m]+=c;}));
-const CARRIED=[{key:"HD",cls:"HD",range:"Manassas - GMU",label:"HD",n:HD_N,cls26:null},{key:"ARC",cls:"ARC",range:"All Locations",label:"ARC",n:ARC_N,cls26:ARC_CLS}];
+const ARC_CLS=Z(),ARC_S26=Z();Object.keys(R3.fill26).filter(k=>k.endsWith("|ARC")).forEach(k=>{R3.fill26[k].c.forEach((c,m)=>{ARC_CLS[m]+=c;});R3.fill26[k].s.forEach((q,m)=>{ARC_S26[m]+=q;});});
+const CARRIED=[{key:"HD",cls:"HD",range:"Manassas - GMU",label:"HD",n:HD_N,cls26:null},{key:"ARC",cls:"ARC",range:"All Locations",label:"ARC",n:ARC_N,cls26:ARC_CLS,s26:ARC_S26}];
 function rateOf(s){if(STATE.rate[s]!=null&&STATE.rate[s]!=="")return +STATE.rate[s];const r=R3.rent[s];return r?(r.renew!=null?r.renew:r.rate):0;}
 // his answer 36: "Classes share weekends": weekends needed = classes x 2026 weekends used / 2026 classes, by site (Manual Log, Master)
 function wkShare(s){const w=R3.weekends26[s];return w&&w.classes?w.weekends/w.classes:1;}
@@ -189,9 +162,9 @@ function unitPlan(u){
   const per=R3.coach[u.type][two?0:1],n=cls.map(c=>c*spc);
   return {cls,f,cap,spc,price,n,s:n.map(q=>q*price),two,coachPer:per,coach:cls.map(c=>c*per)};
 }
-// ARC: students per class = its 2026 students ÷ its 2026 classes, both shown (plan tab and coach table); the coach rule reads that figure at one decimal
+// ARC: students per class = its 2026 students ÷ its 2026 classes, both from the Manual Log's Master sheet (as the fill % is), shown on the plan tab; the coach rule reads that figure at one decimal
 function carriedPlan(c){const price=priceOf(c.key),n=c.n.slice();let coach=Z(),per=null,two=false,spc=null;
-  if(c.cls26){spc=sum(c.cls26)?sum(n)/sum(c.cls26):0;two=+spc.toFixed(1)>6;per=R3.coach.ARC[two?0:1];coach=c.cls26.map(q=>q*per);}
+  if(c.cls26){spc=sum(c.cls26)?sum(c.s26)/sum(c.cls26):0;two=+spc.toFixed(1)>6;per=R3.coach.ARC[two?0:1];coach=c.cls26.map(q=>q*per);}
   return {price,n,s:n.map(q=>q*price),coach,coachPer:per,two,spc};}
 // his answer on LDW: "LDW just figure a % to sales ad keep it" - Jan-Sep 2026, Rick's table
 const LDW26=R3.ldw.v26,LDW_RATE=R3.ldw.v26/R3.ldw.fees26;
@@ -262,42 +235,16 @@ function budget(salesOverride){
 }
 // what the tables show: leaves rounded by LR, every total summed from shown leaves
 function shownPlan(agg){
-  const ups=agg.ups,car=agg.car,grpU=ups.map(x=>x.u.site),grpUC=grpU.concat(car.map(()=>"carried"));
-  // classes (one decimal) and students: the All total first, then site groups, then each row
-  const cl=RT(ups.map(x=>x.p.cls),10,null,grpU);
-  const nn=RT(ups.map(x=>x.p.n).concat(car.map(x=>x.p.n)),1,null,grpUC);
-  // sales = class fees + LDW + the other four parts: the sales total first, then its three rows, then fees by row
-  const salesEx=MON.map((_,m)=>agg.core.s[m]+agg.gap[m]),S=R0(sum(salesEx));
-  const top=LRT(SC([sum(agg.core.s),sum(agg.gap)]),S),gp=LRT(SC([sum(agg.ldw),sum(agg.other)]),top[1]);
-  const three=MR([agg.core.s,agg.ldw,agg.other].map(r=>SC(r)),[top[0],gp[0],gp[1]],LRT(SC(salesEx),S))||[LR(agg.core.s,0),LR(agg.ldw,0),LR(agg.other,0)];
-  const fees=three[0],ldw=three[1],other=three[2],gap=MON.map((_,m)=>ldw[m]+other[m]),sales=MON.map((_,m)=>fees[m]+gap[m]);
-  const ss=RT(ups.map(x=>x.p.s).concat(car.map(x=>x.p.s)),1,top[0],grpUC,fees);
-  const parts=LRT(SC(PARTS.slice(1).map(x=>x[1])),gp[1]);
-  // coach table: each type, ARC, range aid; the Salaries & Wages total first
-  const types=Object.keys(agg.byType),carC=car.filter(x=>x.c.cls26);
-  const co=RT(types.map(t=>agg.byType[t].coach).concat(carC.map(x=>x.p.coach),[agg.aid]),1,R0(sum(agg.coach)+sum(agg.aid)));
-  const rt=RT(SITES.map(s=>agg.rentBy[s]),1);
-  const U=ups.map(({u,p},i)=>({u,p,c:cl.rows[i],n:nn.rows[i],s:ss.rows[i]}));
-  const C=car.map(({c,p},i)=>{const j=carC.findIndex(x=>x.c===c);return {c,p,n:nn.rows[ups.length+i],s:ss.rows[ups.length+i],coach:j<0?Z():co.rows[types.length+j]};});
-  const site={};SITES.forEach(st=>{const us=U.filter(x=>x.u.site===st);site[st]={c:colSum(us,"c"),n:colSum(us,"n"),s:colSum(us,"s")};});
-  const type={};types.forEach((t,i)=>{const us=U.filter(x=>x.u.type===t);type[t]={c:colSum(us,"c"),coach:co.rows[i]};});
-  const aid=co.rows[co.rows.length-1],sal=co.col;
-  const rentBy={};SITES.forEach((st,i)=>{rentBy[st]=rt.rows[i];});const rent=rt.col;
-  return {U,C,site,type,cls:cl.col,n:nn.col,fees,ldw,other,gap,sales,parts,aid,sal,rentBy,rent};
+  const U=agg.ups.map(({u,p})=>({u,p,c:p.cls,n:p.n,s:p.s}));
+  const C=agg.car.map(({c,p})=>({c,p,n:p.n,s:p.s,coach:p.coach}));
+  const site={};SITES.forEach(st=>{const b=agg.bySite[st];site[st]={c:b.cls,n:b.n,s:b.s};});
+  const type={};Object.keys(agg.byType).forEach(t=>{const b=agg.byType[t];type[t]={c:b.cls,coach:b.coach};});
+  const gap=agg.gap,sales=MON.map((_,m)=>agg.core.s[m]+gap[m]);
+  return {U,C,site,type,cls:agg.cls,n:agg.core.n,fees:agg.core.s,ldw:agg.ldw,other:agg.other,gap,sales,parts:PARTS.slice(1).map(x=>x[1]),
+    aid:agg.aid,sal:MON.map((_,m)=>agg.coach[m]+agg.aid[m]),rentBy:agg.rentBy,rent:agg.rent};
 }
-function shownPL(get,over){const S={},F=[20,80,82,91,96,100,103],ex=r=>MON.map((_,m)=>+get(r,m)||0);
-  const leaf=r=>!(HEADS.has(r)||r===21||(r in SUMS)||F.includes(r)),inG=new Set([].concat(...Object.values(SUMS)));
-  PL.forEach(p=>{const r=p.row;if(leaf(r)&&!inG.has(r))S[r]=over&&over[r]?over[r].slice():LR(ex(r),0);});
-  // each subtotal is rounded from its exact figure; the lines under it are rounded so they add up to it (lines from the plan tab stay as shown there)
-  Object.keys(SUMS).forEach(k=>{const rows=SUMS[k].filter(r=>leaf(r)&&PLR[r]),fx=rows.filter(r=>over&&over[r]),fr=rows.filter(r=>!(over&&over[r]));
-    fx.forEach(r=>{S[r]=over[r].slice();});if(!fr.length)return;
-    const fxS=MON.map((_,m)=>sum(fx.map(r=>S[r][m]))),exSub=MON.map((_,m)=>sum(rows.map(r=>ex(r)[m]))),T=R0(sum(exSub))-sum(fxS);
-    const t=RT(fr.map(ex),1,T,null,LRT(SC(MON.map((_,m)=>exSub[m]-fxS[m])),T));fr.forEach((r,i)=>{S[r]=t.rows[i];});});
-  const g=r=>S[r]||Z();
-  Object.keys(SUMS).forEach(k=>{S[k]=MON.map((_,m)=>SUMS[k].reduce((a,r)=>a+g(r)[m],0));});
-  S[20]=MON.map((_,m)=>S[14][m]-S[18][m]);S[80]=MON.map((_,m)=>S[30][m]+S[38][m]+S[69][m]+S[78][m]);S[82]=MON.map((_,m)=>S[20][m]-S[80][m]);
-  S[91]=MON.map((_,m)=>S[82][m]+S[89][m]);S[96]=MON.map((_,m)=>S[91][m]-g(93)[m]-g(94)[m]);S[100]=MON.map((_,m)=>S[96][m]-g(98)[m]);S[103]=MON.map((_,m)=>S[100][m]-g(101)[m]);
-  return S;}
+// the P&L as printed: every line, subtotal and profit line is its exact figure
+function shownPL(get){const S={};PL.forEach(p=>{const r=p.row;if(HEADS.has(r)||r===21)return;S[r]=MON.map((_,m)=>+get(r,m)||0);});return S;}
 // self-test: at Rick's own Training, Salaries and Rent every line equals Rick's
 const SELFTEST=(function(){let worst=0,where="";const b=budget(RICK_TRAINING.slice()).B;
   PL.forEach(p=>{if(HEADS.has(p.row)||p.row===21)return;for(let m=0;m<12;m++){const d=Math.abs((b[p.row][m]||0)-(p.m[m]||0));if(d>worst){worst=d;where=p.label+" "+MON[m];}}});
@@ -420,11 +367,11 @@ function renderPlan(){
     });
   });
   h+=`<tr class="grp"><td>Carried at 2026 students<div class="note">no row in Class Data's 2027 table</div></td><td></td><td></td><td></td><td></td><td>${fmtN(sum(SP.C.map(x=>sum(x.n))))}</td><td></td><td>${fmtD(sum(SP.C.map(x=>sum(x.s))))}</td><td></td><td></td></tr>`;
-  SP.C.forEach(({c,p,n:cn,s:cs})=>{h+=`<tr><td style="padding-left:22px">${esc(c.label)}<div class="note">${L26}: ${fmtN(sum(c.n))} students${c.cls26?" in "+fmtN(sum(c.cls26))+" classes":""}</div></td><td></td><td></td><td></td><td ${c.cls26?`title="${esc(fmtN(sum(c.n))+" students ÷ "+fmtN(sum(c.cls26))+" classes, "+L26)}"`:""}>${c.cls26?p.spc.toFixed(1):""}</td><td>${fmtN(sum(cn))}</td><td>${fmtD(p.price)}</td><td>${fmtD(sum(cs))}</td><td>${c.cls26?(p.two?"two":"one"):""}</td><td></td></tr>`;});
+  SP.C.forEach(({c,p,n:cn,s:cs})=>{h+=`<tr><td style="padding-left:22px">${esc(c.label)}<div class="note">${L26}: ${fmtN(sum(c.n))} students${c.cls26?"; Master: "+fmtN(sum(c.s26))+" students in "+fmtN(sum(c.cls26))+" classes":""}</div></td><td></td><td></td><td></td><td ${c.cls26?`title="${esc(fmtN(sum(c.s26))+" students ÷ "+fmtN(sum(c.cls26))+" classes, "+L26+", Master")}"`:""}>${c.cls26?p.spc.toFixed(1):""}</td><td>${fmtN(sum(cn))}</td><td>${fmtD(p.price)}</td><td>${fmtD(sum(cs))}</td><td>${c.cls26?(p.two?"two":"one"):""}</td><td></td></tr>`;});
   h+=`<tr class="grp"><td>${GAPNAME}<div class="note">2026: ${fmtD(GAP26)} = Rick's ${fmtD(RICK26)} − Manual Log ${fmtD(s26)}</div></td><td></td><td></td><td></td><td></td><td></td><td></td><td>${fmtD(G27)}</td><td></td><td></td></tr>`;
   PARTS.forEach(([nm,val],i)=>{const v27=i===0?sum(SP.ldw):SP.parts[i-1];h+=`<tr><td style="padding-left:22px">${esc(nm)}<div class="note">2026: ${fmtD(val)}${i===0?` · 2027: ${(LDW_RATE*100).toFixed(4)}% of class fees`:" · 2027: kept at 2026"}</div></td><td></td><td></td><td></td><td></td><td></td><td></td><td>${fmtD(v27)}</td><td></td><td></td></tr>`;});
   h+=`<tr class="tot"><td>All</td><td></td><td>${fmtK(C27)}</td><td></td><td></td><td>${fmtN(N)}</td><td></td><td>${fmtD(S)}</td><td></td><td></td></tr></tbody></table></div>
-   <p class="note">* No 2026 classes of this type at this site; its start fill is the type's at all sites. Students per class = capacity × fill % (12 a class; 4 for First Ride, his answer 33). Coaches: one where students per class are 6 or fewer, two where more (his answer 26). Rounding: each total is rounded from its exact figure first and the rows under it are rounded so they add up to it, so a row can sit up to one student or $1 from its own exact figure.</p>`;
+   <p class="note">* No 2026 classes of this type at this site; its start fill is the type's at all sites. Students per class = capacity × fill % (12 a class; 4 for First Ride, his answer 33). Coaches: one where students per class are 6 or fewer, two where more (his answer 26). Rounding: each figure is rounded on its own from its exact value (his answer 38), so a total can differ by $1–2 from adding the rounded rows above it.</p>`;
   tc.innerHTML=h;
   tc.querySelectorAll("tr[data-k]").forEach(tr=>{const key=tr.dataset.k;
     const f=tr.querySelector(".in-f");if(f)f.onchange=e=>{if(e.target.value==="")delete STATE.fillUnit[key];else STATE.fillUnit[key]=FILLV(e.target.value);changed();};
@@ -537,7 +484,7 @@ function renderBudget(){
   ih+=`<tr><td>Range aid, ${fmtD(R3.rangeAid.rate)} × ${RA_CLASSES} classes</td>${SP.aid.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(SP.aid))}</td></tr>
    <tr class="sub"><td>Salaries & Wages</td>${B[33].map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(B[33]))}</td></tr>
    <tr><td>Rick's Salaries & Wages</td>${RS[33].map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(RS[33]))}</td></tr></tbody></table></div>
-   <p class="note">Each class costs its type's two-coach or one-coach rate, set by its students per class on the 2027 plan tab (ARC: its 2026 students ÷ its 2026 classes, shown there). Range aid: 15 classes as in 2026, spread evenly by month (my pick; his to strike). HD has no coach rate in Class Data and adds none.</p>`;
+   <p class="note">Each class costs its type's two-coach or one-coach rate, set by its students per class on the 2027 plan tab (ARC: its 2026 students ÷ its 2026 classes on the Master sheet, shown there). Range aid: 15 classes as in 2026, spread evenly by month (my pick; his to strike). HD has no coach rate in Class Data and adds none.</p>`;
   ic.innerHTML=ih;box.appendChild(ic);
   // rent by site
   const rc=el("div",{class:"card"});
@@ -561,7 +508,7 @@ function renderBudget(){
     const row=MON.map((_,m)=>val(r,m));if(!SUBS.has(r)&&row.every(q=>Math.abs(q)<0.5)&&MON.every((_,m)=>Math.abs(RS[r][m])<0.5))return;
     const tag=view!=="plan"?"":r===13?'<span class="tag">from plan</span>':r===33?'<span class="tag">coach cost by class size</span>':r===72?'<span class="tag">classes × weekend rate</span>':FIXED.has(r)?'<span class="tag">fixed $</span>':"";
     h+=`<tr class="${SUBS.has(r)?"sub":""}"><td${SUBS.has(r)?"":' style="padding-left:22px"'}>${esc(p.label)}${tag}</td>${row.map(q=>`<td class="${Math.abs(q)<0.5?"zero":""}">${Math.abs(q)<0.5?"–":fmtD(q)}</td>`).join("")}<td>${fmtD(sum(row))}</td></tr>`;});
-  h+=`</tbody></table></div><p class="note">How lines move (his answer 11, “Hold fixed costs”): each month, every line moves by that month's 2027 sales ÷ Rick's Training, so cost of sales keeps each month's margin. These stay in Rick's dollars: Training Fleet Depreciation, Insurance - Other, Depreciation-Other, Leasehold Amortz. & Building Depr., Insurance - Building, interest and other income. Salaries & Wages are the coach cost above; Rent is the range table. Income tax keeps Rick's rate for each month. Dirt Bike is not in this P&L. Lines that are zero in every view are hidden. Rounding: each subtotal is rounded from its exact figure, and the lines under it are rounded so they add up to it, each within $1 of its exact figure; gross profit, total expenses and the profit lines below them are worked out from the shown lines, so they can sit up to a few dollars from the exact figure.</p>`;
+  h+=`</tbody></table></div><p class="note">How lines move (his answer 11, “Hold fixed costs”): each month, every line moves by that month's 2027 sales ÷ Rick's Training, so cost of sales keeps each month's margin. These stay in Rick's dollars: Training Fleet Depreciation, Insurance - Other, Depreciation-Other, Leasehold Amortz. & Building Depr., Insurance - Building, interest and other income. Salaries & Wages are the coach cost above; Rent is the range table. Income tax keeps Rick's rate for each month. Dirt Bike is not in this P&L. Lines that are zero in every view are hidden. Rounding: each figure is rounded on its own from its exact value (his answer 38), so a total can differ by $1–2 from adding the rounded lines above it.</p>`;
   pc.innerHTML=h;pc.querySelectorAll("[data-v]").forEach(bt=>bt.onclick=()=>{BV.view=bt.dataset.v;render();});
   box.appendChild(pc);
   const ch=el("div",{class:"card"});ch.appendChild(el("div",{class:"ct"},"Operating profit by month"));
@@ -596,7 +543,7 @@ async function save(){
     try{localStorage.setItem(DRAFT_KEY,JSON.stringify({basedOn:STATE.savedAt||"seed",state:STATE}));}catch(_){}}
   finally{document.querySelectorAll("[data-save]").forEach(b=>b.disabled=false);}
 }
-window.__PRU_TEST__={LR,shownPlan,shownPL,setTab:x=>{tab=x;render();},budget,PL,RICK_TRAINING,RICK_SAL,RICK_RENT,SELFTEST,planAgg,plan27Lines,dirtCalc,discounts,LINES,UNITS,CARRIED,R3,LDW_RATE,GAP26M,FIXED,getState:()=>STATE,setState:s=>{STATE=norm(s);render();},RT,MR,LRT,rfall:()=>RFALL,resetRfall:()=>{RFALL=0;},status:()=>STATUS};
+window.__PRU_TEST__={LR,shownPlan,shownPL,setTab:x=>{tab=x;render();},budget,PL,RICK_TRAINING,RICK_SAL,RICK_RENT,SELFTEST,planAgg,plan27Lines,dirtCalc,discounts,LINES,UNITS,CARRIED,R3,LDW_RATE,GAP26M,FIXED,getState:()=>STATE,setState:s=>{STATE=norm(s);render();},status:()=>STATUS};
 render();
 })();
 </script>
