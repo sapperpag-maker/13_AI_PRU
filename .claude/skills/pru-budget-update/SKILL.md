@@ -1,6 +1,6 @@
 ---
 name: pru-budget-update
-description: Use when Angie is asked to update, remake or refresh PRU's budget or the 2027 Sales Planner, when Sergio says "update the budget", "new class data" or "updated quantities", or when a new Class Data file, Manual Log, GL or Rick budget lands. Covers finding which source changed by program, the extract and diff, the GL sales utility, checking each changed figure at its source, the build, the planner check and landing. Invoke before the first source file is read.
+description: Use when Angie is asked to update, remake or refresh PRU's budget or the 2027 Sales Planner, when Sergio says "update the budget", "new v3 log" or "updated quantities", or when a new v3 log, GL or Rick budget lands. Covers finding which source changed by program, the extract and diff, the GL sales utility, checking each changed figure at its source, the build, the planner check and landing. Invoke before the first source file is read.
 ---
 
 # Angie remakes PRU's budget (an orchestrator)
@@ -24,7 +24,7 @@ The program: `"C:\AI_Building\AI_LEGISLATOR\Engine room\.venv\Scripts\python.exe
 
 ## Steps
 
-1. Run `python3.14 "C:\AI_Building\AI_PRU\.claude\skills\pru-budget-update\pru_sources_check.py" --class-data <p> --manual-log <p> --gl <p> --rick-budget <p>` with each new file's path. `RESULT: SAME`: stop, nothing to do. `RESULT: STOP`: stop and ask Sergio. `RESULT: CHANGED`: go on.
+1. Take each source's path from `C:\AI_Building\AI_PRU\JOBS\03 PRU source map - 2026-11-21 HOME\SOURCE MAP.md`: the v3 log, the GL, Rick's budget; Class Data is not a source. Run `python3.14 "C:\AI_Building\AI_PRU\.claude\skills\pru-budget-update\pru_sources_check.py" --manual-log <p> --gl <p> --rick-budget <p>` with those paths. `RESULT: SAME`: stop, nothing to do. `RESULT: STOP`: stop and ask Sergio. `RESULT: CHANGED`: go on.
 2. Make `C:\AI_Building\AI_PRU\JOBS\NN PRU budget update - <date> <machine>\` and a bench `C:\AI_Building\AI_MISC\06 Benches\<date> PRU budget update - <tag>\`; copy the last build's programs to it. Run `extract_r3.py`, `extract_r4.py` and the old-against-new diff.
 3. The GL changed: invoke `pru-sales-from-gl`; hand it the GL CSV and the Operating Statements file; it returns a CSV of sales by category and month, its md5, and the LDW (47700) and other training (46450) totals. Check that shape, then carry on at step 4. A missing or wrong output stops the job and goes to Sergio. Put LDW and other training into `build.py`'s gap parts and LDW rate, and recount the log's other gap parts (January, fees above the log, Oct-Dec). Never run Rick's `pru_nonlog_streams.py` for PRU: it counts them twice.
 4. Check every changed figure at its file, sheet and row; a low figure is checked before anyone hears it. A rule or value the files do not give goes to Sergio through the question tool, one decision a question.
@@ -42,7 +42,7 @@ A planner page whose md5 is in `C:\AI_Building\AI_PRU\LOG.md` and `SOURCES.json`
 
 ## Examples
 
-- Good: Class Data changed; the diff shows 12 classes moved; each checked in Class Data; build, check, LAWYER.
+- Good: the v3 log changed; the diff shows 12 classes moved; each checked in the v3 log's Master sheet, columns B-E; build, check, LAWYER.
 - Bad: rebuild straight from the new file and send Sergio the page before LAWYER.
 
 ## Final check
