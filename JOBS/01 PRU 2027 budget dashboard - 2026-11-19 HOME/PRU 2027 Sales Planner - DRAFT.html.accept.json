@@ -1,6 +1,6 @@
 {
  "tab": "pru-planner",
- "page_md5": "49a03ed793ab15fa4e9869e20dfdfb2b",
+ "page_md5": "3820021ce95bb82cde379d23f81aa08b",
  "data_date": "2026-11-20",
  "sources": [
   {
@@ -13,7 +13,7 @@
   }
  ],
  "accepted": {
-  "words": "Skip LAWYER this once; put in on ONE view after your blind check; I need this asap; Lawyer checks after (Angie's chat); Yes, deploy and upload (Recommended) (the Brain's chat)",
-  "where": "11 Angie's chat (her question 17) and BRAIN-HOME-1118's chat, 2026-11-20, rulings 3676-3677; Angie's blind check round 2 PASS (AI_MISC\\06 Benches\\2026-11-20 PRU job 01 planner check - ANGIE-HOME\\VERDICT-2.md); data date 2026-11-20 = the day the 2026 log was read (Angie's reading); LAWYER checks after it is live"
+  "words": "Accept it as it is (Recommended) (Angie's chat, her Q45); Yes, upload it (Recommended) (the Brain's chat)",
+  "where": "11 Angie's chat (her question 45, relayed by Angie and Piston) and BRAIN-HOME-1118's chat, 2026-11-21 00:30 Falls Church; LAWYER release 3 notes check PASS (AI_LAWYER\\Office desk\\Verdicts\\2026-11-20 PRU 2027 Planner release 3 notes check - 3820021c.md, md5 fd1413c3) after round 1 FAIL (0a0ea817); data date 2026-11-20 = the day the 2026 log was read (Angie's reading); replaces page 49a03ed7"
  }
 }
