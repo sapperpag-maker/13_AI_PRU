@@ -1,0 +1,26 @@
+{
+  "roles": {
+    "class_data": {
+      "md5": "542d634b",
+      "md5_full": null,
+      "name": "Class_Data.xlsx"
+    },
+    "manual_log": {
+      "md5": "ab99689da045431d30dda84f57000c76",
+      "md5_full": "ab99689da045431d30dda84f57000c76",
+      "name": "2026 PRU Manual Log v3.xlsx"
+    },
+    "gl": {
+      "md5": "94ae1ff9841d3de6bc9903402e32874b",
+      "md5_full": "94ae1ff9841d3de6bc9903402e32874b",
+      "name": "2026 YTD 101E GL History Detail Postings - All Accounts.csv"
+    },
+    "rick_budget": {
+      "md5": "64e3c1ecdf01ee25cae717657952bfbe",
+      "md5_full": "64e3c1ecdf01ee25cae717657952bfbe",
+      "name": "02 - Consolidated SGP Budget light.xlsx"
+    }
+  },
+  "page_md5": "3820021ce95bb82cde379d23f81aa08b",
+  "recorded": "2026-11-21"
+}
