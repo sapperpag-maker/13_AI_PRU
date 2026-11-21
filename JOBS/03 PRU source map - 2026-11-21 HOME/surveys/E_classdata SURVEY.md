@@ -3,7 +3,7 @@
 # Class Data survey (reader E, Sonnet), saved by Angie from its hand-back, 2026-11-21
 
 ## Files (C:\Users\Sergio\.claude\uploads\034bc097-973b-403b-8a90-c7678efdb939\)
-- f32ce509-Class_Data.xlsx (in use): md5 542d634b60f1ae711f43206c20ba6503, 86,979 bytes; lastModifiedBy "Spagnini", modified 2026-11-20 23:07Z, saved in desktop Excel; 107 formulas, all on 2027 Projections.
+- f32ce509-Class_Data.xlsx (in use): md5 542d634b60f1ae711f43206c20ba6503, 86,979 bytes; lastModifiedBy a person's surname, modified 2026-11-20 23:07Z, saved in desktop Excel; 107 formulas, all on 2027 Projections.
 - 57ae51b4-Class_Data.xlsx: md5 bcb6c1112062c59610c693c7d4b44f41, 88,852 bytes, zip time 2026-11-20 11:36 (oldest).
 - 8c4e186b-Class_Data.xlsx: md5 19acfe248019ef0cd6be7c2754933020, 89,113 bytes, zip time 2026-11-20 12:16.
 - The two older ones look like a Google Sheets export (reader's inference). Only 2027 Projections differs between versions (41 cells v1->v2, 72 cells v2->v3): typed totals became formulas, numbers corrected (e.g. 3-wheel 2027 price typo 689 -> 389; 2027 total 485 -> 498 -> 498 with a different split).

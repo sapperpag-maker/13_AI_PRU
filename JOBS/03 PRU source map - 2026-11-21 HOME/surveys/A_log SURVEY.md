@@ -24,7 +24,7 @@
 5. x2025 v Budget, x2025 Budget: 2025 registrations vs budget.
 6. 26 Rent Schedule: range rental schedule; holds a BRP contact's details at the top (personal: header and count only).
 7. 2025 Summary; "2025 ", "2024", "2023": weekly consolidating reports of past years.
-8. Hidden: Sean, WklyConsolidating (2024 layout), Copy of Copy of WklyConsolidati, Sheet24 (empty).
+8. Hidden: one sheet named with a person's first name, WklyConsolidating (2024 layout), Copy of Copy of WklyConsolidati, Sheet24 (empty).
 9. Miscellaneous Income Log: extras (private instruction, rentals, fees, Rider Coach Class 18,800); 2024-01-31 to 2025-05-24 only; holds names.
 10. GIFT CARDS: 48 rows, amount 17,595; mostly PERSONAL.
 11. Parameters: drop-down lists; maps 22 site codes to 19 range names; course codes; payment types.
