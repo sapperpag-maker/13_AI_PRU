@@ -176,3 +176,12 @@
   - Round 17's claims 1–8 hold, ARC shows 4.0, and every other printed figure matches across 6 states.
   - A FAIL goes to Sergio (Piston's word; Q37 gave one recheck).
 - 2026-11-20: Piston relayed Sergio's words to Rick, in Rick's chat: "You take Angie's numbers from the Planner and you integrate those number with revenue streams that are not included in the log." Once the planner passes LAWYER, I send Piston, for Rick, the figures file, its md5 and the sources. This is on TO DO.md. Test 16 now reads Master too and fails on the old page.
+
+## 2026-11-20 - budget-update skill drafted (create-a-skill)
+- Sergio: "I want you to start drafting a skill to remake and update your budget".
+- Q41 "Orchestrator + GL utility (Recommended)"; Q42 "Angie's folder only (Recommended)"; Q43 "Yes, write it (Recommended)".
+- Q40 "Fix halves, go to LAWYER": half-away-from-zero rounding built on the bench (template, build md5 b22ab2501456cb2bd022014145db082c); tests 18/19 and the LAWYER request not yet done.
+- Draft PDF: C:\AI_Building\AI_Brain\Deliverables\reports\skills-workflows\pru-budget-update.pdf (70399b19). SKILL.md written: C:\AI_Building\AI_PRU\.claude\skills\pru-budget-update\SKILL.md, 56 lines (over 50: split pending). GL utility held: Sergio says Rick is drafting a utility for his piece; asked Rick through Piston which piece.
+- The rules program has no "budget" job (refused); the skill uses --job All. For the Legislator.
+- Q44 "One step, run by path (Recommended)": pru-budget-update runs Rick's C:\AI_Building\AI_Financials\04 Budget\2027\scripts\pru_nonlog_streams.py (commit 38c61bd55, md5 cf3a06f7, Rick's claim via Piston) by full path, checking RESULT: PASS. Rick: his program does not do the GL rebuild, so pru-sales-from-gl stays.
+- Q40 built and tested: page md5 689d80df53ef80a6511c1219a15750f2 (job folder DRAFT = bench preview build). Own tests: selftest t1-t7 clean 0, planted all caught; tests 10-12, 13-14, 15-17 0 fails; test 18 0 fails over 15,015 cells (now compares half away from zero); new test 19 (rel3\r19tests.js, every formatter rounds halves away from zero) 0 fails, and 10 fails on rel3\planted_r19.html (md5 1a48fc79, the page with plain Math.round). Start figures unchanged: 498 classes, 4,455 students, $1,706,910 fees, $1,779,595 sales, $494,505 coach, $155,992 rent, $143,321 op. Test 18 does not fail on planted_r19: no exact half falls in those tables at the 7 states. Blind round skipped on Sergio's Q40.

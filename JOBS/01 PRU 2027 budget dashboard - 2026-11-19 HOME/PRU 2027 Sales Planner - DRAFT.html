@@ -78,16 +78,19 @@ const J=id=>JSON.parse(document.getElementById(id).textContent);
 const RAW=J("src-data"),PL=J("src-pl"),EXTRA=J("src-extra");
 const Z=()=>new Array(12).fill(0);
 const sum=a=>a.reduce((s,x)=>s+(+x||0),0);
-const fmtN=v=>Math.round(v).toLocaleString("en-US");
-const fmtK=v=>Math.abs(v-Math.round(v))<0.05?fmtN(v):v.toLocaleString("en-US",{minimumFractionDigits:1,maximumFractionDigits:1});
-const fmtD=v=>{const r=Math.round(v);return (r<0?"-$":"$")+Math.abs(r).toLocaleString("en-US");};
+// Sergio's Q40 (2026-11-20): halves round away from zero, as Excel does (-2.5 shows -3); the float error of an exact half (7.4999999) is removed first
+const RH=(v,dp)=>{const k=Math.pow(10,dp||0),a=Math.round(Math.abs(+v||0)*k*1e6)/1e6;return ((v<0?-1:1)*Math.floor(a+0.5)/k)||0;};
+const F1=v=>RH(v,1).toFixed(1);
+const fmtN=v=>RH(v).toLocaleString("en-US");
+const fmtK=v=>Math.abs(v-Math.round(v))<0.05?fmtN(v):RH(v,1).toLocaleString("en-US",{minimumFractionDigits:1,maximumFractionDigits:1});
+const fmtD=v=>{const r=RH(v);return (r<0?"-$":"$")+Math.abs(r).toLocaleString("en-US");};
 const pct=(a,b)=>b?((a-b)/Math.abs(b)*100):null;
-const rnd=v=>Math.round(v)||0;
+const rnd=v=>RH(v);
 // one sign-and-colour rule: judged on the figure as shown (rounded); 0 shows as 0, uncoloured, never -0
 const fmtP=p=>{if(p==null)return "–";const r=rnd(p);return (r>0?"+":"")+r+"%";};
 const cl=p=>p==null?"":rnd(p)>0?"up":rnd(p)<0?"down":"";
 // Change % beside a Change cell: sign and colour follow the shown Change; a small non-zero change shows one decimal, never 0%
-const fmtPC=(d,p)=>{const r=rnd(d);if(r===0||p==null)return r===0?"0%":"–";const s=r>0?"+":"-",a=Math.abs(p);return s+(a>=0.5?Math.round(a):a>=0.05?a.toFixed(1):"<0.1")+"%";};
+const fmtPC=(d,p)=>{const r=rnd(d);if(r===0||p==null)return r===0?"0%":"–";const s=r>0?"+":"-",a=Math.abs(p);return s+(RH(a)>=1?RH(a):RH(a,1)>=0.1?F1(a):"<0.1")+"%";};
 const fmtC=(d,f)=>{const r=rnd(d);return r===0?f(0):(r>0?"+":"")+f(r);};
 // shown figures (Sergio's Q38, 2026-11-20: "Each figure on its own"): every cell and every total is its own exact figure, rounded only where it is printed
 function LR(a){return a.map(q=>+q||0);}
@@ -158,13 +161,13 @@ function storageOf(s){const r=R3.rent[s];return r&&r.storage?r.storage:0;}
 function fillPct(u){const c=STATE;if(c.fillUnit[u.key]!=null)return +c.fillUnit[u.key];if(c.fillType[u.type]!=null)return +c.fillType[u.type];if(c.fillAll!=null)return +c.fillAll;return u.fStart;}
 function unitPlan(u){
   const cls=STATE.unitMonths[u.key]?STATE.unitMonths[u.key].slice():u.m0.slice();
-  const f=fillPct(u),cap=R3.cap[u.type],spc=cap*f/100,price=priceOf(u.type),two=+spc.toFixed(1)>6;
+  const f=fillPct(u),cap=R3.cap[u.type],spc=cap*f/100,price=priceOf(u.type),two=+F1(spc)>6;
   const per=R3.coach[u.type][two?0:1],n=cls.map(c=>c*spc);
   return {cls,f,cap,spc,price,n,s:n.map(q=>q*price),two,coachPer:per,coach:cls.map(c=>c*per)};
 }
 // ARC: students per class = its 2026 students ÷ its 2026 classes, both from the Manual Log's Master sheet (as the fill % is), shown on the plan tab; the coach rule reads that figure at one decimal
 function carriedPlan(c){const price=priceOf(c.key),n=c.n.slice();let coach=Z(),per=null,two=false,spc=null;
-  if(c.cls26){spc=sum(c.cls26)?sum(c.s26)/sum(c.cls26):0;two=+spc.toFixed(1)>6;per=R3.coach.ARC[two?0:1];coach=c.cls26.map(q=>q*per);}
+  if(c.cls26){spc=sum(c.cls26)?sum(c.s26)/sum(c.cls26):0;two=+F1(spc)>6;per=R3.coach.ARC[two?0:1];coach=c.cls26.map(q=>q*per);}
   return {price,n,s:n.map(q=>q*price),coach,coachPer:per,two,spc};}
 // his answer on LDW: "LDW just figure a % to sales ad keep it" - Jan-Sep 2026, Rick's table
 const LDW26=R3.ldw.v26,LDW_RATE=R3.ldw.v26/R3.ldw.fees26;
@@ -325,7 +328,7 @@ function chart(series,f){
 function niceStep(r){if(r<=0)return 1;const p=Math.pow(10,Math.floor(Math.log10(r)));const n=r/p;return (n<=1?1:n<=2?2:n<=5?5:10)*p;}
 
 // TAB 2
-const fmtF=f=>f==null?"–":(Math.round(f*10)/10).toFixed(1)+"%";
+const fmtF=f=>f==null?"–":F1(f)+"%";
 function renderPlan(){
   const box=el("div");const agg=planAgg(),SP=shownPlan(agg);
   const n26=sum(ALL_STUDENTS_26),s26=sum(ALL_SALES_26),N=sum(SP.n),G27=sum(SP.gap),S=sum(SP.sales),C27=sum(SP.cls);
@@ -357,17 +360,17 @@ function renderPlan(){
       h+=`<tr data-k="${esc(u.key)}"><td style="padding-left:22px">${esc(TNAME(u.type))}</td><td title="${esc(u.fSrc)}">${fmtF(u.fStart)}${u.f26==null?"*":""}</td>
       <td class="${me?"edited":""}">${fmtK(sum(sc))}</td>
       <td><input type="number" min="0" max="100" step="1" class="in-f${ed?" edited":""}" value="${ed?STATE.fillUnit[u.key]:""}" placeholder="${fmtF(p.f)}" aria-label="2027 fill % for ${esc(TNAME(u.type))} at ${esc(site)}"></td>
-      <td>${p.spc.toFixed(1)}</td><td>${fmtN(sum(sn))}</td><td>${fmtD(p.price)}</td><td>${fmtD(sum(ss))}</td><td>${p.two?"two":"one"}</td>
+      <td>${F1(p.spc)}</td><td>${fmtN(sum(sn))}</td><td>${fmtD(p.price)}</td><td>${fmtD(sum(ss))}</td><td>${p.two?"two":"one"}</td>
       <td><button class="btn mini in-m">${P.open===u.key?"Close":"Months"}</button>${ed||me?' <button class="btn mini in-x" title="Back to start values">↺</button>':""}</td></tr>`;
       if(P.open===u.key){const f=R3.fill26[u.key];h+=`<tr class="months" data-k="${esc(u.key)}"><td colspan="10"><div class="tw"><table><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr>
         ${f?`<tr><td>Classes held or booked ${L26}</td>${LR(f.c,0).map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(LR(f.c,0)))}</td></tr><tr><td>Students ${L26}</td>${LR(f.s,0).map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(LR(f.s,0)))}</td></tr>`:""}
-        <tr><td><b>2027 classes</b></td>${sc.map((q,m)=>`<td><input type="number" step="0.1" min="0" class="in-mo${me?" edited":""}" data-m="${m}" value="${+q.toFixed(1)}" aria-label="${MON[m]} 2027 classes"></td>`).join("")}<td>${fmtK(sum(sc))}</td></tr>
+        <tr><td><b>2027 classes</b></td>${sc.map((q,m)=>`<td><input type="number" step="0.1" min="0" class="in-mo${me?" edited":""}" data-m="${m}" value="${RH(q,1)}" aria-label="${MON[m]} 2027 classes"></td>`).join("")}<td>${fmtK(sum(sc))}</td></tr>
         <tr><td>2027 students</td>${sn.map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(sn))}</td></tr></table></div>
         <p class="note">Start months: Class Data, 2027 Projections: ${esc(u.how)}.</p></td></tr>`;}
     });
   });
   h+=`<tr class="grp"><td>Carried at 2026 students<div class="note">no row in Class Data's 2027 table</div></td><td></td><td></td><td></td><td></td><td>${fmtN(sum(SP.C.map(x=>sum(x.n))))}</td><td></td><td>${fmtD(sum(SP.C.map(x=>sum(x.s))))}</td><td></td><td></td></tr>`;
-  SP.C.forEach(({c,p,n:cn,s:cs})=>{h+=`<tr><td style="padding-left:22px">${esc(c.label)}<div class="note">${L26}: ${fmtN(sum(c.n))} students${c.cls26?"; Master: "+fmtN(sum(c.s26))+" students in "+fmtN(sum(c.cls26))+" classes":""}</div></td><td></td><td></td><td></td><td ${c.cls26?`title="${esc(fmtN(sum(c.s26))+" students ÷ "+fmtN(sum(c.cls26))+" classes, "+L26+", Master")}"`:""}>${c.cls26?p.spc.toFixed(1):""}</td><td>${fmtN(sum(cn))}</td><td>${fmtD(p.price)}</td><td>${fmtD(sum(cs))}</td><td>${c.cls26?(p.two?"two":"one"):""}</td><td></td></tr>`;});
+  SP.C.forEach(({c,p,n:cn,s:cs})=>{h+=`<tr><td style="padding-left:22px">${esc(c.label)}<div class="note">${L26}: ${fmtN(sum(c.n))} students${c.cls26?"; Master: "+fmtN(sum(c.s26))+" students in "+fmtN(sum(c.cls26))+" classes":""}</div></td><td></td><td></td><td></td><td ${c.cls26?`title="${esc(fmtN(sum(c.s26))+" students ÷ "+fmtN(sum(c.cls26))+" classes, "+L26+", Master")}"`:""}>${c.cls26?F1(p.spc):""}</td><td>${fmtN(sum(cn))}</td><td>${fmtD(p.price)}</td><td>${fmtD(sum(cs))}</td><td>${c.cls26?(p.two?"two":"one"):""}</td><td></td></tr>`;});
   h+=`<tr class="grp"><td>${GAPNAME}<div class="note">2026: ${fmtD(GAP26)} = Rick's ${fmtD(RICK26)} − Manual Log ${fmtD(s26)}</div></td><td></td><td></td><td></td><td></td><td></td><td></td><td>${fmtD(G27)}</td><td></td><td></td></tr>`;
   PARTS.forEach(([nm,val],i)=>{const v27=i===0?sum(SP.ldw):SP.parts[i-1];h+=`<tr><td style="padding-left:22px">${esc(nm)}<div class="note">2026: ${fmtD(val)}${i===0?` · 2027: ${(LDW_RATE*100).toFixed(4)}% of class fees`:" · 2027: kept at 2026"}</div></td><td></td><td></td><td></td><td></td><td></td><td></td><td>${fmtD(v27)}</td><td></td><td></td></tr>`;});
   h+=`<tr class="tot"><td>All</td><td></td><td>${fmtK(C27)}</td><td></td><td></td><td>${fmtN(N)}</td><td></td><td>${fmtD(S)}</td><td></td><td></td></tr></tbody></table></div>
@@ -504,7 +507,7 @@ function renderBudget(){
   const SUBS=new Set([14,18,20,30,38,69,78,80,82,89,91,96,100,103]);
   PL.forEach(p=>{const r=p.row;
     if(HEADS.has(r)){h+=`<tr class="head"><td>${esc(p.label)}</td><td colspan="13"></td></tr>`;return;}
-    if(r===21){const gp=view==="rick"?rick(20):B[20],ts=view==="rick"?rick(14):B[14];if(view==="diff")return;h+=`<tr><td style="padding-left:22px">Gross margin %</td>${MON.map((_,m)=>`<td>${ts[m]?(gp[m]/ts[m]*100).toFixed(1)+"%":"–"}</td>`).join("")}<td>${sum(ts)?(sum(gp)/sum(ts)*100).toFixed(1)+"%":"–"}</td></tr>`;return;}
+    if(r===21){const gp=view==="rick"?rick(20):B[20],ts=view==="rick"?rick(14):B[14];if(view==="diff")return;h+=`<tr><td style="padding-left:22px">Gross margin %</td>${MON.map((_,m)=>`<td>${ts[m]?F1(gp[m]/ts[m]*100)+"%":"–"}</td>`).join("")}<td>${sum(ts)?F1(sum(gp)/sum(ts)*100)+"%":"–"}</td></tr>`;return;}
     const row=MON.map((_,m)=>val(r,m));if(!SUBS.has(r)&&row.every(q=>Math.abs(q)<0.5)&&MON.every((_,m)=>Math.abs(RS[r][m])<0.5))return;
     const tag=view!=="plan"?"":r===13?'<span class="tag">from plan</span>':r===33?'<span class="tag">coach cost by class size</span>':r===72?'<span class="tag">classes × weekend rate</span>':FIXED.has(r)?'<span class="tag">fixed $</span>':"";
     h+=`<tr class="${SUBS.has(r)?"sub":""}"><td${SUBS.has(r)?"":' style="padding-left:22px"'}>${esc(p.label)}${tag}</td>${row.map(q=>`<td class="${Math.abs(q)<0.5?"zero":""}">${Math.abs(q)<0.5?"–":fmtD(q)}</td>`).join("")}<td>${fmtD(sum(row))}</td></tr>`;});
@@ -543,7 +546,7 @@ async function save(){
     try{localStorage.setItem(DRAFT_KEY,JSON.stringify({basedOn:STATE.savedAt||"seed",state:STATE}));}catch(_){}}
   finally{document.querySelectorAll("[data-save]").forEach(b=>b.disabled=false);}
 }
-window.__PRU_TEST__={LR,shownPlan,shownPL,setTab:x=>{tab=x;render();},budget,PL,RICK_TRAINING,RICK_SAL,RICK_RENT,SELFTEST,planAgg,plan27Lines,dirtCalc,discounts,LINES,UNITS,CARRIED,R3,LDW_RATE,GAP26M,FIXED,getState:()=>STATE,setState:s=>{STATE=norm(s);render();},status:()=>STATUS};
+window.__PRU_TEST__={LR,shownPlan,shownPL,setTab:x=>{tab=x;render();},budget,PL,RICK_TRAINING,RICK_SAL,RICK_RENT,SELFTEST,planAgg,plan27Lines,dirtCalc,discounts,LINES,UNITS,CARRIED,R3,LDW_RATE,GAP26M,FIXED,getState:()=>STATE,setState:s=>{STATE=norm(s);render();},status:()=>STATUS,fmt:{RH,F1,fmtN,fmtD,fmtK,fmtP,fmtPC,fmtF}};
 render();
 })();
 </script>
