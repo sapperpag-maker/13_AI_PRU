@@ -147,3 +147,18 @@
   - Finding 9: the save line keeps its words across re-renders and reloads.
   - Start state: classes 498, students 4,455, fees $1,706,910, sales $1,779,595, coach $494,505, rent $155,992, operating profit $143,321.
   - My tests 1–14 pass. New tests 15–17 (rel3/r16tests.js) pass on the new page and fail on the old 98b30ed6 (1,767 faults).
+- 2026-11-20: blind check round 17 FAILED with 8 findings (VERDICT-17.md, md5 7ca532b2, 10,272 bytes). Its read of round 16's three claims:
+  - ARC: repaired.
+  - Save line: repaired.
+  - Totals: right only at start values.
+- The 8 findings:
+  1. ARC's 5.5 mixes the weekly sheet's 11 students with Master's 2 classes; Master gives 8 ÷ 2 = 4.0. Still one coach either way.
+  2. Class fees total misses its own rounding after an input changes (fill 20: $470,684 vs $470,683.40).
+  3. LDW total misses its own rounding after an input changes (fill 7).
+  4. "Other four parts" moves by $1 although its exact figure never changes.
+  5. P&L profit lines are $1–2 off exact at start values.
+  6. The Rick view's profit lines are $1–2 off his sheet.
+  7. Difference-view totals are off the exact difference.
+  8. One figure shows two values on two tabs (Stafford 2-Wheel 222 vs 221).
+- Cause: rows cannot all add up and also each be rounded from its own exact figure. That is a shape choice for Sergio.
+- Under Piston's word and Sergio's Q37 (one recheck), the job stops and goes to Sergio.
