@@ -1,19 +1,23 @@
 {
  "tab": "pru-planner",
- "page_md5": "3820021ce95bb82cde379d23f81aa08b",
- "data_date": "2026-11-20",
+ "page_md5": "0ca374047992a7f42583b5ea9f17a6af",
+ "data_date": "2026-11-21",
  "sources": [
   {
-   "path": "C:\\Users\\Sergio\\Downloads\\2026 PRU Manual Log v3.xlsx",
-   "md5": "ab99689da045431d30dda84f57000c76"
+   "path": "C:\\AI_Building\\AI_Financials\\04 Budget\\2027\\04 PowerRide University\\2026-11-21 PRU and Consolidated Books from the planner - rick RICK-HOME-2bd93960\\work\\04 PRU GP rebuilt.xlsx",
+   "md5": "3717f2bbb1d275c2e2507975481177b4"
   },
   {
-   "path": "C:\\AI_Building\\AI_Financials\\04 Budget\\2027\\rolled\\02 - Consolidated SGP Budget light.xlsx",
-   "md5": "64e3c1ecdf01ee25cae717657952bfbe"
+   "path": "C:\\Users\\Sergio\\.claude\\uploads\\034bc097-973b-403b-8a90-c7678efdb939\\f32ce509-Class_Data.xlsx",
+   "md5": "542d634b60f1ae711f43206c20ba6503"
+  },
+  {
+   "path": "C:\\Users\\Sergio\\.claude\\uploads\\034bc097-973b-403b-8a90-c7678efdb939\\eb48a496-2026_PRU_Manual_Log_v3.xlsx",
+   "md5": "37c427cf4078f449459b532e4d8e9377"
   }
  ],
  "accepted": {
-  "words": "Accept it as it is (Recommended) (Angie's chat, her Q45); Yes, upload it (Recommended) (the Brain's chat)",
-  "where": "11 Angie's chat (her question 45, relayed by Angie and Piston) and BRAIN-HOME-1118's chat, 2026-11-21 00:30 Falls Church; LAWYER release 3 notes check PASS (AI_LAWYER\\Office desk\\Verdicts\\2026-11-20 PRU 2027 Planner release 3 notes check - 3820021c.md, md5 fd1413c3) after round 1 FAIL (0a0ea817); data date 2026-11-20 = the day the 2026 log was read (Angie's reading); replaces page 49a03ed7"
+  "words": "Accept it (Recommended) (Angie's chat, her Q51); Yes, upload it (Recommended) (the Brain's chat)",
+  "where": "Angie's chat (her question 51), 2026-11-21, Falls Church, and the Brain HOME's chat the same day; relayed by Angie and Piston; LAWYER release 4 check PASS, 0 findings (AI_LAWYER\\Office desk\\Verdicts\\2026-11-21 PRU 2027 Planner release 4 coach cost - 0ca37404.md, md5 2b35d12f); data date 2026-11-21 = the day Rick's round 5 book was read; replaces page 3820021c"
  }
 }
