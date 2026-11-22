@@ -15,3 +15,12 @@ Angie, 2026-11-22. Sergio's Q63, his answer: "Yes, rebuild it (Recommended)". As
 - Each of r7's cases now gives TIED only where stored value and shown agree under rule 2. Example: cell -0.5, format `0%;"neg"`, shown -0.5% comes out OFF.
 - r7's A2 cases (`\\?\` path, `\\localhost\C$` path, hard link) exit 2 with the file unchanged.
 - A blind Opus checker that did not build it writes PASS.
+
+## Addendum 2026-11-22: what the accepted build does beyond the points above
+Sergio's Q64, in Angie's chat: "Fix both, one last check". Sergio's 75, in LAWYER's chat (relayed by Piston): "Keep both (Recommended)".
+- Cells are cut to 15 significant digits, half up, from the exact stored value (int or float), as Excel shows them. A 16-digit whole number is read cut, not as stored (Q64).
+- Any figure or sum that would need rounding is ERROR: the difference column; GL amounts and shown values over 18 whole digits or 6 decimals; cells over 18 whole digits (Q64).
+- A shown value with both $ and % is ERROR (75).
+- The recomputed, difference and GL sum columns print every digit, not 2 decimals, and -0 prints as 0 (75).
+- Point 5's "md5 and size first": each source's md5 and size are checked before it is read, not printed.
+Accepted build: `BUILT r5 PASS\` (tie_out.py a8f90d60, test_tie_out.py c9e6562a). LAWYER: `C:\AI_Building\AI_LAWYER\Office desk\Verdicts\2026-11-22 Angie PRU job 05 tie-out rebuild r5 - after Sergio's 75.md` (md5 14fe45e3, PASS).
