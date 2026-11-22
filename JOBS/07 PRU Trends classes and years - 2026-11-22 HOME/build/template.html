@@ -1,0 +1,553 @@
+<title>PRU 2027 Sales Planner</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style id="app-css">
+__THEME__
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 var(--font,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif)}
+.wrap{max-width:1320px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px))}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+h1{font-size:22px;margin:0 0 2px}
+.sub{color:var(--muted);margin:0 0 10px}
+.draft{display:inline-block;background:var(--warn-bg);color:var(--warn-ink);font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px;margin-left:8px;vertical-align:middle}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:8px 0 16px;flex-wrap:wrap}
+.tab{background:none;border:0;border-bottom:3px solid transparent;padding:10px 12px;font:inherit;font-weight:600;color:var(--muted);cursor:pointer}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:14px}
+.ct{font-weight:700;margin-bottom:4px}
+.controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:end;margin-bottom:12px}
+.controls label,.f{display:flex;flex-direction:column;font-size:12px;color:var(--muted);gap:4px}
+select,input[type=number],input[type=text]{font:inherit;color:var(--ink);background:var(--input);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+input[type=number]{width:84px;text-align:right}
+input[type=text]{width:200px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.seg button{font:inherit;background:var(--input);color:var(--ink);border:0;padding:6px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.kpi .l{font-size:12px;color:var(--muted)}
+.kpi .v{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.kpi .d{font-size:12px;font-variant-numeric:tabular-nums}
+.up{color:var(--good)}.down{color:var(--bad)}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:13px}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{font-size:12px;color:var(--muted);font-weight:600;background:var(--card)}
+th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--card);z-index:1}
+tr.click{cursor:pointer}
+tr.click:hover td{background:var(--accent-soft)}
+tr.sel td{background:var(--accent-soft)}
+tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
+tr.grp td,tr.grp td:first-child{font-weight:700;background:var(--bg)}
+tr.head td,tr.head td:first-child{font-weight:700;color:var(--muted);background:var(--bg);font-size:12px}
+tr.sub td{font-weight:700}
+td.zero{color:var(--muted)}
+.note{font-size:12px;color:var(--muted)}
+.warn{background:var(--warn-bg);color:var(--warn-ink);border-radius:8px;padding:8px 12px;font-size:13px;margin-bottom:12px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:6px 0 0}
+.legend span::before{content:"";display:inline-block;width:12px;height:3px;border-radius:2px;margin-right:5px;vertical-align:middle;background:var(--c)}
+svg text{fill:var(--muted);font-size:11px}
+.btn{font:inherit;font-weight:600;border:1px solid var(--line);background:var(--input);color:var(--ink);border-radius:7px;padding:7px 12px;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn:disabled{opacity:.5;cursor:default}
+.mini{font-size:12px;padding:3px 8px}
+.edited{background:var(--warn-bg)!important}
+.months input{width:62px}
+.grid12 input{width:64px}
+.status{font-size:12px;color:var(--muted)}
+.tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:8px;background:var(--accent-soft);color:var(--ink);margin-left:6px;font-weight:600}
+.init{border-left:4px solid var(--accent)}
+.init.off{opacity:.6;border-left-color:var(--line)}
+.row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:end;margin-bottom:10px}
+@media (max-width:640px){h1{font-size:19px}.kpi .v{font-size:19px}input[type=text]{width:150px}}
+</style>
+<div id="root"></div>
+<script type="application/json" id="plan-state">__STATE__</script>
+<script type="application/json" id="src-data">__DATA__</script>
+<script type="application/json" id="src-pl">__PL__</script>
+<script type="application/json" id="src-extra">__EXTRA__</script>
+<script id="app-code">
+(function(){
+"use strict";
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const J=id=>JSON.parse(document.getElementById(id).textContent);
+const RAW=J("src-data"),PL=J("src-pl"),EXTRA=J("src-extra");
+const Z=()=>new Array(12).fill(0);
+const sum=a=>a.reduce((s,x)=>s+(+x||0),0);
+// Sergio's Q40 (2026-11-20): halves round away from zero, as Excel does (-2.5 shows -3); the float error of an exact half (7.4999999) is removed first
+const RH=(v,dp)=>{const k=Math.pow(10,dp||0),a=Math.round(Math.abs(+v||0)*k*1e6)/1e6;return ((v<0?-1:1)*Math.floor(a+0.5)/k)||0;};
+const F1=v=>RH(v,1).toFixed(1);
+const fmtN=v=>RH(v).toLocaleString("en-US");
+const fmtK=v=>Math.abs(v-Math.round(v))<0.05?fmtN(v):RH(v,1).toLocaleString("en-US",{minimumFractionDigits:1,maximumFractionDigits:1});
+const fmtD=v=>{const r=RH(v);return (r<0?"-$":"$")+Math.abs(r).toLocaleString("en-US");};
+const pct=(a,b)=>b?((a-b)/Math.abs(b)*100):null;
+const rnd=v=>RH(v);
+// one sign-and-colour rule: judged on the figure as shown (rounded); 0 shows as 0, uncoloured, never -0
+const fmtP=p=>{if(p==null)return "–";const r=rnd(p);return (r>0?"+":"")+r+"%";};
+const cl=p=>p==null?"":rnd(p)>0?"up":rnd(p)<0?"down":"";
+// Change % beside a Change cell: sign and colour follow the shown Change; a small non-zero change shows one decimal, never 0%
+const fmtPC=(d,p)=>{const r=rnd(d);if(r===0||p==null)return r===0?"0%":"–";const s=r>0?"+":"-",a=Math.abs(p);return s+(RH(a)>=1?RH(a):RH(a,1)>=0.1?F1(a):"<0.1")+"%";};
+const fmtC=(d,f)=>{const r=rnd(d);return r===0?f(0):(r>0?"+":"")+f(r);};
+// shown figures (Sergio's Q38, 2026-11-20: "Each figure on its own"): every cell and every total is its own exact figure, rounded only where it is printed
+function LR(a){return a.map(q=>+q||0);}
+const colSum=(rows,key)=>MON.map((_,m)=>sum(rows.map(r=>r[key][m])));
+// one label rule for every 2026 figure read from the Manual Log
+const L26="2026 (Manual Log)";
+function yL(y){return y==="2026"?L26:y;}
+function yl(y){return y==="2026"?"2026 registrations (Manual Log)":y;}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+// ---------- state ----------
+let STATE;try{STATE=J("plan-state")||{};}catch(e){STATE={};}
+const DEF={fillAll:null,fillType:{},fillUnit:{},unitMonths:{},price:{},rate:{},showDirt:true,dirt:null,savedAt:null};
+const FILLV=v=>Math.min(100,Math.max(0,Math.round(+v||0)));
+function norm(s){s=Object.assign({},DEF,s||{});["fillType","fillUnit","unitMonths","price","rate"].forEach(k=>{s[k]=JSON.parse(JSON.stringify(s[k]||{}));});   // a fresh copy each time: state never shares an object with DEF or the caller
+  s.dirt=s.dirt?JSON.parse(JSON.stringify(s.dirt)):null;if(s.fillAll!=null)s.fillAll=FILLV(s.fillAll);["fillType","fillUnit"].forEach(k=>{s[k]=Object.assign({},s[k]);Object.keys(s[k]).forEach(q=>{if(s[k][q]!=null)s[k][q]=FILLV(s[k][q]);});});return s;}
+STATE=norm(STATE);
+const DRAFT_KEY="pru-planner-draft-v3";
+const LS_OK=(function(){try{localStorage.setItem("pru-ls-test","1");localStorage.removeItem("pru-ls-test");return true;}catch(e){return false;}})();
+const NOSAVE="Inputs are not saved here; they clear when the page reloads.";
+// the save line keeps its last words across re-renders and reloads (round 16, finding 9)
+const ST_KEPT="Changes kept in this browser; not saved for everyone yet",ST_LOCAL="Saved in this browser only (this page cannot save for everyone here).";
+let STATUS=null;
+try{const d=JSON.parse(localStorage.getItem(DRAFT_KEY)||"null");if(d&&d.basedOn===(STATE.savedAt||"seed")){STATE=norm(d.state);STATUS=d.saved?ST_LOCAL:ST_KEPT;}}catch(e){}
+// theme (this viewer only)
+const THEME_KEY="pru-planner-theme";
+function applyTheme(t){document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark");}
+let theme="dark";try{theme=localStorage.getItem(THEME_KEY)||"dark";}catch(e){}
+if(theme!=="light")theme="dark";
+applyTheme(theme);
+
+// ---------- the Manual Log (trends and the 2026 base) ----------
+function rangeOf(r){return r.replace(" (and other)","").replace(" (Skills Retest)","");}
+const LINES=RAW.filter(l=>l.range!=="2021 Only").map(l=>({key:l.cls+"|"+l.range,cls:l.cls,range:rangeOf(l.range),label:l.range,n:l.n,d:l.d}));
+const CLASSES=[...new Set(LINES.map(l=>l.cls))];
+const RANGES=[...new Set(LINES.map(l=>l.range))].sort((a,b)=>(a==="All Locations")-(b==="All Locations")||a.localeCompare(b));
+const ALL_STUDENTS_26=Z(),ALL_SALES_26=Z();
+LINES.forEach(l=>{for(let m=0;m<12;m++){ALL_STUDENTS_26[m]+=l.n["2026"][m];ALL_SALES_26[m]+=l.d["2026"][m];}});
+function logMonths(cls,range,meas){const o=Z();LINES.forEach(l=>{if(l.cls===cls&&(range==null||l.range===range))for(let m=0;m<12;m++)o[m]+=l[meas]["2026"][m];});return o;}
+// his answers 22 and 23: Rick's 2026 is the 2026 base; the gap to the Manual Log is Rick's month less the log's month, in five named parts
+const LOG26=sum(ALL_SALES_26),RICK26=EXTRA.rick2026,RICK26M=EXTRA.rick2026m,GAP26=RICK26-LOG26,GAP26M=RICK26M.map((q,m)=>q-ALL_SALES_26[m]),PARTS=EXTRA.gapParts;
+const GAPNAME="Budget workbook's 2026 above the Manual Log";
+const CLASSES26=EXTRA.classes2026;
+
+// ---------- release 3 model: Class Data '2027 Projections' (goal accepted 2026-11-20) ----------
+const R3=EXTRA.r3;
+const TYPES=R3.types,SITES=R3.sites;
+const SITE_RANGE={"Manassas Mall":"Manassas -  Mall","Woodbridge":"Woodbridge - Potomac Mills","Fairfax GMU":"Fairfax","Manassas GMU":"Manassas - GMU","Colonial Heights":"Colonial Heights -Southpark","Stafford":"Stafford","Newport News":"Newport News - Patrick Henry Mall","Virginia Beach":"Virginia Beach","Clarksburg":"Clarksburg (MD)"};
+const LOGCLS={"2-Wheel":"2-Wheel","3-Wheel":"3-Wheel","BRC2":"BRC2","First Ride":"IME","ARC":"ARC"};
+const TNAME=t=>t==="First Ride"?"First Ride (IME)":t;
+const MN=[2,3,4,5,6,7,8,9,10]; // Mar-Nov, the months his fill question was read on
+function fillOf(rows,type){let c=0,s=0;rows.forEach(f=>MN.forEach(m=>{c+=f.c[m];s+=f.s[m];}));return c?s/(c*R3.cap[type])*100:null;}
+const FILL26_TYPE={};TYPES.concat(["ARC"]).forEach(t=>{FILL26_TYPE[t]=fillOf(Object.keys(R3.fill26).filter(k=>k.split("|")[1]===t).map(k=>R3.fill26[k]),t);});
+const UNITS=R3.units.map(u=>{const key=u.site+"|"+u.type,f=R3.fill26[key],f26=f?fillOf([f],u.type):null;
+  return {key,site:u.site,type:u.type,m0:u.m.slice(),how:u.how,f26,fStart:f26!=null?f26:FILL26_TYPE[u.type],
+    fSrc:f26!=null?"2026 Mar–Nov at this site (Manual Log, Master)":"no 2026 classes here: "+TNAME(u.type)+" at all sites, 2026 Mar–Nov"};});
+const CLASSES27_START=sum(UNITS.map(u=>sum(u.m0)));
+// carried lines: classes with no row in his table, kept at their 2026 students (goal item 4)
+const HD_N=logMonths("HD",null,"n"),HD_D=logMonths("HD",null,"d"),ARC_N=logMonths("ARC",null,"n");
+const PRICE_START=Object.assign({},R3.price27,{HD:sum(HD_N)?sum(HD_D)/sum(HD_N):0});
+function priceOf(t){return STATE.price[t]!=null&&STATE.price[t]!==""?+STATE.price[t]:PRICE_START[t];}
+const ARC_CLS=Z(),ARC_S26=Z();Object.keys(R3.fill26).filter(k=>k.endsWith("|ARC")).forEach(k=>{R3.fill26[k].c.forEach((c,m)=>{ARC_CLS[m]+=c;});R3.fill26[k].s.forEach((q,m)=>{ARC_S26[m]+=q;});});
+const CARRIED=[{key:"HD",cls:"HD",range:"Manassas - GMU",label:"HD",n:HD_N,cls26:null},{key:"ARC",cls:"ARC",range:"All Locations",label:"ARC",n:ARC_N,cls26:ARC_CLS,s26:ARC_S26}];
+function rateOf(s){if(STATE.rate[s]!=null&&STATE.rate[s]!=="")return +STATE.rate[s];const r=R3.rent[s];return r?(r.renew!=null?r.renew:r.rate):0;}
+// his answer 36: "Classes share weekends": weekends needed = classes x 2026 weekends used / 2026 classes, by site (Manual Log, Master)
+function wkShare(s){const w=R3.weekends26[s];return w&&w.classes?w.weekends/w.classes:1;}
+function storageOf(s){const r=R3.rent[s];return r&&r.storage?r.storage:0;}
+function fillPct(u){const c=STATE;if(c.fillUnit[u.key]!=null)return +c.fillUnit[u.key];if(c.fillType[u.type]!=null)return +c.fillType[u.type];if(c.fillAll!=null)return +c.fillAll;return u.fStart;}
+function unitPlan(u){
+  const cls=STATE.unitMonths[u.key]?STATE.unitMonths[u.key].slice():u.m0.slice();
+  const f=fillPct(u),cap=R3.cap[u.type],spc=cap*f/100,price=priceOf(u.type),two=+F1(spc)>6;
+  const per=R3.coach[u.type][two?0:1],n=cls.map(c=>c*spc);
+  return {cls,f,cap,spc,price,n,s:n.map(q=>q*price),two,coachPer:per,coach:cls.map(c=>c*per)};
+}
+// ARC: students per class = its 2026 students ÷ its 2026 classes, both from the Manual Log's Master sheet (as the fill % is), shown on the plan tab; the coach rule reads that figure at one decimal
+function carriedPlan(c){const price=priceOf(c.key),n=c.n.slice();let coach=Z(),per=null,two=false,spc=null;
+  if(c.cls26){spc=sum(c.cls26)?sum(c.s26)/sum(c.cls26):0;two=+F1(spc)>6;per=R3.coach.ARC[two?0:1];coach=c.cls26.map(q=>q*per);}
+  return {price,n,s:n.map(q=>q*price),coach,coachPer:per,two,spc};}
+// his answer on LDW: "LDW just figure a % to sales ad keep it" - Jan-Sep 2026, Rick's table
+const LDW26=R3.ldw.v26,LDW_RATE=R3.ldw.v26/R3.ldw.fees26;
+const OTHER4_26=GAP26-LDW26; // the other four parts, carried at their 2026 amounts (my pick)
+const RA_CLASSES=15; // range aid classes, as in 2026 (my pick)
+function planAgg(){
+  const t={n:Z(),s:Z()},coach=Z(),cls=Z(),bySite={},byType={};
+  SITES.forEach(s=>{bySite[s]={cls:Z(),n:Z(),s:Z()};});
+  const ups=UNITS.map(u=>({u,p:unitPlan(u)}));
+  ups.forEach(({u,p})=>{const bs=bySite[u.site],bt=(byType[u.type]=byType[u.type]||{cls:Z(),n:Z(),s:Z(),coach:Z()});
+    for(let m=0;m<12;m++){t.n[m]+=p.n[m];t.s[m]+=p.s[m];coach[m]+=p.coach[m];cls[m]+=p.cls[m];bs.cls[m]+=p.cls[m];bs.n[m]+=p.n[m];bs.s[m]+=p.s[m];bt.cls[m]+=p.cls[m];bt.n[m]+=p.n[m];bt.s[m]+=p.s[m];bt.coach[m]+=p.coach[m];}});
+  const car=CARRIED.map(c=>({c,p:carriedPlan(c)}));
+  car.forEach(({p})=>{for(let m=0;m<12;m++){t.n[m]+=p.n[m];t.s[m]+=p.s[m];coach[m]+=p.coach[m];}});
+  const aid=MON.map(()=>R3.rangeAid.rate*RA_CLASSES/12);
+  const rentBy={};SITES.forEach(s=>{rentBy[s]=bySite[s].cls.map(c=>c*wkShare(s)*rateOf(s)+storageOf(s)/12);});
+  const rent=MON.map((_,m)=>sum(SITES.map(s=>rentBy[s][m])));
+  const ldw=t.s.map(q=>q*LDW_RATE),other=GAP26M.map(q=>q*OTHER4_26/GAP26);
+  const gap=MON.map((_,m)=>ldw[m]+other[m]);
+  return {core:t,ups,car,coach,aid,cls,bySite,byType,rentBy,rent,ldw,other,gap};
+}
+// 2027 lines in the log's range and class names, for the Trends tab's 2027B
+function plan27Lines(agg){
+  const out=agg.ups.map(({u,p})=>({range:(u.type==="2-Wheel"||u.type==="3-Wheel")?SITE_RANGE[u.site]:"All Locations",cls:LOGCLS[u.type],n:p.n,s:p.s}));
+  agg.car.forEach(({c,p})=>out.push({range:c.range,cls:c.cls,n:p.n,s:p.s}));
+  return out;
+}
+// discounts: information only (goal item 5), at 2026's claims per 2-Wheel student
+function discounts(agg){const n2=sum((agg.byType["2-Wheel"]||{n:Z()}).n),k=n2/R3.students2W26;
+  return [["Military",R3.disc.military[0],R3.disc.military[1],R3.disc.military[1]*k],["VIP",R3.disc.vip[0],R3.disc.vip[1],R3.disc.vip[1]*k]];}
+// Dirt Bike: shown on its own, never in the P&L (these numbers stay out of the P&L)
+// his Q74: edited by weekend, month by month. Start values give Class Data's plan: 2 classes a weekend (its note), one weekend a month, coach = 2 classes x its rate a class
+const DIRT_CPW=2;
+function dirtIn(){const d=R3.dirt,x=STATE.dirt||{},w0=d.classes/12/DIRT_CPW,at=(a,m,z)=>a&&a[m]!=null?a[m]:z;
+  return {wk:MON.map((_,m)=>at(x.wk,m,w0)),cpw:MON.map((_,m)=>at(x.cpw,m,DIRT_CPW)),spc:x.spc!=null?x.spc:d.spc,rent:x.rent!=null?x.rent:d.rent,coach:x.coach!=null?x.coach:d.coach*DIRT_CPW};}
+function dirtCalc(){const d=R3.dirt,I=dirtIn();
+  const cls=MON.map((_,m)=>I.wk[m]*I.cpw[m]),n=cls.map(c=>c*I.spc),s=n.map(q=>q*d.price),coach=I.wk.map(w=>w*I.coach),rent=I.wk.map(w=>w*I.rent);
+  return {cls,n,s,coach,rent};}
+
+// ---------- P&L model ----------
+const PLR={};PL.forEach(p=>{PLR[p.row]=p;});
+const v=(r,m)=>(PLR[r]&&PLR[r].m[m])||0;
+const RICK_TRAINING=MON.map((_,m)=>v(13,m)), RICK_RENT=MON.map((_,m)=>v(72,m)), RICK_SAL=MON.map((_,m)=>v(33,m)), RICK_COS=MON.map((_,m)=>v(16,m));
+const TAXRATE=MON.map((_,m)=>v(100,m)?v(101,m)/v(100,m):0);
+const FIXED=new Set([27,33,60,62,73,76,85,86,87,88,93,94,98]); // his answer 11 "Hold fixed costs"; Salaries 33 stays Rick's (his Q49, release 4); 16 and 72 are built below
+const SUMS={14:[8,9,10,11,12,13],18:[16,17],30:[24,25,26,27,28,29],38:[33,34,35,36,37],69:[],78:[72,73,74,75,76,77],89:[85,86,87,88]};
+for(let r=41;r<=68;r++)SUMS[69].push(r);
+const HEADS=new Set(PL.filter(p=>p.m.every(x=>x==null)).map(p=>p.row));
+function budget(salesOverride){
+  const agg=planAgg();
+  const sales=salesOverride||MON.map((_,m)=>agg.core.s[m]+agg.gap[m]);
+  const B={};
+  for(let m=0;m<12;m++){
+    const f=RICK_TRAINING[m]?sales[m]/RICK_TRAINING[m]:0;
+    PL.forEach(p=>{const r=p.row;if(HEADS.has(r)||r===21)return;(B[r]=B[r]||Z());
+      if(r===13)B[r][m]=sales[m];
+      else if(r===16)B[r][m]=salesOverride?RICK_COS[m]:agg.coach[m]+agg.aid[m];
+      else if(r===72)B[r][m]=salesOverride?RICK_RENT[m]:agg.rent[m];
+      else if(FIXED.has(r))B[r][m]=v(r,m);
+      else if(!(r in SUMS)&&![20,80,82,91,96,100,101,103].includes(r))B[r][m]=v(r,m)*f;
+    });
+    Object.keys(SUMS).forEach(k=>{B[k][m]=SUMS[k].reduce((s,r)=>s+((B[r]||Z())[m]||0),0);});
+    B[20][m]=B[14][m]-B[18][m];
+    B[80][m]=B[30][m]+B[38][m]+B[69][m]+B[78][m];
+    B[82][m]=B[20][m]-B[80][m];
+    B[91][m]=B[82][m]+B[89][m];
+    B[96][m]=B[91][m]-B[93][m]-B[94][m];
+    B[100][m]=B[96][m]-B[98][m];
+    B[101][m]=B[100][m]*TAXRATE[m];
+    B[103][m]=B[100][m]-B[101][m];
+  }
+  return {B,agg,sales};
+}
+// what the tables show: leaves rounded by LR, every total summed from shown leaves
+function shownPlan(agg){
+  const U=agg.ups.map(({u,p})=>({u,p,c:p.cls,n:p.n,s:p.s}));
+  const C=agg.car.map(({c,p})=>({c,p,n:p.n,s:p.s,coach:p.coach}));
+  const site={};SITES.forEach(st=>{const b=agg.bySite[st];site[st]={c:b.cls,n:b.n,s:b.s};});
+  const type={};Object.keys(agg.byType).forEach(t=>{const b=agg.byType[t];type[t]={c:b.cls,coach:b.coach};});
+  const gap=agg.gap,sales=MON.map((_,m)=>agg.core.s[m]+gap[m]);
+  return {U,C,site,type,cls:agg.cls,n:agg.core.n,fees:agg.core.s,ldw:agg.ldw,other:agg.other,gap,sales,parts:PARTS.slice(1).map(x=>x[1]),
+    aid:agg.aid,sal:MON.map((_,m)=>agg.coach[m]+agg.aid[m]),rentBy:agg.rentBy,rent:agg.rent};
+}
+// the P&L as printed: every line, subtotal and profit line is its exact figure
+function shownPL(get){const S={};PL.forEach(p=>{const r=p.row;if(HEADS.has(r)||r===21)return;S[r]=MON.map((_,m)=>+get(r,m)||0);});return S;}
+// self-test: at Rick's own Training, Salaries and Rent every line equals Rick's
+const SELFTEST=(function(){let worst=0,where="";const b=budget(RICK_TRAINING.slice()).B;
+  PL.forEach(p=>{if(HEADS.has(p.row)||p.row===21)return;for(let m=0;m<12;m++){const d=Math.abs((b[p.row][m]||0)-(p.m[m]||0));if(d>worst){worst=d;where=p.label+" "+MON[m];}}});
+  return {worst,where};})();
+
+// ---------- UI ----------
+const root=document.getElementById("root");
+let tab="trends";
+const T={measure:"n",cls:"All",year:"2026",sel:"Total",on:{"2024":true,"2025":true,"2026":true,"2027":true}};
+const P={open:null};
+const BV={view:"plan"};
+function el(tag,attrs,html){const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==="class")e.className=attrs[k];else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;}
+const TABS=[["trends","Monthly trends by range"],["plan","2027 plan"],["inits","New initiatives"],["budget","2027 Budget (P&L)"]];
+function render(){
+  const y=window.scrollY;
+  root.innerHTML="";
+  const w=el("div",{class:"wrap"});
+  const top=el("div",{class:"top"});
+  top.appendChild(el("div",null,'<h1>PRU 2027 Sales Planner<span class="draft">DRAFT · not checked</span></h1><p class="sub">2027 classes × seats × fill %, priced, flowing into the 2027 budget.</p>'));
+  const tsel=el("label",{class:"f"},`Theme<select id="theme"><option value="light" ${theme==="light"?"selected":""}>Light</option><option value="dark" ${theme==="dark"?"selected":""}>Dark</option></select>`);
+  tsel.querySelector("select").onchange=e=>{theme=e.target.value;try{localStorage.setItem(THEME_KEY,theme);}catch(_){}applyTheme(theme);};
+  top.appendChild(tsel);
+  w.appendChild(top);
+  const tb=el("div",{class:"tabs",role:"tablist"});
+  TABS.forEach(([id,lab])=>{const b=el("button",{class:"tab",role:"tab","aria-selected":String(tab===id)},lab);b.onclick=()=>{tab=id;render();window.scrollTo(0,0);};tb.appendChild(b);});
+  w.appendChild(tb);
+  w.appendChild(({trends:renderTrends,plan:renderPlan,inits:renderInits,budget:renderBudget})[tab]());
+  w.appendChild(el("p",{class:"note"},"Sources: 2026_PRU_Manual_Log_v3.xlsx (md5 37c427cf), tabs WklyConsolidating Wd (students and sales) and Master (classes and students per class, by class code only). Class_Data.xlsx, updated quantities of 2026-11-20 (md5 542d634b), tab 2027 Projections (2027 classes, prices, coach cost, Dirt Bike). 2027 rent table of 2026-11-20. 2027 budget: 04 PRU GP rebuilt.xlsx (md5 3717f2bb), tab PRU-pl."));
+  root.appendChild(w);
+  window.scrollTo(0,y);
+}
+
+// TAB 1
+function seriesFor(range,clsF,measure,year){const out=Z();LINES.forEach(l=>{if((range==="Total"||range==="All"||l.range===range)&&(clsF==="All"||l.cls===clsF)){const a=l[measure][year];for(let m=0;m<12;m++)out[m]+=a[m]||0;}});return out;}
+// job 07 (his Q71, Q72, Q73): Trends shows 2024-2026, with a year filter and a Classes view
+const TY=["2024","2025","2026","2027"];
+const NA="not available";
+// classes per month: Master's class codes (release 3's fill26), each at the site the source names
+function classSeries(range,clsF,year){
+  if(year!=="2026"||(clsF!=="All"&&!Object.values(LOGCLS).includes(clsF)))return null;
+  const out=Z();
+  Object.entries(R3.fill26).forEach(([k,e])=>{const [site,type]=k.split("|"),rg=SITE_RANGE[site]||"All Locations";
+    if((range==="Total"||rg===range)&&(clsF==="All"||LOGCLS[type]===clsF))for(let m=0;m<12;m++)out[m]+=e.c[m];});
+  return out;
+}
+// 2027B: the 2027 plan tab's figures, live. Students and class fees by the plan's lines; classes by its site rows. A class with no 2027 figure is null, never 0
+function plan27Series(range,clsF,meas){const agg=planAgg(),out=Z();
+  if(meas==="c"){if(clsF!=="All"&&!agg.ups.some(({u})=>LOGCLS[u.type]===clsF))return null;
+    agg.ups.forEach(({u,p})=>{const rg=SITE_RANGE[u.site]||"All Locations";
+      if((range==="Total"||rg===range)&&(clsF==="All"||LOGCLS[u.type]===clsF))for(let m=0;m<12;m++)out[m]+=p.cls[m];});
+    return out;}
+  const lines=plan27Lines(agg);if(clsF!=="All"&&!lines.some(l=>l.cls===clsF))return null;
+  lines.forEach(l=>{if((range==="Total"||l.range===range)&&(clsF==="All"||l.cls===clsF))for(let m=0;m<12;m++)out[m]+=meas==="n"?l.n[m]:l.s[m];});
+  return out;}
+function trendSeries(range,clsF,meas,year){return year==="2027"?plan27Series(range,clsF,meas):meas==="c"?classSeries(range,clsF,year):seriesFor(range,clsF,meas,year);}
+function renderTrends(){
+  const box=el("div");const meas=T.measure,f=meas==="d"?fmtD:fmtN,noCls=meas==="c"&&T.sel==="All Locations",sel=noCls?"Total":T.sel;
+  const years=TY.filter(y=>T.on[y]);if(!years.includes(T.year))T.year=years[years.length-1];
+  const lab=y=>y==="2027"?(meas==="c"?"2027B classes":"2027B"):meas==="c"?y+" classes":yl(y);
+  const ctr=el("div",{class:"controls"});
+  ctr.innerHTML=`<div><div class="note" style="margin-bottom:4px">Show</div><div class="seg"><button data-m="n" aria-pressed="${meas==="n"}">Students</button><button data-m="d" aria-pressed="${meas==="d"}">Sales $</button><button data-m="c" aria-pressed="${meas==="c"}">Classes</button></div></div>
+  <div><div class="note" style="margin-bottom:4px">Years</div><div class="seg">${TY.map(y=>`<button data-y="${y}" aria-pressed="${!!T.on[y]}" style="box-shadow:inset 0 -4px 0 var(--t${y})" ${T.on[y]&&years.length===1?'disabled title="At least one year stays on"':""}>${y==="2027"?"2027B":y}</button>`).join("")}</div></div>
+  <label>Class<select id="t-cls"><option>All</option>${CLASSES.map(c=>`<option ${c===T.cls?"selected":""}>${esc(c)}</option>`).join("")}</select></label>
+  <label>Year in table<select id="t-year">${years.map(y=>`<option value="${y}" ${y===T.year?"selected":""}>${lab(y)}</option>`).join("")}</select></label>`;
+  ctr.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{T.measure=b.dataset.m;render();});
+  ctr.querySelectorAll("[data-y]").forEach(b=>b.onclick=()=>{const y=b.dataset.y;if(T.on[y]&&years.length===1)return;T.on[y]=!T.on[y];render();});
+  ctr.querySelector("#t-cls").onchange=e=>{T.cls=e.target.value;render();};
+  ctr.querySelector("#t-year").onchange=e=>{T.year=e.target.value;render();};
+  box.appendChild(ctr);
+  box.appendChild(el("div",{class:"warn"},L26+": November is month-to-date and December holds bookings so far, so both will still grow."+(meas==="c"?" Actual classes are counted for 2026 only: no class source for 2024 or 2025 yet."+(noCls?" All Locations has no classes of its own, because each class stands at its site, so this shows all ranges.":""):"")));
+  const card=el("div",{class:"card"});
+  card.appendChild(el("div",{class:"ct"},esc(sel==="Total"?"All ranges":sel)+" · "+(meas==="n"?"students":meas==="d"?"registrations $":"classes")+" by month (Manual Log; 2027B from the 2027 plan)"+(T.cls!=="All"?" · "+esc(T.cls):"")));
+  card.appendChild(el("div",{class:"note"},"Click a range in the table to chart it."));
+  const ser=years.map(y=>({y,c:`var(--t${y})`,hi:true,dash:y==="2027",lab:lab(y),v:trendSeries(sel,T.cls,meas,y)}));
+  const drawn=ser.filter(s=>s.v);card.appendChild(drawn.length?chart(drawn,f):el("p",{class:"note"},meas==="c"&&!years.includes("2026")&&!years.includes("2027")?"No class source for the years on.":NA+" for this class."));card.appendChild(legend(ser.map(s=>[s.y,s.lab+": "+(s.v?f(sum(s.v)):NA),s.c])));
+  box.appendChild(card);
+  const tc=el("div",{class:"card"});const prior=String(+T.year-1);
+  const tv=trendSeries("Total",T.cls,meas,T.year);
+  if(!tv){tc.innerHTML=`<p class="note" style="margin:0">${esc(lab(T.year))}${T.cls!=="All"?" · "+esc(T.cls):""}: ${NA}.</p>`;}
+  else{
+    const hasPrior=years.includes(prior)&&!!trendSeries("Total",T.cls,meas,prior);
+    let h=`<div class="tw"><table><thead><tr><th>Range</th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>${lab(T.year)}</th>${hasPrior?`<th>${prior}</th><th>Change</th>`:""}</tr></thead><tbody>`;
+    RANGES.map(r=>({r,v:trendSeries(r,T.cls,meas,T.year),p:hasPrior?trendSeries(r,T.cls,meas,prior):null})).filter(x=>sum(x.v)>0||(x.p&&sum(x.p)>0)).forEach(x=>{const t=sum(x.v),pt=x.p?sum(x.p):0,pc=pct(t,pt);
+      h+=`<tr class="click${sel===x.r?" sel":""}" data-r="${esc(x.r)}"><td>${esc(x.r)}</td>${x.v.map(q=>`<td class="${q?"":"zero"}">${q?f(q):"–"}</td>`).join("")}<td><b>${f(t)}</b></td>${hasPrior?`<td>${f(pt)}</td><td class="${cl(pc)}">${fmtP(pc)}</td>`:""}</tr>`;});
+    const tp=hasPrior?trendSeries("Total",T.cls,meas,prior):null,tt=sum(tv),tpp=tp?sum(tp):0;
+    h+=`<tr class="tot click${sel==="Total"?" sel":""}" data-r="Total"><td>All ranges</td>${tv.map(q=>`<td>${f(q)}</td>`).join("")}<td>${f(tt)}</td>${hasPrior?`<td>${f(tpp)}</td><td class="${cl(pct(tt,tpp))}">${fmtP(pct(tt,tpp))}</td>`:""}</tr></tbody></table></div>`;
+    tc.innerHTML=h;tc.querySelectorAll("tr.click").forEach(tr=>tr.onclick=()=>{T.sel=tr.dataset.r;render();});
+  }
+  box.appendChild(tc);
+  box.appendChild(el("p",{class:"note"},"Ranges with nothing in the year shown or the year before are left out. All Locations is not a place: it holds ARC, BRC2, IME and Other, which the log's summary does not split by range."+(meas==="c"?" Classes stand at their real site, so BRC2, ARC and First Ride classes are in their range here while their students stay under All Locations. HD and Other have no class count of their own. 2027B classes are the 2027 plan tab's; ARC has no 2027 class row there.":"")+(meas==="d"?" 2027B Sales $ is class fees, to compare with the log's registrations. The budget's 2027 sales also hold Loss Damage Waiver and four other parts.":"")+" 2027B follows the inputs on the 2027 plan tab. Dirt Bike is not in it."));
+  return box;
+}
+function legend(items){const lg=el("div",{class:"legend"});items.forEach(([y,t,c])=>lg.appendChild(el("span",{style:`--c:${c||`var(--y${y})`}`},esc(t))));return lg;}
+function chart(series,f){
+  const W=900,H=260,pl=62,pr=12,pt=10,pb=26;let max=0,min=0;series.forEach(s=>s.v.forEach(q=>{if(q>max)max=q;if(q<min)min=q;}));if(max<=0)max=1;
+  const step=Math.max(niceStep((max-min)/4),f===fmtN||f===fmtD?1:0),top=Math.ceil(max/step)*step,bot=Math.floor(min/step)*step;
+  const x=m=>pl+(W-pl-pr)*m/11,y=q=>pt+(H-pt-pb)*(1-(q-bot)/(top-bot));
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Monthly chart" style="display:block;max-height:300px">`;
+  for(let q=bot;q<=top+1e-9;q+=step)s+=`<line x1="${pl}" x2="${W-pr}" y1="${y(q)}" y2="${y(q)}" stroke="var(--line)"/><text x="${pl-6}" y="${y(q)+4}" text-anchor="end">${f(q)}</text>`;
+  MON.forEach((m,i)=>{s+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${m}</text>`;});
+  series.forEach(se=>{const hi=se.hi||se.y==="2026"||se.y==="2027"||se.y==="rick",col=se.c||`var(--y${se.y})`;
+    s+=`<polyline fill="none" stroke="${col}" stroke-width="${hi?3:1.8}" points="${se.v.map((q,i)=>x(i).toFixed(1)+","+y(q).toFixed(1)).join(" ")}"${se.y==="rick"||se.dash?' stroke-dasharray="6 4"':""}><title>${se.lab||(se.y==="rick"?"Budget workbook":yl(se.y))}</title></polyline>`;
+    if(hi)se.v.forEach((q,i)=>{s+=`<circle cx="${x(i)}" cy="${y(q)}" r="3" fill="${col}"><title>${se.lab||(se.y==="rick"?"Budget workbook":yl(se.y))}, ${MON[i]}: ${f(q)}</title></circle>`;});});
+  const d=el("div");d.innerHTML=s+"</svg>";return d;
+}
+function niceStep(r){if(r<=0)return 1;const p=Math.pow(10,Math.floor(Math.log10(r)));const n=r/p;return (n<=1?1:n<=2?2:n<=5?5:10)*p;}
+
+// TAB 2
+const fmtF=f=>f==null?"–":F1(f)+"%";
+function renderPlan(){
+  const box=el("div");const agg=planAgg(),SP=shownPlan(agg);
+  const n26=sum(ALL_STUDENTS_26),s26=sum(ALL_SALES_26),N=sum(SP.n),G27=sum(SP.gap),S=sum(SP.sales),C27=sum(SP.cls);
+  const seats=sum(agg.ups.map(({p})=>sum(p.cls)*p.cap)),unitN=sum(SP.U.map(x=>sum(x.n)));
+  const k=el("div",{class:"kpis"});const kp=(l,a,b)=>`<div class="kpi"><div class="l">${l}</div><div class="v">${a}</div><div class="d">${b}</div></div>`;
+  k.innerHTML=kp("2027 classes",fmtK(C27),`Class Data (updated 2026-11-20), 2027 Projections (start ${fmtN(CLASSES27_START)}) · ${fmtN(sum(CLASSES26))} held or booked in ${L26} (December: bookings so far)`)
+   +kp("2027 students",fmtN(N),`<span class="${cl(pct(N,n26))}">${fmtP(pct(N,n26))}</span> vs 2026 registrations ${fmtN(n26)} (Manual Log)`)
+   +kp("2027 sales",fmtD(S),`<span class="${cl(pct(S,RICK26))}">${fmtP(pct(S,RICK26))}</span> vs workbook 2026 ${fmtD(RICK26)} (PRU-pl)<br>= class fees ${fmtD(sum(SP.fees))} + ${fmtD(G27)} in the five parts below`)
+   +kp("Seats filled, 2027",fmtF(seats?unitN/seats*100:null),`${fmtN(unitN)} students in ${fmtN(seats)} seats (12 a class; 4 for First Ride)`);
+  box.appendChild(k);
+  const ctr=el("div",{class:"card"});
+  const fin=(id,val,ph,lab)=>`<label>${lab}<input type="number" min="0" max="100" step="1" id="${id}" value="${val==null?"":val}" placeholder="${ph}" class="${val==null?"":"edited"}"></label>`;
+  ctr.innerHTML=`<div class="ct">Fill % (students per seat) and prices</div><div class="controls" style="margin:0">
+   ${fin("f-all",STATE.fillAll,"2026",`Fill %, all classes`)}
+   ${TYPES.map(ty=>fin("f-t-"+ty,STATE.fillType[ty],fmtF(FILL26_TYPE[ty]),`Fill %, ${esc(TNAME(ty))}`)).join("")}</div>
+   <div class="controls" style="margin:8px 0 0">${TYPES.concat(["ARC","HD"]).map(ty=>`<label>Price, ${esc(TNAME(ty))}<input type="number" step="1" data-price="${esc(ty)}" value="${Math.round(priceOf(ty))}" class="${STATE.price[ty]!=null?"edited":""}" title="Start value ${fmtD(PRICE_START[ty])}"></label>`).join("")}
+   ${saveBar()}</div>
+   <p class="note" style="margin:8px 0 0">Leave a fill box empty to use 2026's fill (2026 Mar–Nov, Manual Log, Master sheet). A site's own fill, typed in the table, wins over its class type's; a class type's wins over all classes. Prices: Class Data, 2027 Projections M17–M21; HD's start price is its 2026 average (Manual Log).</p>`;
+  const setF=(obj,key,val)=>{if(val==="")delete obj[key];else obj[key]=+val;};
+  ctr.querySelector("#f-all").onchange=e=>{STATE.fillAll=e.target.value===""?null:FILLV(e.target.value);changed();};
+  TYPES.forEach(ty=>{ctr.querySelector("#f-t-"+CSS.escape(ty)).onchange=e=>{setF(STATE.fillType,ty,e.target.value===""?"":FILLV(e.target.value));changed();};});
+  ctr.querySelectorAll("[data-price]").forEach(inp=>inp.onchange=e=>{setF(STATE.price,inp.dataset.price,e.target.value===""?"":Math.max(0,Math.round(+e.target.value||0)));changed();});
+  wireSave(ctr);box.appendChild(ctr);
+  const tc=el("div",{class:"card"});
+  let h=`<div class="tw"><table><thead><tr><th>Site / class</th><th>2026 fill % (Manual Log, Mar–Nov)</th><th>2027 classes</th><th>2027 fill %</th><th>Students per class</th><th>2027 students</th><th>Price</th><th>2027 sales</th><th>Coaches</th><th></th></tr></thead><tbody>`;
+  SITES.forEach(site=>{const us=SP.U.filter(x=>x.u.site===site);if(!us.length)return;const bs=SP.site[site];
+    h+=`<tr class="grp"><td>${esc(site)}</td><td></td><td>${fmtK(sum(bs.c))}</td><td></td><td></td><td>${fmtN(sum(bs.n))}</td><td></td><td>${fmtD(sum(bs.s))}</td><td></td><td></td></tr>`;
+    us.forEach(({u,p,c:sc,n:sn,s:ss})=>{const ed=STATE.fillUnit[u.key]!=null,me=!!STATE.unitMonths[u.key];
+      h+=`<tr data-k="${esc(u.key)}"><td style="padding-left:22px">${esc(TNAME(u.type))}</td><td title="${esc(u.fSrc)}">${fmtF(u.fStart)}${u.f26==null?"*":""}</td>
+      <td class="${me?"edited":""}">${fmtK(sum(sc))}</td>
+      <td><input type="number" min="0" max="100" step="1" class="in-f${ed?" edited":""}" value="${ed?STATE.fillUnit[u.key]:""}" placeholder="${fmtF(p.f)}" aria-label="2027 fill % for ${esc(TNAME(u.type))} at ${esc(site)}"></td>
+      <td>${F1(p.spc)}</td><td>${fmtN(sum(sn))}</td><td>${fmtD(p.price)}</td><td>${fmtD(sum(ss))}</td><td>${p.two?"two":"one"}</td>
+      <td><button class="btn mini in-m">${P.open===u.key?"Close":"Months"}</button>${ed||me?' <button class="btn mini in-x" title="Back to start values">↺</button>':""}</td></tr>`;
+      if(P.open===u.key){const f=R3.fill26[u.key];h+=`<tr class="months" data-k="${esc(u.key)}"><td colspan="10"><div class="tw"><table><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr>
+        ${f?`<tr><td>Classes held or booked ${L26}</td>${LR(f.c,0).map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(LR(f.c,0)))}</td></tr><tr><td>Students ${L26}</td>${LR(f.s,0).map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(LR(f.s,0)))}</td></tr>`:""}
+        <tr><td><b>2027 classes</b></td>${sc.map((q,m)=>`<td><input type="number" step="0.1" min="0" class="in-mo${me?" edited":""}" data-m="${m}" value="${RH(q,1)}" aria-label="${MON[m]} 2027 classes"></td>`).join("")}<td>${fmtK(sum(sc))}</td></tr>
+        <tr><td>2027 students</td>${sn.map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(sn))}</td></tr></table></div>
+        <p class="note">Start months: Class Data, 2027 Projections: ${esc(u.how)}.</p></td></tr>`;}
+    });
+  });
+  h+=`<tr class="grp"><td>Carried at 2026 students<div class="note">no row in Class Data's 2027 table</div></td><td></td><td></td><td></td><td></td><td>${fmtN(sum(SP.C.map(x=>sum(x.n))))}</td><td></td><td>${fmtD(sum(SP.C.map(x=>sum(x.s))))}</td><td></td><td></td></tr>`;
+  SP.C.forEach(({c,p,n:cn,s:cs})=>{h+=`<tr><td style="padding-left:22px">${esc(c.label)}<div class="note">${L26}: ${fmtN(sum(c.n))} students${c.cls26?"; Master: "+fmtN(sum(c.s26))+" students in "+fmtN(sum(c.cls26))+" classes":""}</div></td><td></td><td></td><td></td><td ${c.cls26?`title="${esc(fmtN(sum(c.s26))+" students ÷ "+fmtN(sum(c.cls26))+" classes, "+L26+", Master")}"`:""}>${c.cls26?F1(p.spc):""}</td><td>${fmtN(sum(cn))}</td><td>${fmtD(p.price)}</td><td>${fmtD(sum(cs))}</td><td>${c.cls26?(p.two?"two":"one"):""}</td><td></td></tr>`;});
+  h+=`<tr class="grp"><td>${GAPNAME}<div class="note">2026: ${fmtD(GAP26)} = workbook ${fmtD(RICK26)} − Manual Log ${fmtD(s26)}</div></td><td></td><td></td><td></td><td></td><td></td><td></td><td>${fmtD(G27)}</td><td></td><td></td></tr>`;
+  PARTS.forEach(([nm,val],i)=>{const v27=i===0?sum(SP.ldw):SP.parts[i-1];h+=`<tr><td style="padding-left:22px">${esc(nm)}<div class="note">2026: ${fmtD(val)}${i===0?` · 2027: ${(LDW_RATE*100).toFixed(4)}% of class fees`:" · 2027: kept at 2026"}</div></td><td></td><td></td><td></td><td></td><td></td><td></td><td>${fmtD(v27)}</td><td></td><td></td></tr>`;});
+  h+=`<tr class="tot"><td>All</td><td></td><td>${fmtK(C27)}</td><td></td><td></td><td>${fmtN(N)}</td><td></td><td>${fmtD(S)}</td><td></td><td></td></tr></tbody></table></div>
+   <p class="note">* No 2026 classes of this type at this site; its start fill is the type's at all sites. Students per class = capacity × fill % (12 a class; 4 for First Ride). Coaches: one where students per class are 6 or fewer, two where more. Rounding: each figure is rounded on its own from its exact value, so a total or a year can differ from adding the rounded rows above or beside it; the figure shown is the exact one, rounded.</p>`;
+  tc.innerHTML=h;
+  tc.querySelectorAll("tr[data-k]").forEach(tr=>{const key=tr.dataset.k;
+    const f=tr.querySelector(".in-f");if(f)f.onchange=e=>{if(e.target.value==="")delete STATE.fillUnit[key];else STATE.fillUnit[key]=FILLV(e.target.value);changed();};
+    const mb=tr.querySelector(".in-m");if(mb)mb.onclick=()=>{P.open=P.open===key?null:key;render();};
+    const xb=tr.querySelector(".in-x");if(xb)xb.onclick=()=>{delete STATE.fillUnit[key];delete STATE.unitMonths[key];changed();};
+    tr.querySelectorAll(".in-mo").forEach(inp=>inp.onchange=e=>{const u=UNITS.find(z=>z.key===key);const cur=unitPlan(u).cls.slice();cur[+inp.dataset.m]=Math.max(0,Math.round((+e.target.value||0)*10)/10);STATE.unitMonths[key]=cur;changed();});});
+  box.appendChild(tc);
+  const dc=el("div",{class:"card"});const ds=discounts(agg);
+  dc.innerHTML=`<div class="ct">Discounts on 2-Wheel BRC (information only)</div><div class="tw"><table><thead><tr><th>Discount</th><th>Per student</th><th>Claims 2026</th><th>2026 $</th><th>Claims 2027 (2026 rate)</th><th>2027 $</th></tr></thead><tbody>
+   ${ds.map(([nm,a,c26,c27])=>`<tr><td>${nm}</td><td>${fmtD(a)}</td><td>${fmtN(c26)}</td><td>${fmtD(a*c26)}</td><td>${fmtN(c27)}</td><td>${fmtD(a*c27)}</td></tr>`).join("")}</tbody></table></div>
+   <p class="note">These discounts were applied through the year. Not taken off 2027 sales: the log's 2026 2-Wheel average is already below the list price, so the discounts are inside it (an assumption). Claims 2027 = 2026 claims × 2027 2-Wheel students ÷ ${fmtN(R3.students2W26)} 2026 2-Wheel students (Manual Log, Master sheet).</p>`;
+  box.appendChild(dc);
+  const fc=el("div",{class:"card"});const S27=SP.sales,G26R=LR(GAP26M,0),R26R=MON.map((_,m)=>ALL_SALES_26[m]+G26R[m]);
+  fc.innerHTML=`<div class="ct">2027 by month: this is what flows into the budget</div><div class="tw"><table><thead><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr></thead><tbody>
+  <tr><td>2027 classes</td>${SP.cls.map(q=>`<td>${fmtK(q)}</td>`).join("")}<td>${fmtK(C27)}</td></tr>
+  <tr class="sub"><td>2027 students</td>${SP.n.map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(N)}</td></tr>
+  <tr><td>2027 class fees</td>${SP.fees.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(SP.fees))}</td></tr>
+  <tr><td>Loss Damage Waiver, ${(LDW_RATE*100).toFixed(4)}% of class fees</td>${SP.ldw.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(SP.ldw))}</td></tr>
+  <tr><td>Other four parts, at 2026</td>${SP.other.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(SP.other))}</td></tr>
+  <tr class="sub"><td>2027 sales</td>${S27.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(S27))}</td></tr>
+  <tr><td>2026 registrations $ (Manual Log)</td>${ALL_SALES_26.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(s26)}</td></tr>
+  <tr><td>2026 gap: workbook month − Manual Log month</td>${G26R.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(G26R))}</td></tr>
+  <tr class="sub"><td>2026 total (budget workbook; Oct–Dec forecast)</td>${R26R.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(R26R))}</td></tr></tbody></table></div>
+  <p class="note">The other four parts keep their 2026 total (${fmtD(OTHER4_26)}), spread by month like the 2026 gap (an assumption). Oct–Dec 2026 are the workbook's forecast; October becomes actual once its books are final.</p>`;
+  box.appendChild(fc);
+  return box;
+}
+
+// TAB 4: new initiatives - Dirt Bike, shown on its own and never in the P&L
+function renderInits(){
+  const box=el("div");const d0=dirtCalc(),D=R3.dirt,I=dirtIn(),d={cls:LR(d0.cls,1),n:LR(d0.n,0),s:LR(d0.s,0),coach:LR(d0.coach,0),rent:LR(d0.rent,0)};
+  const card=el("div",{class:"card init"+(STATE.showDirt?"":" off")});
+  const net=MON.map((_,m)=>d.s[m]-d.coach[m]-d.rent[m]);
+  card.innerHTML=`<div class="row"><div class="ct" style="margin:0">Dirt Bike classes</div><span class="tag">not in the P&L</span>
+   <label class="f" style="flex-direction:row;align-items:center;gap:6px;color:var(--ink)"><input type="checkbox" id="dirt-on" ${STATE.showDirt?"checked":""}> Show</label>${saveBar()}</div>
+   ${STATE.showDirt?`<p class="note" style="margin:0 0 8px">A new initiative, kept separate for now and out of the P&L. Start values: Class Data, 2027 Projections N2–O8: ${fmtN(D.classes)} classes, ${fmtN(D.spc)} students per class, ${fmtD(D.price)} a student, rent ${fmtD(D.rent)}, coach ${fmtD(D.coach)} a class, ${fmtN(D.hours)}-hour class; ${esc(D.note)}.</p>
+   <div class="controls" style="margin:8px 0">
+    <label>Students per class<input type="number" min="0" step="1" data-dirt="spc" value="${I.spc}" class="${STATE.dirt&&STATE.dirt.spc!=null?"edited":""}"></label>
+    <label>Rent per weekend<input type="number" min="0" step="5" data-dirt="rent" value="${I.rent}" class="${STATE.dirt&&STATE.dirt.rent!=null?"edited":""}"></label>
+    <label>Coach cost per weekend<input type="number" min="0" step="5" data-dirt="coach" value="${I.coach}" class="${STATE.dirt&&STATE.dirt.coach!=null?"edited":""}"></label></div>
+   <div class="tw grid12"><table><thead><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr></thead><tbody>
+   <tr><td>Weekends held</td>${I.wk.map((q,m)=>`<td><input type="number" min="0" max="5" step="1" class="in-mo${STATE.dirt&&STATE.dirt.wk&&STATE.dirt.wk[m]!=null?" edited":""}" data-dw="${m}" value="${q}" aria-label="${MON[m]} weekends held"></td>`).join("")}<td>${fmtN(sum(I.wk))}</td></tr>
+   <tr><td>Classes per weekend</td>${I.cpw.map((q,m)=>`<td><input type="number" min="0" step="1" class="in-mo${STATE.dirt&&STATE.dirt.cpw&&STATE.dirt.cpw[m]!=null?" edited":""}" data-dc="${m}" value="${q}" aria-label="${MON[m]} classes per weekend"></td>`).join("")}<td></td></tr>
+   <tr><td>Classes</td>${d.cls.map(q=>`<td>${fmtK(q)}</td>`).join("")}<td>${fmtK(sum(d.cls))}</td></tr>
+   <tr><td>Students</td>${d.n.map(q=>`<td>${fmtN(q)}</td>`).join("")}<td>${fmtN(sum(d.n))}</td></tr>
+   <tr class="sub"><td>Sales</td>${d.s.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(d.s))}</td></tr>
+   <tr><td>Coach</td>${d.coach.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(d.coach))}</td></tr>
+   <tr><td>Rent</td>${d.rent.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(d.rent))}</td></tr>
+   <tr class="sub"><td>Sales less coach and rent</td>${net.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(net))}</td></tr></tbody></table></div>
+   <p class="note">Rent and coach are per weekend held. Set a month's weekends to 0 for no class. Empty a box to go back to its start value. Other costs are not included.</p>`:""}`;
+  card.querySelector("#dirt-on").onchange=e=>{STATE.showDirt=e.target.checked;changed();};
+  const dirtNum=(v,hi)=>Math.min(hi==null?Infinity:hi,Math.max(0,Math.round(+v||0)));
+  const dirtArr=(k,m,v,hi)=>{const x=STATE.dirt||(STATE.dirt={});x[k]=x[k]||MON.map(()=>null);x[k][m]=v===""?null:dirtNum(v,hi);changed();};
+  card.querySelectorAll("[data-dirt]").forEach(i=>i.onchange=e=>{const x=STATE.dirt||(STATE.dirt={}),k=i.dataset.dirt;if(e.target.value==="")delete x[k];else x[k]=dirtNum(e.target.value);changed();});
+  card.querySelectorAll("[data-dw]").forEach(i=>i.onchange=e=>dirtArr("wk",+i.dataset.dw,e.target.value,5));
+  card.querySelectorAll("[data-dc]").forEach(i=>i.onchange=e=>dirtArr("cpw",+i.dataset.dc,e.target.value));
+  wireSave(card);box.appendChild(card);
+  return box;
+}
+
+// TAB 5: budget
+function renderBudget(){
+  const box=el("div");const b=budget(),agg=b.agg,SP=shownPlan(agg);
+  const B=shownPL((r,m)=>b.B[r][m],{13:SP.sales,16:SP.sal,72:SP.rent}),RS=shownPL(v);
+  const rick=r=>RS[r];
+  const k=el("div",{class:"kpis"});const kp=(l,a,c)=>`<div class="kpi"><div class="l">${l}</div><div class="v">${a}</div><div class="d">${c}</div></div>`;
+  const yr=r=>sum(B[r]),ry=r=>sum(rick(r));
+  k.innerHTML=kp("2027 sales",fmtD(yr(14)),`Budget workbook ${fmtD(ry(14))} · <span class="${cl(pct(yr(14),ry(14)))}">${fmtP(pct(yr(14),ry(14)))}</span>`)
+   +kp("Gross profit",fmtD(yr(20)),`Workbook ${fmtD(ry(20))}`)
+   +kp("Operating profit",fmtD(yr(82)),`Workbook ${fmtD(ry(82))}`)
+   +kp("Net after taxes",fmtD(yr(103)),`Workbook ${fmtD(ry(103))}`);
+  box.appendChild(k);
+  if(SELFTEST.worst>1)box.appendChild(el("div",{class:"warn"},`Check failed: at the workbook's own sales this P&L differs from the workbook by ${fmtD(SELFTEST.worst)} (${esc(SELFTEST.where)}).`));
+  // coach cost
+  const ic=el("div",{class:"card"});
+  const types=Object.keys(agg.byType);
+  let ih=`<div class="ct">Coach cost (Cost of Sales)</div>
+   <div class="tw"><table><thead><tr><th>Class type</th><th>Two coaches (over 6 students)</th><th>One coach (6 or fewer)</th></tr></thead><tbody>
+   ${TYPES.concat(["ARC"]).map(ty=>`<tr><td>${esc(TNAME(ty))}</td><td>${fmtD(R3.coach[ty][0])}</td><td>${fmtD(R3.coach[ty][1])}</td></tr>`).join("")}</tbody></table></div>
+   <p class="note">Class Data, 2027 Projections H15–J22 (coach cost varies by students per class: up to 6, or more than 6).</p>
+   <div class="tw grid12"><table><thead><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr></thead><tbody>`;
+  types.forEach(ty=>{const bt=SP.type[ty];ih+=`<tr><td>${esc(TNAME(ty))}: ${fmtK(sum(bt.c))} classes</td>${bt.coach.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(bt.coach))}</td></tr>`;});
+  SP.C.filter(x=>x.c.cls26).forEach(({c,coach:p_})=>{const p={coach:p_};ih+=`<tr><td>${esc(c.label)}: ${fmtN(sum(c.cls26))} classes (as held or booked in ${L26})</td>${p.coach.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(p.coach))}</td></tr>`;});
+  ih+=`<tr><td>Range aid, ${fmtD(R3.rangeAid.rate)} × ${RA_CLASSES} classes</td>${SP.aid.map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(SP.aid))}</td></tr>
+   <tr class="sub"><td>Cost of Sales</td>${B[16].map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(B[16]))}</td></tr>
+   <tr><td>Workbook Cost of Sales</td>${RS[16].map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(RS[16]))}</td></tr></tbody></table></div>
+   <p class="note">Each class costs its type's two-coach or one-coach rate, set by its students per class on the 2027 plan tab (ARC: its 2026 students ÷ its 2026 classes on the Master sheet, shown there). Range aid: 15 classes as in 2026, spread evenly by month (an assumption). HD has no coach rate in Class Data and adds none.</p>`;
+  ic.innerHTML=ih;box.appendChild(ic);
+  // rent by site
+  const rc=el("div",{class:"card"});
+  let rh=`<div class="ct">Rent by range</div><p class="note" style="margin:0 0 8px">Each month = the range's 2027 classes × weekends per class × its weekend rate + its yearly storage ÷ 12. Classes share weekends: weekends per class = the range's 2026 weekends used ÷ its 2026 classes (${L26}, Master; December: bookings so far). Rates: the 2027 rent table, using the 2027 renewal where one is given.</p>
+   <div class="tw grid12"><table><thead><tr><th>Range</th><th>Weekends / classes ${L26}</th><th>Weekend rate</th><th>Storage a year</th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr></thead><tbody>`;
+  SITES.forEach(s=>{const ed=STATE.rate[s]!=null;const w26=R3.weekends26[s]||{weekends:0,classes:0};rh+=`<tr data-s="${esc(s)}"><td>${esc(s)}</td><td>${fmtN(w26.weekends)} / ${fmtN(w26.classes)}</td><td><input type="number" min="0" step="5" class="in-rate${ed?" edited":""}" value="${rateOf(s)}" aria-label="${esc(s)} weekend rate"></td><td>${storageOf(s)?fmtD(storageOf(s)):"–"}</td>${SP.rentBy[s].map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(SP.rentBy[s]))}</td></tr>`;});
+  rh+=`<tr class="tot"><td>Rent</td><td></td><td></td><td></td>${B[72].map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(B[72]))}</td></tr><tr><td>Workbook Rent</td><td></td><td></td><td></td>${RS[72].map(q=>`<td>${fmtD(q)}</td>`).join("")}<td>${fmtD(sum(RS[72]))}</td></tr></tbody></table></div>${saveBar()}`;
+  rc.innerHTML=rh;
+  rc.querySelectorAll("tr[data-s]").forEach(tr=>{const s=tr.dataset.s;tr.querySelector(".in-rate").onchange=e=>{if(e.target.value==="")delete STATE.rate[s];else STATE.rate[s]=Math.max(0,+e.target.value);changed();};});
+  wireSave(rc);box.appendChild(rc);
+  // P&L
+  const pc=el("div",{class:"card"});
+  const view=BV.view;
+  const val=(r,m)=>view==="plan"?B[r][m]:view==="rick"?RS[r][m]:B[r][m]-RS[r][m];
+  let h=`<div class="row"><div class="ct" style="margin:0">P&L by month</div><div class="seg"><button data-v="plan" aria-pressed="${view==="plan"}">2027 with the plan</button><button data-v="rick" aria-pressed="${view==="rick"}">Budget workbook</button><button data-v="diff" aria-pressed="${view==="diff"}">Difference</button></div></div>
+   <div class="tw"><table><thead><tr><th>Line</th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Year</th></tr></thead><tbody>`;
+  const SUBS=new Set([14,18,20,30,38,69,78,80,82,89,91,96,100,103]);
+  PL.forEach(p=>{const r=p.row;
+    if(HEADS.has(r)){h+=`<tr class="head"><td>${esc(p.label)}</td><td colspan="13"></td></tr>`;return;}
+    if(r===21){const gp=view==="rick"?rick(20):B[20],ts=view==="rick"?rick(14):B[14];if(view==="diff")return;h+=`<tr><td style="padding-left:22px">Gross margin %</td>${MON.map((_,m)=>`<td>${ts[m]?F1(gp[m]/ts[m]*100)+"%":"–"}</td>`).join("")}<td>${sum(ts)?F1(sum(gp)/sum(ts)*100)+"%":"–"}</td></tr>`;return;}
+    const row=MON.map((_,m)=>val(r,m));if(!SUBS.has(r)&&row.every(q=>Math.abs(q)<0.5)&&MON.every((_,m)=>Math.abs(RS[r][m])<0.5))return;
+    const tag=view!=="plan"?"":r===13?'<span class="tag">from plan</span>':r===16?'<span class="tag">coach cost by class size</span>':r===72?'<span class="tag">classes × weekend rate</span>':FIXED.has(r)?'<span class="tag">fixed $</span>':"";
+    h+=`<tr class="${SUBS.has(r)?"sub":""}"><td${SUBS.has(r)?"":' style="padding-left:22px"'}>${esc(p.label)}${tag}</td>${row.map(q=>`<td class="${Math.abs(q)<0.5?"zero":""}">${Math.abs(q)<0.5?"–":fmtD(q)}</td>`).join("")}<td>${fmtD(sum(row))}</td></tr>`;});
+  h+=`</tbody></table></div><p class="note">How lines move: each month, every line moves by that month's 2027 sales ÷ the workbook's Training. These stay in the workbook's dollars: Salaries & Wages, Training Fleet Depreciation, Insurance - Other, Depreciation-Other, Leasehold Amortz. & Building Depr., Insurance - Building, interest and other income. Cost of Sales is the coach cost and range aid above, as the books carry coach pay; Rent is the range table. Income tax keeps the workbook's rate for each month. Dirt Bike is not in this P&L. Lines that are zero in every view are hidden. Rounding: each figure is rounded on its own from its exact value, so a total or a year can differ from adding the rounded lines above or beside it; the figure shown is the exact one, rounded.</p>`;
+  pc.innerHTML=h;pc.querySelectorAll("[data-v]").forEach(bt=>bt.onclick=()=>{BV.view=bt.dataset.v;render();});
+  box.appendChild(pc);
+  const ch=el("div",{class:"card"});ch.appendChild(el("div",{class:"ct"},"Operating profit by month"));
+  const s=[{y:"rick",v:rick(82)},{y:"2027",v:B[82]}];ch.appendChild(chart(s,fmtD));ch.appendChild(legend([["rick","Budget workbook"],["2027","2027 with the plan"]]));box.appendChild(ch);
+  return box;
+}
+
+// ---------- save ----------
+function saveBar(){return `<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn primary" data-save="1">Save plan</button><button class="btn" data-reset="1">Reset everything</button><span class="status" data-status="1">${STATUS!=null?esc(STATUS):LS_OK||artifactApi?(STATE.savedAt?"Saved "+esc(STATE.savedAt):"Not saved yet"):NOSAVE}</span></div>`;}
+function wireSave(n){n.querySelectorAll("[data-save]").forEach(b=>b.onclick=save);n.querySelectorAll("[data-reset]").forEach(b=>b.onclick=()=>{if(b.dataset.armed){STATE=norm({savedAt:STATE.savedAt});changed();}else{b.dataset.armed="1";b.textContent="Click again to reset";}});}
+function setStatus(t){STATUS=t;document.querySelectorAll("[data-status]").forEach(s=>s.textContent=t);}
+function changed(){try{localStorage.setItem(DRAFT_KEY,JSON.stringify({basedOn:STATE.savedAt||"seed",state:STATE}));}catch(e){}render();setStatus(LS_OK?ST_KEPT:NOSAVE);}
+let artifactApi=null,readOnly=false;
+try{if(window.claude&&typeof window.claude.use==="function")window.claude.use("artifact").then(a=>{artifactApi=a;}).catch(()=>{});}catch(e){}
+async function save(){
+  if(!artifactApi){setStatus(LS_OK?ST_LOCAL:NOSAVE);try{localStorage.setItem(DRAFT_KEY,JSON.stringify({basedOn:STATE.savedAt||"seed",state:STATE,saved:true}));}catch(e){}return;}
+  if(readOnly){setStatus("This view is read-only.");return;}
+  document.querySelectorAll("[data-save]").forEach(b=>b.disabled=true);
+  const st=Object.assign({},STATE,{savedAt:new Date().toLocaleString("en-US",{dateStyle:"medium",timeStyle:"short"})});
+  const j=s=>JSON.stringify(s).replace(/</g,"\\u003c");
+  const raw=id=>document.getElementById(id).textContent;
+  const body="<title>PRU 2027 Sales Planner</title>\n"+'<meta name="claude:viewport-fit-sides" content="cover">\n<style id="app-css">'+raw("app-css")+'</style>\n<div id="root"></div>\n'
+   +'<script type="application/json" id="plan-state">'+j(st)+'<\/script>\n'
+   +["src-data","src-pl","src-extra"].map(id=>'<script type="application/json" id="'+id+'">'+raw(id)+'<\/script>\n').join("")
+   +'<script id="app-code">'+raw("app-code")+'<\/script>';
+  const html='<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>*,*::before,*::after{box-sizing:border-box}body{margin:0}</style></head><body>'+body+'</body></html>';
+  try{try{localStorage.removeItem(DRAFT_KEY);}catch(e){}await artifactApi.publish(html);STATE.savedAt=st.savedAt;setStatus("Saved "+st.savedAt);}
+  catch(e){const c=e&&e.code;
+    if(c==="not_writer"||c==="not_granted"){readOnly=true;setStatus("This view is read-only: you can try numbers, but cannot save them.");}
+    else if(c==="conflict")setStatus("Someone saved a newer plan; loading it.");
+    else setStatus("Not saved ("+(c||"error")+"). Your changes are kept in this browser.");
+    try{localStorage.setItem(DRAFT_KEY,JSON.stringify({basedOn:STATE.savedAt||"seed",state:STATE}));}catch(_){}}
+  finally{document.querySelectorAll("[data-save]").forEach(b=>b.disabled=false);}
+}
+window.__PRU_TEST__={LR,shownPlan,shownPL,setTab:x=>{tab=x;render();},budget,PL,RICK_TRAINING,RICK_SAL,RICK_COS,RICK_RENT,SELFTEST,planAgg,plan27Lines,dirtCalc,discounts,LINES,UNITS,CARRIED,R3,LDW_RATE,GAP26M,FIXED,getState:()=>STATE,setState:s=>{STATE=norm(s);render();},status:()=>STATUS,fmt:{RH,F1,fmtN,fmtD,fmtK,fmtP,fmtPC,fmtF}};
+render();
+})();
+</script>
