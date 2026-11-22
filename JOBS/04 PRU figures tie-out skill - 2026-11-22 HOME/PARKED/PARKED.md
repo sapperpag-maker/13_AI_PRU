@@ -14,3 +14,9 @@ The program's last blind check, r6, is FAIL: `C:\AI_Building\AI_MISC\06 Benches\
 
 ## What it needs from Sergio
 A word to restart: fix F1 (refuse any format with @ outside a 4th section) and one more blind check, or leave it parked.
+
+## ADDENDUM 2026-11-22 09:49 HOME: the last check failed; parked for good
+Sergio's answer to Piston's question 90: "Fix F1, one last check (Recommended)". F1 was fixed (tie_out.py eab300b2, test_tie_out.py 05404aa2, TESTS: PASS (299)). The last blind check, r7, is FAIL: `VERDICT r7.md` beside this file, md5 a5aa8d99.
+- A1: a format section that shows no number (empty, only quoted text, a bare "-" or only a colour) still sets the scale. Cell -0.5, format `0%;"neg"`, scale points, shown -0.5% comes out TIED.
+- A2: the --out guard compares how a path is written, not the file, so `\?\` paths and hard links can overwrite the figures file or a source.
+Under Sergio's answer, no further round. The skill stays parked; a restart needs a new word from him.

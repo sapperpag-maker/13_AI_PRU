@@ -275,7 +275,9 @@ def check_format(number_format):
         raise RowError("conditional number format not supported")
     if len(sections) > 4:
         raise RowError("conditional number format not supported")
-    for s in sections:
+    for k, s in enumerate(sections):
+        if "@" in s and k != 3:
+            raise RowError("format has a text section outside the fourth")
         if s.count("%") > 1:
             raise RowError("format has more than one %")
         if re.search(r"[0#?],+(?![0#?,])", s):

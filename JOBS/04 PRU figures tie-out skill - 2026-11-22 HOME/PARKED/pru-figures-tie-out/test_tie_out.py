@@ -137,7 +137,10 @@ def write_book(path):
                          ("E22", 0.452, "0%%"),                # two %
                          ("E23", 1234, "#,##0,"),              # scales by thousands
                          ("E24", 0.452, "[$%-409]0.000"),      # % only inside a locale bracket
-                         ("E25", 7, "0;0;0;0;0")):             # five sections
+                         ("E25", 7, "0;0;0;0;0"),              # five sections
+                         ("E26", -50, "0%;@"),                 # @ as the second section
+                         ("E27", -0.5, "0%;@"),                # @ as the second section
+                         ("E28", 50, "0;0;@")):                # @ as the third section
         ws[ref] = val
         ws[ref].number_format = nf
     ws["B13"] = datetime(2026, 1, 5)         # a date (openpyxl gives it a date format)
@@ -339,10 +342,13 @@ def main(argv):
         check(f"format {f!r} refused as conditional", refused(f, "conditional number format not supported"))
     for f in ("0%%", "0.0%;0%%", "0%0%", "%0%"):
         check(f"format {f!r} refused: more than one %", refused(f, "format has more than one %"))
+    for f in ("0%;@", "0.0%;@", "[Red]0%;@", "@", "0;@", "0;0;@", "0;@;0;@", "@;0"):
+        check(f"format {f!r} refused: text section outside the fourth", refused(f, "format has a text section outside the fourth"))
     for f in ("0,", "#,##0,,", "0.0,", "#,##0,;-#,##0", "0,%"):
         check(f"format {f!r} refused: scales by thousands", refused(f, "format scales by thousands"))
     for f in ("General", "#,##0", "#,##0.00", "[Red]#,##0;[Blue]-#,##0", '0.0" ,"', "[$%-409]0.00",
-              "[$-409]#,##0.0%", '0.0%"%"', "0;0;0;@", "0\\,", "[h]:mm"):
+              "[$-409]#,##0.0%", '0.0%"%"', "0;0;0;@", "0\\,", "[h]:mm",
+              '0%;"@"', "0\\@", '0;0;0;"x"@'):
         try:
             cf(f)
             check(f"format {f!r} accepted by the format check", True)
@@ -487,6 +493,9 @@ def main(argv):
         ("FZ3", "Zero, third section has %, read as-is", "0.0", "usd", "2027", "cell", book, BK + "E20", "as-is"),
         ("FP1", "Format with two %", "45.2%", "pct", "2027", "cell", book, BK + "E22", "fraction-to-pct"),
         ("FT1", "Format scales by thousands", "1,234", "usd", "2027", "cell", book, BK + "E23", "as-is"),
+        ("FA1", "Cell -50, 0%;@, points, shown -50%", "-50%", "pct", "2027", "cell", book, BK + "E26", "points"),
+        ("FA2", "Cell -0.5, 0%;@, fraction-to-pct, shown -50%", "-50%", "pct", "2027", "cell", book, BK + "E27", "fraction-to-pct"),
+        ("FA3", "Cell 50, 0;0;@, as-is, shown 50", "50", "usd", "2027", "cell", book, BK + "E28", "as-is"),
         ("FL1", "% only in a locale bracket", "0.452", "usd", "2027", "cell", book, BK + "E24", "as-is"),
         ("BD1", "Date cell", "46,027", "usd", "2027", "cell", book, BK + "B13", "as-is"),
         ("BB1", "Boolean cell", "1", "usd", "2027", "cell", book, BK + "B14", "as-is"),
@@ -568,6 +577,8 @@ def main(argv):
     is_("FZ3", "ERROR", "scale disagrees with the cell's format (as-is with a % format)")
     exactly("FP1", "ERROR", "format has more than one %")
     exactly("FT1", "ERROR", "format scales by thousands")
+    for rid in ("FA1", "FA2", "FA3"):
+        exactly(rid, "ERROR", "format has a text section outside the fourth")
     exactly("G27", "ERROR", "account 46999-30 matched no line")
     for rid in ("G29", "G30"):
         is_(rid, "ERROR", "GL header not as expected")
