@@ -1,0 +1,125 @@
+=== BLOCK 1 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\template.html | text, found 1 | PRIMARY | answers F1
+--- OLD
+ARC and HD have no 2027 class row there. Rounding: each 2027B figure is rounded on its own from its exact value, so a total can differ from adding the rounded rows above it.":"")+(meas==="d"?
+--- NEW
+ARC and HD have no 2027 class row there.":" Rounding: each 2027B figure is rounded on its own from its exact value, so a total can differ from adding the rounded rows above it.")+(meas==="d"?
+=== END
+
+=== BLOCK 2 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\template.html | text, found 1 | PRIMARY | answers F2
+--- OLD
+tab Master for the 2026 students, sales and classes on Trends and the 2026 student comparison on the plan, by class date, read by class code with the fee column as sums only; tab WklyConsolidating Wd as the base of the 2027 budget.
+--- NEW
+tab Master by class date for the 2026 students, sales and classes on Trends, the plan's Months panels and its 2026 student comparison, read by class code with the fee column as sums only; tabs WklyConsolidating Wd and Master by week as the base of the 2027 budget.
+=== END
+
+=== BLOCK 3 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\template.html | text, found 1 | PRIMARY | answers F3
+--- OLD
+2026 2-Wheel students, HD included (Manual Log, Master sheet, by week, the 2027 budget base).
+--- NEW
+2026 students on the 2027 budget base (Manual Log, Master sheet, by week): 3,925 2-Wheel and HD, plus 17 of other types in the one December class code held at 8 sites.
+=== END
+
+=== BLOCK 4 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\template.html | text, found 1 | PRIMARY | answers F4
+--- OLD
+(ARC: its 2026 students ÷ its 2026 classes on the Master sheet, shown there)
+--- NEW
+(ARC: its 2026 students ÷ its 2026 classes on the 2027 budget base, Master sheet, by week, shown there)
+=== END
+
+=== BLOCK 5 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\template.html | text, found 1 | PRIMARY | answers F4
+--- OLD
+(${L26}, Master; December: bookings so far)
+--- NEW
+(2027 budget base: Manual Log, Master sheet, by week; December: bookings so far)
+=== END
+
+=== BLOCK 6 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\template.html | text, found 1 | PRIMARY | answers F4
+--- OLD
+<th>Weekends / classes ${L26}</th>
+--- NEW
+<th>Weekends / classes 2026 (2027 budget base)</th>
+=== END
+
+=== BLOCK 7 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\template.html | text, found 1 | PRIMARY | answers F4
+--- OLD
+classes (as held or booked in ${L26})</td>
+--- NEW
+classes (as held or booked in 2026, the 2027 budget base)</td>
+=== END
+
+=== BLOCK 8 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\template.html | text, found 1 | PRIMARY | answers F5
+--- OLD
+One December class code holds students at 8 sites; it counts as one class, at the site listed first, Clarksburg, and it holds the one other HD student.
+--- NEW
+One December class code holds students at 8 sites and in 6 class types. It counts as one 2-Wheel class at Clarksburg, the site listed first, so its other types and sites can show December students with 0 classes. It holds the one HD student outside the HD classes.
+=== END
+
+=== BLOCK 9 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\template.html | text, found 1 | PRIMARY | answers F5
+--- OLD
+One December 2026 class code holds students at 8 sites; it counts as one class, at Clarksburg.
+--- NEW
+One December 2026 class code holds students at 8 sites and in 6 class types. It counts as one 2-Wheel class at Clarksburg, so its other types and sites can show December students with 0 classes.
+=== END
+
+=== BLOCK 10 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\draft-i.html | text, found 1 | PRIMARY | answers F1
+--- OLD
+ARC and HD have no 2027 class row there. Rounding: each 2027B figure is rounded on its own from its exact value, so a total can differ from adding the rounded rows above it.":"")+(meas==="d"?
+--- NEW
+ARC and HD have no 2027 class row there.":" Rounding: each 2027B figure is rounded on its own from its exact value, so a total can differ from adding the rounded rows above it.")+(meas==="d"?
+=== END
+
+=== BLOCK 11 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\draft-i.html | text, found 1 | PRIMARY | answers F2
+--- OLD
+tab Master for the 2026 students, sales and classes on Trends and the 2026 student comparison on the plan, by class date, read by class code with the fee column as sums only; tab WklyConsolidating Wd as the base of the 2027 budget.
+--- NEW
+tab Master by class date for the 2026 students, sales and classes on Trends, the plan's Months panels and its 2026 student comparison, read by class code with the fee column as sums only; tabs WklyConsolidating Wd and Master by week as the base of the 2027 budget.
+=== END
+
+=== BLOCK 12 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\draft-i.html | text, found 1 | PRIMARY | answers F3
+--- OLD
+2026 2-Wheel students, HD included (Manual Log, Master sheet, by week, the 2027 budget base).
+--- NEW
+2026 students on the 2027 budget base (Manual Log, Master sheet, by week): 3,925 2-Wheel and HD, plus 17 of other types in the one December class code held at 8 sites.
+=== END
+
+=== BLOCK 13 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\draft-i.html | text, found 1 | PRIMARY | answers F4
+--- OLD
+(ARC: its 2026 students ÷ its 2026 classes on the Master sheet, shown there)
+--- NEW
+(ARC: its 2026 students ÷ its 2026 classes on the 2027 budget base, Master sheet, by week, shown there)
+=== END
+
+=== BLOCK 14 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\draft-i.html | text, found 1 | PRIMARY | answers F4
+--- OLD
+(${L26}, Master; December: bookings so far)
+--- NEW
+(2027 budget base: Manual Log, Master sheet, by week; December: bookings so far)
+=== END
+
+=== BLOCK 15 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\draft-i.html | text, found 1 | PRIMARY | answers F4
+--- OLD
+<th>Weekends / classes ${L26}</th>
+--- NEW
+<th>Weekends / classes 2026 (2027 budget base)</th>
+=== END
+
+=== BLOCK 16 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\draft-i.html | text, found 1 | PRIMARY | answers F4
+--- OLD
+classes (as held or booked in ${L26})</td>
+--- NEW
+classes (as held or booked in 2026, the 2027 budget base)</td>
+=== END
+
+=== BLOCK 17 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\draft-i.html | text, found 1 | PRIMARY | answers F5
+--- OLD
+One December class code holds students at 8 sites; it counts as one class, at the site listed first, Clarksburg, and it holds the one other HD student.
+--- NEW
+One December class code holds students at 8 sites and in 6 class types. It counts as one 2-Wheel class at Clarksburg, the site listed first, so its other types and sites can show December students with 0 classes. It holds the one HD student outside the HD classes.
+=== END
+
+=== BLOCK 18 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\draft-i.html | text, found 1 | PRIMARY | answers F5
+--- OLD
+One December 2026 class code holds students at 8 sites; it counts as one class, at Clarksburg.
+--- NEW
+One December 2026 class code holds students at 8 sites and in 6 class types. It counts as one 2-Wheel class at Clarksburg, so its other types and sites can show December students with 0 classes.
+=== END

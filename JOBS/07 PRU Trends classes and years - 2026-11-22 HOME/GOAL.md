@@ -4,6 +4,8 @@ Angie, 2026-11-22 HOME. Sergio's yes (R-1879): Q73 "Yes, build now (Recommended)
 
 **Source of 2026 students and sales (Q79, "Master, by class date (Recommended)"):** both the plan and Trends use the v3 log's Master sheet (md5 37c427cf), each student in the month of the class date held in the class code, for rows with a week. Master's fee column J is read as sums only, by his Q79; no other column beyond B to E. Test 1's 2026 figures change accordingly: 2026 students are 4,606 on both tabs, January 37. Trends then no longer equals the budget book's Prior column, and the page says so.
 
+**The 2027 budget does not move (Q109, "Keep 2027 as is (Recommended)"):** only the shown 2026 figures change. The 2027 plan, its start fill, its five parts and the P&L stay on the base they were built on (the log's weekly summary, and Master by week), so test 6 stands. Where the page prints that base, it is labeled as the 2027 budget base.
+
 His words: "I need to see classes here as well, and use different colors with high contrast from each other for the years. i also want to be able to filter by year." Q71: "Number of classes (Recommended)". Q72: "do 2024-2025-2026. remove 2022 and 2023".
 
 Starts from: `C:\AI_Building\AI_PRU\JOBS\02 PRU budget update - 2026-11-21 HOME\PRU 2027 Sales Planner - release 4.html`, with its build folder beside it. Other tabs do not change.

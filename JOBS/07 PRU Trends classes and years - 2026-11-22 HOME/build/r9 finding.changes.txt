@@ -1,0 +1,13 @@
+=== BLOCK 1 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\template.html | text, found 1 | PRIMARY | answers r9-F1
+--- OLD
+so a total can differ from adding the rounded rows above it.
+--- NEW
+so a total can differ from adding the rounded rows above or beside it.
+=== END
+
+=== BLOCK 2 | C:\AI_Building\AI_MISC\06 Benches\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7\draft-j.html | text, found 1 | PRIMARY | answers r9-F1
+--- OLD
+so a total can differ from adding the rounded rows above it.
+--- NEW
+so a total can differ from adding the rounded rows above or beside it.
+=== END

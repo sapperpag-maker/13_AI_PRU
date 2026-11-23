@@ -11,6 +11,7 @@ import re
 r3=json.load(open('r3.json'))
 for k in ('classes','spc','hours'): r3['dirt'][k]=int(re.match(r'\d+',r3['dirt'][k]).group())
 extra['r3']=r3
+extra['master26']=json.load(open('master26.json',encoding='utf-8'))   # Q79, Q109: shown 2026, Master by class date
 # Rick's 2026 figure for reference (his answer 18): 02 workbook, PRU-pl, row 13 Training, column AB (header '2026')
 import openpyxl
 _ws=openpyxl.load_workbook(RICK_WB,read_only=True,data_only=True)['PRU-pl']
