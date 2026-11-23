@@ -267,7 +267,7 @@ function render(){
   root.innerHTML="";
   const w=el("div",{class:"wrap"});
   const top=el("div",{class:"top"});
-  top.appendChild(el("div",null,'<h1>PRU 2027 Sales Planner<span class="draft">DRAFT · not checked</span></h1><p class="sub">2027 classes × seats × fill %, priced, flowing into the 2027 budget.</p>'));
+  top.appendChild(el("div",null,'<h1>PRU 2027 Sales Planner<span class="draft">DRAFT · not accepted</span></h1><p class="sub">2027 classes × seats × fill %, priced, flowing into the 2027 budget.</p>'));
   const tsel=el("label",{class:"f"},`Theme<select id="theme"><option value="light" ${theme==="light"?"selected":""}>Light</option><option value="dark" ${theme==="dark"?"selected":""}>Dark</option></select>`);
   tsel.querySelector("select").onchange=e=>{theme=e.target.value;try{localStorage.setItem(THEME_KEY,theme);}catch(_){}applyTheme(theme);};
   top.appendChild(tsel);
@@ -476,7 +476,7 @@ function renderBudget(){
    +kp("Operating profit",fmtD(yr(82)),`Workbook ${fmtD(ry(82))}`)
    +kp("Net after taxes",fmtD(yr(103)),`Workbook ${fmtD(ry(103))}`);
   box.appendChild(k);
-  if(SELFTEST.worst>1)box.appendChild(el("div",{class:"warn"},`Check failed: at the workbook's own sales this P&L differs from the workbook by ${fmtD(SELFTEST.worst)} (${esc(SELFTEST.where)}).`));
+  box.appendChild(el("p",{class:"note"},"At the plan's start values, Rent, Operating profit and Net after taxes differ from the Workbook figures because this page has Virginia Beach at 32 weekends and the compared workbook is still at 33."));if(SELFTEST.worst>1)box.appendChild(el("div",{class:"warn"},`Check failed: at the workbook's own sales this P&L differs from the workbook by ${fmtD(SELFTEST.worst)} (${esc(SELFTEST.where)}).`));
   // coach cost
   const ic=el("div",{class:"card"});
   const types=Object.keys(agg.byType);
@@ -511,10 +511,10 @@ function renderBudget(){
   PL.forEach(p=>{const r=p.row;
     if(HEADS.has(r)){h+=`<tr class="head"><td>${esc(p.label)}</td><td colspan="13"></td></tr>`;return;}
     if(r===21){const gp=view==="rick"?rick(20):B[20],ts=view==="rick"?rick(14):B[14];if(view==="diff")return;h+=`<tr><td style="padding-left:22px">Gross margin %</td>${MON.map((_,m)=>`<td>${ts[m]?F1(gp[m]/ts[m]*100)+"%":"–"}</td>`).join("")}<td>${sum(ts)?F1(sum(gp)/sum(ts)*100)+"%":"–"}</td></tr>`;return;}
-    const row=MON.map((_,m)=>val(r,m));if(!SUBS.has(r)&&row.every(q=>Math.abs(q)<0.5)&&MON.every((_,m)=>Math.abs(RS[r][m])<0.5))return;
+    const row=MON.map((_,m)=>val(r,m));if((!SUBS.has(r)||r===89)&&row.every(q=>Math.abs(q)<0.5)&&MON.every((_,m)=>Math.abs(RS[r][m])<0.5))return;
     const tag=view!=="plan"?"":r===13?'<span class="tag">from plan</span>':r===16?'<span class="tag">coach cost by class size</span>':r===72?'<span class="tag">classes × weekend rate</span>':FIXED.has(r)?'<span class="tag">fixed $</span>':"";
     h+=`<tr class="${SUBS.has(r)?"sub":""}"><td${SUBS.has(r)?"":' style="padding-left:22px"'}>${esc(p.label)}${tag}</td>${row.map(q=>`<td class="${Math.abs(q)<0.5?"zero":""}">${Math.abs(q)<0.5?"–":fmtD(q)}</td>`).join("")}<td>${fmtD(sum(row))}</td></tr>`;});
-  h+=`</tbody></table></div><p class="note">How lines move: each month, every line moves by that month's 2027 sales ÷ the workbook's Training. These stay in the workbook's dollars: Salaries & Wages, Training Fleet Depreciation, Insurance - Other, Depreciation-Other, Leasehold Amortz. & Building Depr., Insurance - Building, interest and other income. Cost of Sales is the coach cost and range aid above, as the books carry coach pay; Rent is the range table. Income tax keeps the workbook's rate for each month. Dirt Bike is not in this P&L. Lines that are zero in every view are hidden. Rounding: each figure is rounded on its own from its exact value, so a total or a year can differ from adding the rounded lines above or beside it; the figure shown is the exact one, rounded.</p>`;
+  h+=`</tbody></table></div><p class="note">How lines move: each month, every line moves by that month's 2027 sales ÷ the workbook's Training. These stay in the workbook's dollars: Salaries & Wages, Training Fleet Depreciation, Insurance - Other, Depreciation-Other, Leasehold Amortz. & Building Depr., Insurance - Building, Floor Plan Interest, Mortgage & Other Interest, Non-Paying Interest Expense, Disposal of Goodwill, Other Income, Sale of Dealership Assets (gain/loss) and Other Deductions. Cost of Sales is the coach cost and range aid above, as the books carry coach pay; Rent is the range table. Income tax keeps the workbook's rate for each month. Dirt Bike is not in this P&L. Lines that are zero in every view are hidden. Rounding: each figure is rounded on its own from its exact value, so a total or a year can differ from adding the rounded lines above or beside it; the figure shown is the exact one, rounded.</p>`;
   pc.innerHTML=h;pc.querySelectorAll("[data-v]").forEach(bt=>bt.onclick=()=>{BV.view=bt.dataset.v;render();});
   box.appendChild(pc);
   const ch=el("div",{class:"card"});ch.appendChild(el("div",{class:"ct"},"Operating profit by month"));

@@ -27,7 +27,7 @@ assert abs(sum(extra['rick2026m'])-extra['rick2026'])<0.01
 extra['gapParts']=[
  ['Loss Damage Waiver (GL 47700-30), not in the Manual Log',26518.37],
  ['Other training income (GL 46450-30), not in the Manual Log',8323.95],
- ['January classes missing from the Manual Log',14469.00],
+ ["January classes missing from the log's weekly summary",14469.00],
  ['Class fees above the Manual Log, Feb–Sep (not reconciled)',15204.50],
  ["Oct–Dec: the workbook's forecast less the Manual Log's bookings",None]]
 _log=sum(sum(e['d']['2026']) for e in d)
