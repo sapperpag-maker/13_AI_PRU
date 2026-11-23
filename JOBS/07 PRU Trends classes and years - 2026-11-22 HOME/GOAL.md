@@ -6,6 +6,8 @@ Angie, 2026-11-22 HOME. Sergio's yes (R-1879): Q73 "Yes, build now (Recommended)
 
 **The 2027 budget does not move (Q109, "Keep 2027 as is (Recommended)"):** only the shown 2026 figures change. The 2027 plan, its start fill, its five parts and the P&L stay on the base they were built on (the log's weekly summary, and Master by week), so test 6 stands. Where the page prints that base, it is labeled as the 2027 budget base.
 
+**One exception, Virginia Beach rent (Q112, "Once: 32 weekends (Recommended)"):** Virginia Beach's 2026 weekends base is 32, the distinct Sundays in Master, with its 67 classes. Rent and the P&L lines it feeds move by that change alone; every other figure in test 6 stands.
+
 His words: "I need to see classes here as well, and use different colors with high contrast from each other for the years. i also want to be able to filter by year." Q71: "Number of classes (Recommended)". Q72: "do 2024-2025-2026. remove 2022 and 2023".
 
 Starts from: `C:\AI_Building\AI_PRU\JOBS\02 PRU budget update - 2026-11-21 HOME\PRU 2027 Sales Planner - release 4.html`, with its build folder beside it. Other tabs do not change.
@@ -25,13 +27,13 @@ Starts from: `C:\AI_Building\AI_PRU\JOBS\02 PRU budget update - 2026-11-21 HOME\
 
 ## Sources for classes
 
-- 2026: Master sheet of the v3 log (md5 37c427cf), columns B to E only. A class is one class code, counted in the month of its week.
+- 2026: Master sheet of the v3 log (md5 37c427cf), columns B to E only. A class is one class code, counted in the month of the class date held in the code (Q113, "Class date (Recommended)").
 - 2024 and 2025: NO SOURCE YET. The v3 log's sheets 2024, "2025 " and 2025 Summary carry no class label (counted 2026-11-22). No full-year 2024 or 2025 log was found in the PRU Drive folder, Downloads, AI_Financials or the other folders searched; the newest 2024 file there was saved in August 2024.
 
 ## Tests
 
 1. Students and Sales $ for 2024, 2025 and 2026 equal release 4's, for every range, class and month.
-2. The 2026 class count per month, over all ranges, equals the page's existing 2026 list (`classes2026.json`), or each difference is named.
+2. The 2026 class count per month, over all ranges, equals Master by class date. It differs from the week-based list (`classes2026.json`) in five months, class date against week: Jan 5 and 4, Feb 20 and 12, Mar 60 and 69, Oct 45 and 38, Nov 29 and 36. The year is 573 on both.
 3. A program measures the contrast of every color pair, in both themes.
 4. Each filter button is clicked in a browser: the chart, legend and table follow, and the last year on cannot be turned off.
 5. No customer data, in the page or in the build's output.

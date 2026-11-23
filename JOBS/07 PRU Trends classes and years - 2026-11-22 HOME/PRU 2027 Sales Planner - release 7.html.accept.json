@@ -1,0 +1,23 @@
+{
+ "tab": "pru-planner",
+ "page_md5": "a4fe8bcf6833445a2e83021fc8fde176",
+ "data_date": "2026-11-22",
+ "sources": [
+  {
+   "path": "C:\\AI_Building\\AI_Financials\\04 Budget\\2027\\04 PowerRide University\\2026-11-21 PRU and Consolidated Books from the planner - rick RICK-HOME-2bd93960\\work\\04 PRU GP rebuilt.xlsx",
+   "md5": "3717f2bbb1d275c2e2507975481177b4"
+  },
+  {
+   "path": "C:\\Users\\Sergio\\.claude\\uploads\\034bc097-973b-403b-8a90-c7678efdb939\\f32ce509-Class_Data.xlsx",
+   "md5": "542d634b60f1ae711f43206c20ba6503"
+  },
+  {
+   "path": "C:\\Users\\Sergio\\.claude\\uploads\\034bc097-973b-403b-8a90-c7678efdb939\\eb48a496-2026_PRU_Manual_Log_v3.xlsx",
+   "md5": "37c427cf4078f449459b532e4d8e9377"
+  }
+ ],
+ "accepted": {
+  "words": "I need these changes in ONE, view.; Blind check, then live (Recommended); FIX Two known risks go live with it; Once: 32 weekends (Recommended); Class date (Recommended)",
+  "where": "Angie's chat, her questions 111, 112 and 113, 2026-11-22, Falls Church. Blind check r12 PASS, 0 findings (JOBS\\07 PRU Trends classes and years - 2026-11-22 HOME\\VERDICT r12.md, md5 375e0d755affd0c658935a1d9869fa38). Accepted tie-out r7 (39f46305): 165 of 165 figures tied. LAWYER checks after live, as Q111 says. His yes to this upload is still to be given in the Brain's chat. Replaces page 0ca37404."
+ }
+}

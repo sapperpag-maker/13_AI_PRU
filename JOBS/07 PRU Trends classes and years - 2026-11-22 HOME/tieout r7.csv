@@ -1,0 +1,168 @@
+id,label,shown,recomputed,difference,status,note
+T-ClarksburgMD-Feb,Clarksburg (MD) students Feb 2026,15,15,0,TIED,rounds to 15
+T-ClarksburgMD-Mar,Clarksburg (MD) students Mar 2026,45,45,0,TIED,rounds to 45
+T-ClarksburgMD-Apr,Clarksburg (MD) students Apr 2026,36,36,0,TIED,rounds to 36
+T-ClarksburgMD-May,Clarksburg (MD) students May 2026,80,80,0,TIED,rounds to 80
+T-ClarksburgMD-Jun,Clarksburg (MD) students Jun 2026,58,58,0,TIED,rounds to 58
+T-ClarksburgMD-Jul,Clarksburg (MD) students Jul 2026,48,48,0,TIED,rounds to 48
+T-ClarksburgMD-Aug,Clarksburg (MD) students Aug 2026,46,46,0,TIED,rounds to 46
+T-ClarksburgMD-Sep,Clarksburg (MD) students Sep 2026,31,31,0,TIED,rounds to 31
+T-ClarksburgMD-Oct,Clarksburg (MD) students Oct 2026,32,32,0,TIED,rounds to 32
+T-ClarksburgMD-Nov,Clarksburg (MD) students Nov 2026,32,32,0,TIED,rounds to 32
+T-ClarksburgMD-Dec,Clarksburg (MD) students Dec 2026,23,23,0,TIED,rounds to 23
+T-ClarksburgMD-2026,Clarksburg (MD) students 2026,446,446,0,TIED,rounds to 446
+T-ClarksburgMD-2025,Clarksburg (MD) students 2025,304,304,0,TIED,rounds to 304
+T-ClarksburgMD-chg,Clarksburg (MD) change 2026 vs 2025,47%,46.710526315789500,-0.289473684210500,TIED,stored value x 100; rounds to 47%
+T-ColonialHeight-Mar,Colonial Heights -Southpark students Mar 2026,66,66,0,TIED,rounds to 66
+T-ColonialHeight-Apr,Colonial Heights -Southpark students Apr 2026,61,61,0,TIED,rounds to 61
+T-ColonialHeight-May,Colonial Heights -Southpark students May 2026,75,75,0,TIED,rounds to 75
+T-ColonialHeight-Jun,Colonial Heights -Southpark students Jun 2026,59,59,0,TIED,rounds to 59
+T-ColonialHeight-Jul,Colonial Heights -Southpark students Jul 2026,59,59,0,TIED,rounds to 59
+T-ColonialHeight-Aug,Colonial Heights -Southpark students Aug 2026,48,48,0,TIED,rounds to 48
+T-ColonialHeight-Sep,Colonial Heights -Southpark students Sep 2026,64,64,0,TIED,rounds to 64
+T-ColonialHeight-Oct,Colonial Heights -Southpark students Oct 2026,30,30,0,TIED,rounds to 30
+T-ColonialHeight-Nov,Colonial Heights -Southpark students Nov 2026,25,25,0,TIED,rounds to 25
+T-ColonialHeight-Dec,Colonial Heights -Southpark students Dec 2026,15,15,0,TIED,rounds to 15
+T-ColonialHeight-2026,Colonial Heights -Southpark students 2026,502,502,0,TIED,rounds to 502
+T-ColonialHeight-2025,Colonial Heights -Southpark students 2025,519,519,0,TIED,rounds to 519
+T-ColonialHeight-chg,Colonial Heights -Southpark change 2026 vs 2025,-3%,-3.2755298651252400,-0.2755298651252400,TIED,stored value x 100; rounds to -3%
+T-Fairfax-Mar,Fairfax students Mar 2026,69,69,0,TIED,rounds to 69
+T-Fairfax-Apr,Fairfax students Apr 2026,44,44,0,TIED,rounds to 44
+T-Fairfax-May,Fairfax students May 2026,44,44,0,TIED,rounds to 44
+T-Fairfax-Jun,Fairfax students Jun 2026,21,21,0,TIED,rounds to 21
+T-Fairfax-Jul,Fairfax students Jul 2026,54,54,0,TIED,rounds to 54
+T-Fairfax-Aug,Fairfax students Aug 2026,32,32,0,TIED,rounds to 32
+T-Fairfax-Sep,Fairfax students Sep 2026,41,41,0,TIED,rounds to 41
+T-Fairfax-Oct,Fairfax students Oct 2026,30,30,0,TIED,rounds to 30
+T-Fairfax-Nov,Fairfax students Nov 2026,11,11,0,TIED,rounds to 11
+T-Fairfax-Dec,Fairfax students Dec 2026,7,7,0,TIED,rounds to 7
+T-Fairfax-2026,Fairfax students 2026,353,353,0,TIED,rounds to 353
+T-Fairfax-2025,Fairfax students 2025,438,438,0,TIED,rounds to 438
+T-Fairfax-chg,Fairfax change 2026 vs 2025,-19%,-19.406392694063900,-0.406392694063900,TIED,stored value x 100; rounds to -19%
+T-HagerstownMD-2026,Hagerstown (MD) students 2026,0,0,0,TIED,rounds to 0
+T-HagerstownMD-2025,Hagerstown (MD) students 2025,85,85,0,TIED,rounds to 85
+T-HagerstownMD-chg,Hagerstown (MD) change 2026 vs 2025,-100%,-100,0,TIED,stored value x 100; rounds to -100%
+T-ManassasMall-Jan,Manassas - Mall students Jan 2026,11,11,0,TIED,rounds to 11
+T-ManassasMall-Feb,Manassas - Mall students Feb 2026,60,60,0,TIED,rounds to 60
+T-ManassasMall-Mar,Manassas - Mall students Mar 2026,94,94,0,TIED,rounds to 94
+T-ManassasMall-Apr,Manassas - Mall students Apr 2026,79,79,0,TIED,rounds to 79
+T-ManassasMall-May,Manassas - Mall students May 2026,80,80,0,TIED,rounds to 80
+T-ManassasMall-Jun,Manassas - Mall students Jun 2026,102,102,0,TIED,rounds to 102
+T-ManassasMall-Jul,Manassas - Mall students Jul 2026,83,83,0,TIED,rounds to 83
+T-ManassasMall-Aug,Manassas - Mall students Aug 2026,83,83,0,TIED,rounds to 83
+T-ManassasMall-Sep,Manassas - Mall students Sep 2026,45,45,0,TIED,rounds to 45
+T-ManassasMall-Oct,Manassas - Mall students Oct 2026,69,69,0,TIED,rounds to 69
+T-ManassasMall-Nov,Manassas - Mall students Nov 2026,43,43,0,TIED,rounds to 43
+T-ManassasMall-Dec,Manassas - Mall students Dec 2026,16,16,0,TIED,rounds to 16
+T-ManassasMall-2026,Manassas - Mall students 2026,765,765,0,TIED,rounds to 765
+T-ManassasMall-2025,Manassas - Mall students 2025,658,658,0,TIED,rounds to 658
+T-ManassasMall-chg,Manassas - Mall change 2026 vs 2025,16%,16.261398176291800,0.261398176291800,TIED,stored value x 100; rounds to 16%
+T-ManassasGMU-Mar,Manassas - GMU students Mar 2026,31,31,0,TIED,rounds to 31
+T-ManassasGMU-Apr,Manassas - GMU students Apr 2026,47,47,0,TIED,rounds to 47
+T-ManassasGMU-May,Manassas - GMU students May 2026,64,64,0,TIED,rounds to 64
+T-ManassasGMU-Jun,Manassas - GMU students Jun 2026,46,46,0,TIED,rounds to 46
+T-ManassasGMU-Jul,Manassas - GMU students Jul 2026,24,24,0,TIED,rounds to 24
+T-ManassasGMU-Aug,Manassas - GMU students Aug 2026,32,32,0,TIED,rounds to 32
+T-ManassasGMU-Sep,Manassas - GMU students Sep 2026,23,23,0,TIED,rounds to 23
+T-ManassasGMU-Oct,Manassas - GMU students Oct 2026,12,12,0,TIED,rounds to 12
+T-ManassasGMU-Nov,Manassas - GMU students Nov 2026,31,31,0,TIED,rounds to 31
+T-ManassasGMU-Dec,Manassas - GMU students Dec 2026,5,5,0,TIED,rounds to 5
+T-ManassasGMU-2026,Manassas - GMU students 2026,315,315,0,TIED,rounds to 315
+T-ManassasGMU-2025,Manassas - GMU students 2025,308,308,0,TIED,rounds to 308
+T-ManassasGMU-chg,Manassas - GMU change 2026 vs 2025,2%,2.2727272727272700,0.2727272727272700,TIED,stored value x 100; rounds to 2%
+T-NewportNewsPat-Jan,Newport News - Patrick Henry Mall students Jan 2026,7,7,0,TIED,rounds to 7
+T-NewportNewsPat-Feb,Newport News - Patrick Henry Mall students Feb 2026,39,39,0,TIED,rounds to 39
+T-NewportNewsPat-Mar,Newport News - Patrick Henry Mall students Mar 2026,58,58,0,TIED,rounds to 58
+T-NewportNewsPat-Apr,Newport News - Patrick Henry Mall students Apr 2026,52,52,0,TIED,rounds to 52
+T-NewportNewsPat-May,Newport News - Patrick Henry Mall students May 2026,97,97,0,TIED,rounds to 97
+T-NewportNewsPat-Jun,Newport News - Patrick Henry Mall students Jun 2026,65,65,0,TIED,rounds to 65
+T-NewportNewsPat-Jul,Newport News - Patrick Henry Mall students Jul 2026,53,53,0,TIED,rounds to 53
+T-NewportNewsPat-Aug,Newport News - Patrick Henry Mall students Aug 2026,81,81,0,TIED,rounds to 81
+T-NewportNewsPat-Sep,Newport News - Patrick Henry Mall students Sep 2026,61,61,0,TIED,rounds to 61
+T-NewportNewsPat-Oct,Newport News - Patrick Henry Mall students Oct 2026,72,72,0,TIED,rounds to 72
+T-NewportNewsPat-Nov,Newport News - Patrick Henry Mall students Nov 2026,40,40,0,TIED,rounds to 40
+T-NewportNewsPat-Dec,Newport News - Patrick Henry Mall students Dec 2026,16,16,0,TIED,rounds to 16
+T-NewportNewsPat-2026,Newport News - Patrick Henry Mall students 2026,641,641,0,TIED,rounds to 641
+T-NewportNewsPat-2025,Newport News - Patrick Henry Mall students 2025,594,594,0,TIED,rounds to 594
+T-NewportNewsPat-chg,Newport News - Patrick Henry Mall change 2026 vs 2025,8%,7.9124579124579200,-0.0875420875420800,TIED,stored value x 100; rounds to 8%
+T-Stafford-Jan,Stafford students Jan 2026,11,11,0,TIED,rounds to 11
+T-Stafford-Feb,Stafford students Feb 2026,10,10,0,TIED,rounds to 10
+T-Stafford-Mar,Stafford students Mar 2026,36,36,0,TIED,rounds to 36
+T-Stafford-Apr,Stafford students Apr 2026,43,43,0,TIED,rounds to 43
+T-Stafford-May,Stafford students May 2026,31,31,0,TIED,rounds to 31
+T-Stafford-Jun,Stafford students Jun 2026,40,40,0,TIED,rounds to 40
+T-Stafford-Jul,Stafford students Jul 2026,37,37,0,TIED,rounds to 37
+T-Stafford-Aug,Stafford students Aug 2026,29,29,0,TIED,rounds to 29
+T-Stafford-Sep,Stafford students Sep 2026,31,31,0,TIED,rounds to 31
+T-Stafford-Dec,Stafford students Dec 2026,5,5,0,TIED,rounds to 5
+T-Stafford-2026,Stafford students 2026,273,273,0,TIED,rounds to 273
+T-Stafford-2025,Stafford students 2025,245,245,0,TIED,rounds to 245
+T-Stafford-chg,Stafford change 2026 vs 2025,11%,11.428571428571400,0.428571428571400,TIED,stored value x 100; rounds to 11%
+T-VirginiaBeach-Jan,Virginia Beach students Jan 2026,8,8,0,TIED,rounds to 8
+T-VirginiaBeach-Feb,Virginia Beach students Feb 2026,42,42,0,TIED,rounds to 42
+T-VirginiaBeach-Mar,Virginia Beach students Mar 2026,61,61,0,TIED,rounds to 61
+T-VirginiaBeach-Apr,Virginia Beach students Apr 2026,40,40,0,TIED,rounds to 40
+T-VirginiaBeach-May,Virginia Beach students May 2026,65,65,0,TIED,rounds to 65
+T-VirginiaBeach-Jun,Virginia Beach students Jun 2026,45,45,0,TIED,rounds to 45
+T-VirginiaBeach-Jul,Virginia Beach students Jul 2026,42,42,0,TIED,rounds to 42
+T-VirginiaBeach-Aug,Virginia Beach students Aug 2026,46,46,0,TIED,rounds to 46
+T-VirginiaBeach-Sep,Virginia Beach students Sep 2026,29,29,0,TIED,rounds to 29
+T-VirginiaBeach-Oct,Virginia Beach students Oct 2026,29,29,0,TIED,rounds to 29
+T-VirginiaBeach-Nov,Virginia Beach students Nov 2026,30,30,0,TIED,rounds to 30
+T-VirginiaBeach-Dec,Virginia Beach students Dec 2026,20,20,0,TIED,rounds to 20
+T-VirginiaBeach-2026,Virginia Beach students 2026,457,457,0,TIED,rounds to 457
+T-VirginiaBeach-2025,Virginia Beach students 2025,545,545,0,TIED,rounds to 545
+T-VirginiaBeach-chg,Virginia Beach change 2026 vs 2025,-16%,-16.146788990825700,-0.146788990825700,TIED,stored value x 100; rounds to -16%
+T-WaldorfStCharl-2026,Waldorf - St. Charles Town Center (MD) students 2026,0,0,0,TIED,rounds to 0
+T-WaldorfStCharl-2025,Waldorf - St. Charles Town Center (MD) students 2025,210,210,0,TIED,rounds to 210
+T-WaldorfStCharl-chg,Waldorf - St. Charles Town Center (MD) change 2026 vs 2025,-100%,-100,0,TIED,stored value x 100; rounds to -100%
+T-WinchesterAppl-2026,Winchester - Apple Blossom students 2026,0,0,0,TIED,rounds to 0
+T-WinchesterAppl-2025,Winchester - Apple Blossom students 2025,2,2,0,TIED,rounds to 2
+T-WinchesterAppl-chg,Winchester - Apple Blossom change 2026 vs 2025,-100%,-100,0,TIED,stored value x 100; rounds to -100%
+T-WoodbridgePoto-Mar,Woodbridge - Potomac Mills students Mar 2026,76,76,0,TIED,rounds to 76
+T-WoodbridgePoto-Apr,Woodbridge - Potomac Mills students Apr 2026,94,94,0,TIED,rounds to 94
+T-WoodbridgePoto-May,Woodbridge - Potomac Mills students May 2026,111,111,0,TIED,rounds to 111
+T-WoodbridgePoto-Jun,Woodbridge - Potomac Mills students Jun 2026,80,80,0,TIED,rounds to 80
+T-WoodbridgePoto-Jul,Woodbridge - Potomac Mills students Jul 2026,64,64,0,TIED,rounds to 64
+T-WoodbridgePoto-Aug,Woodbridge - Potomac Mills students Aug 2026,84,84,0,TIED,rounds to 84
+T-WoodbridgePoto-Sep,Woodbridge - Potomac Mills students Sep 2026,39,39,0,TIED,rounds to 39
+T-WoodbridgePoto-Oct,Woodbridge - Potomac Mills students Oct 2026,58,58,0,TIED,rounds to 58
+T-WoodbridgePoto-Nov,Woodbridge - Potomac Mills students Nov 2026,14,14,0,TIED,rounds to 14
+T-WoodbridgePoto-Dec,Woodbridge - Potomac Mills students Dec 2026,7,7,0,TIED,rounds to 7
+T-WoodbridgePoto-2026,Woodbridge - Potomac Mills students 2026,627,627,0,TIED,rounds to 627
+T-WoodbridgePoto-2025,Woodbridge - Potomac Mills students 2025,484,484,0,TIED,rounds to 484
+T-WoodbridgePoto-chg,Woodbridge - Potomac Mills change 2026 vs 2025,30%,29.545454545454500,-0.454545454545500,TIED,stored value x 100; rounds to 30%
+T-AllLocations-Mar,All Locations students Mar 2026,15,15,0,TIED,rounds to 15
+T-AllLocations-Apr,All Locations students Apr 2026,38,38,0,TIED,rounds to 38
+T-AllLocations-May,All Locations students May 2026,44,44,0,TIED,rounds to 44
+T-AllLocations-Jun,All Locations students Jun 2026,27,27,0,TIED,rounds to 27
+T-AllLocations-Jul,All Locations students Jul 2026,20,20,0,TIED,rounds to 20
+T-AllLocations-Aug,All Locations students Aug 2026,25,25,0,TIED,rounds to 25
+T-AllLocations-Sep,All Locations students Sep 2026,15,15,0,TIED,rounds to 15
+T-AllLocations-Oct,All Locations students Oct 2026,20,20,0,TIED,rounds to 20
+T-AllLocations-Nov,All Locations students Nov 2026,11,11,0,TIED,rounds to 11
+T-AllLocations-Dec,All Locations students Dec 2026,12,12,0,TIED,rounds to 12
+T-AllLocations-2026,All Locations students 2026,227,227,0,TIED,rounds to 227
+T-AllLocations-2025,All Locations students 2025,160,160,0,TIED,rounds to 160
+T-AllLocations-chg,All Locations change 2026 vs 2025,42%,41.87500,-0.12500,TIED,stored value x 100; rounds to 42%
+T-Allranges-Jan,All ranges students Jan 2026,37,37,0,TIED,rounds to 37
+T-Allranges-Feb,All ranges students Feb 2026,166,166,0,TIED,rounds to 166
+T-Allranges-Mar,All ranges students Mar 2026,551,551,0,TIED,rounds to 551
+T-Allranges-Apr,All ranges students Apr 2026,534,534,0,TIED,rounds to 534
+T-Allranges-May,All ranges students May 2026,691,691,0,TIED,rounds to 691
+T-Allranges-Jun,All ranges students Jun 2026,543,543,0,TIED,rounds to 543
+T-Allranges-Jul,All ranges students Jul 2026,484,484,0,TIED,rounds to 484
+T-Allranges-Aug,All ranges students Aug 2026,506,506,0,TIED,rounds to 506
+T-Allranges-Sep,All ranges students Sep 2026,379,379,0,TIED,rounds to 379
+T-Allranges-Oct,All ranges students Oct 2026,352,352,0,TIED,rounds to 352
+T-Allranges-Nov,All ranges students Nov 2026,237,237,0,TIED,rounds to 237
+T-Allranges-Dec,All ranges students Dec 2026,126,126,0,TIED,rounds to 126
+T-Allranges-2026,All ranges students 2026,"4,606","4,606",0,TIED,rounds to 4606
+T-Allranges-2025,All ranges students 2025,"4,552","4,552",0,TIED,rounds to 4552
+T-Allranges-chg,All ranges change 2026 vs 2025,1%,1.1862917398945500,0.1862917398945500,TIED,stored value x 100; rounds to 1%
+L-2024,Legend 2024 students,"4,952","4,952",0,TIED,rounds to 4952
+L-2025,Legend 2025 students,"4,552","4,552",0,TIED,rounds to 4552
+L-2026,Legend 2026 registrations,"4,606","4,606",0,TIED,rounds to 4606
+L-2027B,Legend 2027B students,"4,455","4,455.292627",0.292627,TIED,rounds to 4455
+
+RESULT: PASS
