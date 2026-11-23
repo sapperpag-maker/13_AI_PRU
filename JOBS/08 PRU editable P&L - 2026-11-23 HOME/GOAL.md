@@ -79,6 +79,36 @@ Today (template.html lines 106, 112, 529-544): edits sit in this browser under o
 6. No page error, readable at desktop and phone width.
 7. Blind check by a fresh agent, then LAWYER, before it reaches him or ONE VIEW.
 
+## His 149 and 150 (his answers in Piston's chat, relayed by Piston, 2026-11-23)
+
+- **149, "500, with ARC (Recommended)":** 2027B shows 500 classes, worded as 498 on the sites plus 2 ARC. ARC stands under All Locations in both years. 2026 stays 573. No dollar moves.
+- **150, typed by him: "HD is off. the range for ARC look in the website".** Open until his answer on the two questions sent through Piston: whether HD's $20,592 comes out of the start values, and where ARC stands, as the website names no single place for it. Until then HD and ARC rent stay as they are.
+
+## The capped goal (his 11-15 order)
+
+**It MUST deliver:**
+
+1. One calculation: every tab reads classes, students, coaches, sales and rent from it. No tab keeps its own sum.
+2. Every 2027B value on the P&L can be typed as the goal above says, with the 2027 End columns following at once.
+3. Classes and students per class can be typed by month for every grid row, and the trend line follows.
+4. A Summary tab and one tab per range, 2025, 2026 and 2027B only.
+5. Saved edits survive a save, a reload and a rebuild.
+
+**The 10 common failure cases the blind check tests:**
+
+1. With no edits, a P&L cell differs from page dc320827.
+2. With no edits, sales, operating profit or net differ from the start values, unless his answer on HD changes them.
+3. 2027B classes are not 500, or are not worded 498 on the sites plus 2 ARC. 2026 is not 573.
+4. The ranges do not add to the Summary in any year, for classes, students or sales.
+5. ARC stands in different places in 2026 and 2027B.
+6. A typed ARC class or students per class does not reach the plan tab, the coach label, the trends and the P&L.
+7. ARC coach cost breaks the printed rule: two April classes cost $780.
+8. A typed $ or % on a P&L line gives a wrong line, total, profit, tax or net.
+9. A save or a rebuild loses a typed edit without stopping or listing it. A % on a sales line is not listed.
+10. A sentence on the page says something the page's numbers do not do.
+
+**Pass mark:** all 5 delivered and none of the 10 cases found. Anything else the check sees is reported, never a FAIL.
+
 ## Not in this job
 
 - The 42 December classes: kept, on his answer "ok so them keep them" (job 06 session's report, 2026-11-23). 2026 stays at 573 classes.
