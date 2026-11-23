@@ -1,0 +1,867 @@
+"""tie_out.py - recompute every figure listed in figures.csv from its source.
+
+Usage:  python3.14 -I -B tie_out.py <figures.csv> [--out <result.csv>]
+
+Serves the skill pru-figures-tie-out. Standard library plus openpyxl only.
+The program guesses nothing: every reading is stated in figures.csv or refused.
+Never prints or writes a GL line: only sums and counts.
+
+Kinds: cell and gl only. Any other kind is ERROR "kind not supported (cell
+and gl only)"; a blank source (or a blank or none kind) is NO SOURCE.
+
+figures.csv columns: id, label, shown, unit, period, kind, source, detail,
+md5, size. md5 and size are required on every row that has a source. The old
+scale column is gone: a figures.csv that still has it exits 2.
+
+A cell row reads only the cell's stored value; the program never reads a
+number format. Text, boolean, date and empty cells are ERROR. A shown value
+with % is compared to the stored value x 100; a shown value without % is
+compared to the stored value as it is. A gl row's shown with % is ERROR.
+
+--out must name a path where nothing exists yet; anything there exits 2 and
+is left unchanged. An --out holding a ':' anywhere but a drive letter's (an
+NTFS stream, a long-path spelling with its drive colon) exits 2 too.
+
+No number is ever rounded silently: a GL amount, a cell value (after the
+15-digit cut) or a shown value with more than 18 digits before the point is
+ERROR; a GL amount or a shown value with more than 6 digits after the point is
+ERROR too (a cell keeps all its decimals: after the cut it holds at most 15
+significant digits, so =1/3 is read as 0.333333333333333). The run works in a
+60-digit Decimal context, and every negation, subtraction, sum and x 100 is
+done in a context that raises on any rounding (ERROR).
+
+A figure is TIED only when
+  - the recomputed value, rounded half up (Decimal ROUND_HALF_UP) to exactly
+    the decimals and suffix (k, M) of shown, equals shown, and
+  - the sign of shown equals the sign of the unrounded value, where an exact
+    0 counts as either sign. A shown zero with no sign (0, 0.0, 0%, $0, 0k)
+    ties any value that rounds to zero, either sign ("0" ties -0.30); a signed
+    zero keeps its sign ("-0" never ties +0.30; "+0" never ties -0.30).
+    A leading + means positive: "+8%" ties 7.78, "+5" against -5 is OFF.
+    No note prints "-0".
+The GL header must hold the 9 column names in order, each compared after its
+spaces at both ends are trimmed (the real file has "Account ", "Store ").
+A number read from a workbook, float or int, is first cut to 15 significant
+digits, as Excel does, so 14.499999999999998 is 14.5 and shows as 15, and the
+int 1234567890123456 is 1,234,567,890,123,460 (half up, never through a float).
+A shown value with both $ and % is refused. The recomputed, difference and
+sum columns print every digit held, never rounded; -0 prints as 0.
+
+Every field of figures.csv and of a 9-field GL record is trimmed of spaces and
+tabs at both ends before it is used. The files it reads are never changed.
+
+A refusal is a row with status ERROR or a stop with exit 2. A row with status
+ERROR is not TIED, and in a run holding one the program's own result line is
+never RESULT: PASS. A stop comes before the program's own result line is
+printed, unless printing that line is what fails.
+
+Exit codes: 0 = every row TIED, RESULT: PASS. 1 = at least one row not TIED,
+RESULT: FAIL. 2 = bad input or a crash, while the screen output still works.
+"""
+
+import csv
+import hashlib
+import os
+import re
+import sys
+from datetime import date, datetime, time, timedelta
+from decimal import (Context, Decimal, DivisionByZero, Inexact, InvalidOperation, Overflow,
+                     ROUND_HALF_UP, Rounded, localcontext)
+
+csv.field_size_limit(2**31 - 1)  # a very long field must not crash the run
+
+REQUIRED_COLS = ["id", "label", "shown", "unit", "period", "kind", "source", "detail"]
+OPTIONAL_COLS = ["md5", "size"]
+GL_NAMES = ("Account", "Journal", "Date", "Doc #", "Description", "Debit Amount", "Credit Amount",
+            "Balance", "Store")  # each header name is compared after trimming spaces at its ends
+GL_WIDTH = 9
+I_ACC, I_JNL, I_DT, I_DR, I_CR, I_ST = 0, 1, 2, 5, 6, 8
+GL_USED = (I_ACC, I_JNL, I_DT, I_DR, I_CR, I_ST)
+GL_KEYS = ("accounts", "store", "from", "to", "side", "journal")
+KINDS = ("cell", "gl")
+OUT_COLS = ["id", "label", "shown", "recomputed", "difference", "status", "note"]
+GL_OUT_COLS = ["id", "account", "sum", "lines matched"]
+ROUNDING = ROUND_HALF_UP          # Sergio, Q55: "Half up: 1,235"
+HUNDRED = Decimal(100)
+MAX_INT_DIGITS = 18               # more digits before the point is ERROR
+TOO_BIG = Decimal(10) ** MAX_INT_DIGITS
+MAX_DEC_DIGITS = 6                # more digits after the point is ERROR (shown, GL amounts; not cells)
+# the run's context: wide enough that no capped number is rounded by + - x /
+WIDE = Context(prec=60, rounding=ROUND_HALF_UP, traps=[InvalidOperation, DivisionByZero, Overflow])
+# GL sums: any rounding at all raises, so a sum is exact or the row is ERROR
+SUM_CTX = Context(prec=60, rounding=ROUND_HALF_UP,
+                  traps=[InvalidOperation, DivisionByZero, Overflow, Inexact, Rounded])
+USAGE = "usage: tie_out.py <figures.csv> [--out <result.csv>]"
+SCALE_GONE = (USAGE + " -- the scale column is gone; figures.csv columns: "
+              + ", ".join(REQUIRED_COLS + OPTIONAL_COLS))
+
+TIED, OFF, NOSRC, ERR = "TIED", "OFF", "NO SOURCE", "ERROR"
+TRIM = " \t"                    # job 06 point 5: spaces and tabs, at both ends of every field read
+
+
+def trim(text):
+    """A field as read, trimmed of spaces and tabs at both ends; blank stays blank."""
+    return (text or "").strip(TRIM)
+
+
+WS_NOTE = "whitespace other than space or tab at an end of "
+
+
+def edge_space(text):
+    """True when a trimmed field still starts or ends with other whitespace (NBSP, VT, FF, US, EM SPACE...)."""
+    return bool(text) and (text[0].isspace() or text[-1].isspace())
+
+
+def plain_ascii(text):
+    """True when a field holds only printable ASCII, 0x20 to 0x7E (Piston's pick, job 06 shape 1)."""
+    return text.isascii() and text.isprintable()
+
+
+class BadInput(Exception):
+    pass
+
+
+class RowError(Exception):
+    pass
+
+
+# ---------------------------------------------------------------- numbers
+
+# integer part: proper thousands groups, first group 1-3 digits with no
+# leading zero; or plain digits with no leading zero; or a lone 0
+_INT = r"(?P<int>[1-9][0-9]{0,2}(?:,[0-9]{3})+|[1-9][0-9]*|0)"
+_NUM = _INT + r"(?P<dec>\.[0-9]+)?(?P<suf>[kM%])?"
+_PLAIN_RE = re.compile(r"(?P<sign>[-−+])?\$?" + _NUM)
+_PAREN_RE = re.compile(r"\(\$?" + _NUM + r"\)")
+_AMT = _INT + r"(?P<dec>\.[0-9]+)?"
+_AMT_PLAIN_RE = re.compile(r"(?P<sign>-)?\$?" + _AMT)
+_AMT_PAREN_RE = re.compile(r"\(\$?" + _AMT + r"\)")
+
+
+def parse_shown(text):
+    """Shown figure -> {signed, neg, decimals, mult, pct}. Raises ValueError.
+
+    Grammar: optional '-', U+2212 or '+', OR whole parentheses (never both);
+    optional '$' after the sign or just inside the parentheses; ASCII digits
+    with proper thousands commas and no leading zero; optional .digits;
+    optional k, M or %. Plain ASCII spaces only around the whole value.
+    """
+    s = (text or "").strip(" ")
+    m = _PAREN_RE.fullmatch(s)
+    if m:
+        neg, signed_text = True, True
+    else:
+        m = _PLAIN_RE.fullmatch(s)
+        if not m:
+            raise ValueError("shown not readable")
+        neg = m.group("sign") in ("-", "−")
+        signed_text = m.group("sign") is not None
+    suf = m.group("suf")
+    if suf == "%" and "$" in s:
+        raise ValueError("shown has both $ and %")
+    mult ={"k": Decimal(1000), "M": Decimal(1000000)}.get(suf, Decimal(1))
+    dec = m.group("dec") or ""
+    digits = m.group("int").replace(",", "")
+    if len(digits) > MAX_INT_DIGITS:
+        raise ValueError(f"shown has more than {MAX_INT_DIGITS} digits before the point")
+    if len(dec) - 1 > MAX_DEC_DIGITS:
+        raise ValueError(f"shown has more than {MAX_DEC_DIGITS} digits after the point")
+    num = Decimal(digits + dec)
+    signed = no_rounding(SUM_CTX.minus, num) if neg else num
+    return {"signed": signed, "neg": neg, "decimals": max(len(dec) - 1, 0),
+            "mult": mult, "pct": suf == "%", "has_sign": signed_text}
+
+
+def shown_value(sh):
+    return sh["signed"] * sh["mult"]
+
+
+def round_to_shown(value, sh):
+    """The recomputed value at the precision of shown, half up."""
+    quantum = Decimal(1).scaleb(-sh["decimals"])
+    return (value / sh["mult"]).quantize(quantum, rounding=ROUNDING)
+
+
+def sign_agrees(value, sh):
+    """The sign of shown equals the sign of the unrounded value; exact 0 is either.
+
+    A shown zero written with no sign agrees with either sign (Sergio, Q69).
+    """
+    if sh["signed"] == 0 and not sh["has_sign"]:
+        return True
+    if value > 0 and sh["neg"]:
+        return False
+    if value < 0 and not sh["neg"]:
+        return False
+    return True
+
+
+def is_tied(value, sh):
+    return round_to_shown(value, sh) == sh["signed"] and sign_agrees(value, sh)
+
+
+def parse_amount(text):
+    """GL Debit or Credit to Decimal by one strict grammar. Raises ValueError.
+
+    Blank or spaces only = 0. Otherwise: optional '-', OR whole parentheses
+    (never both); optional '$' after the sign or just inside the parentheses;
+    ASCII digits with proper thousands commas; optional .digits.
+    """
+    s = (text or "").strip(" ")
+    if s == "":
+        return Decimal(0)
+    m = _AMT_PAREN_RE.fullmatch(s)
+    neg = True
+    if not m:
+        m = _AMT_PLAIN_RE.fullmatch(s)
+        if not m:
+            raise ValueError("bad amount")
+        neg = m.group("sign") is not None
+    digits = m.group("int").replace(",", "")
+    if len(digits) > MAX_INT_DIGITS:
+        raise ValueError("amount has more than 18 digits before the point")
+    dec = m.group("dec") or ""
+    if len(dec) - 1 > MAX_DEC_DIGITS:
+        raise ValueError("amount has more than 6 digits after the point")
+    d = Decimal(digits + dec)
+    return no_rounding(SUM_CTX.minus, d) if neg else d
+
+
+def no_rounding(op, *args, err=ValueError, msg="number too long to handle without rounding"):
+    """op (a SUM_CTX method) on args; any rounding raises err(msg)."""
+    try:
+        return op(*args)
+    except (Inexact, Rounded):
+        raise err(msg)
+
+
+def exact_sum(a, b):
+    """a + b with no rounding at all, or RowError."""
+    try:
+        return SUM_CTX.add(a, b)
+    except (Inexact, Rounded):
+        raise RowError(SUM_MSG)
+
+
+SUM_MSG = "GL sum too long to add without rounding"
+
+
+CUT15 = Context(prec=15, rounding=ROUND_HALF_UP)   # Excel's 15 significant digits, half up
+
+
+def to_decimal(value):
+    """A cell's stored number cut to 15 significant digits, as Excel shows it."""
+    if isinstance(value, int):
+        return CUT15.plus(Decimal(value))  # the exact int, then cut: never through a float
+    return CUT15.plus(Decimal(value)).normalize(CUT15)  # the exact float, cut half up; no trailing zeros
+
+
+def fmt(v):
+    """A number at full precision, never rounded, with thousands commas; -0 prints as 0."""
+    if v is None:
+        return ""
+    if not v.is_finite():
+        return str(v)
+    if v == 0:
+        v = v.copy_abs()
+    return f"{v:,f}"
+
+
+# ---------------------------------------------------------------- files
+
+_md5_cache = {}
+
+
+def file_md5(path):
+    if path not in _md5_cache:
+        h = hashlib.md5()
+        with open(path, "rb") as f:
+            for chunk in iter(lambda: f.read(1 << 20), b""):
+                h.update(chunk)
+        _md5_cache[path] = h.hexdigest()
+    return _md5_cache[path]
+
+
+def check_source(row):
+    """md5 and size required; existence, size and md5 checked. Raises RowError."""
+    path = row["source"]
+    want_size = (row.get("size") or "").strip().replace(",", "")
+    want_md5 = (row.get("md5") or "").strip().lower()
+    if not want_size or not want_md5:
+        raise RowError("md5/size not given")
+    if not os.path.isfile(path):
+        raise RowError("source file not found")
+    if not re.fullmatch(r"[0-9]+", want_size):
+        raise RowError("size column not a whole number")
+    if not re.fullmatch(r"[0-9a-f]{8}|[0-9a-f]{32}", want_md5):
+        raise RowError("md5 column must be 8 or 32 hex characters")
+    if os.path.getsize(path) != int(want_size):
+        raise RowError("source changed (size)")
+    if not file_md5(path).startswith(want_md5):
+        raise RowError("source changed (md5)")
+
+
+# ---------------------------------------------------------------- cell
+
+_books = {}
+
+
+def get_book(path):
+    if path not in _books:
+        from openpyxl import load_workbook
+        _books[path] = load_workbook(path, read_only=True, data_only=True)
+    return _books[path]
+
+
+def split_ref(detail):
+    d = trim(detail)
+    if "!" not in d:
+        raise RowError("cell detail must be Sheet!A1")
+    sheet, cell = d.rsplit("!", 1)
+    sheet = trim(sheet)
+    if len(sheet) >= 2 and sheet[0] == "'" and sheet[-1] == "'":
+        sheet = sheet[1:-1].replace("''", "'")
+    elif edge_space(sheet):
+        raise RowError(WS_NOTE + "the sheet part of the cell detail")
+    cell = trim(cell)
+    if edge_space(cell):
+        raise RowError(WS_NOTE + "the cell part of the cell detail")
+    m = re.fullmatch(r"\$?([A-Za-z]{1,3})\$?([1-9][0-9]*)", cell)  # as written, before any change of case
+    if not sheet or not m:
+        raise RowError("cell detail must be Sheet!A1")
+    return sheet, m.group(1).upper(), int(m.group(2))
+
+
+def col_index(letters):
+    n = 0
+    for ch in letters:
+        n = n * 26 + (ord(ch) - 64)
+    return n
+
+
+def recompute_cell(row, pct):
+    """The cell's stored value, x 100 when shown holds %. Never reads a format."""
+    sheet, col, rownum = split_ref(row["detail"])
+    ci = col_index(col)
+    if sheet.strip().lower() == "master":
+        if ci > 5:
+            raise RowError("Master past column E")
+        if ci < 2:
+            raise RowError("Master column A refused (only B to E)")
+    check_source(row)
+    try:
+        wb = get_book(row["source"])
+    except Exception as e:
+        raise RowError(f"workbook could not be opened ({type(e).__name__})")
+    if sheet not in wb.sheetnames:
+        raise RowError("sheet not found")
+    cell = None
+    for r in wb[sheet].iter_rows(min_row=rownum, max_row=rownum, min_col=ci, max_col=ci):
+        cell = r[0] if r else None
+    value = getattr(cell, "value", None)
+    if value is None:
+        raise RowError("no cached value (empty cell or formula never calculated)")
+    if isinstance(value, bool):
+        raise RowError("cell holds a boolean")
+    if isinstance(value, (datetime, date, time, timedelta)):
+        raise RowError("cell holds a date")
+    if isinstance(value, str):
+        raise RowError("cell holds text, not a number")
+    if not isinstance(value, (int, float)):
+        raise RowError(f"cell holds {type(value).__name__}, not a number")
+    try:
+        v = to_decimal(value)
+    except (InvalidOperation, ValueError):
+        raise RowError("cell value not a finite number")
+    if not v.is_finite():
+        raise RowError("cell value not a finite number")
+    if abs(v) >= TOO_BIG:
+        raise RowError(f"cell value has more than {MAX_INT_DIGITS} digits before the point")
+    if pct:
+        return no_rounding(SUM_CTX.multiply, v, HUNDRED, err=RowError,
+                           msg="cell value x 100 needs rounding")
+    return v
+
+
+# ---------------------------------------------------------------- gl
+
+def parse_date(text):
+    """Only M/D/YYYY (4-digit year) or ISO YYYY-MM-DD; anything else is unreadable."""
+    s = trim(text)
+    m = re.fullmatch(r"([0-9]{4})-([0-9]{2})-([0-9]{2})", s)
+    if m:
+        y, mo, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    else:
+        m = re.fullmatch(r"([0-9]{1,2})/([0-9]{1,2})/([0-9]{4})", s)
+        if not m:
+            raise ValueError("bad date")
+        mo, d, y = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    return date(y, mo, d)
+
+
+def account_matches(pattern, account):
+    """Exact, or x/X standing for one ASCII digit 0-9, same length only."""
+    if len(pattern) != len(account):
+        return False
+    for p, a in zip(pattern, account):
+        if p in "xX":
+            if a not in "0123456789":
+                return False
+        elif p != a:
+            return False
+    return True
+
+
+def parse_gl_detail(detail):
+    spec = {}
+    for n, part in enumerate((detail or "").split(";"), 1):
+        part = trim(part)
+        if not part:
+            continue
+        if "=" not in part:
+            if edge_space(part):
+                raise RowError(WS_NOTE + f"gl detail part {n}")
+            raise RowError("gl detail must be key=value pairs separated by ;")
+        k, v = part.split("=", 1)
+        k, v = trim(k), trim(v)
+        if edge_space(k):
+            raise RowError(WS_NOTE + f"gl detail part {n}")
+        k = k.lower()
+        if edge_space(v):
+            raise RowError(WS_NOTE + (f"gl detail {k} value" if k in GL_KEYS else f"gl detail part {n}"))
+        if k in spec:
+            raise RowError("repeated key in gl detail: " + k)
+        spec[k] = v
+    unknown = set(spec) - set(GL_KEYS)
+    if unknown:
+        raise RowError("gl detail has unknown key " + ", ".join(sorted(unknown)))
+    missing = [k for k in ("accounts", "store", "from", "to", "side") if not spec.get(k)]
+    if missing:
+        raise RowError("gl detail missing " + ", ".join(missing))
+    items = [trim(a) for a in spec["accounts"].split(",")]
+    if any(edge_space(a) for a in items):
+        raise RowError(WS_NOTE + "gl detail accounts value")
+    accounts = [a for a in items if a]
+    if not accounts:
+        raise RowError("gl detail has no accounts")
+    try:
+        d_from = parse_date(spec["from"])
+        d_to = parse_date(spec["to"])
+    except ValueError:
+        raise RowError("gl from/to must be YYYY-MM-DD or M/D/YYYY")
+    if d_from > d_to:
+        raise RowError("gl from is after to")
+    side = spec["side"].lower()
+    if side not in ("credit-debit", "debit-credit"):
+        raise RowError("gl side must be credit-debit or debit-credit")
+    journals = None
+    if "journal" in spec:
+        items = [trim(j) for j in spec["journal"].split(",")]
+        if any(edge_space(j) for j in items):
+            raise RowError(WS_NOTE + "gl detail journal value")
+        journals = {j for j in items if j}
+        if not journals:
+            raise RowError("gl journal is blank")
+    return {
+        "accounts": accounts, "store": spec["store"],
+        "from": d_from, "to": d_to, "side": side, "journals": journals,
+        "sum": Decimal(0), "lines": 0, "per_account": {}, "bad_amount": 0,
+        "bad_date": 0,
+    }
+
+
+def header_ok(raw):
+    """The header bytes (BOM gone): 9 names, in order, each trimmed of spaces at its ends."""
+    try:
+        text = raw.rstrip(b"\r\n").decode("ascii")
+    except UnicodeDecodeError:
+        return False
+    names = tuple(n.strip(" ") for n in text.split(","))
+    return names == GL_NAMES
+
+
+def read_gl(path, specs):
+    """One streaming pass over the GL for every gl row on this path.
+
+    Each field of a 9-field record is trimmed of spaces and tabs at both ends.
+    Raises RowError or csv.Error on a GL it refuses; run_rows then makes every
+    row on this path ERROR. An unreadable date, debit or credit on a line
+    matching a row's store and account makes that row ERROR.
+    """
+    counts = {"physical": 0, "first": True, "header": None}
+
+    def raw_lines():
+        with open(path, "rb") as f:
+            for raw in f:
+                if counts["first"]:
+                    counts["first"] = False
+                    if raw.startswith(b"\xef\xbb\xbf"):
+                        raw = raw[3:]
+                    counts["header"] = raw
+                elif raw.strip():
+                    counts["physical"] += 1
+                yield raw.decode("utf-8", errors="surrogateescape")  # a bad byte stays visible to plain_ascii
+
+    lines = raw_lines()
+    first = next(lines, None)
+    if first is None:
+        raise RowError("GL file is empty")
+    if not header_ok(counts["header"]):
+        raise RowError("GL header not as expected")
+    reader = csv.reader(lines, strict=True)  # a quote closed early is refused, as csv.Error
+    speclist = list(specs.values())
+    records = 0
+    malformed = 0
+    bad_quote = dict.fromkeys(GL_USED, 0)  # lines per used column, never their content
+    bad_space = dict.fromkeys(GL_USED, 0)
+    bad_byte = dict.fromkeys(GL_USED, 0)
+    spaced = 0  # lines whose account or store equals a target once its inner spaces are removed
+    for fields in reader:
+        if not fields or (len(fields) == 1 and not fields[0].strip()):
+            continue  # a blank line
+        records += 1
+        if len(fields) != GL_WIDTH:
+            malformed += 1
+            continue
+        fields = [trim(x) for x in fields]  # job 06 point 5, on read; the file is never changed
+        for i in GL_USED:
+            if '"' in fields[i]:
+                bad_quote[i] += 1
+            if edge_space(fields[i]):
+                bad_space[i] += 1
+            if not plain_ascii(fields[i]):
+                bad_byte[i] += 1
+        account = fields[I_ACC]
+        store = fields[I_ST]
+        journal = fields[I_JNL]
+        if " " in account or " " in store:
+            bare_acc, bare_st = account.replace(" ", ""), store.replace(" ", "")
+            if any(bare_st == sp["store"] and any(account_matches(p, bare_acc) for p in sp["accounts"])
+                   for sp in speclist):
+                spaced += 1
+        parsed = None  # (date or None, debit or None, credit or None), read once per line
+        for sp in speclist:
+            if store != sp["store"]:
+                continue
+            if not any(account_matches(p, account) for p in sp["accounts"]):
+                continue
+            if parsed is None:
+                try:
+                    d = parse_date(fields[I_DT])
+                except ValueError:
+                    d = None
+                try:
+                    dr, cr = parse_amount(fields[I_DR]), parse_amount(fields[I_CR])
+                except ValueError:
+                    dr = cr = None
+                parsed = (d, dr, cr)
+            d, dr, cr = parsed
+            if d is None:
+                sp["bad_date"] += 1
+            if dr is None:
+                sp["bad_amount"] += 1
+            if d is None or dr is None:
+                continue
+            if sp["journals"] is not None and journal not in sp["journals"]:
+                continue
+            if not (sp["from"] <= d <= sp["to"]):
+                continue
+            if sp["side"] == "credit-debit":
+                amt = no_rounding(SUM_CTX.subtract, cr, dr, err=RowError, msg=SUM_MSG)
+            else:
+                amt = no_rounding(SUM_CTX.subtract, dr, cr, err=RowError, msg=SUM_MSG)
+            sp["sum"] = exact_sum(sp["sum"], amt)
+            sp["lines"] += 1
+            pa = sp["per_account"].setdefault(account, [Decimal(0), 0])
+            pa[0] = exact_sum(pa[0], amt)
+            pa[1] += 1
+    problems = []
+    if records != counts["physical"]:
+        problems.append(f"GL records {records} ≠ lines {counts['physical']}")
+    if malformed:
+        problems.append(f"{malformed} malformed GL lines")
+    if spaced:
+        problems.append(f"{spaced} GL lines whose account or store equals a target once inner spaces are removed")
+    for i in GL_USED:
+        if bad_quote[i]:
+            problems.append(f"{bad_quote[i]} GL lines with a quote mark in column {GL_NAMES[i]}")
+        if bad_space[i]:
+            problems.append(f"{bad_space[i]} GL lines with whitespace other than space or tab "
+                            f"at an end of column {GL_NAMES[i]}")
+        if bad_byte[i]:
+            problems.append(f"{bad_byte[i]} GL lines with a character that is not printable ASCII "
+                            f"in column {GL_NAMES[i]}")
+    if problems:
+        raise RowError("; ".join(problems))
+
+
+# ---------------------------------------------------------------- main
+
+def load_figures(path):
+    if not os.path.isfile(path):
+        raise BadInput(f"figures file not found: {path}")
+    try:
+        with open(path, "r", encoding="utf-8-sig", newline="") as f:
+            reader = csv.reader(f)
+            header = next(reader, None)
+            if header is None:
+                raise BadInput("figures file is empty")
+            if any(edge_space(trim(h)) for h in header):
+                raise BadInput("figures header has whitespace other than space or tab at the end of a name")
+            names = [trim(h).lower() for h in header]
+            if len(set(names)) != len(names):
+                raise BadInput("figures header has a duplicate column name")
+            if "scale" in names:
+                raise BadInput("figures header has a scale column\n" + SCALE_GONE)
+            missing = [c for c in REQUIRED_COLS if c not in names]
+            if missing:
+                raise BadInput("figures header lacks: " + ", ".join(missing))
+            rows = []
+            for n, fields in enumerate(reader, 2):
+                if not any(trim(x) for x in fields):
+                    continue
+                if len(fields) > len(header):
+                    raise BadInput(f"figures row {n} has more fields than the header")
+                row = {"bad_space": [names[i] for i, x in enumerate(fields) if edge_space(trim(x))]}
+                for c in REQUIRED_COLS + OPTIONAL_COLS:
+                    raw = fields[names.index(c)] if c in names and names.index(c) < len(fields) else ""
+                    row[c] = trim(raw)  # job 06 point 5: spaces and tabs at both ends of every field
+                rows.append(row)
+    except UnicodeDecodeError:
+        raise BadInput("figures file is not UTF-8")
+    except csv.Error:
+        raise BadInput("figures file is not a readable CSV")
+    if not rows:
+        raise BadInput("figures file has no rows")
+    seen = set()
+    for r in rows:
+        if not r["id"]:
+            raise BadInput("a figures row has no id")
+        if r["id"] in seen:
+            raise BadInput("duplicate id " + r["id"])
+        seen.add(r["id"])
+    return rows
+
+
+def run(rows):
+    """Every step of the run in the 60-digit context WIDE."""
+    with localcontext(WIDE):
+        return run_rows(rows)
+
+
+def run_rows(rows):
+    results ={r["id"]: {"value": None, "status": None, "note": ""} for r in rows}
+    gl_tables = {}
+
+    def fail(rid, status, note):
+        results[rid]["status"], results[rid]["note"] = status, note
+
+    # pass 0: shown, kind and source, stated or refused
+    shown = {}
+    for r in rows:
+        rid, kind = r["id"], r["kind"].lower()
+        try:
+            shown[rid] = parse_shown(r["shown"])  # refuses other whitespace in shown by itself
+        except ValueError as e:
+            fail(rid, ERR, str(e))
+            continue
+        if r.get("bad_space"):
+            fail(rid, ERR, "whitespace other than space or tab at an end of figures column "
+                           + ", ".join(r["bad_space"]))
+            continue
+        if kind not in KINDS + ("", "none"):
+            fail(rid, ERR, "kind not supported (cell and gl only)")
+            continue
+        if kind in ("", "none") or not r["source"]:
+            fail(rid, NOSRC, "no source named")
+            continue
+        if kind == "gl" and shown[rid]["pct"]:
+            fail(rid, ERR, "a gl row's shown cannot hold %")
+
+    # pass 1: cell; collect gl specs by path
+    gl_by_path = {}
+    for r in rows:
+        rid, kind = r["id"], r["kind"].lower()
+        if results[rid]["status"] is not None:
+            continue
+        if kind == "cell":
+            try:
+                results[rid]["value"] = recompute_cell(r, shown[rid]["pct"])
+                if shown[rid]["pct"]:
+                    results[rid]["note"] = "stored value x 100"
+            except RowError as e:
+                fail(rid, ERR, str(e))
+            except Exception as e:
+                fail(rid, ERR, f"cell could not be read ({type(e).__name__})")
+        else:
+            try:
+                spec = parse_gl_detail(r["detail"])
+                check_source(r)
+            except RowError as e:
+                fail(rid, ERR, str(e))
+                continue
+            gl_by_path.setdefault(os.path.normcase(os.path.realpath(r["source"])), {})[rid] = spec
+
+    # pass 2: each GL once
+    for path, specs in gl_by_path.items():
+        try:
+            read_gl(path, specs)
+        except RowError as e:
+            for rid in specs:
+                fail(rid, ERR, str(e))
+            continue
+        except (OSError, csv.Error) as e:
+            for rid in specs:
+                fail(rid, ERR, f"GL could not be read ({type(e).__name__})")
+            continue
+        for rid, sp in specs.items():
+            table = [(acc, v[0], v[1]) for acc, v in sorted(sp["per_account"].items())]
+            dead = []
+            for p in sp["accounts"]:
+                if not any(account_matches(p, acc) for acc, _, _ in table):
+                    dead.append(p)
+            for p in dead:
+                table.append((p, Decimal(0), 0))
+            gl_tables[rid] = table
+            if sp["bad_amount"] or sp["bad_date"]:
+                fail(rid, ERR, f"{sp['bad_amount']} matched lines with unreadable amount, "
+                               f"{sp['bad_date']} with unreadable date")
+                continue
+            if sp["lines"] == 0:
+                fail(rid, ERR, "no GL lines matched")
+                continue
+            if dead:
+                fail(rid, ERR, "; ".join(f"account {p} matched no line" for p in dead))
+                continue
+            results[rid]["value"] = sp["sum"]
+            results[rid]["note"] = f"{sp['lines']} GL lines matched"
+
+    # pass 3: compare by rounding to the precision of shown, sign included
+    out = []
+    for r in rows:
+        res = results[r["id"]]
+        diff = None
+        if res["status"] is None:
+            sh = shown[r["id"]]
+            try:
+                rounded = round_to_shown(res["value"], sh)
+                diff = no_rounding(SUM_CTX.subtract, res["value"], shown_value(sh))
+                res["status"] = TIED if is_tied(res["value"], sh) else OFF
+            except InvalidOperation:
+                res["status"], res["note"] = ERR, "value too large to round"
+            except ValueError:
+                res["status"], res["note"] = ERR, "difference too long to compute without rounding"
+            else:
+                suffix = {Decimal(1000): "k", Decimal(1000000): "M"}.get(sh["mult"], "")
+                if sh["pct"]:
+                    suffix = "%"
+                if rounded == 0:
+                    rounded = rounded.copy_abs()  # no note prints "-0"
+                note = f"rounds to {rounded}{suffix}"
+                if not sign_agrees(res["value"], sh):
+                    note += "; sign differs from shown"
+                res["note"] = "; ".join(x for x in (res["note"], note) if x)
+        out.append({
+            "id": r["id"], "label": r["label"], "shown": r["shown"],
+            "recomputed": fmt(res["value"]), "difference": fmt(diff),
+            "status": res["status"], "note": res["note"],
+        })
+    gl_out = []
+    for r in rows:
+        for acc, s, n in gl_tables.get(r["id"], []):
+            gl_out.append({"id": r["id"], "account": acc, "sum": fmt(s), "lines matched": str(n)})
+    return out, gl_out
+
+
+def print_table(title, cols, rows):
+    widths = {c: max([len(c)] + [len(str(r[c])) for r in rows]) for c in cols}
+    print(title)
+    print(" | ".join(c.ljust(widths[c]) for c in cols))
+    print("-+-".join("-" * widths[c] for c in cols))
+    for r in rows:
+        print(" | ".join(str(r[c]).ljust(widths[c]) for c in cols))
+    print()
+
+
+OUT_EXISTS = "bad input: --out names a path that already exists; it is left unchanged"
+OUT_COLON = "bad input: --out must hold no ':' other than a drive letter's (C:)"
+
+
+def out_colon_ok(path):
+    """True when the only ':' in path, if any, is a drive letter's at index 1."""
+    rest = path
+    if len(path) >= 2 and path[1] == ":" and path[0] in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz":
+        rest = path[2:]
+    return ":" not in rest
+
+
+def main(argv):
+    args = list(argv)
+    out_path = None
+    if "--out" in args:
+        i = args.index("--out")
+        if i + 1 >= len(args) or not args[i + 1]:
+            print("bad input: --out needs a path", file=sys.stderr)
+            return 2
+        out_path = args[i + 1]
+        del args[i:i + 2]
+    if len(args) != 1:
+        print(USAGE, file=sys.stderr)
+        return 2
+    try:
+        rows = load_figures(args[0])
+    except BadInput as e:
+        print("bad input: " + str(e), file=sys.stderr)
+        return 2
+    # --out holding a ':' other than a drive letter's (index 1) is refused: an
+    # NTFS stream (file:zz) would be written onto an existing file.
+    if out_path is not None and not out_colon_ok(out_path):
+        print(OUT_COLON, file=sys.stderr)
+        return 2
+    # --out must not exist: checked on the path as given, any spelling or link
+    # that reaches an existing file or folder is refused; the file is then
+    # created with mode "x", which refuses one made in the meantime.
+    if out_path is not None and os.path.lexists(out_path):
+        print(OUT_EXISTS, file=sys.stderr)
+        return 2
+
+    out, gl_out = run(rows)
+    print_table("FIGURES", OUT_COLS, out)
+    if gl_out:
+        print_table("GL accounts", GL_OUT_COLS, gl_out)
+    bad = [r for r in out if r["status"] != TIED]
+    result = "RESULT: PASS" if not bad else f"RESULT: FAIL ({len(bad)} of {len(out)} rows not TIED)"
+
+    if out_path is not None:
+        try:
+            f = open(out_path, "x", encoding="utf-8", newline="")
+        except FileExistsError:
+            print(OUT_EXISTS, file=sys.stderr)
+            return 2
+        with f:
+            w = csv.writer(f)
+            w.writerow(OUT_COLS)
+            for r in out:
+                w.writerow([r[c] for c in OUT_COLS])
+            if gl_out:
+                w.writerow([])
+                w.writerow(["GL accounts"])
+                w.writerow(GL_OUT_COLS)
+                for r in gl_out:
+                    w.writerow([r[c] for c in GL_OUT_COLS])
+            w.writerow([])
+            w.writerow([result])
+    print(result)
+    return 0 if not bad else 1
+
+
+if __name__ == "__main__":
+    sys.dont_write_bytecode = True
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        code = main(sys.argv[1:])
+    except Exception as e:  # any crash: exit 2 with a message, no data echoed
+        sys.stdout.flush()
+        print(f"bad input: tie_out stopped on an unexpected {type(e).__name__}; no result", file=sys.stderr)
+        code = 2
+    sys.exit(code)

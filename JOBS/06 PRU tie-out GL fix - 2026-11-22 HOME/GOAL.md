@@ -40,3 +40,11 @@ Condition: on the real GL, all 874,156 records, the 9 months still tie with no n
 - An account or store with a space inside that would equal a target of a gl row once its spaces are removed is ERROR.
 - A Debit or Credit the program refuses stays a loud ERROR.
 Condition: on the real GL, the 9 months still tie with no new ERROR.
+
+## Two refusals kept, after LAWYER's r6 FAIL (verdict c7f96db6), Sergio's 76 "Keep both (Recommended)", relayed by Piston
+These two are named differences from job 05, under point 4.
+- LAWYER's finding 1: a no-break space at the end of a gl detail value makes that row ERROR; job 05 tied it.
+- LAWYER's finding 2: a figures row with a blank id and a no-break space in another column stops the run with exit 2 and no RESULT line. When the no-break space is the row's only content, job 05 skipped that row and worked the others; when the row also holds text, job 05 stops with exit 2 too.
+A row with status ERROR is not TIED, and in a run holding one the program's own result line is never RESULT: PASS.
+Findings 3 and 4: the program's header and read_gl text are cut to short statements (Piston's pick of 17:51, Sergio's to strike), with no change of logic.
+Mistyped codes (LAWYER's R1) are a separate new job, Sergio's 77 "New job after this (Recommended)", relayed by Piston. They are outside job 06.
