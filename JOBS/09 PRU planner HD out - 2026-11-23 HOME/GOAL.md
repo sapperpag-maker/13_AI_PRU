@@ -14,7 +14,7 @@ Bench: `C:\AI_Building\AI_MISC\06 Benches\2026-11-23 PRU HD out - ANGIE-HOME-HD\
 3. Everything that does not follow from HD stays as on dc320827: classes 498 on this page, rent $155,429.64, coach cost $494,505, and all of 2025 and 2026, HD's 2026 history included.
 4. The plan tab says in one sentence that HD is not offered in 2027, and the P&L tab's note on why the page differs from the Workbook names HD as a third reason, with its amounts.
 
-The job changes four places in `template.html`, and no others: the carried list, the price boxes, the plan tab's carried note, and the P&L tab's Workbook note.
+The job changes five places in `template.html`, and no others: the carried list, the price boxes, the plan tab's carried note, the P&L tab's Workbook note, and the plan tab's note under the price boxes (line 379), where the one sentence on HD's start price is deleted (blind check FAIL cf91ecb1, Piston's word, 2026-11-23).
 
 ## The common failures the blind check tests
 
@@ -27,7 +27,7 @@ The job changes four places in `template.html`, and no others: the carried list,
 7. A sentence on the page is no longer true with HD out.
 8. The page shows an error on any tab.
 9. A saved state from the old page, holding an HD price, breaks the page or brings HD back.
-10. The template differs from the base's in any place other than the four named.
+10. The template differs from the base's in any place other than the five named.
 
 ## Pass mark
 
