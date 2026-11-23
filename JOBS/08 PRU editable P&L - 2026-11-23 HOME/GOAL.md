@@ -82,7 +82,10 @@ Today (template.html lines 106, 112, 529-544): edits sit in this browser under o
 ## His 149 and 150 (his answers in Piston's chat, relayed by Piston, 2026-11-23)
 
 - **149, "500, with ARC (Recommended)":** 2027B shows 500 classes, worded as 498 on the sites plus 2 ARC. ARC stands under All Locations in both years. 2026 stays 573. No dollar moves.
-- **150, typed by him: "HD is off. the range for ARC look in the website".** Open until his answer on the two questions sent through Piston: whether HD's $20,592 comes out of the start values, and where ARC stands, as the website names no single place for it. Until then HD and ARC rent stay as they are.
+- **150, typed by him: "HD is off. the range for ARC look in the website".** The website names no single place for ARC, so it went back to him as 152.
+- **151, "Take HD out (Recommended)".** New start values: sales $1,740,120.89, operating profit $264,213.17, net $187,571.25. These replace the start values in item 8 above.
+- **152, "All Locations, no rent (Recommended)".** ARC adds no rent and the grid says so.
+- **Order (Piston, 2026-11-23):** first a separate small piece, page dc320827 with HD out and nothing else, with its own goal, blind check and LAWYER check. Job 08 then builds on that page: "no edits" means equal to the new page, including 500 classes. HD takes no grid input.
 
 ## The capped goal (his 11-15 order)
 
@@ -96,8 +99,8 @@ Today (template.html lines 106, 112, 529-544): edits sit in this browser under o
 
 **The 10 common failure cases the blind check tests:**
 
-1. With no edits, a P&L cell differs from page dc320827.
-2. With no edits, sales, operating profit or net differ from the start values, unless his answer on HD changes them.
+1. With no edits, a P&L cell differs from the HD-out page that replaces dc320827.
+2. With no edits, sales, operating profit or net differ from $1,740,120.89, $264,213.17 and $187,571.25.
 3. 2027B classes are not 500, or are not worded 498 on the sites plus 2 ARC. 2026 is not 573.
 4. The ranges do not add to the Summary in any year, for classes, students or sales.
 5. ARC stands in different places in 2026 and 2027B.
