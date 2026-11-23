@@ -44,6 +44,10 @@ The finished page has one grid under the trend chart on the Monthly trends page:
 5. **A typed students per class wins over fill %.** Coaches follow it month by month: one at 6 or fewer, two above. A figure above the class's seats (12; 4 for First Ride) is marked, not blocked.
 6. **Each typed cell is marked, has a reset, and is saved** the way the section below says.
 
+His words, 2026-11-23: "I want a tab per range", "take 2024 out", "and then a summary tab as well". So the Monthly trends page has a Summary tab (all ranges, with the table of ranges), then one tab per range holding that range's chart, year table and grid. 2024 is not shown.
+
+Test: every range tab opens with no page error, the ranges add up to the Summary in each year, and every grid row is reachable from a tab.
+
 Test: for every grid row and month, type classes, then students per class. The 2027B line for that site, class and month, total students, sales, rent, coaches and net each recompute correctly, and no other row moves.
 
 ## How his edits are saved, so a rebuild or a fix cannot wipe them
