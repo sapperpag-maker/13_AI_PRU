@@ -1,0 +1,9 @@
+battery: angie
+who: angie
+act: review
+what: budget
+moment: before checking
+title: ON 2026-11-22, JOB 07, TWO BLIND CHECKERS I LAUNCHED WENT PAST THE MASTER PRINT LIMIT: R11'S SURVEY.PY PRINTED ROWS 2 AND 3 WITH SITE AND COURSE (CODE AND DATE MASKED); R12'S MULTI.PY PRINTED ONE LINE EACH FOR 4 CLASS CODES (YEAR-MONTH AND COUNTS, NO CODE, SITE OR COURSE). NO PERSON FIELD, SESSION OUTPUT ONLY, NO FILE. MAY REPEAT M-2872-HOME-YUAN
+test: Before a checker's script on a customer sheet runs, its print lines are limited to totals by month or range: each print is read against the launch limit, and a survey of first rows is never run. Its hand-back names any print past the limit.
+count: 1
+old_label: new
