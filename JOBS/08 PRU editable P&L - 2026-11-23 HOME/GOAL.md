@@ -2,7 +2,7 @@
 
 His yes, Q123, 2026-11-23: "Yes, build it (Recommended)".
 
-His words, 2026-11-23: "PRU P&L is very badly formatted. And I need to be able to set my own 2027 b values myself. I want to see for every year I want see teh balances and % compared to sales. I want to be able to change 2027b values (balances and or %) Then a final 2 columns with the 2027 end values that automatically change with my edits." and "YOUR GOAL NOW: MAKE A PLANNER THAT WORKS BVASED ON MY REQUESTS."
+His words, 2026-11-23: "PRU P&L is very badly formatted. And I need to be able to set my own 2027 b values myself. I want to see for every year I want see teh balances and % compared to sales. I want to be able to change 2027b values (balances and or %) Then a final 2 columns with the 2027 end values that automatically change with my edits.", "the PLANNER, I NEED TO BE ABLE TO EDIT 2027 BUDGET VALUES, havent I asked for this 4 times already??", "and why December would spike like that ! Ask builder how he did the 2027 sales goals page." and "YOUR GOAL NOW: MAKE A PLANNER THAT WORKS BVASED ON MY REQUESTS."
 
 Base: the figure-fix page, built alone from repaired page bc5b00d4c6c64b3b0075c842a50ab4a7 with its own blind check and LAWYER check (Piston's order, 2026-11-23). Job 08 is rebuilt on it once it passes.
 
