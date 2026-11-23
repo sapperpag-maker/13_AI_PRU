@@ -11,7 +11,7 @@ Base: the figure-fix page, built alone from repaired page bc5b00d4c6c64b3b0075c8
 1. **One clean P&L table:** line | 2025 $ | 2025 % | 2026 $ | 2026 % | 2027B $ | 2027B % | 2027 End $ | 2027 End %. Q114.
 2. **% is always % of sales** for that year. Number format, frozen line names and header, clear section and total rows.
    - The page says on its face that 2025 operating profit is $69,183.40 by the year-end statements and $106,290.74 by the GL, a $37,107.34 gap not explained, unless the gap is traced first.
-3. **2027B $ and % can both be typed, on every line that is not a total.** Typing one fills the other.
+3. **2027B $ and % can both be typed, on every line that is not a total, except the six sales lines (rows 8 to 13), which take $ only and show their %** (Q126, 2026-11-23: "Sales lines: $ only (Recommended)"). Typing one fills the other. **The 2027B total rows follow the typed values, so the column always adds up** (Q125, 2026-11-23: "Totals follow my edits (Recommended)").
 4. **Year and each month can be typed** (Q115). A switch opens the 12 months of 2027B.
    - Typing a year spreads it over the months by that line's current monthly shape, and replaces month values typed earlier on that line.
    - Typing a month changes that month, and the year becomes the sum of the months.
