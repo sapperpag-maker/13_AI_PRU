@@ -1,4 +1,4 @@
-# GOAL - job 13: rename the "All Locations" tab (DRAFT, waits on Sergio's yes)
+# GOAL - job 13: rename the "All Locations" tab (ACCEPTED: Sergio, question 5, 2026-11-24, in Angie's chat: "Yes")
 
 His words, 2026-11-24, in Angie's chat, question 4: "Rename it". The question was whether to rename the "All Locations" tab so it can't be taken for the total. He asked because the Classes chart there showed 2 classes for 2027B, which is ARC only.
 
