@@ -1,0 +1,27 @@
+{
+ "tab": "pru-planner",
+ "page_md5": "c2f6b7ce921e7318fc51c2ef0d9fa097",
+ "data_date": "2026-11-21",
+ "sources": [
+  {
+   "path": "C:\\Users\\Sergio\\.claude\\uploads\\034bc097-973b-403b-8a90-c7678efdb939\\eb48a496-2026_PRU_Manual_Log_v3.xlsx",
+   "md5": "37c427cf4078f449459b532e4d8e9377"
+  },
+  {
+   "path": "C:\\AI_Building\\AI_Financials\\04 Budget\\2027\\04 PowerRide University\\2026-11-21 PRU and Consolidated Books from the planner - rick RICK-HOME-2bd93960\\work\\04 PRU GP rebuilt.xlsx",
+   "md5": "3717f2bbb1d275c2e2507975481177b4"
+  },
+  {
+   "path": "C:\\AI_Building\\AI_Financials\\04 Budget\\2027\\raw files\\3 Operating statements\\Operating Statements.xlsx",
+   "md5": "b7c1ab1cc26251b08bb389b51d36bfe6"
+  },
+  {
+   "path": "C:\\AI_Building\\AI_Financials\\00 Raw data\\GL\\2025 101E GL History Detail Postings - All Accounts.csv",
+   "md5": "8ee465f6b13f3307661308d5b7ef5a83"
+  }
+ ],
+ "accepted": {
+  "words": "Put it up (Recommended)",
+  "where": "Brain's chat (BRAIN-HOME-1118), question tool, 2026-11-23; his 180 in Piston's chat: Put it live now"
+ }
+}
