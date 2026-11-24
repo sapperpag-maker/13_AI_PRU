@@ -43,7 +43,9 @@ Useful columns: Class Code, Course Code (BRCE, BRCEM, 3WBRE, 3WBRM, BRC2W, BRCR,
 
 The total row equals the sum of the class rows in all 3 years (seats, students, fees).
 
-## Kind 3: one row per class reported (2024, 2025, 2026 Recap)
+## Kind 3: one row per class reported (2024, 2025, 2026 Recap) - NOT USED
+
+Sergio, 2026-11-24, in Angie's chat: "do not use recap tabs". No figure is taken from these three sheets.
 
 14 columns: transaction number and date, Return Id, Class Code, Start and End Date (stored as numbers like 1132024, not dates), Course, Site No (a number, 1 to 25, not the site code), # Students, Instructor 1 and 2. RA 1 and RA2 are empty.
 
