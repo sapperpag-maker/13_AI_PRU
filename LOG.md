@@ -306,3 +306,6 @@
 - 2026-11-23 10:55 EST HOME, job 06 session, landed: 38 decisions in the Brain's NOTES.md; mistake M-2875-HOME-JIHW; December answer (42 classes kept, 2026 stays 573) and BUILDER's answer passed to the Angie session holding the planner.
 - 2026-11-23 10:55 EST HOME, job 06 session, open: job 08 editable P&L (held by that session); tie-out skill still on a8f90d60; see TO DO.
 - 2026-11-23 10:55 EST HOME, job 06 session, checkpoint: C:\AI_Building\AI_MISC\05 Checkpoints\Angie Checkpoint\2026-11-23 10-55 CLOSING Checkpoint Angie HOME ANGIE-HOME-J06.md
+- 2026-11-24 00:26 EST HOME, planner session, landed: job 11 pages r4 16db2889, r5 ace4f5ec, r6 3820f2bb, r7 7cb32885 and their four blind-check FAIL records in the job 11 folder; 11 decision blocks of 2026-11-23 in the Brain's NOTES.md.
+- 2026-11-24 00:26 EST HOME, planner session, open: job 11 MUST 4 repair, r7 FAIL, next step smaller, waits on Piston; c2f6b7ce live, not accepted; see TO DO.
+- 2026-11-24 00:26 EST HOME, planner session, checkpoint: C:\AI_Building\AI_MISC\05 Checkpoints\Angie Checkpoint\2026-11-24 00-26 CLOSING Checkpoint Angie HOME ANGIE-HOME.md
