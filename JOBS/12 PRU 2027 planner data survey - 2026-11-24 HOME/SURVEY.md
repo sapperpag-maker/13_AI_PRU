@@ -53,7 +53,7 @@ The total row equals the sum of the class rows in all 3 years (seats, students, 
 | 2025 | 552 | 4,236 | 2025-01-02..2025-12-30 |
 | 2026 | 207 | 1,742 | 2026-01-07..2026-11-23 |
 
-2026 Recap is far short of 2026 Demand (207 against 584 classes): what a Recap row means (classes reported to the state?) is NOT KNOWN. Question for Sergio.
+2026 Recap is far short of 2026 Demand (207 against 584 classes). A Recap row is a class reported to the state: Sergio, question 3, 2026-11-24, "Classes reported to the state". Why 2026 has so few reported by 11-23 is not known.
 
 ## What it can feed (his weekly trends)
 
