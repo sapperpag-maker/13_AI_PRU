@@ -1,0 +1,16 @@
+{
+ "tab": "pru-dashboard",
+ "label": "PRU Dashboard",
+ "page_md5": "66fa1545e7f5e09f7f9c6b06d86f9b0a",
+ "data_date": "2026-11-22",
+ "sources": [
+  {
+   "path": "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-25 PRU weekly dashboard - ANGIE-HOME-W25\\Sergio PRU Class Data.xlsx",
+   "md5": "281b22390a296bebefd949fb31c816ba"
+  }
+ ],
+ "accepted": {
+  "words": "Accept (Recommended)",
+  "where": "Piston's chat, question tool, answer 50, 2026-11-25, relayed by Piston; LAWYER PASS round 1: C:\\AI_Building\\AI_LAWYER\\Office desk\\Verdicts\\2026-11-25 Angie job 15 PRU dashboard r5 check - 748c9cf8.md (LAWYER commit e1fa08c5a); a new tab, replaces no page"
+ }
+}
