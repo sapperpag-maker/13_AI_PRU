@@ -94,6 +94,11 @@ def holiday_sundays(year):
     out.append(("Thanksgiving", tg, touching_sunday(tg)))
     xm = datetime.date(year, 12, 25)
     out.append(("Christmas", xm, touching_sunday(xm)))
+    # Sergio's 42 (on his 60): when next 1 January is a Sunday, its weekend's Saturday is 31 December of this year,
+    # so that weekend comes out of this December (his 51 puts it there), never out of next January.
+    nxt = datetime.date(year + 1, 1, 1)
+    if nxt.weekday() == 6:
+        out.append(("New Year", nxt, nxt))
     return out
 
 
@@ -268,6 +273,12 @@ def run(goal, classes, year):
     for hname, hd, sun in hols:
         if sun is None:
             print(f"HOLIDAY {hname} {hd.isoformat()} {hd.strftime('%a')}: touches no weekend")
+        elif hname == "New Year" and hd == sun and hd.year == year:
+            sat = sun - datetime.timedelta(days=1)
+            print(f"HOLIDAY {hname} {hd.isoformat()} {hd.strftime('%a')}: its weekend's Saturday {sat.isoformat()} is in December {sat.year}, taken out there, not out of {year} (Sergio's 42)")
+        elif hname == "New Year" and hd == sun:
+            sat = sun - datetime.timedelta(days=1)
+            print(f"HOLIDAY {hname} {hd.isoformat()} {hd.strftime('%a')}: its weekend's Saturday {sat.isoformat()} out of December {year} (Sergio's 42)")
         elif sun.year != year:
             print(f"HOLIDAY {hname} {hd.isoformat()} {hd.strftime('%a')}: Sunday {sun.isoformat()} is outside {year}")
         else:
