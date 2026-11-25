@@ -1,0 +1,65 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "pru-job07-bench",
+      "runtimeExecutable": "python3.14",
+      "runtimeArgs": ["-B", "-m", "http.server", "8797", "--bind", "127.0.0.1", "--directory", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-22 PRU job 07 Trends - ANGIE-HOME-T7"],
+      "port": 8797
+    },
+    {
+      "name": "pru-feb-sep-bench",
+      "runtimeExecutable": "python3.14",
+      "runtimeArgs": ["-B", "-m", "http.server", "8798", "--bind", "127.0.0.1", "--directory", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-23 PRU Feb-Sep fees check - ANGIE-HOME-F1"],
+      "port": 8798
+    },
+    {
+      "name": "pru-feb-sep-blind",
+      "runtimeExecutable": "python3.14",
+      "runtimeArgs": ["-B", "-m", "http.server", "8799", "--bind", "127.0.0.1", "--directory", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-23 PRU class fees blind check - ANGIE-HOME-F1C"],
+      "port": 8799
+    },
+    {
+      "name": "pru-job08-base",
+      "runtimeExecutable": "python3.14",
+      "runtimeArgs": ["-B", "-m", "http.server", "8800", "--bind", "127.0.0.1", "--directory", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-23 PRU planner wording repair - LAWYER-HOME-1118"],
+      "port": 8800
+    },
+    {
+      "name": "pru-job08-build",
+      "runtimeExecutable": "python3.14",
+      "runtimeArgs": ["-B", "-m", "http.server", "8801", "--bind", "127.0.0.1", "--directory", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-23 PRU job 08 editable planner - ANGIE-HOME-E8\\build"],
+      "port": 8801
+    },
+    {
+      "name": "pru-figure-fix",
+      "runtimeExecutable": "python3.14",
+      "runtimeArgs": ["-B", "-m", "http.server", "8803", "--bind", "127.0.0.1", "--directory", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-23 PRU figure fix - ANGIE-HOME-FX\\build"],
+      "port": 8803
+    },
+    {
+      "name": "pru-job11-trial",
+      "runtimeExecutable": "python3.14",
+      "runtimeArgs": ["-B", "-m", "http.server", "8811", "--bind", "127.0.0.1", "--directory", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-23 PRU class rule site course date - ANGIE-HOME-CT\\trial"],
+      "port": 8811
+    },
+    {
+      "name": "pru-job13-rename",
+      "runtimeExecutable": "python3.14",
+      "runtimeArgs": ["-B", "-m", "http.server", "8813", "--bind", "127.0.0.1", "--directory", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-24 PRU rename All Locations - ANGIE-HOME-W24"],
+      "port": 8813
+    },
+    {
+      "name": "pru-job14-default",
+      "runtimeExecutable": "python3.14",
+      "runtimeArgs": ["-B", "-m", "http.server", "8814", "--bind", "127.0.0.1", "--directory", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-24 PRU his final plan - ANGIE-HOME-W24"],
+      "port": 8814
+    },
+    {
+      "name": "pru-job15-dashboard",
+      "runtimeExecutable": "python3.14",
+      "runtimeArgs": ["-B", "-m", "http.server", "8815", "--bind", "127.0.0.1", "--directory", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-25 PRU weekly dashboard - ANGIE-HOME-W25\\site"],
+      "port": 8815
+    }
+  ]
+}

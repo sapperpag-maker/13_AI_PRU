@@ -312,3 +312,6 @@
 - 2026-11-24 10:00 EST HOME, wake session ANGIE-HOME-W24, Read: closing checkpoint 2026-11-24 00-26 (md5 e720bf2e), TO DO.md, job 11 GOAL.md, BLIND CHECK r6 and r7 FAIL.md; pulled, HEAD 2cb07d0 unchanged.
 - 2026-11-24 10:00 EST HOME, wake session ANGIE-HOME-W24, Open: job 11 MUST 4 at step "smaller" (Piston's word in TO DO line 27); c2f6b7ce live, not accepted; benches J11F and J11G named in the FAIL records are not in 06 Benches nor the trash; rest as the checkpoint.
 - 2026-11-24 10:00 EST HOME, wake session ANGIE-HOME-W24, Will do: plan for job 11 smaller step to the Conductor for its start word, then build and one fresh blind check.
+- 2026-11-25 15:30 EST HOME, goodnight session ANGIE-HOME-W25, Landed: 18 of 18 pieces (land_files.py); job 15 accepted and pushed; goal-classes check accepted, repair 2 applied e89d7c8; job 01 closed; AI_PRU origin main e56bbe7; 26 decisions in NOTES.md (25 LANDED, 1 NOT LANDED).
+- 2026-11-25 15:30 EST HOME, goodnight session ANGIE-HOME-W25, Open: repair 3 (his 59-61) with LAWYER; his goal-file fix; Brain list V for pru-dashboard; job 16 plan; pru-weekly-dashboard SKILL.md; older benches; job 11.
+- 2026-11-25 15:30 EST HOME, goodnight session ANGIE-HOME-W25, checkpoint: C:\AI_Building\AI_MISC\05 Checkpoints\Angie Checkpoint\2026-11-25 15-23 CLOSING Checkpoint Angie HOME ANGIE-HOME-W25.md (md5 4437833a).
