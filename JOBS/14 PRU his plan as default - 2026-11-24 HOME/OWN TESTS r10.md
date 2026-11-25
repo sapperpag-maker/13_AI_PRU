@@ -20,7 +20,7 @@
 2. PASS. Typed a 2-Wheel price and a fill % (2,235 cells then differ), pressed Reset everything twice: 0 cells differ.
 3. PASS. Saved a different draft (3-Wheel price 111, Stafford 2-Wheel classes 5 a month) and reloaded: the draft shows, not his plan; his other edits in the draft are kept.
 4. PASS. SELFTEST worst gap 7.28e-12. The console shows no error.
-5. WAITS on Sergio's yes to the words in 4 and 5 above.
+5. PASS. Sergio said yes to the words in 4 and 5 above, question 14: "Yes, use these (Recommended)". The page holds them as written; test 2's status read "Kept on this computer only, not saved yet. Press Save plan to save it.", and the fill note read word for word.
 
 ## Not tested
 - ONE VIEW's frame itself: its save service is not live (the Brain's r4 is at LAWYER). The "nothing saved yet" line is read from the code only.
