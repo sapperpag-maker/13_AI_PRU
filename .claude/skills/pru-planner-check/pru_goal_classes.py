@@ -2,12 +2,13 @@
 
 Usage: python3.14 -I pru_goal_classes.py --goal <goal xlsx> --classes <class data xlsx> [--year 2027]
 
-Reads only, writes nothing. Last line is RESULT: PASS or RESULT: STOP.
-From the class data file it reads only the sheet "2026 Demand Analysis".
+Reads only, writes nothing. Last line is RESULT: PASS (exit code 0) or RESULT: STOP (exit code 1).
+From the class data file it reads only the sheet "2026 Demand Analysis". From the goal file it skips the Dirt Bike tab.
 """
 import argparse
 import datetime
 import math
+import re
 import sys
 from collections import defaultdict
 
@@ -28,6 +29,8 @@ RANGE_CODES = {
 }
 GOAL_HEADER_ROW = 3
 RANGE_TOTAL = "Range total"
+CLASSES_BY_RANGE = "Classes by range"
+NOT_CHECKED = ["Dirt Bike"]
 
 
 class Stop(Exception):
@@ -95,12 +98,13 @@ def holiday_sundays(year):
 
 
 def weekends_by_month(year, holidays):
+    """Weekends per month, each Saturday-Sunday weekend in its Saturday's month; a holiday's weekend left out."""
     off = {s for _, _, s in holidays if s is not None}
     counts = [0] * 12
     d = datetime.date(year, 1, 1)
-    d += datetime.timedelta(days=(6 - d.weekday()) % 7)
+    d += datetime.timedelta(days=(5 - d.weekday()) % 7)
     while d.year == year:
-        if d not in off:
+        if d + datetime.timedelta(days=1) not in off:
             counts[d.month - 1] += 1
         d += datetime.timedelta(days=7)
     return counts
@@ -116,6 +120,8 @@ def load_goal(path):
         raise Stop(f"cannot read goal file {path}: {e}")
     sheets = {}
     for ws in wb.worksheets:
+        if ws.title in NOT_CHECKED:
+            continue
         rows = [list(r) for r in ws.iter_rows(values_only=True)]
         sheets[ws.title] = rows
     wb.close()
@@ -126,14 +132,27 @@ def cell(row, i):
     return row[i] if i < len(row) else None
 
 
+def is_class_count(label, heading):
+    """True for a row that counts classes: its label holds the word "classes" (any case) and no "fee",
+    or it sits under the heading "Classes by range" (Summary's rows named by range)."""
+    if not isinstance(label, str) or blank(label):
+        return False
+    low = label.lower()
+    if "fee" in low:
+        return False
+    if re.search(r"\bclasses\b", low):
+        return True
+    return isinstance(heading, str) and heading.strip().lower() == CLASSES_BY_RANGE.lower()
+
+
 def classes_rows(sheets):
-    """Yield (sheet, row number, heading, label, row) for every row whose first cell starts with Classes."""
+    """Yield (sheet, row number, heading, label, row) for every row that counts classes (is_class_count)."""
     for name, rows in sheets.items():
         heading = None
         found = []
         for n, row in enumerate(rows, 1):
             a = cell(row, 0)
-            if isinstance(a, str) and a.startswith("Classes"):
+            if is_class_count(a, heading):
                 found.append((name, n, heading, a, row))
             if blank(cell(row, 1)):
                 heading = a
@@ -222,7 +241,7 @@ def run(goal, classes, year):
     sheets = load_goal(goal)
 
     # Check 1: whole numbers
-    print("CHECK 1: whole numbers in every Classes row, months B to M")
+    print("CHECK 1: whole numbers in every row that counts classes, months B to M")
     checked = 0
     not_whole = []
     for name, n, heading, label, row in classes_rows(sheets):
@@ -244,7 +263,7 @@ def run(goal, classes, year):
         stops.append("check 1")
 
     # Check 2: weekends
-    print(f"CHECK 2: weekends in {year}, counted by Sunday, holidays out")
+    print(f"CHECK 2: weekends in {year}, each in its Saturday's month, holidays out")
     hols = holiday_sundays(year)
     for hname, hd, sun in hols:
         if sun is None:
@@ -278,17 +297,27 @@ def run(goal, classes, year):
     summary.append(f"Check 3 limits: {len(limits)} ranges found: done")
 
     # Check 4: month test
-    print("CHECK 4: Range total classes, rounded up, against limit x weekends")
+    print("CHECK 4: each class line rounded up, then summed, against limit x weekends")
     over = []
     for rng in RANGE_CODES:
         n, row = range_total_classes(sheets[rng])
         if row is None:
             raise Stop(f"goal sheet '{rng}' has no row Classes under the heading '{RANGE_TOTAL}'")
+        lines = [r for _, _, h, _, r in classes_rows({rng: sheets[rng]}) if h != RANGE_TOTAL]
+        if not lines:
+            raise Stop(f"goal sheet '{rng}' has no class line above the heading '{RANGE_TOTAL}'")
         for m in range(12):
             v = cell(row, m + 1)
             if not is_number(v):
                 raise Stop(f"goal sheet '{rng}' row {n} {MONTHS[m]}: value {v!r} is not a number")
-            c = math.ceil(v)
+            c = 0
+            for line in lines:
+                lv = cell(line, m + 1)
+                if blank(lv):
+                    continue
+                if not is_number(lv):
+                    raise Stop(f"goal sheet '{rng}' {MONTHS[m]}: class line value {lv!r} is not a number")
+                c += math.ceil(lv)
             cap = limits[rng] * weekends[m]
             if c > cap:
                 over.append((rng, MONTHS[m], c, limits[rng], weekends[m], cap, n))
@@ -320,7 +349,7 @@ def main(argv=None):
         print(f"STOP REASON: unexpected error: {type(e).__name__}: {e}")
         ok = False
     print("RESULT: PASS" if ok else "RESULT: STOP")
-    return 0
+    return 0 if ok else 1
 
 
 if __name__ == "__main__":
