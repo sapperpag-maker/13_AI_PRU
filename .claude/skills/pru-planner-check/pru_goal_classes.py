@@ -91,7 +91,7 @@ def holiday_sundays(year):
     lab = nth_weekday(year, 9, 0, 1)
     out.append(("Labor Day", lab, touching_sunday(lab)))
     tg = nth_weekday(year, 11, 3, 4)
-    out.append(("Thanksgiving", tg, tg + datetime.timedelta(days=(6 - tg.weekday()) % 7)))
+    out.append(("Thanksgiving", tg, touching_sunday(tg)))
     xm = datetime.date(year, 12, 25)
     out.append(("Christmas", xm, touching_sunday(xm)))
     return out
