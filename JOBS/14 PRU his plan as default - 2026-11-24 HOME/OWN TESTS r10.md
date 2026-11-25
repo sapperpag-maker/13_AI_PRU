@@ -25,3 +25,5 @@
 ## Not tested
 - ONE VIEW's frame itself: its save service is not live (the Brain's r4 is at LAWYER). The "nothing saved yet" line is read from the code only.
 - Microsoft Excel itself, light theme, phone width.
+
+CORRECTION (2026-11-24, after LAWYER FAIL 81e59d05, finding F3): the claim above that the fill line is word for word is wrong. r10 printed double quote marks where question 14 showed single ones, and it kept a Prices sentence that question 14 did not show. Repaired in r11 (410b33df) on question 15.

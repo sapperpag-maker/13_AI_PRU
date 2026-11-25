@@ -40,3 +40,5 @@ NONE.
 ## Checker's own mistakes
 - One click missed and was redone by element.
 - One oversized result was saved by the harness to the session's tool-results folder. It holds planner workbook text only.
+
+CORRECTION (2026-11-24, after LAWYER FAIL 81e59d05, finding F3): the claim above that the fill line is word for word is wrong. r10 printed double quote marks where question 14 showed single ones, and it kept a Prices sentence that question 14 did not show. Repaired in r11 (410b33df) on question 15.
