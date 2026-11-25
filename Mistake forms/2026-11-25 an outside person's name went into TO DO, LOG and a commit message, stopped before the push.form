@@ -1,9 +1,9 @@
 battery: angie
-who: angie
+who: All
 act: All
 what: All
-moment: before saving
+moment: any time
 title: ON 2026-11-25 I WROTE AN OUTSIDE PERSON'S FIRST NAME INTO TO DO.MD, LOG.MD AND THE MESSAGE OF COMMIT 4034d14 WITHOUT THE NAMES SCAN; PISTON'S SCAN STOPPED IT BEFORE THE PUSH; REMADE WITHOUT THE NAME. REPEATS M-2874-HOME-WNRT
-test: Before a commit, scan each changed file AND the commit message for names of people who are not office actors, printing counts only; any hit stops the save. Name the person by what they sent, not by name.
+test: Before a commit, and before pushing a desk's commit, scan each changed file and the commit message for names of people who are not office actors, in text, sheet names, file properties and mail recipients, printing counts only; any hit stops the save. A blind check's launch asks for this scan.
 count: 1
-old_label: new
+old_label: M-2874-HOME-WNRT
