@@ -16,7 +16,7 @@ Bench: `C:\AI_Building\AI_MISC\06 Benches\2026-11-25 PRU weekly dashboard - ANGI
 1. **Only the line changed: PASS.** pru15_r5_diff.py takes r4 (8f785eb9), puts the new line in place of the old, and the result equals r5 byte for byte. The old line is in r4 twice and in r5 0 times; the new line is in r5 twice. So every figure is r4's, which the r4 checker tied out at 0 off.
 2. **The 6 places: PASS.** In the browser, with nothing picked, the new line shows 2 times on Overview, once on Students and 3 times on Coaches: 6 in all. The old line shows 0 times. Each tab has 0 quote marks.
 3. **Theme: PASS.** With nothing stored, the page opens dark. After a click on Light, it reloads light. After a click on Dark, the stored pick is dark again.
-4. **Re-count and student data: PASS.** pru15_tests.py re-counts 810 figures from the workbook, and 0 differ from site/expected.json. 0 of 13,405 names, 13,449 emails, 13,425 phones, 13,483 licence numbers and 8,775 dates of birth are in r5.
+4. **Re-count and student data: PASS.** pru15_tests.py re-counts 810 figures from the workbook, and 0 differ from site/expected.json. 0 of 13,405 names, 13,449 emails, 13,425 phones, 13,483 licence numbers and 8,775 dates of birth are in r5. Correction after LAWYER's note (748c9cf8): the name test searches my list of student name pairs; a plain search does find a few students whose full name is also a coach's name shown on the page. Those are coach names, allowed by his Q20 and by his answer 40, "Fine as is (Recommended)".
 5. **Same input, same page: PASS.** Two builds from counts.json cca3be7b both give 66fa1545. The page is pure ASCII (0 other characters). The console shows no error.
 
 ## Not tested here
