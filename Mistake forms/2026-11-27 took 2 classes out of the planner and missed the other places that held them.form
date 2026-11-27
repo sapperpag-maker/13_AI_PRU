@@ -1,0 +1,9 @@
+battery: angie
+who: All
+act: All
+what: All
+moment: before building
+title: ON 2026-11-27, IN THE JOB 17 FULL-AUTO RUN, I TOOK 2 CANCELLED CLASSES OUT OF THE PRU PLANNER IN THE 5 PLACES I HAD LISTED; THE BLIND CHECKER FOUND THEM STILL IN A 6TH AND 7TH (WEEKENDS AND CLASSES PER RANGE, AND THE 2026 2-WHEEL STUDENT COUNT); AFTER THAT REPAIR THE NEXT CHECKER FOUND A SENTENCE WHOSE TWO TYPED PARTS (3,925 + 17) STILL ADDED TO THE OLD TOTAL; THE PLANNER FAILED TWICE AND STOPPED
+test: before changing a count in a page, search the whole page, its data and its code text, for every number that holds that count or a part of it (the total, each part that adds to it, each per-range or per-week count), list them all, and have the own test check each one moved
+count: 1
+old_label:

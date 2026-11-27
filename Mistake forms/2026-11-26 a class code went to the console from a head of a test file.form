@@ -1,0 +1,9 @@
+battery: angie
+who: All
+act: All
+what: All
+moment: any time
+title: ON 2026-11-26 I PRINTED THE FIRST 400 BYTES OF JOB 15'S EXPECTED-FIGURES FILE TO THE CONSOLE; ITS KEYS HOLD CLASS CODES, AND ONE CLASS CODE SHOWED; NOTHING WRITTEN OR SENT. REPEATS M-2880-HOME-DGYG
+test: before any message, report, commit, file or console print that draws on the Master sheet, PRU GP or another sheet holding class codes, or on a file made from one (a counts or expected-figures file), search its text for a class code or a part of one; any hit stops it, and the fault is described by date, count and row numbers only
+count: 1
+old_label: M-2880-HOME-DGYG

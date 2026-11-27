@@ -20,10 +20,11 @@ The program: `"C:\AI_Building\AI_LEGISLATOR\Engine room\.venv\Scripts\python.exe
 
 - Never take own tests or the checker as the verdict; only Sergio accepts.
 - Write only on the bench; the checker writes in its own bench folder.
+- Never count a cancelled class in any class count; its fees stay in any fee figure.
 
 ## Steps
 
-1. Run `python3.14 -I pru_goal_classes.py --goal <his goal xlsx> --classes <Sergio PRU Class Data xlsx>` from this skill's folder. It checks each Classes cell is whole, then each range's month against its busiest 2026 week times the month's 2027 weekends, holiday weekends out. Not `RESULT: PASS`: send Sergio the cells and months it names and stop; he decides the fix.
+1. Run `python3.14 -I pru_goal_classes.py --goal <his goal xlsx> --classes <Sergio PRU Class Data xlsx>` from this skill's folder. It checks each Classes cell is whole, then each range's month against its busiest 2026 week times the month's 2027 weekends, holiday weekends out; cancelled classes (0 or blank # Stud) are always left out and their count printed. Not `RESULT: PASS`: send Sergio the cells and months it names and stop; he decides the fix.
 2. Serve the bench on 127.0.0.1 and open the page in the built-in browser; run the `rel3` test files (selftest, r13, r15, r16, r17, r19) through `window.__PRU_TEST__`. Any fail: hand back to the builder to fix and rebuild.
 3. Run the same tests on a planted copy carrying the fault the newest test guards. The planted fault must fail; if it passes, the test cannot fail, so fix the test first.
 4. Launch a blind Opus checker that did not build the page: the goal file and the page only; its launch names `pru-figures-tie-out`, which it invokes on the page; its findings and `TIEOUT.md` on disk before it reads any claim. A FAIL in either is a FAIL: repair and check again; two FAILs on a step move to the next (program, new shape, smaller, stop); the third goes to Piston.

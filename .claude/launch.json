@@ -60,6 +60,12 @@
       "runtimeExecutable": "python3.14",
       "runtimeArgs": ["-B", "-m", "http.server", "8815", "--bind", "127.0.0.1", "--directory", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-25 PRU weekly dashboard - ANGIE-HOME-W25\\site"],
       "port": 8815
+    },
+    {
+      "name": "pru-job17-planner",
+      "runtimeExecutable": "python3.14",
+      "runtimeArgs": ["-B", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-26 PRU cancelled classes out - ANGIE-HOME-J17\\planner\\bench_server.py", "8817"],
+      "port": 8817
     }
   ]
 }

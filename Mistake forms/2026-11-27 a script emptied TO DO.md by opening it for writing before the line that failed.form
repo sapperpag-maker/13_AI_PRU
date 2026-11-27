@@ -1,0 +1,9 @@
+battery: angie
+who: All
+act: All
+what: All
+moment: before building
+title: ON 2026-11-27 A PYTHON LINE OF MINE, open(p,'wb').write(<join that failed>), OPENED TO DO.MD FOR WRITING, WHICH EMPTIED IT, BEFORE THE JOIN RAISED A TYPEERROR; THE FILE HELD 8 UNCOMMITTED EDITS; REBUILT FROM THE LAST COMMIT PLUS THE 8 EDITS IN THE SESSION RECORD, EACH MATCHING ONCE, AND READ BACK
+test: before a script rewrites a file in place, build the whole new content into a variable first and open the file for writing only after that succeeds (or write a new file and swap it in); a file with uncommitted edits is copied to the bench before any script touches it
+count: 1
+old_label:
