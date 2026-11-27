@@ -1,0 +1,15 @@
+{
+ "tab": "pru-dashboard",
+ "page_md5": "0fcfb06ee585ca7700866aa66c4c14ee",
+ "data_date": "2026-11-22",
+ "sources": [
+  {
+   "path": "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-26 PRU cancelled classes out - ANGIE-HOME-J17\\Sergio PRU Class Data.xlsx",
+   "md5": "281b22390a296bebefd949fb31c816ba"
+  }
+ ],
+ "accepted": {
+  "words": "Accept (Recommended)",
+  "where": "Angie's chat, question tool, answer 66, 2026-11-27; LAWYER PASS round 1: C:\\AI_Building\\AI_LAWYER\\Office desk\\Verdicts\\2026-11-27 Angie PRU job 17 dashboard and goal-classes round 1 - 8386b212.md (LAWYER commit 6359a6c24); replaces job15 66fa1545"
+ }
+}

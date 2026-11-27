@@ -1,0 +1,19 @@
+{
+ "tab": "pru-planner",
+ "page_md5": "cb1532735ede13ca7ff66ac007aa9015",
+ "data_date": "2026-11-25",
+ "sources": [
+  {
+   "path": "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-26 PRU cancelled classes out - ANGIE-HOME-J17\\Sergio PRU Class Data.xlsx",
+   "md5": "281b22390a296bebefd949fb31c816ba"
+  },
+  {
+   "path": "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-26 PRU cancelled classes out - ANGIE-HOME-J17\\manual log\\2026 PRU Manual Log v3.xlsx",
+   "md5": "76f72b925241eaa7e0c51e5e2ebdcb80"
+  }
+ ],
+ "accepted": {
+  "words": "Accept (Recommended)",
+  "where": "Angie's chat, question tool, answer 67, 2026-11-27; LAWYER PASS round 1: C:\\AI_Building\\AI_LAWYER\\Office desk\\Verdicts\\2026-11-27 Angie PRU job 17 planner r4 round 1 - bf03a699.md (LAWYER commit 020b6797f); replaces the live pru-planner"
+ }
+}

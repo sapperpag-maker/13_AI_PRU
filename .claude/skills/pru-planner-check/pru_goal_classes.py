@@ -3,7 +3,8 @@
 Usage: python3.14 -I pru_goal_classes.py --goal <goal xlsx> --classes <class data xlsx> [--year 2027]
 
 Reads only, writes nothing. Last line is RESULT: PASS (exit code 0) or RESULT: STOP (exit code 1).
-From the class data file it reads only the sheet "2026 Demand Analysis". From the goal file it skips the Dirt Bike tab.
+From the class data file it reads only the sheet "2026 Demand Analysis", leaving out cancelled classes (no students).
+From the goal file it skips the Dirt Bike tab.
 """
 import argparse
 import datetime
@@ -208,7 +209,7 @@ def load_limits(path):
         ix[col] = hits[0]
     code_to_range = {c: r for r, codes in RANGE_CODES.items() for c in codes}
     per_week = defaultdict(int)
-    skipped_course = skipped_empty = counted = other_site = 0
+    skipped_course = skipped_empty = skipped_cancelled = counted = other_site = 0
     for n, row in enumerate(rows[1:], DEMAND_HEADER_ROW + 1):
         g = lambda k: cell(row, ix[k])
         if all(blank(v) for v in row):
@@ -218,6 +219,11 @@ def load_limits(path):
             continue
         if blank(g("Limit")) and blank(g("# Stud")) and blank(g("Fees")):
             skipped_empty += 1
+            continue
+        stud = g("# Stud")
+        if blank(stud) or (is_number(stud) and stud == 0):
+            # Sergio's 48 (2026-11-26): a class with no students is cancelled and is never counted.
+            skipped_cancelled += 1
             continue
         site = g("Site")
         rng = code_to_range.get(site.strip() if isinstance(site, str) else site)
@@ -237,7 +243,8 @@ def load_limits(path):
         if c > limits.get(rng, 0) or (c == limits.get(rng) and we < busiest[rng]):
             limits[rng] = c
             busiest[rng] = we
-    stats = dict(counted=counted, skipped_course=skipped_course, skipped_empty=skipped_empty, other_site=other_site)
+    stats = dict(counted=counted, skipped_course=skipped_course, skipped_empty=skipped_empty,
+                 skipped_cancelled=skipped_cancelled, other_site=other_site)
     return limits, busiest, stats
 
 
@@ -307,7 +314,8 @@ def run(goal, classes, year):
         raise Stop(f"range(s) of the map with no sheet in the goal file: {missing}")
     limits, busiest, stats = load_limits(classes)
     print(f"DEMAND ROWS COUNTED {stats['counted']} | skipped no Course {stats['skipped_course']} | "
-          f"skipped no Limit, # Stud, Fees {stats['skipped_empty']} | other site {stats['other_site']}")
+          f"skipped no Limit, # Stud, Fees {stats['skipped_empty']} | "
+          f"skipped cancelled, no students {stats['skipped_cancelled']} | other site {stats['other_site']}")
     for rng in RANGE_CODES:
         if rng not in limits:
             raise Stop(f"range {rng} ({'+'.join(RANGE_CODES[rng])}) has no class in '{DEMAND_SHEET}'")
