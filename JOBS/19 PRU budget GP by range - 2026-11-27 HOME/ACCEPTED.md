@@ -7,4 +7,4 @@ His answer 81, Piston's chat (00 Conductor - Piston), question tool, 2026-11-27 
 - The wrong notes, kept apart: NOTES.md in this folder.
 - Accept record: `job19 47bbdafc.html.accept.json`, written by accept_record.py (WRITTEN), checked: ACCEPTED 2026-11-25.
 
-Not done, on Piston's word "Change nothing on the page, and send it to no one": the page is not sent to the Brain to go live. The live ONE VIEW planner stays job 17's until he says otherwise.
+Going live: his 82, Piston's chat, question tool, 2026-11-27: "Put it live" (this page in place of job 17's planner on ONE VIEW). Angie asked the Brain; the Brain puts the page live on ONE VIEW on his yes in its own chat.
