@@ -1,0 +1,27 @@
+{
+ "tab": "pru-planner",
+ "page_md5": "47bbdafcb3c3ee704337ff77d5834a5e",
+ "data_date": "2026-11-25",
+ "sources": [
+  {
+   "path": "C:\\AI_Building\\AI_PRU\\JOBS\\17 PRU cancelled classes out - 2026-11-26 HOME\\job17 cb153273.html",
+   "md5": "cb1532735ede13ca7ff66ac007aa9015"
+  },
+  {
+   "path": "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-27 PRU budget GP by range - ANGIE-HOME-J19\\j19_build.py",
+   "md5": "4bbd665699b693cb1f41159496640143"
+  },
+  {
+   "path": "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-26 PRU cancelled classes out - ANGIE-HOME-J17\\Sergio PRU Class Data.xlsx",
+   "md5": "281b22390a296bebefd949fb31c816ba"
+  },
+  {
+   "path": "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-26 PRU cancelled classes out - ANGIE-HOME-J17\\manual log\\2026 PRU Manual Log v3.xlsx",
+   "md5": "76f72b925241eaa7e0c51e5e2ebdcb80"
+  }
+ ],
+ "accepted": {
+  "words": "Accept as is",
+  "where": "Piston's chat (00 Conductor - Piston), question 81, 2026-11-27; LAWYER round 1, every number passed, one note finding printed as is on his rule: C:\\AI_Building\\AI_LAWYER\\Office desk\\Verdicts\\2026-11-27 Angie PRU job 19 round 1 - 7f13e7dd.md (3144a50b)"
+ }
+}
