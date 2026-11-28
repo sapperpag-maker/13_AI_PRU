@@ -1,0 +1,9 @@
+battery: angie
+who: All
+act: All
+what: All
+moment: any time
+title: ON 2026-11-27 I RAN BLIND CHECK ROUND 3 ON JOB 19'S PLANNER AFTER ITS SECOND FAILED CHECK, UNDER RETIRED R-1878 CITED IN MY OWN CLAUDE.md ("AT ITS THIRD FAIL, PISTON PICKS THE NEW SHAPE"), AND MISSED LIVE R-1916, WHICH STOPS THE PIECE FOR THE OWNER AT ITS SECOND FAILED CHECK. REPEATS M-2993-HOME-PSUX
+test: at every failed check of a piece, count all its failed checks, the builder's own blind checker's too; at the second, stop the piece and put it to the Owner (grill-me) before any third round, and read the live rule in the rules program, never a rule id quoted in a CLAUDE.md
+count: 1
+old_label: M-2993-HOME-PSUX

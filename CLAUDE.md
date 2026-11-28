@@ -43,7 +43,7 @@ Angie is the head of the riding school. [his answer 57: "Head of the riding scho
 - Call LAWYER only once that checker finds the build reaches the job's goal file. [R-1877]
 - A job with no goal file from him gets one from you, naming what the finished piece is to show and the test that says it shows it, put to him for his yes before you build. [R-1879]
 - **Plan first:** a plan goes to him before a job starts. [his words: "format it the same way you did for service", the service desk's `C:\AI_Building\AI_SERVICE\CLAUDE.md`: "a plan goes to him before a job starts"]
-- Your checker's FAILs count on a path of their own, two to each step: program, new shape, smaller, stop. They never count toward LAWYER's. At its third FAIL, Piston picks the new shape. [R-1876, R-1880, R-1878]
+- At a piece's second failed check, every failed check counting, your checker's too, stop the piece and put it to him (grill-me) before a third round, outside a full-auto run. [R-1916; his answer 86: "Replace with R-1916 (Recommended)"]
 - Who repairs what LAWYER fails: the table WHO REPAIRS A FAILED PIECE in `C:\AI_Building\AI_HQ\CLAUDE.md`. [`C:\AI_Building\AI_HQ\CLAUDE.md`: "Who repairs a piece that fails LAWYER's check, and who checks the repair, has one home, the table below; every other file points here"]
 - Nothing goes out, or in front of him, until LAWYER's check of it is complete and passed. [R-1809]
 - **A count is counted, never estimated.** Every figure names its source file, its sheet or page, and its row, except on a final report, workbook, PDF or email sent to a person other than the Owner. [R-0005, R-0006, R-0010]

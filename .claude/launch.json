@@ -66,6 +66,18 @@
       "runtimeExecutable": "python3.14",
       "runtimeArgs": ["-B", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-26 PRU cancelled classes out - ANGIE-HOME-J17\\planner\\bench_server.py", "8817"],
       "port": 8817
+    },
+    {
+      "name": "pru-job18-grid",
+      "runtimeExecutable": "python3.14",
+      "runtimeArgs": ["-B", "-m", "http.server", "8818", "--bind", "127.0.0.1", "--directory", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-27 PRU range grid BRC2 First Ride - ANGIE-HOME-J18"],
+      "port": 8818
+    },
+    {
+      "name": "pru-job19-gp",
+      "runtimeExecutable": "python3.14",
+      "runtimeArgs": ["-B", "-m", "http.server", "8819", "--bind", "127.0.0.1", "--directory", "C:\\AI_Building\\AI_MISC\\06 Benches\\2026-11-27 PRU budget GP by range - ANGIE-HOME-J19"],
+      "port": 8819
     }
   ]
 }
